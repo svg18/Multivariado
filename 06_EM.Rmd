@@ -1,0 +1,10 @@
+---
+output:
+  html_document: 
+    includes:
+      in_header: ga.html
+---
+# Escalamiento multidimensional
+
+Estos modelos se puede decir son determinados por una fuente externa, además de que suponen linealidad. Es decir que el valor actual de la serie $X_t$ esta influenciado por los valores de la fuente externa.
+

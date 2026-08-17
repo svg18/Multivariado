@@ -1,0 +1,140 @@
+---
+output:
+  html_document: 
+    includes:
+      in_header: ga.html
+---
+# Álgebra de Matrices y Distribuciones Multivariadas
+
+Como vimos, la forma de presentar la información propia para un análisis multivariado es a través de vectores y matrices, por tal razón, en este apartado haremos una breve presentación de algunos de los conceptos de álgebra lineal que son de uso común en el análisis multivariado.
+
+## Resultados importantes de álgebra lineal
+
+
++ Producto interior: Para $\mathbf{x}, \mathbf{y} \in \mathbb{R}^p$, $\langle\mathbf{x}, \mathbf{y}\rangle = \mathbf{x}^t\mathbf{y} = \sum_{j=1}^p x_j y_j = \mathbf{y}^t\mathbf{x}$.
+
++ Norma: $\|\mathbf{x}\| = \langle\mathbf{x}, \mathbf{x}\rangle^{1/2} = \left( \sum_{j=1}^p x_j^2 \right)^{1/2}$.
+
++ Ortogonalidad: Dos vectores son ortogonales si $\mathbf{x}^t\mathbf{y} = 0$. Son ortonormales si además $\|\mathbf{x}\| = \|\mathbf{y}\| = 1$.
+
++ Ángulo entre vectores: $\cos(\theta) = \frac{\langle\mathbf{x}, \mathbf{y}\rangle}{\|\mathbf{x}\| \|\mathbf{y}\|}$.
+
++ Matriz ortogonal: Matriz cuadrada $\mathbf{A}$ tal que $\mathbf{A}\mathbf{A}^t = \mathbf{I}$, lo cual implica que $\mathbf{A}^t = \mathbf{A}^{-1}$.
+
++ Matriz transpuesta: Se define la transpuesta de una matriz $\mathbf{A}$, como la matriz que tiene como renglones las columnas de $\mathbf{A}$, y la denotaremos por $\mathbf{A}^t$.
+
++ Matriz simétrica: Se dice que una matriz $\mathbf{A}$ es simétrica si $a_{ij} = a_{ji}$ para todo $i \neq j$.
+
++ Matriz diagonal: Se dice que $\mathbf{A}$ es diagonal si $a_{ij} = 0$ para todo $i \neq j$.
+
++ Matriz ortogonal: Si $\mathbf{A}$ es una matriz cuadrada tal que $\mathbf{A}\mathbf{A}^t = \mathbf{I}$, se dice que $\mathbf{A}$ es una matriz ortogonal, y $\mathbf{A}^t = \mathbf{A}^{-1}$.
+
++ Traza de una matriz: La traza de una matriz es la suma de los elementos de su diagonal principal:$$\text{traza}(\mathbf{A}) = \sum_{i=1}^n a_{ii}$$
+
+Propiedades de la traza
+
+  i) $\text{traza}(\mathbf{A}\mathbf{B}) = \text{traza}(\mathbf{B}\mathbf{A})$
+  ii) $\text{traza}(\mathbf{A}\mathbf{B}\mathbf{C}) = \text{traza}(\mathbf{C}\mathbf{A}\mathbf{B}) = \text{traza}(\mathbf{B}\mathbf{C}\mathbf{A})$ (*Propiedad Cíclica*)
+
++ Rango de una matriz. El rango de una matriz $\mathbf{A}$, denotado por $\text{rango}(\mathbf{A})$, es el número máximo de renglones o columnas linealmente independientes.
+
++ Inversa de una matriz. Si $\mathbf{A}$ es una matriz no singular de dimensión $p \times p$, existe una única matriz $\mathbf{B}$ tal que:
+    \begin{equation}
+    \mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A} = \mathbf{I}
+    \end{equation}
+    donde $\mathbf{I}$ es la matriz identidad. A la matriz $\mathbf{B}$ se le denomina la *inversa* de $\mathbf{A}$, y la denotamos por $\mathbf{A}^{-1}$.
+
+### Ejemplo
+
+```{r, echo=TRUE}
+
+# 1. VECTORES Y PRODUCTO INTERIOR
+x <- c(3, 4, 0)
+y <- c(1, 2, 5)
+
+# Producto interior: <x, y> = x^t * y
+prod_interior <- sum(x * y) # O equivalentemente: drop(t(x) %*% y)
+
+# Norma de un vector: ||x||
+norma_x <- sqrt(sum(x^2))
+norma_y <- sqrt(sum(y^2))
+
+# Ángulo entre vectores (en radianes y grados)
+cos_theta <- prod_interior / (norma_x * norma_y)
+angulo_grados <- acos(cos_theta) * (180 / pi)
+
+cat("--- VECTORES ---\n")
+cat("Producto interior <x,y> :", prod_interior, "\n")
+cat("Norma de x ||x||        :", norma_x, "\n")
+cat("Ángulo (grados)         :", round(angulo_grados, 2), "°\n\n")
+
+
+# 2. OPERACIONES MATRICIALES
+A <- matrix(c(4, 2, 
+              2, 3), nrow = 2, byrow = TRUE)
+
+cat("--- MATRIZ A ---\n")
+print(A)
+
+# Matriz Transpuesta A^t
+A_transpuesta <- t(A)
+
+# Comprobación de Simetría (a_ij = a_ji)
+es_simetrica <- isSymmetric(A)
+cat("\n¿La matriz A es simétrica?:", es_simetrica, "\n")
+
+# Traza de la matriz A: sum(diag(A))
+traza_A <- sum(diag(A))
+cat("Traza de la matriz A     :", traza_A, "\n\n")
+
+
+# 3. MATRIZ DIAGONAL
+D <- diag(c(5, 12, 8))
+cat("--- MATRIZ DIAGONAL D ---\n")
+print(D)
+cat("\n")
+
+
+# 4. MATRIZ ORTOGONAL (Ejemplo con matriz de rotación)
+theta <- pi / 3 # 60 grados
+Q <- matrix(c(cos(theta), -sin(theta), 
+              sin(theta),  cos(theta)), nrow = 2, byrow = TRUE)
+
+cat("--- MATRIZ ORTOGONAL Q ---\n")
+print(round(Q, 4))
+
+# Verificación de ortogonalidad: Q %*% Q^t = I
+I_calculada <- Q %*% t(Q)
+cat("\nComprobación Q %*% Q^t (debe ser la Matriz Identidad I):\n")
+print(round(I_calculada, 4))
+```
+
+
+\begin{itemize}
+    \item \textbf{Producto Escalar:} $\langle\mathbf{x}, \mathbf{y}\rangle = \mathbf{x}'\mathbf{y} = \sum_{k=1}^p x_k y_k$
+    \item \textbf{Norma Euclidiana:} $\|\mathbf{x}\| = \sqrt{\mathbf{x}'\mathbf{x}} = \sqrt{\sum_{k=1}^p x_k^2}$
+    \item \textbf{Descomposición Espectral:} Para una matriz simétrica $\mathbf{A}_{p \times p}$:
+    \begin{equation}
+    \mathbf{A} = \mathbf{P} \mathbf{\Lambda} \mathbf{P}' = \sum_{i=1}^p \lambda_i \mathbf{e}_i \mathbf{e}_i'
+    \end{equation}
+    donde $\mathbf{\Lambda} = \text{diag}(\lambda_1, \dots, \lambda_p)$ contiene los eigenvalores y $\mathbf{P} = [\mathbf{e}_1, \dots, \mathbf{e}_p]$ los eigenvectores ortonormales.
+\end{itemize}
+
+## Distribución Normal Multivariada
+
+Un vector aleatorio $\mathbf{X} = (X_1, \dots, X_p)'$ sigue una distribución normal multivariada $\mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ si su función de densidad de probabilidad está dada por:
+
+\begin{equation}
+f(\mathbf{x}) = (2\pi)^{-p/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left( -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right)
+\end{equation}
+
+donde $\boldsymbol{\mu} \in \mathbb{R}^p$ es el vector de medias poblacionales y $\boldsymbol{\Sigma}_{p \times p}$ es la matriz de varianza-covarianza poblacional (definida positiva).
+
+\subsection{Propiedades de la Normal Multivariada}
+\begin{enumerate}
+    \item Si $\mathbf{Y} = \mathbf{C}\mathbf{X}$ con $\mathbf{C}_{k \times p}$, entonces $\mathbf{Y} \sim \mathcal{N}_k(\mathbf{C}\boldsymbol{\mu}, \mathbf{C}\boldsymbol{\Sigma}\mathbf{C}')$.
+    \item La distancia de Mahalanobis cuadrática sigue una distribución chi-cuadrado:
+    \begin{equation}
+    (\mathbf{X} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{X} - \boldsymbol{\mu}) \sim \chi^2_p
+    \end{equation}
+\end{enumerate}

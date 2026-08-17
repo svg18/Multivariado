@@ -1,0 +1,9 @@
+---
+output:
+  html_document: 
+    includes:
+      in_header: ga.html
+---
+# (PART) Métodos de clasificación  {-}
+
+# Análisis de conglomerados 

@@ -1,0 +1,10 @@
+---
+output:
+  html_document: 
+    includes:
+      in_header: ga.html
+---
+# (PART) Análisis de relaciones entre estructuras multivariadas {-}
+
+# Análisis de Correlación Canónica
+

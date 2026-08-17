@@ -1,0 +1,96 @@
+---
+output:
+  html_document: 
+    includes:
+      in_header: ga.html
+---
+# (PART) Técnicas de reducción de dimensión {-}
+
+# Análisis de Componentes Principales (PCA)
+
+El ***Análisis de Componentes Principales*** (o *Principal Component Analysis* [***PCA***] por sus siglas en inglés) es una técnica dentro del conjunto de métodos agrupados en la categoría de **Análisis Factorial**[^1].\
+
+[^1]: Otra de las técnicas más utilizadas dentro de este conjunto corresponde al Análisis de Factores Principales (o *Principal Factor Analysis* [PFA]), pero ambas parten de supuestos teóricos distintos al momento de procesar los datos y en su interpretación.
+
+Las técnicas agrupadas dentro de la categoría de análisis factoriales son referidas como "técnicas sin variables dependiendientes" [@tacq_multivariate_1998, p267] , ya que no se basan en modelos causales sino que trabajan con todas las variables contenidas en un `data.frame` de manera simultánea.\
+
+En estos modelos "se deja que sea el análisis estadístico el que decida si existe una estructura "oculta" que se pueda reconocer en el material (datos). A este formato básico, o tal vez se debería decir que ante la ausencia de un formato básico (en los datos), se le denomina estructura latente. El análisis factorial se puede considerar como una técnica de análisis de la estructura latente." [@tacq_multivariate_1998, p. 266]\
+
+Este tipo de análisis es muy útil si se desea examinar si un concepto puede ser "partido" (*split*) en un número diverso de características latentes (dimensiones), y de esa manera se puede simplificar el trabajo del análisis de las variables.\
+
+En los análisis factoriales se requiere contar con el registro de distintos casos, a la vez que se cuenta con sus valores u observaciones para más de dos variables. Dichas observaciones (variables o indicadores) deben ser medidos en escala *intervalar*. Y se asume que cada caso en sí mismo es diferente del resto, a partir de las variables que son de interés para el análisis.\
+
+### Reducción de dimensiones en **PCA**
+
+La manera de simplificar el proceso de análisis de las variables ocurre a través de la "*reducción de dimensiones*" (latentes), esto se refiere a la creación de variables nuevas que servirán de resúmenes de las variables originales incluidas en el análisis. Al final se espera que estas últimas consistan en un número menor de "columnas" en la matriz de datos respecto de las variables originales y, así, trabajar posteriormente con las nuevas dimensiones o "*factores*".\
+
+Un *factor* se puede entender como "un concepto-madre (*mother-concept*) que ofrece un resumen de un subgrupo de indicadores, que miden lo mismo de manera más amplia. En otras palabras, consideramos a los diagramas basados en el análisis factorial como modelos de medición y no como modelos causales." [@tacq_multivariate_1998, p 267]
+
+Sin embargo, al integrar varias variables o *ítems* en otras dimensiones (latentes), se pueden caer en alguna de las situaciones extremas: la primera consiste en que todos los *ítems* estén muy correlacionados entre sí en donde "en este caso el material de investigación (datos) tendrá una estructura basada en una dimensión, y para todos los indicadores (*ítems* o variables) mostrarán pesos (*loadings*) elevados en una variable latente (*factor*)." [@tacq_multivariate_1998, p. 266-267].\
+
+El otro extremo consiste en que para cada uno de los indicadores utilizados (*ítems* o variables), cada uno de ellos miden cosas muy diferentes entre sí, y por ello se crean una nueva dimensión para cada uno de los indicadores. "Para esta solución con un factor para cada indicador no se aprenderá nada pues la estructura latente para los datos será tan compleja como lo fue la estructura manifiesta original de los datos." [@tacq_multivariate_1998, p. 267]\
+
+En el análisis **PCA** no se refiere a las variables latentes como "factores" sino como "**componentes**", y en esta técnica se generarán tantos **componentes** como indicadores sean incluidos en el análisis. [@tacq_multivariate_1998, p. 267]\
+
+### Combinación de las variables en los Componentes
+
+Si bien el método del **PCA** es una técnica que permite reducir las dimensiones de una matriz de datos a partir de la construcción de componentes $C_i$, y así simplificar el análisis de los datos a la par de identificar la estructura latente de las variables incluidas en el análisis, también se reconoce que los objetivos de investigación para los que se ha utilizado el PCA se centran, de acuerdo con Tacq [-@tacq_multivariate_1998, p. 270] en:
+
+1.  Reducción de la multiplicidad a pocas unidades: desbrozar patrones complejos de asociaciones entre variables para, así, encontrar su esencia.
+2.  Análisis de estructura latente: identificación de características latentes las que ocultan una estructura oculta en los datos.
+3.  Desarrollo de tipologías empíricas a partir de las variables utilizadas.
+4.  Reducción de dimensiones: reducción el espacio de $n$ variables a otro espacio de $p$ dimensiones, donde $p$ menor a $n$.
+5.  Construcción de índices o escalamiento: examinación sobre la posibilidad de reducir $n$ variables a una dimensión y, de ser posible, construir un índice de una sola dimensión o escala (caso especial de reducción de dimensiones con $p = 1$).
+6.  Ortogonalización de los predictores: transformación de la matriz de variables independientes en un análisis de regresión múltiple con multicolinealidad sustancial.
+
+En el **PCA**, inicialmente, cada componente se presenta como una combinación lineal de los indicadores incluidos, de tal manera que esta mezcla maximice la variabilidad que se extrae de dichos indicadores o variables. Por lo que cada componente es una combinación lineal de los indicadores que, además, han sido estandarizados de la manera siguiente para una situación con 3 componentes, de acuerdo con Tacq [-@tacq_multivariate_1998, p. 268].
+
+$$C_i = u_{i1}z_1 + u_{i2}z_2 + u_{i3}z_3$$
+
+Donde:
+
+-   $C_i$ = componente $-i$,
+-   $x_i$ = la variable $-i$ utilizado en el análisis, y se incluye en unidades estandarizadas, por lo que $z_i$,
+-   $u_i$ = consiste en valor para cada coeficiente del factor o componente.
+
+Pero para identificar estos componentes, que son mezclas de los indicadores o variables incluidas en el análisis, primero se deben cumplir 2 condiciones básicas, que restringen la búsqueda de combinaciones lineales de las variables:
+
+1.  Los componentes deben de ser perpendiculares entre sí (requisito de *ortogonalidad*).
+2.  El primer componente debe de extraer la mayor variabilidad posible de las variables originales, el segundo componente debe extraer la mayor variabilidad posible de la variabilidad restante, etc., así hasta que toda la variabilidad sea extraída (método del eje principal [*principal axis method*]). [@tacq_multivariate_1998, p. 269]
+
+En el proceso de construcción de los componentes, una característica importante del **PCA** consiste en que se calcularán tantos componentes como variables se hubieran incluido en el análisis, y entre todos se abarca la totalidad de la variación contenida en todas las variables de manera simultánea. [@tacq_multivariate_1998, p. 267]
+
+El modelo **PCA** también puede ser visto de otra manera, donde cada variable original se puede concebir como una combinación lineal de los componentes generados en el análisis, de la siguiente manera para una situación con 3 componentes: (269)
+
+$$z_i = a_{i1}C_1 + a_{i2}C_2 + a_{i3}C_3$$
+
+Donde:
+
+-   $a_i$ = peso de cada componente (*component loading*).
+
+Los *pesos de cada componente* (*component loadings*) "son los pesos *beta*'s (*beta weights*) de una regresión múltiple de la variable (estandarizada), que se presenta como una función de los componentes calculados. Estos pesos *beta*'s son iguales a las correlaciones calculadas entre cada variable y cada componente." [@tacq_multivariate_1998, p. 269]
+
+### Representación geométrica de los datos en **PCA**
+
+El PCA se apoya en la representación geométrica de los datos, donde se trata de la *rotación* de un cubo que, originalmente, se ha construido con las variables de la matriz de datos. [@tacq_multivariate_1998, p. 269]\
+
+De acuerdo con Tacq [-@tacq_multivariate_1998, p. 270] cada variable se representa en un espacio dimensional (una recta), y entre sí todas éstas son perpendiculares, formando un cubo. Si las variables están estandarizadas, entonces el origen del cubo se ubica en un *centroide*; este es el punto dentro del cubo en donde se concentran las medias de cada dimensión. Y sobre cada recta se representa la posición de cada uno de los casos de los que se extrajo la información.\
+
+En el PCA se busca delinear una recta a través del origen (centroide), de manera que la proyección de los casos sobre la línea permita contener a la mayor cantidad de dispersión (*maximal variance*). Cada una de dichas líneas es una combinación lineal (o componente).\
+
+Si llegase a ocurrir que todos los casos (representados por puntos sobre la gráfica) se posicionan sobre una recta (situación de *multicolinealidad perfecta*), entonces dicho componente representaría exhaustivamente a toda la información de la matriz de datos.\
+
+En caso de calcular más de un componente, los subsiguientes serán siempre perpendiculares al anterior y partirán del origen o centroide, y buscarán siempre maximizar la variación al cruzar a los casos.\
+
+A partir de dichas combinaciones lineales o componentes se forma un nuevo cubo, distinto al que se formó a partir de las variables originales, pero este se rota alrededor el origen del cubo hacia el nuevo cubo (formado por los componentes), mientras que los puntos o casos permanecen en su lugar. [@tacq_multivariate_1998, p. 270]
+
+A partir de dicha representación geométrica, la técnica del **PCA** se centra en los siguientes objetivos particulares o procedimentales [@tacq_multivariate_1998, p. 271]:
+
+1.  Encontrar tantos componentes así como variables originales de tal manera que los componentes sean mutuamente ortogonales y secuencialmente extraigan la variación máxima de las variables. Para esto se debe examinar la **eigenestructura** de la matriz de datos $X$ o la correlación de la matriz $R$. Los **eigenvalores** son las variantes de las proyecciones de puntos sobre cada uno de los componentes. Los **eigenvectores** son los cosenos de dirección, los que indican qué tanto debe rotarse el espacio de la variable original.
+2.  Reducción del número de dimensiones mediante la examinación sobre cuáles de las variables cuentan con un peso elevado (*high loading*) sobre cada componente, buscando la "*estructura simple*". Esto se logra mediante la examinación de la matriz $A$ de pesos de los componentes (*component loadings*), así como mediante el cálculo de las medidas de redundancia de cada componente.
+3.  Rotación del espacio resultante de cada componente a un nuevo espacio, el que puede ofrecer una *estructura más simple* así como una mejor interpretación en términos del contenido.
+
+Tomando estos supuestos y requisitos en consideración, es que se puede avanzar en la realización del procedimiento del **PCA** en `R` y, posteriormente, analizar los resultados arrojados por el software, como se verá en la sección siguiente.
+
+### Realización y análisis de los resultados del **PCA**
+
