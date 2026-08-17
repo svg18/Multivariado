@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Análisis de Componentes Principales (PCA) | Análisis Multivariado</title>
+  <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Análisis de Componentes Principales (PCA) | Análisis Multivariado" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Análisis de Componentes Principales (PCA) | Análisis Multivariado" />
+  
+  <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="álgebra-de-matrices-y-distribuciones-multivariadas.html"/>
+<link rel="next" href="análisis-de-factores.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXGNMPV7WK');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Multivariado</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-t%C3%A9cnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Datos multivariados</b></span></li>
+<li class="chapter" data-level="1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html"><i class="fa fa-check"></i><b>1</b> Análisis descriptivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#algo-de-historia"><i class="fa fa-check"></i><b>1.1</b> Algo de historia</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados"><i class="fa fa-check"></i><b>1.2</b> Introducción a los Datos Multivariados</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#estructura-matricial-de-los-datos"><i class="fa fa-check"></i><b>1.3</b> Estructura Matricial de los Datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#vector-de-medias-muestrales"><i class="fa fa-check"></i><b>1.3.1</b> Vector de Medias Muestrales</a></li>
+<li class="chapter" data-level="1.3.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral"><i class="fa fa-check"></i><b>1.3.2</b> Matriz de Varianza-Covarianza Muestral</a></li>
+<li class="chapter" data-level="1.3.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral"><i class="fa fa-check"></i><b>1.3.3</b> Matriz de Correlación Muestral</a></li>
+<li class="chapter" data-level="1.3.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#ejemplo"><i class="fa fa-check"></i><b>1.3.4</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas"><i class="fa fa-check"></i><b>1.4</b> Descripciones Gráficas Multivariadas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d"><i class="fa fa-check"></i><b>1.4.1</b> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs"><i class="fa fa-check"></i><b>1.4.2</b> Matriz de Dispersión (Pairs Plot / GGpairs)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot"><i class="fa fa-check"></i><b>1.4.3</b> Gráfico de Radar / Telaraña (Spider Plot)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html"><i class="fa fa-check"></i><b>2</b> Álgebra de Matrices y Distribuciones Multivariadas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#resultados-importantes-de-%C3%A1lgebra-lineal"><i class="fa fa-check"></i><b>2.1</b> Resultados importantes de álgebra lineal</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-1"><i class="fa fa-check"></i><b>2.1.1</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-normal-multivariada"><i class="fa fa-check"></i><b>2.2</b> Distribución Normal Multivariada</a></li>
+</ul></li>
+<li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
+<li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca"><i class="fa fa-check"></i><b>3.0.1</b> Reducción de dimensiones en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes"><i class="fa fa-check"></i><b>3.0.2</b> Combinación de las variables en los Componentes</a></li>
+<li class="chapter" data-level="3.0.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca"><i class="fa fa-check"></i><b>3.0.3</b> Representación geométrica de los datos en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca"><i class="fa fa-check"></i><b>3.0.4</b> Realización y análisis de los resultados del <strong>PCA</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="part"><span><b>III Métodos de clasificación</b></span></li>
+<li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
+<li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
+<li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
+<li class="chapter" data-level="9" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>9</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="10" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>10</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="11" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>11</b> Análisis de Procrustes</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Multivariado</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-de-componentes-principales-pca" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Análisis de Componentes Principales (PCA)<a href="análisis-de-componentes-principales-pca.html#an%C3%A1lisis-de-componentes-principales-pca" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El <strong><em>Análisis de Componentes Principales</em></strong> (o <em>Principal Component Analysis</em> [<strong><em>PCA</em></strong>] por sus siglas en inglés) es una técnica dentro del conjunto de métodos agrupados en la categoría de <strong>Análisis Factorial</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.<br />
+</p>
+<p>Las técnicas agrupadas dentro de la categoría de análisis factoriales son referidas como “técnicas sin variables dependiendientes” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span> , ya que no se basan en modelos causales sino que trabajan con todas las variables contenidas en un <code>data.frame</code> de manera simultánea.<br />
+</p>
+<p>En estos modelos “se deja que sea el análisis estadístico el que decida si existe una estructura”oculta” que se pueda reconocer en el material (datos). A este formato básico, o tal vez se debería decir que ante la ausencia de un formato básico (en los datos), se le denomina estructura latente. El análisis factorial se puede considerar como una técnica de análisis de la estructura latente.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
+</p>
+<p>Este tipo de análisis es muy útil si se desea examinar si un concepto puede ser “partido” (<em>split</em>) en un número diverso de características latentes (dimensiones), y de esa manera se puede simplificar el trabajo del análisis de las variables.<br />
+</p>
+<p>En los análisis factoriales se requiere contar con el registro de distintos casos, a la vez que se cuenta con sus valores u observaciones para más de dos variables. Dichas observaciones (variables o indicadores) deben ser medidos en escala <em>intervalar</em>. Y se asume que cada caso en sí mismo es diferente del resto, a partir de las variables que son de interés para el análisis.<br />
+</p>
+<div id="reducción-de-dimensiones-en-pca" class="section level3 hasAnchor" number="3.0.1">
+<h3><span class="header-section-number">3.0.1</span> Reducción de dimensiones en <strong>PCA</strong><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La manera de simplificar el proceso de análisis de las variables ocurre a través de la “<em>reducción de dimensiones</em>” (latentes), esto se refiere a la creación de variables nuevas que servirán de resúmenes de las variables originales incluidas en el análisis. Al final se espera que estas últimas consistan en un número menor de “columnas” en la matriz de datos respecto de las variables originales y, así, trabajar posteriormente con las nuevas dimensiones o “<em>factores</em>”.<br />
+</p>
+<p>Un <em>factor</em> se puede entender como “un concepto-madre (<em>mother-concept</em>) que ofrece un resumen de un subgrupo de indicadores, que miden lo mismo de manera más amplia. En otras palabras, consideramos a los diagramas basados en el análisis factorial como modelos de medición y no como modelos causales.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>, p 267)</span></p>
+<p>Sin embargo, al integrar varias variables o <em>ítems</em> en otras dimensiones (latentes), se pueden caer en alguna de las situaciones extremas: la primera consiste en que todos los <em>ítems</em> estén muy correlacionados entre sí en donde “en este caso el material de investigación (datos) tendrá una estructura basada en una dimensión, y para todos los indicadores (<em>ítems</em> o variables) mostrarán pesos (<em>loadings</em>) elevados en una variable latente (<em>factor</em>).” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span>.<br />
+</p>
+<p>El otro extremo consiste en que para cada uno de los indicadores utilizados (<em>ítems</em> o variables), cada uno de ellos miden cosas muy diferentes entre sí, y por ello se crean una nueva dimensión para cada uno de los indicadores. “Para esta solución con un factor para cada indicador no se aprenderá nada pues la estructura latente para los datos será tan compleja como lo fue la estructura manifiesta original de los datos.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
+</p>
+<p>En el análisis <strong>PCA</strong> no se refiere a las variables latentes como “factores” sino como “<strong>componentes</strong>”, y en esta técnica se generarán tantos <strong>componentes</strong> como indicadores sean incluidos en el análisis. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
+</p>
+</div>
+<div id="combinación-de-las-variables-en-los-componentes" class="section level3 hasAnchor" number="3.0.2">
+<h3><span class="header-section-number">3.0.2</span> Combinación de las variables en los Componentes<a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si bien el método del <strong>PCA</strong> es una técnica que permite reducir las dimensiones de una matriz de datos a partir de la construcción de componentes <span class="math inline">\(C_i\)</span>, y así simplificar el análisis de los datos a la par de identificar la estructura latente de las variables incluidas en el análisis, también se reconoce que los objetivos de investigación para los que se ha utilizado el PCA se centran, de acuerdo con Tacq <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span> en:</p>
+<ol style="list-style-type: decimal">
+<li>Reducción de la multiplicidad a pocas unidades: desbrozar patrones complejos de asociaciones entre variables para, así, encontrar su esencia.</li>
+<li>Análisis de estructura latente: identificación de características latentes las que ocultan una estructura oculta en los datos.</li>
+<li>Desarrollo de tipologías empíricas a partir de las variables utilizadas.</li>
+<li>Reducción de dimensiones: reducción el espacio de <span class="math inline">\(n\)</span> variables a otro espacio de <span class="math inline">\(p\)</span> dimensiones, donde <span class="math inline">\(p\)</span> menor a <span class="math inline">\(n\)</span>.</li>
+<li>Construcción de índices o escalamiento: examinación sobre la posibilidad de reducir <span class="math inline">\(n\)</span> variables a una dimensión y, de ser posible, construir un índice de una sola dimensión o escala (caso especial de reducción de dimensiones con <span class="math inline">\(p = 1\)</span>).</li>
+<li>Ortogonalización de los predictores: transformación de la matriz de variables independientes en un análisis de regresión múltiple con multicolinealidad sustancial.</li>
+</ol>
+<p>En el <strong>PCA</strong>, inicialmente, cada componente se presenta como una combinación lineal de los indicadores incluidos, de tal manera que esta mezcla maximice la variabilidad que se extrae de dichos indicadores o variables. Por lo que cada componente es una combinación lineal de los indicadores que, además, han sido estandarizados de la manera siguiente para una situación con 3 componentes, de acuerdo con Tacq <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span>.</p>
+<p><span class="math display">\[C_i = u_{i1}z_1 + u_{i2}z_2 + u_{i3}z_3\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(C_i\)</span> = componente <span class="math inline">\(-i\)</span>,</li>
+<li><span class="math inline">\(x_i\)</span> = la variable <span class="math inline">\(-i\)</span> utilizado en el análisis, y se incluye en unidades estandarizadas, por lo que <span class="math inline">\(z_i\)</span>,</li>
+<li><span class="math inline">\(u_i\)</span> = consiste en valor para cada coeficiente del factor o componente.</li>
+</ul>
+<p>Pero para identificar estos componentes, que son mezclas de los indicadores o variables incluidas en el análisis, primero se deben cumplir 2 condiciones básicas, que restringen la búsqueda de combinaciones lineales de las variables:</p>
+<ol style="list-style-type: decimal">
+<li>Los componentes deben de ser perpendiculares entre sí (requisito de <em>ortogonalidad</em>).</li>
+<li>El primer componente debe de extraer la mayor variabilidad posible de las variables originales, el segundo componente debe extraer la mayor variabilidad posible de la variabilidad restante, etc., así hasta que toda la variabilidad sea extraída (método del eje principal [<em>principal axis method</em>]). <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></li>
+</ol>
+<p>En el proceso de construcción de los componentes, una característica importante del <strong>PCA</strong> consiste en que se calcularán tantos componentes como variables se hubieran incluido en el análisis, y entre todos se abarca la totalidad de la variación contenida en todas las variables de manera simultánea. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></p>
+<p>El modelo <strong>PCA</strong> también puede ser visto de otra manera, donde cada variable original se puede concebir como una combinación lineal de los componentes generados en el análisis, de la siguiente manera para una situación con 3 componentes: (269)</p>
+<p><span class="math display">\[z_i = a_{i1}C_1 + a_{i2}C_2 + a_{i3}C_3\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(a_i\)</span> = peso de cada componente (<em>component loading</em>).</li>
+</ul>
+<p>Los <em>pesos de cada componente</em> (<em>component loadings</em>) “son los pesos <em>beta</em>’s (<em>beta weights</em>) de una regresión múltiple de la variable (estandarizada), que se presenta como una función de los componentes calculados. Estos pesos <em>beta</em>’s son iguales a las correlaciones calculadas entre cada variable y cada componente.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></p>
+</div>
+<div id="representación-geométrica-de-los-datos-en-pca" class="section level3 hasAnchor" number="3.0.3">
+<h3><span class="header-section-number">3.0.3</span> Representación geométrica de los datos en <strong>PCA</strong><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El PCA se apoya en la representación geométrica de los datos, donde se trata de la <em>rotación</em> de un cubo que, originalmente, se ha construido con las variables de la matriz de datos. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
+</p>
+<p>De acuerdo con Tacq <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span> cada variable se representa en un espacio dimensional (una recta), y entre sí todas éstas son perpendiculares, formando un cubo. Si las variables están estandarizadas, entonces el origen del cubo se ubica en un <em>centroide</em>; este es el punto dentro del cubo en donde se concentran las medias de cada dimensión. Y sobre cada recta se representa la posición de cada uno de los casos de los que se extrajo la información.<br />
+</p>
+<p>En el PCA se busca delinear una recta a través del origen (centroide), de manera que la proyección de los casos sobre la línea permita contener a la mayor cantidad de dispersión (<em>maximal variance</em>). Cada una de dichas líneas es una combinación lineal (o componente).<br />
+</p>
+<p>Si llegase a ocurrir que todos los casos (representados por puntos sobre la gráfica) se posicionan sobre una recta (situación de <em>multicolinealidad perfecta</em>), entonces dicho componente representaría exhaustivamente a toda la información de la matriz de datos.<br />
+</p>
+<p>En caso de calcular más de un componente, los subsiguientes serán siempre perpendiculares al anterior y partirán del origen o centroide, y buscarán siempre maximizar la variación al cruzar a los casos.<br />
+</p>
+<p>A partir de dichas combinaciones lineales o componentes se forma un nuevo cubo, distinto al que se formó a partir de las variables originales, pero este se rota alrededor el origen del cubo hacia el nuevo cubo (formado por los componentes), mientras que los puntos o casos permanecen en su lugar. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></p>
+<p>A partir de dicha representación geométrica, la técnica del <strong>PCA</strong> se centra en los siguientes objetivos particulares o procedimentales <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Encontrar tantos componentes así como variables originales de tal manera que los componentes sean mutuamente ortogonales y secuencialmente extraigan la variación máxima de las variables. Para esto se debe examinar la <strong>eigenestructura</strong> de la matriz de datos <span class="math inline">\(X\)</span> o la correlación de la matriz <span class="math inline">\(R\)</span>. Los <strong>eigenvalores</strong> son las variantes de las proyecciones de puntos sobre cada uno de los componentes. Los <strong>eigenvectores</strong> son los cosenos de dirección, los que indican qué tanto debe rotarse el espacio de la variable original.</li>
+<li>Reducción del número de dimensiones mediante la examinación sobre cuáles de las variables cuentan con un peso elevado (<em>high loading</em>) sobre cada componente, buscando la “<em>estructura simple</em>”. Esto se logra mediante la examinación de la matriz <span class="math inline">\(A\)</span> de pesos de los componentes (<em>component loadings</em>), así como mediante el cálculo de las medidas de redundancia de cada componente.</li>
+<li>Rotación del espacio resultante de cada componente a un nuevo espacio, el que puede ofrecer una <em>estructura más simple</em> así como una mejor interpretación en términos del contenido.</li>
+</ol>
+<p>Tomando estos supuestos y requisitos en consideración, es que se puede avanzar en la realización del procedimiento del <strong>PCA</strong> en <code>R</code> y, posteriormente, analizar los resultados arrojados por el software, como se verá en la sección siguiente.</p>
+</div>
+<div id="realización-y-análisis-de-los-resultados-del-pca" class="section level3 hasAnchor" number="3.0.4">
+<h3><span class="header-section-number">3.0.4</span> Realización y análisis de los resultados del <strong>PCA</strong><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Otra de las técnicas más utilizadas dentro de este conjunto corresponde al Análisis de Factores Principales (o <em>Principal Factor Analysis</em> [PFA]), pero ambas parten de supuestos teóricos distintos al momento de procesar los datos y en su interpretación.<a href="análisis-de-componentes-principales-pca.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="álgebra-de-matrices-y-distribuciones-multivariadas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-factores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "ga": "G-1PKNTHL5YP"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

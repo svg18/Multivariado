@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Análisis Multivariado</title>
+  <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Análisis Multivariado" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Análisis Multivariado" />
+  
+  <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="análisis-descriptivo.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXGNMPV7WK');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Multivariado</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-t%C3%A9cnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Datos multivariados</b></span></li>
+<li class="chapter" data-level="1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html"><i class="fa fa-check"></i><b>1</b> Análisis descriptivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#algo-de-historia"><i class="fa fa-check"></i><b>1.1</b> Algo de historia</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados"><i class="fa fa-check"></i><b>1.2</b> Introducción a los Datos Multivariados</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#estructura-matricial-de-los-datos"><i class="fa fa-check"></i><b>1.3</b> Estructura Matricial de los Datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#vector-de-medias-muestrales"><i class="fa fa-check"></i><b>1.3.1</b> Vector de Medias Muestrales</a></li>
+<li class="chapter" data-level="1.3.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral"><i class="fa fa-check"></i><b>1.3.2</b> Matriz de Varianza-Covarianza Muestral</a></li>
+<li class="chapter" data-level="1.3.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral"><i class="fa fa-check"></i><b>1.3.3</b> Matriz de Correlación Muestral</a></li>
+<li class="chapter" data-level="1.3.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#ejemplo"><i class="fa fa-check"></i><b>1.3.4</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas"><i class="fa fa-check"></i><b>1.4</b> Descripciones Gráficas Multivariadas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d"><i class="fa fa-check"></i><b>1.4.1</b> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs"><i class="fa fa-check"></i><b>1.4.2</b> Matriz de Dispersión (Pairs Plot / GGpairs)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot"><i class="fa fa-check"></i><b>1.4.3</b> Gráfico de Radar / Telaraña (Spider Plot)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html"><i class="fa fa-check"></i><b>2</b> Álgebra de Matrices y Distribuciones Multivariadas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#resultados-importantes-de-%C3%A1lgebra-lineal"><i class="fa fa-check"></i><b>2.1</b> Resultados importantes de álgebra lineal</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-1"><i class="fa fa-check"></i><b>2.1.1</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-normal-multivariada"><i class="fa fa-check"></i><b>2.2</b> Distribución Normal Multivariada</a></li>
+</ul></li>
+<li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
+<li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca"><i class="fa fa-check"></i><b>3.0.1</b> Reducción de dimensiones en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes"><i class="fa fa-check"></i><b>3.0.2</b> Combinación de las variables en los Componentes</a></li>
+<li class="chapter" data-level="3.0.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca"><i class="fa fa-check"></i><b>3.0.3</b> Representación geométrica de los datos en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca"><i class="fa fa-check"></i><b>3.0.4</b> Realización y análisis de los resultados del <strong>PCA</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="part"><span><b>III Métodos de clasificación</b></span></li>
+<li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
+<li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
+<li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
+<li class="chapter" data-level="9" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>9</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="10" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>10</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="11" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>11</b> Análisis de Procrustes</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Multivariado</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Análisis Multivariado</h1>
+<p class="author"><em>Sofía Villers Gómez</em></p>
+</div>
+<div id="prefacio" class="section level1 unnumbered hasAnchor">
+<h1>Prefacio<a href="index.html#prefacio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Primera edición del bookdown <em>Análisis Multivariado</em> para su uso en la materia Análisis Multivariado y sus relacionadas impartidas por los autores, así como para aquellos estudiantes que deseen adquirir el conocimiento pertinente de tal tópico.</p>
+<div id="objetivos" class="section level3 unnumbered hasAnchor">
+<h3>Objetivos<a href="index.html#objetivos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Otorgar un material electrónico de calidad con el contenido referente al Análisis Multivariado como un esfuerzo de los autores para lograr un proceso de aprendizaje autodidacta por parte del alumno y así optimizar el tiempo, tanto de los profesores, como el de los alumnos.</p></li>
+<li><p>Plasmar las bases teóricas de esta rama de la estadística con el uso de ejemplos y contenido visual para un mejor entendimiento de cada subtema que se trate.</p></li>
+</ul>
+</div>
+<div id="estructura" class="section level3 unnumbered hasAnchor">
+<h3>Estructura<a href="index.html#estructura" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Este libro se compone de 11 capítulos. Se recomienda que la consulta de los capítulos se realice de acuerdo al índice, ya que a medida que se avanza en índice, se asume el conocimiento de los capítulos previos.</p>
+</div>
+<div id="detalles-técnicos" class="section level3 unnumbered hasAnchor">
+<h3>Detalles técnicos<a href="index.html#detalles-t%C3%A9cnicos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para la creación de este material se hizo uso de varios sistemas de software como LaTeX y CSS para el diseño de ciertos elementos. Todos los cálculos y gráficas fue creado con el lenguaje de programación <code>R</code> ya sea con el uso del paquete <code>base</code> o algún otro de los paquetes que se mencionan a continuación.</p>
+<style type="text/css">
+.scroll-300 {
+  max-height: 300px;
+}
+</style>
+<pre class="scroll-300"><code>R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=Spanish_Mexico.utf8  LC_CTYPE=Spanish_Mexico.utf8    LC_MONETARY=Spanish_Mexico.utf8
+[4] LC_NUMERIC=C                    LC_TIME=Spanish_Mexico.utf8    
+
+time zone: America/Mexico_City
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] factoextra_2.0.0           EFAtools_1.0.0             PerformanceAnalytics_2.1.0
+ [4] xts_0.14.2                 zoo_1.8-15                 TSA_1.3.1                 
+ [7] forecast_9.0.2             kableExtra_1.4.1           knitr_1.51                
+[10] latex2exp_0.9.8            patchwork_1.3.2            lubridate_1.9.5           
+[13] forcats_1.0.1              stringr_1.6.0              dplyr_1.2.1               
+[16] purrr_1.2.2                readr_2.2.0                tidyr_1.3.2               
+[19] tibble_3.3.1               ggplot2_4.0.3              tidyverse_2.0.0           
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1   viridisLite_0.4.3  timeDate_4052.112  farver_2.1.2       S7_0.2.2          
+ [6] fastmap_1.2.0      promises_1.5.0     digest_0.6.37      timechange_0.4.0   mime_0.13         
+[11] lifecycle_1.0.5    ellipsis_0.3.3     magrittr_2.0.5     compiler_4.4.1     rlang_1.2.0       
+[16] sass_0.4.10        tools_4.4.1        yaml_2.3.12        htmlwidgets_1.6.4  pkgbuild_1.4.8    
+[21] xml2_1.5.2         RColorBrewer_1.1-3 pkgload_1.5.2      miniUI_0.1.2       withr_3.0.2       
+[26] grid_4.4.1         urlchecker_1.0.1   profvis_0.4.0      xtable_1.8-8       colorspace_2.1-2  
+[31] scales_1.4.0       cli_3.6.3          rmarkdown_2.31     generics_0.1.4     remotes_2.5.0     
+[36] otel_0.2.0         rstudioapi_0.18.0  tzdb_0.5.0         sessioninfo_1.2.3  cachem_1.1.0      
+[41] splines_4.4.1      parallel_4.4.1     urca_1.3-4         vctrs_0.7.3        devtools_2.4.5    
+[46] Matrix_1.7-0       jsonlite_2.0.0     bookdown_0.46      hms_1.1.4          ggrepel_0.9.8     
+[51] systemfonts_1.3.2  locfit_1.5-9.12    fontawesome_0.5.3  jquerylib_0.1.4    glue_1.8.1        
+[56] stringi_1.8.7      gtable_0.3.6       later_1.4.8        quadprog_1.5-8     pillar_1.11.1     
+[61] htmltools_0.5.8.1  R6_2.6.1           textshaping_1.0.5  evaluate_1.0.5     shiny_1.13.0      
+[66] lattice_0.22-6     leaps_3.2          memoise_2.0.1      renv_1.2.3         fracdiff_1.5-4    
+[71] httpuv_1.6.17      bslib_0.11.0       Rcpp_1.1.1-1.1     svglite_2.2.2      nlme_3.1-164      
+[76] mgcv_1.9-1         xfun_0.57          fs_2.1.0           usethis_3.2.1      pkgconfig_2.0.3   </code></pre>
+<p>Este libro fue escrito con <a href="http://bookdown.org/">bookdown</a> usando <a href="http://www.rstudio.com/ide/">RStudio</a>.</p>
+<p>Esta versión fue escrita con:</p>
+<pre><code>Finding R package dependencies ... Done!</code></pre>
+<pre><code> setting  value
+ version  R version 4.4.1 (2024-06-14 ucrt)
+ os       Windows 11 x64 (build 26200)
+ system   x86_64, mingw32
+ ui       RStudio
+ language (EN)
+ collate  Spanish_Mexico.utf8
+ ctype    Spanish_Mexico.utf8
+ tz       America/Mexico_City
+ date     2026-08-16
+ rstudio  2026.08.0+187 Yellow Yarrow (desktop)
+ pandoc   3.8.3 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
+ quarto   ERROR: Unknown command &quot;TMPDIR=C:/Users/chofi/AppData/Local/Temp/RtmpcPrBu8/file6c5c6fa665d5&quot;. Did you mean command &quot;install&quot;? @ C:\\PROGRA~1\\RStudio\\RESOUR~1\\app\\bin\\quarto\\bin\\quarto.exe</code></pre>
+</div>
+<div id="licencia" class="section level3 unnumbered hasAnchor">
+<h3>Licencia<a href="index.html#licencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<center>
+<i class="fab fa-creative-commons fa-2x"></i><i class="fab fa-creative-commons-by fa-2x"></i><i class="fab fa-creative-commons-sa fa-2x"></i>
+</center>
+<p><em>This is a human-readable summary of (and not a substitute for) the license.
+Please see <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode" class="uri">https://creativecommons.org/licenses/by-sa/4.0/legalcode</a> for the full legal text.</em></p>
+<p><strong>You are free to:</strong></p>
+<ul>
+<li><p><strong>Share</strong>—copy and redistribute the material in any medium or
+format</p></li>
+<li><p><strong>Remix</strong>—remix, transform, and build upon the material for any
+purpose, even commercially.</p></li>
+</ul>
+<p>The licensor cannot revoke these freedoms as long as you follow the
+license terms.</p>
+<p><strong>Under the following terms:</strong></p>
+<ul>
+<li><p><strong>Attribution</strong>—You must give appropriate credit, provide a link
+to the license, and indicate if changes were made. You may do so in
+any reasonable manner, but not in any way that suggests the licensor
+endorses you or your use.</p></li>
+<li><p><strong>ShareAlike</strong>—If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</p></li>
+<li><p><strong>No additional restrictions</strong>—You may not apply legal terms or
+technological measures that legally restrict others from doing
+anything the license permits.</p></li>
+</ul>
+<p><strong>Notices:</strong></p>
+<p>You do not have to comply with the license for elements of the
+material in the public domain or where your use is permitted by an
+applicable exception or limitation.</p>
+<p>No warranties are given. The license may not give you all of the
+permissions necessary for your intended use. For example, other rights
+such as publicity, privacy, or moral rights may limit how you use the
+material.</p>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="análisis-descriptivo.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "ga": "G-1PKNTHL5YP"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 1 Análisis descriptivo | Análisis Multivariado</title>
+  <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 1 Análisis descriptivo | Análisis Multivariado" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 1 Análisis descriptivo | Análisis Multivariado" />
+  
+  <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="álgebra-de-matrices-y-distribuciones-multivariadas.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXGNMPV7WK');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Multivariado</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-t%C3%A9cnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Datos multivariados</b></span></li>
+<li class="chapter" data-level="1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html"><i class="fa fa-check"></i><b>1</b> Análisis descriptivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#algo-de-historia"><i class="fa fa-check"></i><b>1.1</b> Algo de historia</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados"><i class="fa fa-check"></i><b>1.2</b> Introducción a los Datos Multivariados</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#estructura-matricial-de-los-datos"><i class="fa fa-check"></i><b>1.3</b> Estructura Matricial de los Datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#vector-de-medias-muestrales"><i class="fa fa-check"></i><b>1.3.1</b> Vector de Medias Muestrales</a></li>
+<li class="chapter" data-level="1.3.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral"><i class="fa fa-check"></i><b>1.3.2</b> Matriz de Varianza-Covarianza Muestral</a></li>
+<li class="chapter" data-level="1.3.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral"><i class="fa fa-check"></i><b>1.3.3</b> Matriz de Correlación Muestral</a></li>
+<li class="chapter" data-level="1.3.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#ejemplo"><i class="fa fa-check"></i><b>1.3.4</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas"><i class="fa fa-check"></i><b>1.4</b> Descripciones Gráficas Multivariadas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d"><i class="fa fa-check"></i><b>1.4.1</b> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs"><i class="fa fa-check"></i><b>1.4.2</b> Matriz de Dispersión (Pairs Plot / GGpairs)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot"><i class="fa fa-check"></i><b>1.4.3</b> Gráfico de Radar / Telaraña (Spider Plot)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html"><i class="fa fa-check"></i><b>2</b> Álgebra de Matrices y Distribuciones Multivariadas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#resultados-importantes-de-%C3%A1lgebra-lineal"><i class="fa fa-check"></i><b>2.1</b> Resultados importantes de álgebra lineal</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-1"><i class="fa fa-check"></i><b>2.1.1</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-normal-multivariada"><i class="fa fa-check"></i><b>2.2</b> Distribución Normal Multivariada</a></li>
+</ul></li>
+<li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
+<li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca"><i class="fa fa-check"></i><b>3.0.1</b> Reducción de dimensiones en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes"><i class="fa fa-check"></i><b>3.0.2</b> Combinación de las variables en los Componentes</a></li>
+<li class="chapter" data-level="3.0.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca"><i class="fa fa-check"></i><b>3.0.3</b> Representación geométrica de los datos en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca"><i class="fa fa-check"></i><b>3.0.4</b> Realización y análisis de los resultados del <strong>PCA</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="part"><span><b>III Métodos de clasificación</b></span></li>
+<li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
+<li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
+<li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
+<li class="chapter" data-level="9" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>9</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="10" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>10</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="11" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>11</b> Análisis de Procrustes</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Multivariado</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-descriptivo" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Capítulo 1</span> Análisis descriptivo<a href="análisis-descriptivo.html#an%C3%A1lisis-descriptivo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="algo-de-historia" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Algo de historia<a href="análisis-descriptivo.html#algo-de-historia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los métodos estadísticos multivariados, en su forma más simple, hacen referencia al análisis simultáneo de dos o más variables aleatorias.</p>
+<p>El primer método para medir la relación estadística entre dos variables se debe a Francis Galton (1822-1911), que introduce el concepto de recta de regresión y la idea de correlación entre variables en su libro Natural Inheritance, publicado en 1889 cuando Galton tenía 67 años. Estos descubrimientos surgen en sus investigaciones sobre la transmisión de los rasgos hereditarios, motivadas por su interés en contrastar empíricamente la teoría de la evolución de las especies, propuesta por su primo Charles Darwin en 1859.</p>
+<p>El concepto de correlación es aplicado en las ciencias sociales por Francis Edgeworth (1845-1926), que estudia la normal multivariada y la matriz de correlación. Karl Pearson (1857-1936), un distinguido estadístico británico creador de la famosa <span class="math inline">\(\chi^2\)</span> de Pearson, obtuvo el estimador del coeficiente de correlación muestral, y se enfrentó al problema de determinar si dos grupos de personas, de los que se conocen sus medidas físicas, pertenecen a la misma raza (problema simple de discriminación de poblaciones).</p>
+<p>Este problema intrigó a Harold Hotelling (1885-1973), un joven matemático y economista estadounidense, que, atraído por la Estadística, entonces una joven disciplina emergente, viaja en 1929 a la estación de investigación agrícola de Rothamsted en el Reino Unido para trabajar con el ya célebre científico y figura destacada de la estadística, R. A. Fisher (1890-1962). Hotelling se interesó por el problema de comparar tratamientos agrícolas en función de varias variables, y descubrió las semejanzas entre este problema y el planteado por Pearson. Debemos a Hotelling (1931) el contraste que lleva su nombre (<span class="math inline">\(T^2\)</span> de Hotelling), que permite comparar si dos muestras multivariadas provienen de la misma población.</p>
+<p>A su regreso a la Universidad de Columbia en Nueva York, Truman Kelley, profesor de pedagogía en Harvard, planteó a Hotelling el problema de encontrar los factores capaces de explicar los resultados obtenidos por un grupo de personas en pruebas (test) de inteligencia.</p>
+<p>Hotelling (1933) inventó los componentes principales, que son indicadores capaces de resumir de forma óptima un conjunto amplio de variables y que dan lugar, posteriormente, al análisis factorial. El problema de obtener el mejor indicador resumen de un conjunto de variables había sido abordado y resuelto desde otro punto de vista por Karl Pearson en 1901, en su trabajo para encontrar el plano de mejor ajuste a un conjunto de observaciones astronómicas. Posteriormente, Hotelling generaliza la idea de componentes principales introduciendo el análisis de correlación canónica, que permite resumir simultáneamente dos conjuntos de variables.</p>
+<p>El problema de encontrar factores que expliquen los datos fue planteado por primera vez por Charles Spearman (1863–1945), que observó que los niños que obtenían buenas puntuaciones en un test de habilidad mental también las obtenían en otros, lo que le llevó a postular que se debían a un factor general de inteligencia, el <em>factor g</em> (Spearman, 1904). L. Thurstone (1887–1955) estudió el modelo con varios factores y escribió uno de los primeros textos de análisis factorial (Thurstone, 1947). El análisis factorial fue considerado hasta los años 60 como una técnica psicométrica con poca base estadística, hasta que los trabajos de Lawley y Maxwell (1971) establecieron formalmente la estimación y el contraste del modelo factorial bajo la hipótesis de normalidad. Desde entonces, las aplicaciones del modelo factorial se han extendido a todas las ciencias sociales. La generalización del modelo factorial cuando tenemos dos conjuntos de variables y unas explican la evolución de las otras es el modelo de ecuaciones estructurales, que ha sido ampliamente estudiado por Jöreskog (1973), entre otros.</p>
+<p>La primera solución al problema de clasificación se debe a Fisher en 1936. Fisher inventa un método general, basado en el análisis de la varianza, para resolver un problema de discriminación de cráneos en antropología. El problema era clasificar un cráneo encontrado en una excavación arqueológica como perteneciente o no a un homínido (término que se utiliza para nombrar al ejemplar que pertenece al orden de los primates superiores, que tienen al ser humano (<em>Homo sapiens</em>) como la única especie que sobrevive). La idea de Fisher es encontrar una variable indicadora, combinación lineal de las variables originales de las medidas del cráneo, que consiga máxima separación entre las dos poblaciones en consideración.</p>
+<p>En 1937 Fisher visita la India invitado por P. C. Mahalanobis (1893–1972), que había inventado la medida de distancia que lleva su nombre, para investigar las diferentes razas en la India. Fisher percibe enseguida la relación entre la medida (distancia) de Mahalanobis y sus resultados en análisis discriminante y ambos consiguen unificar estas ideas y relacionarlas con los resultados de Hotelling sobre el contraste de medias de poblaciones multivariadas. Unos años después, un estudiante de Mahalanobis, C. R. Rao, va a extender el análisis de Fisher para clasificar un elemento en más de dos poblaciones.</p>
+<p>Las ideas anteriores se desarrollan para variables cuantitativas (numéricas), pero se aplican poco después a variables cualitativas o atributos (categóricas). Karl Pearson había introducido el estadístico que lleva su nombre para contrastar la independencia en una tabla de contingencia y Fisher, en 1940, aplica sus ideas de análisis discriminante a estas tablas. Paralelamente, Guttman (1916–1987), en Psicometría, presenta un procedimiento para asignar valores numéricos (construir escalas) a variables cualitativas que está muy relacionado con el método de Fisher. Como este último trabaja en Biometría, mientras Guttman lo hace en Psicometría, la conexión entre sus ideas tardó más de dos décadas en establecerse.</p>
+<p>En Ecología, Hill (1973) introduce un método para cuantificar variables cualitativas que está muy relacionado con los enfoques anteriores. En los años 60 en Francia un grupo de estadísticos y lingüistas estudian tablas de asociación entre textos literarios y J. P. Benzécri inventa el análisis de correspondencias con un enfoque geométrico que generaliza, y establece un marco común, para muchos de los resultados anteriores. Benzécri visita la Universidad de Princeton y los laboratorios Bell donde Carroll y Shepard están desarrollando los métodos de escalamiento multidimensional para analizar datos cualitativos, que habían sido iniciados en el campo de la Psicometría por Torgerson (1958). A su vuelta a Francia, Benzécri funda en 1965 el Departamento de Estadística de la Universidad de París y publica en 1972 sus métodos de análisis de datos cualitativos mediante análisis de correspondencias.</p>
+<p>La aparición de la computadora transforma radicalmente los métodos de análisis multivariado que experimentan un gran crecimiento desde los años 70. En el campo descriptivo, las computadoras hacen posible la aplicación de métodos de clasificación de observaciones (<em>análisis de conglomerados o análisis de clusters</em>) que se basan cada vez más en un uso extensivo de la computadora. MacQueen (1967) introduce el algoritmo de <span class="math inline">\(k\)</span>-medias. El primer ajuste de una mezcla de distribuciones fue realizado por el método de momentos por K. Pearson y el primer algoritmo de estimación multivariada se debe a Wolfe (1970).</p>
+<p>Por otro lado, en el campo de la inferencia, la computadora permite la estimación de modelos sofisticados de mezclas de distribuciones para clasificación, tanto desde el punto de vista clásico, mediante nuevos algoritmos de estimación de variables latentes, como el algoritmo EM, debido a Dempster, Laird y Rubin (1977), como desde el punto de vista Bayesiano, con los métodos modernos de simulación de cadenas de Markov, o métodos MCMC (<em>Markov Chain Monte Carlo</em>).</p>
+<p>En los últimos años, los métodos multivariados están sufriendo una transformación en dos direcciones: en primer lugar, las grandes masas de datos disponibles en algunas aplicaciones están conduciendo al desarrollo de métodos de aproximación local, que no requieren hipótesis generales sobre el conjunto de observaciones. Este enfoque permite construir indicadores no lineales, que resumen la información por segmentos en lugar de intentar una aproximación general. En el análisis de grupos, este enfoque local está obteniendo también ventajas apreciables.</p>
+<p>La segunda dirección prescinde de las hipótesis sobre las distribuciones de los datos y cuantifica la incertidumbre mediante métodos de computación intensiva. Es de esperarse que las crecientes posibilidades de cálculo proporcionadas por las computadoras actuales amplíen el campo de aplicación de estos métodos a problemas más complejos y generales.</p>
+</div>
+<div id="introducción-a-los-datos-multivariados" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Introducción a los Datos Multivariados<a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los datos multivariados se presentan cuando el investigador recaba varias variables sobre cada ‘’unidad’’ en su muestra. La mayoría de los conjuntos de datos que se colectan para una investigación son multivariados. Aunque algunas veces tiene sentido estudiar por separado cada una de las variables, en la mayoría de los casos no. En el común de las situaciones, las variables están relacionadas de tal manera que si se analizan por separado, no se revela la estructura completa de los datos.</p>
+<p>En la gran mayoría de los conjuntos de datos multivariados, todas las variables necesitan analizarse de manera simultánea para descubrir patrones y características esenciales de la información que contienen. El análisis multivariado incluye métodos que son totalmente descriptivos y otros que son inferenciales. El objetivo principal es revelar la estructura de los datos, eliminando el ‘’ruido’’ de los mismos.</p>
+<p>Un aspecto muy importante a considerar en los datos multivariados, es que, por lo general, las variables pueden ser tanto cualitativas como cuantitativas y que tienen diferentes escalas de medición, hecho que se debe considerar al momento de realizar el análisis estadístico.</p>
+<p>Algunos ejemplos de variables multivariantes son los siguientes:</p>
+<ul>
+<li><p>En cada estudiante de una universidad medimos la edad, el sexo, la nota de entrada en la universidad, el municipio de residencia y el curso más alto en que se encuentra matriculado.</p></li>
+<li><p>En cada una de las empresas de un polígono industrial medimos el número de trabajadores, la facturación, el sector industrial y las ayudas oficiales recibidas.</p></li>
+<li><p>En cada país del mundo medimos diez indicadores de desarrollo.</p></li>
+</ul>
+<p>Supondremos en adelante que las variables definidas sobre cada elemento de la población son numéricas. En particular, cualquier variable cualitativa se transformará a una escala numérica. Por ejemplo, la variable sexo se convierte en numérica asignando el cero al hombre y el uno a mujer. Naturalmente la asignación de valores numéricos es arbitraria.</p>
+<p>Entonces podemos suponer que los valores disponibles de la variable multidimensional se encuentran en una matriz, que llamaremos matriz de datos. En esta matriz cada fila representa un elemento de la población y cada columna los valores de una variable escalar en todos los elementos observados. Típicamente esta matriz será rectangular con <span class="math inline">\(n\)</span> filas y <span class="math inline">\(p\)</span> columnas donde hemos supuesto que existen <span class="math inline">\(n\)</span> elementos en la población y que se han medido <span class="math inline">\(p\)</span> variables sobre cada elemento.</p>
+</div>
+<div id="estructura-matricial-de-los-datos" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Estructura Matricial de los Datos<a href="análisis-descriptivo.html#estructura-matricial-de-los-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sea un conjunto de datos con <span class="math inline">\(n\)</span> observaciones e individuo <span class="math inline">\(j\)</span> (<span class="math inline">\(j=1, \dots, n\)</span>), y <span class="math inline">\(p\)</span> variables medidas en cada uno (<span class="math inline">\(k=1, \dots, p\)</span>). La matriz de datos <span class="math inline">\(\mathbf{X}_{n \times p}\)</span> se define como:</p>
+<p><span class="math display">\[\begin{equation}
+\mathbf{X} = \begin{bmatrix}
+x_{11} &amp; x_{12} &amp; \dots &amp; x_{1p} \\
+x_{21} &amp; x_{22} &amp; \dots &amp; x_{2p} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_{n1} &amp; x_{n2} &amp; \dots &amp; x_{np}
+\end{bmatrix} = \begin{bmatrix}
+\mathbf{x}_1&#39; \\
+\mathbf{x}_2&#39; \\
+\vdots \\
+\mathbf{x}_n&#39;
+\end{bmatrix}
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(\mathbf{x}_j&#39;\)</span> representa el vector fila <span class="math inline">\(1 \times p\)</span> con las mediciones sobre el <span class="math inline">\(j\)</span>-ésimo individuo.</p>
+<div id="vector-de-medias-muestrales" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Vector de Medias Muestrales<a href="análisis-descriptivo.html#vector-de-medias-muestrales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El vector de medias muestral <span class="math inline">\(\bar{\mathbf{x}}\)</span> combina la media aritmética de cada variable:
+<span class="math display">\[\begin{equation}
+\bar{\mathbf{x}} = \begin{bmatrix} \bar{x}_1 \\ \bar{x}_2 \\ \vdots \\ \bar{x}_p \end{bmatrix}, \quad \text{donde} \quad \bar{x}_k = \frac{1}{n}\sum_{j=1}^n x_{jk}
+\end{equation}\]</span></p>
+</div>
+<div id="matriz-de-varianza-covarianza-muestral" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Matriz de Varianza-Covarianza Muestral<a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La matriz de varianzas y covarianzas <span class="math inline">\(\mathbf{S}\)</span> de dimensión <span class="math inline">\(p \times p\)</span> se define por:
+<span class="math display">\[\begin{equation}
+\mathbf{S} = \begin{bmatrix}
+s_{11}^2 &amp; s_{12} &amp; \dots &amp; s_{1p} \\
+s_{21} &amp; s_{22}^2 &amp; \dots &amp; s_{2p} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+s_{p1} &amp; s_{p2} &amp; \dots &amp; s_{pp}^2
+\end{bmatrix}
+\end{equation}\]</span>
+donde la covarianza entre la variable <span class="math inline">\(i\)</span> y la variable <span class="math inline">\(k\)</span> es:
+<span class="math display">\[\begin{equation}
+s_{ik} = \frac{1}{n-1}\sum_{j=1}^n (x_{ji} - \bar{x}_i)(x_{jk} - \bar{x}_k)
+\end{equation}\]</span></p>
+</div>
+<div id="matriz-de-correlación-muestral" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Matriz de Correlación Muestral<a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La matriz de correlaciones <span class="math inline">\(\mathbf{R}\)</span> escala las covarianzas entre <span class="math inline">\(-1\)</span> y <span class="math inline">\(1\)</span>:
+<span class="math display">\[\begin{equation}
+\mathbf{R} = \begin{bmatrix}
+1 &amp; r_{12} &amp; \dots &amp; r_{1p} \\
+r_{21} &amp; 1 &amp; \dots &amp; r_{2p} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+r_{p1} &amp; r_{p2} &amp; \dots &amp; 1
+\end{bmatrix}, \quad \text{donde} \quad r_{ik} = \frac{s_{ik}}{\sqrt{s_{ii} s_{kk}}}
+\end{equation}\]</span></p>
+</div>
+<div id="ejemplo" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Ejemplo<a href="análisis-descriptivo.html#ejemplo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A continuación, analizamos las ocho variables físicas medidas en un grupo de estudiantes (datos tomados de D. Peña, 2001). Las variables son: sexo (sex), estatura (est), peso (pes), longitud de pie (pie), longitud de brazo (lbr), anchura de espalda (aes), diámetro de cráneo (dcr) y distancia rodilla-tobillo (drt).</p>
+<pre><code>--- MATRIZ DE DATOS (Muestra) ---</code></pre>
+<pre><code>  sex est pes  pie  lbr  aes dcr  drt
+1   0 159  49 36.0 68.0 42.0  57 40.0
+2   1 164  62 39.0 73.0 44.0  55 44.0
+3   0 172  65 38.0 75.0 48.0  58 44.0
+4   0 170  70 38.0 73.0 45.0  56 43.0
+5   1 170  67 40.0 77.0 46.5  58 44.5
+6   0 168  56 37.5 70.5 48.0  60 40.0</code></pre>
+<pre><code>--- RESUMEN DE ESTADÍSTICOS DESCRIPTIVOS ---</code></pre>
+<pre><code>                   est   pes   pie   lbr   aes   dcr  drt
+Medias          167.80 62.90 38.40 73.00 45.40 57.30 42.9
+D. Típicas        7.10 11.80  2.40  4.80  3.50  2.30  2.7
+Coef. asimetría   0.16  0.28  0.57  0.17 -0.28  0.15  0.0
+Coef. Curtosis    2.30  2.00  3.00  2.10  1.60  1.90  1.7</code></pre>
+<pre><code>--- MATRIZ DE CORRELACIÓN (R) ---</code></pre>
+<pre><code>     est  pes  pie  lbr  aes  dcr  drt
+est 1.00 0.95 0.90 0.94 0.93 0.77 0.87
+pes 0.95 1.00 0.94 0.96 0.83 0.61 0.94
+pie 0.90 0.94 1.00 0.97 0.82 0.67 0.94
+lbr 0.94 0.96 0.97 1.00 0.86 0.67 0.97
+aes 0.93 0.83 0.82 0.86 1.00 0.88 0.75
+dcr 0.77 0.61 0.67 0.67 0.88 1.00 0.49
+drt 0.87 0.94 0.94 0.97 0.75 0.49 1.00</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="descripciones-gráficas-multivariadas" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Descripciones Gráficas Multivariadas<a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Además de las representaciones univariantes tradicionales, es conveniente representar los datos multivariantes conjuntamente. Para variables discretas podemos construir diagramas de barras tridimensionales, pero no es posible extender la analogía a más dimensiones. Igualmente, podemos construir los equivalentes multidimensionales de los histogramas, pero estas representaciones no son útiles para dimensiones superiores a tres.</p>
+<p>Entre las herramientas gráficas principales para explorar datos multivariados destacan:</p>
+<ul>
+<li>Matrices de Dispersión (<strong>Scatterplot Matrices</strong>):} Gráficos cruzados de pares de variables.</li>
+<li>Diagramas de Estrellas (<strong>Star Plots</strong>):} Representación radial de las variables para cada individuo.</li>
+<li>Caras de Chernoff: Asignación de variables a facciones del rostro humano.</li>
+<li>Curvas de Andrews: Transformación del vector de observaciones en funciones trigonométricas continuas <span class="math inline">\(f_{\mathbf{x}}(t)\)</span> en el intervalo <span class="math inline">\([-\pi, \pi]\)</span>.</li>
+</ul>
+<div id="equivalente-multidimensional-de-histogramas-heatmap-densidad-2d" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)<a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando tenemos dos variables continuas, el equivalente a un histograma es una superficie de densidad o un gráfico de calor por casilleros (binning 2D).
+<img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" style="display: block; margin: auto;" />
+### Gráfico de Dispersión 3D Interactivo
+Permite visualizar tres variables continuas simultáneamente en un espacio tridimensional.</p>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-cc2b35d4981c935c0ccc" style="width:672px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-cc2b35d4981c935c0ccc">{"x":{"visdat":{"6c5c6cd24719":["function () ","plotlyVisDat"]},"cur_data":"6c5c6cd24719","attrs":{"6c5c6cd24719":{"x":{},"y":{},"z":{},"mode":"markers","marker":{"size":5},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Scatterplot 3D: Longitud/Anchura Sépalo vs Longitud Pétalo","scene":{"xaxis":{"title":"Sepal Length"},"yaxis":{"title":"Sepal Width"},"zaxis":{"title":"Petal Length"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[3.5,3,3.2000000000000002,3.1000000000000001,3.6000000000000001,3.8999999999999999,3.3999999999999999,3.3999999999999999,2.8999999999999999,3.1000000000000001,3.7000000000000002,3.3999999999999999,3,3,4,4.4000000000000004,3.8999999999999999,3.5,3.7999999999999998,3.7999999999999998,3.3999999999999999,3.7000000000000002,3.6000000000000001,3.2999999999999998,3.3999999999999999,3,3.3999999999999999,3.5,3.3999999999999999,3.2000000000000002,3.1000000000000001,3.3999999999999999,4.0999999999999996,4.2000000000000002,3.1000000000000001,3.2000000000000002,3.5,3.6000000000000001,3,3.3999999999999999,3.5,2.2999999999999998,3.2000000000000002,3.5,3.7999999999999998,3,3.7999999999999998,3.2000000000000002,3.7000000000000002,3.2999999999999998],"z":[1.3999999999999999,1.3999999999999999,1.3,1.5,1.3999999999999999,1.7,1.3999999999999999,1.5,1.3999999999999999,1.5,1.5,1.6000000000000001,1.3999999999999999,1.1000000000000001,1.2,1.5,1.3,1.3999999999999999,1.7,1.5,1.7,1.5,1,1.7,1.8999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.3999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.5,1.3999999999999999,1.5,1.2,1.3,1.3999999999999999,1.3,1.5,1.3,1.3,1.3,1.6000000000000001,1.8999999999999999,1.3999999999999999,1.6000000000000001,1.3999999999999999,1.5,1.3999999999999999],"mode":"markers","marker":{"color":"rgba(102,194,165,1)","size":5,"line":{"color":"rgba(102,194,165,1)"}},"type":"scatter3d","name":"setosa","textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[3.2000000000000002,3.2000000000000002,3.1000000000000001,2.2999999999999998,2.7999999999999998,2.7999999999999998,3.2999999999999998,2.3999999999999999,2.8999999999999999,2.7000000000000002,2,3,2.2000000000000002,2.8999999999999999,2.8999999999999999,3.1000000000000001,3,2.7000000000000002,2.2000000000000002,2.5,3.2000000000000002,2.7999999999999998,2.5,2.7999999999999998,2.8999999999999999,3,2.7999999999999998,3,2.8999999999999999,2.6000000000000001,2.3999999999999999,2.3999999999999999,2.7000000000000002,2.7000000000000002,3,3.3999999999999999,3.1000000000000001,2.2999999999999998,3,2.5,2.6000000000000001,3,2.6000000000000001,2.2999999999999998,2.7000000000000002,3,2.8999999999999999,2.8999999999999999,2.5,2.7999999999999998],"z":[4.7000000000000002,4.5,4.9000000000000004,4,4.5999999999999996,4.5,4.7000000000000002,3.2999999999999998,4.5999999999999996,3.8999999999999999,3.5,4.2000000000000002,4,4.7000000000000002,3.6000000000000001,4.4000000000000004,4.5,4.0999999999999996,4.5,3.8999999999999999,4.7999999999999998,4,4.9000000000000004,4.7000000000000002,4.2999999999999998,4.4000000000000004,4.7999999999999998,5,4.5,3.5,3.7999999999999998,3.7000000000000002,3.8999999999999999,5.0999999999999996,4.5,4.5,4.7000000000000002,4.4000000000000004,4.0999999999999996,4,4.4000000000000004,4.5999999999999996,4,3.2999999999999998,4.2000000000000002,4.2000000000000002,4.2000000000000002,4.2999999999999998,3,4.0999999999999996],"mode":"markers","marker":{"color":"rgba(252,141,98,1)","size":5,"line":{"color":"rgba(252,141,98,1)"}},"type":"scatter3d","name":"versicolor","textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[3.2999999999999998,2.7000000000000002,3,2.8999999999999999,3,3,2.5,2.8999999999999999,2.5,3.6000000000000001,3.2000000000000002,2.7000000000000002,3,2.5,2.7999999999999998,3.2000000000000002,3,3.7999999999999998,2.6000000000000001,2.2000000000000002,3.2000000000000002,2.7999999999999998,2.7999999999999998,2.7000000000000002,3.2999999999999998,3.2000000000000002,2.7999999999999998,3,2.7999999999999998,3,2.7999999999999998,3.7999999999999998,2.7999999999999998,2.7999999999999998,2.6000000000000001,3,3.3999999999999999,3.1000000000000001,3,3.1000000000000001,3.1000000000000001,3.1000000000000001,2.7000000000000002,3.2000000000000002,3.2999999999999998,3,2.5,3,3.3999999999999999,3],"z":[6,5.0999999999999996,5.9000000000000004,5.5999999999999996,5.7999999999999998,6.5999999999999996,4.5,6.2999999999999998,5.7999999999999998,6.0999999999999996,5.0999999999999996,5.2999999999999998,5.5,5,5.0999999999999996,5.2999999999999998,5.5,6.7000000000000002,6.9000000000000004,5,5.7000000000000002,4.9000000000000004,6.7000000000000002,4.9000000000000004,5.7000000000000002,6,4.7999999999999998,4.9000000000000004,5.5999999999999996,5.7999999999999998,6.0999999999999996,6.4000000000000004,5.5999999999999996,5.0999999999999996,5.5999999999999996,6.0999999999999996,5.5999999999999996,5.5,4.7999999999999998,5.4000000000000004,5.5999999999999996,5.0999999999999996,5.0999999999999996,5.9000000000000004,5.7000000000000002,5.2000000000000002,5,5.2000000000000002,5.4000000000000004,5.0999999999999996],"mode":"markers","marker":{"color":"rgba(141,160,203,1)","size":5,"line":{"color":"rgba(141,160,203,1)"}},"type":"scatter3d","name":"virginica","textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="matriz-de-dispersión-pairs-plot-ggpairs" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Matriz de Dispersión (Pairs Plot / GGpairs)<a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es la herramienta estándar para visualizar múltiples variables de dos en dos, incluyendo distribuciones univariantes y coeficientes de correlación.
+<img src="_main_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" style="display: block; margin: auto;" />
+### Gráfico de Coordenadas Paralelas
+Representa cada observación (<span class="math inline">\(n\)</span>) como una línea continua que atraviesa los ejes verticales paralelos correspondientes a cada variable (<span class="math inline">\(p\)</span>).Fragmento de código
+<img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" style="display: block; margin: auto;" />
+### Caras de Chernoff
+Técnica icónica para datos multivariados donde los rasgos faciales (ojos, boca, forma del rostro) representan los valores de las variables cuantitativas de cada observación.
+<img src="_main_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>effect of variables:
+ modified item       Var           
+ &quot;height of face   &quot; &quot;Sepal.Length&quot;
+ &quot;width of face    &quot; &quot;Sepal.Width&quot; 
+ &quot;structure of face&quot; &quot;Petal.Length&quot;
+ &quot;height of mouth  &quot; &quot;Petal.Width&quot; 
+ &quot;width of mouth   &quot; &quot;Sepal.Length&quot;
+ &quot;smiling          &quot; &quot;Sepal.Width&quot; 
+ &quot;height of eyes   &quot; &quot;Petal.Length&quot;
+ &quot;width of eyes    &quot; &quot;Petal.Width&quot; 
+ &quot;height of hair   &quot; &quot;Sepal.Length&quot;
+ &quot;width of hair   &quot;  &quot;Sepal.Width&quot; 
+ &quot;style of hair   &quot;  &quot;Petal.Length&quot;
+ &quot;height of nose  &quot;  &quot;Petal.Width&quot; 
+ &quot;width of nose   &quot;  &quot;Sepal.Length&quot;
+ &quot;width of ear    &quot;  &quot;Sepal.Width&quot; 
+ &quot;height of ear   &quot;  &quot;Petal.Length&quot;</code></pre>
+</div>
+<div id="gráfico-de-radar-telaraña-spider-plot" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Gráfico de Radar / Telaraña (Spider Plot)<a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Útil para comparar perfiles multivariados o los centros de masa (medias) de diferentes grupos.
+<img src="_main_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" style="display: block; margin: auto;" />
+### Curvas de Andrews
+Son una herramienta gráfica multivariada inventada por David F. Andrews (1972). Su idea fundamental es transformar cada observación multivariada <span class="math inline">\(p\)</span>-dimensional <span class="math inline">\(\mathbf{x}_i = (x_{i1}, x_{i2}, \dots, x_{ip})^t\)</span> en una función fourier continua <span class="math inline">\(f_i(t)\)</span> en el intervalo <span class="math inline">\(t \in [-\pi, \pi]\)</span>:<span class="math display">\[f_i(t) = \frac{x_{i1}}{\sqrt{2}} + x_{i2}\sin(t) + x_{i3}\cos(t) + x_{i4}\sin(2t) + x_{i5}\cos(2t) + \dots\]</span>De esta forma, cada punto u observación en un espacio <span class="math inline">\(p\)</span>-dimensional se representa como una curva suave bidimensional definida en el intervalo <span class="math inline">\(t \in [-\pi, \pi]\)</span>.</p>
+<p>La trasformación preserva las distancias, aa distancia <span class="math inline">\(L_2\)</span> entre dos curvas es proporcional a la distancia euclídea entre los puntos multivariados originales, por lo tanto las observaciones que están cerca en el espacio multivariado tendrán curvas muy similares, lo que facilita detectar clusters (agrupamientos) y valores atípicos (outliers).</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="álgebra-de-matrices-y-distribuciones-multivariadas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "ga": "G-1PKNTHL5YP"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

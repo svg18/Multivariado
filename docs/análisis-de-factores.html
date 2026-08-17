@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Análisis de Factores | Análisis Multivariado</title>
+  <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Análisis de Factores | Análisis Multivariado" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Análisis de Factores | Análisis Multivariado" />
+  
+  <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="análisis-de-componentes-principales-pca.html"/>
+<link rel="next" href="análisis-de-correspondencias.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXGNMPV7WK');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Multivariado</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-t%C3%A9cnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Datos multivariados</b></span></li>
+<li class="chapter" data-level="1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html"><i class="fa fa-check"></i><b>1</b> Análisis descriptivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#algo-de-historia"><i class="fa fa-check"></i><b>1.1</b> Algo de historia</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados"><i class="fa fa-check"></i><b>1.2</b> Introducción a los Datos Multivariados</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#estructura-matricial-de-los-datos"><i class="fa fa-check"></i><b>1.3</b> Estructura Matricial de los Datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#vector-de-medias-muestrales"><i class="fa fa-check"></i><b>1.3.1</b> Vector de Medias Muestrales</a></li>
+<li class="chapter" data-level="1.3.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral"><i class="fa fa-check"></i><b>1.3.2</b> Matriz de Varianza-Covarianza Muestral</a></li>
+<li class="chapter" data-level="1.3.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral"><i class="fa fa-check"></i><b>1.3.3</b> Matriz de Correlación Muestral</a></li>
+<li class="chapter" data-level="1.3.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#ejemplo"><i class="fa fa-check"></i><b>1.3.4</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas"><i class="fa fa-check"></i><b>1.4</b> Descripciones Gráficas Multivariadas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d"><i class="fa fa-check"></i><b>1.4.1</b> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs"><i class="fa fa-check"></i><b>1.4.2</b> Matriz de Dispersión (Pairs Plot / GGpairs)</a></li>
+<li class="chapter" data-level="1.4.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot"><i class="fa fa-check"></i><b>1.4.3</b> Gráfico de Radar / Telaraña (Spider Plot)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html"><i class="fa fa-check"></i><b>2</b> Álgebra de Matrices y Distribuciones Multivariadas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#resultados-importantes-de-%C3%A1lgebra-lineal"><i class="fa fa-check"></i><b>2.1</b> Resultados importantes de álgebra lineal</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-1"><i class="fa fa-check"></i><b>2.1.1</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-normal-multivariada"><i class="fa fa-check"></i><b>2.2</b> Distribución Normal Multivariada</a></li>
+</ul></li>
+<li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
+<li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
+<ul>
+<li class="chapter" data-level="3.0.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca"><i class="fa fa-check"></i><b>3.0.1</b> Reducción de dimensiones en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes"><i class="fa fa-check"></i><b>3.0.2</b> Combinación de las variables en los Componentes</a></li>
+<li class="chapter" data-level="3.0.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca"><i class="fa fa-check"></i><b>3.0.3</b> Representación geométrica de los datos en <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.0.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca"><i class="fa fa-check"></i><b>3.0.4</b> Realización y análisis de los resultados del <strong>PCA</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="part"><span><b>III Métodos de clasificación</b></span></li>
+<li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
+<li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
+<li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
+<li class="chapter" data-level="9" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>9</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="10" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>10</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="11" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>11</b> Análisis de Procrustes</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Multivariado</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-de-factores" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo 4</span> Análisis de Factores<a href="análisis-de-factores.html#an%C3%A1lisis-de-factores" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="análisis-de-componentes-principales-pca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-correspondencias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "ga": "G-1PKNTHL5YP"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
