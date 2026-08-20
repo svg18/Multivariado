@@ -8,8 +8,12 @@ matriz-de-correlación-muestral
 ejemplo
 descripciones-gráficas-multivariadas
 equivalente-multidimensional-de-histogramas-heatmap-densidad-2d
+gráfico-de-dispersión-3d-interactivo
 matriz-de-dispersión-pairs-plot-ggpairs
+gráfico-de-coordenadas-paralelas
+caras-de-chernoff
 gráfico-de-radar-telaraña-spider-plot
+curvas-de-andrews
 álgebra-de-matrices-y-distribuciones-multivariadas
 resultados-importantes-de-álgebra-lineal
 ejemplo-1
