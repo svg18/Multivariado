@@ -229,8 +229,6 @@ Se dice que $\mathbf{Y}$ es un $p$-vector aleatorio con distribución normal $p$
 * $(\mathbf{x} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})$ es una medida de distancia entre $\mathbf{x}$ y $\boldsymbol{\mu}$ en unidades de "desviación estándar" (Distancia de Mahalanobis).
 * Si $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma}) \implies m_{\mathbf{Y}}(\mathbf{t}) = \mathbb{E}(e^{\mathbf{t}'\mathbf{X}}) = \exp \left\{ \mathbf{t}'\boldsymbol{\mu} + \frac{1}{2}\mathbf{t}'\boldsymbol{\Sigma}\mathbf{t} \right\}$ (Función generadora de momentos).
 
----
-
 ### Propiedades
 
 1. **Combinación lineal:** Si el vector aleatorio $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, entonces cualquier combinación lineal:
@@ -256,20 +254,213 @@ Se dice que $\mathbf{Y}$ es un $p$-vector aleatorio con distribución normal $p$
 
 ### Estimación de $\boldsymbol{\mu}$ y $\boldsymbol{\Sigma}$ {#estimacion-mu-sigma}
 
-Sea $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ y $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ realizaciones muestrales de $\mathbf{Y}$. Por la propiedad (6) tenemos que $\bar{\mathbf{Y}}$ es un estimador insesgado y consistente de $\boldsymbol{\mu}$:
+Sea $\mathbf{Y} = (Y_1, Y_2, \dots, Y_p)^T$ un vector aleatorio continuo que sigue una distribución normal multivariada de dimensión $p$, denotado por $\mathbf{Y} \sim \mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, donde:
 
-$$\hat{\boldsymbol{\mu}} = \bar{\mathbf{Y}}$$
+* $\boldsymbol{\mu} \in \mathbb{R}^p$ es el vector de medias poblacionales.
+* $\boldsymbol{\Sigma} \in \mathbb{R}^{p \times p}$ es la matriz de covarianzas, definida positiva ($\boldsymbol{\Sigma} \succ 0$).
 
-Estimador para $\boldsymbol{\Sigma}$
+La función de densidad de probabilidad (f.d.p.) de una observación individual $\mathbf{y}_i \in \mathbb{R}^p$ es:
 
-Usando $\hat{\boldsymbol{\mu}} = \bar{\mathbf{Y}}$, sea $S$ la matriz de covarianzas muestral de dimensión $p \times p$. Consideremos:
+\begin{equation}
+f(\mathbf{y}_i \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = (2\pi)^{-p/2} |\boldsymbol{\Sigma}|^{-1/2} \exp \left( -\frac{1}{2} (\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}) \right)
+\end{equation}
+
+**Función de Verosimilitud**
+
+Dada una muestra aleatoria $i.i.d.$ de $n$ observaciones $\{\mathbf{y}_1, \mathbf{y}_2, \dots, \mathbf{y}_n\}$, la función de verosimilitud conjunta $L(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ es el producto de las densidades individuales:
 
 \begin{align}
-S &= \frac{1}{n-1} \sum_{i=1}^{n} (\mathbf{Y}_i - \bar{\mathbf{Y}})(\mathbf{Y}_i - \bar{\mathbf{Y}})' \quad \text{(Sumo y resto } \boldsymbol{\mu} \text{)} \\
-&= \frac{1}{n-1} \sum_{i=1}^{n} \left[ (\mathbf{Y}_i - \boldsymbol{\mu}) - (\bar{\mathbf{Y}} - \boldsymbol{\mu}) \right] \left[ (\mathbf{Y}_i - \boldsymbol{\mu}) - (\bar{\mathbf{Y}} - \boldsymbol{\mu}) \right]'
+L(\boldsymbol{\mu}, \boldsymbol{\Sigma}) &= \prod_{i=1}^n f(\mathbf{y}_i \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) \\
+&= \prod_{i=1}^n (2\pi)^{-p/2} |\boldsymbol{\Sigma}|^{-1/2} \exp \left( -\frac{1}{2} (\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}) \right) \\
+&= (2\pi)^{-np/2} |\boldsymbol{\Sigma}|^{-n/2} \exp \left( -\frac{1}{2} \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}) \right)
 \end{align}
 
-Entonces se obtiene $$(n-1)S=\mathbf{Y}'\mathbf{Y}-n\bar{\mathbf{Y}}\bar{\mathbf{Y}}'$$
+Aplicando el logaritmo natural a la función de verosimilitud:
+
+\begin{equation}
+\ell(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = \ln L(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = -\frac{np}{2} \ln(2\pi) - \frac{n}{2} \ln|\boldsymbol{\Sigma}| - \frac{1}{2} \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu})
+\end{equation}
+
+**Derivación Vectorial respecto a $\boldsymbol{\mu}$**
+
+Para maximizar $\ell(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ respecto a $\boldsymbol{\mu}$, se ignora la parte constante y se minimiza la suma cuadrática ponderada:
+
+\begin{equation}
+Q(\boldsymbol{\mu}) = \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu})
+\end{equation}
+
+Desarrollando el producto escalar interior:
+
+\begin{equation}
+(\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}) = \mathbf{y}_i^T \boldsymbol{\Sigma}^{-1} \mathbf{y}_i - 2 \boldsymbol{\mu}^T \boldsymbol{\Sigma}^{-1} \mathbf{y}_i + \boldsymbol{\mu}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}
+\end{equation}
+
+Sumando sobre las $n$ observaciones:
+
+\begin{equation}
+Q(\boldsymbol{\mu}) = \sum_{i=1}^n \mathbf{y}_i^T \boldsymbol{\Sigma}^{-1} \mathbf{y}_i - 2 \boldsymbol{\mu}^T \boldsymbol{\Sigma}^{-1} \left( \sum_{i=1}^n \mathbf{y}_i \right) + n \boldsymbol{\mu}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}
+\end{equation}
+
+Aplicando las reglas del cálculo vectorial para la gradiente respecto a $\boldsymbol{\mu}$ (usando la simetría de $\boldsymbol{\Sigma}^{-1}$):
+
+\begin{equation}
+\frac{\partial \ell}{\partial \boldsymbol{\mu}} = -\frac{1}{2} \frac{\partial Q}{\partial \boldsymbol{\mu}} = -\frac{1}{2} \left( -2 \boldsymbol{\Sigma}^{-1} \sum_{i=1}^n \mathbf{y}_i + 2 n \boldsymbol{\Sigma}^{-1} \boldsymbol{\mu} \right) = \boldsymbol{\Sigma}^{-1} \left( \sum_{i=1}^n \mathbf{y}_i - n \boldsymbol{\mu} \right)
+\end{equation}
+
+Igualando el vector gradiente al vector nulo $\mathbf{0}$:
+
+\begin{equation}
+\boldsymbol{\Sigma}^{-1} \left( \sum_{i=1}^n \mathbf{y}_i - n \boldsymbol{\mu} \right) = \mathbf{0}
+\end{equation}
+
+Multiplicando a la izquierda por $\boldsymbol{\Sigma}$:
+
+\begin{equation}
+\sum_{i=1}^n \mathbf{y}_i - n \boldsymbol{\mu} = \mathbf{0} \implies n \boldsymbol{\mu} = \sum_{i=1}^n \mathbf{y}_i
+\end{equation}
+
+Despejando $\boldsymbol{\mu}$, obtenemos el **Estimador de Máxima Verosimilitud (MLE)**:
+
+\begin{equation}
+\hat{\boldsymbol{\mu}}_{\text{MLE}} = \bar{\mathbf{y}} = \frac{1}{n} \sum_{i=1}^n \mathbf{y}_i
+\end{equation}
+
+**Propiedades del Estimador $\bar{\mathbf{y}}$**
+
+1. **Insesgadez:**
+   \begin{equation}
+   \mathbb{E}[\bar{\mathbf{y}}] = \mathbb{E}\left[ \frac{1}{n} \sum_{i=1}^n \mathbf{y}_i \right] = \frac{1}{n} \sum_{i=1}^n \mathbb{E}[\mathbf{y}_i] = \frac{1}{n} (n \boldsymbol{\mu}) = \boldsymbol{\mu}
+   \end{equation}
+
+2. **Distribución Muestral Exacta:**
+   Como combinaciones lineales de variables normales siguen una distribución normal:
+   \begin{equation}
+   \bar{\mathbf{y}} \sim \mathcal{N}_p\left(\boldsymbol{\mu}, \frac{1}{n} \boldsymbol{\Sigma}\right)
+   \end{equation}
+
+**Maximización con Respecto a $\mathbf{K} = \boldsymbol{\Sigma}^{-1}$**
+
+Dado que el término escalar $(\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu})$ es una forma cuadrática ($1 \times 1$), es igual a su propia traza. Aplicando la propiedad cíclica $\text{tr}(\mathbf{A}\mathbf{B}\mathbf{C}) = \text{tr}(\mathbf{C}\mathbf{A}\mathbf{B})$:
+
+\begin{equation}
+\text{tr}\left( (\mathbf{y}_i - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu}) \right) = \text{tr}\left( \boldsymbol{\Sigma}^{-1} (\mathbf{y}_i - \boldsymbol{\mu})(\mathbf{y}_i - \boldsymbol{\mu})^T \right)
+\end{equation}
+
+Por la linealidad del operador traza, intercambiamos la suma y la traza. Definiendo la matriz de sumas de cuadrados centrados respecto a $\boldsymbol{\mu}$ como $\mathbf{S}_0 = \sum_{i=1}^n (\mathbf{y}_i - \boldsymbol{\mu})(\mathbf{y}_i - \boldsymbol{\mu})^T$:
+
+\begin{equation}
+\ell(\boldsymbol{\mu}, \boldsymbol{\Sigma}) = -\frac{np}{2} \ln(2\pi) - \frac{n}{2} \ln|\boldsymbol{\Sigma}| - \frac{1}{2} \text{tr}\left( \boldsymbol{\Sigma}^{-1} \mathbf{S}_0 \right)
+\end{equation}
+
+Parametrizando en términos de la matriz de precisión $\mathbf{K} = \boldsymbol{\Sigma}^{-1}$, la log-verosimilitud es:
+
+\begin{equation}
+\ell(\boldsymbol{\mu}, \mathbf{K}) = -\frac{np}{2} \ln(2\pi) + \frac{n}{2} \ln|\mathbf{K}| - \frac{1}{2} \text{tr}\left( \mathbf{K} \mathbf{S}_0 \right)
+\end{equation}
+
+Derivando con respecto a $\mathbf{K}$ e igualando a cero:
+
+\begin{equation}
+\frac{\partial \ell}{\partial \mathbf{K}} = \frac{n}{2} \boldsymbol{\Sigma} - \frac{1}{2} \mathbf{S}_0 = \mathbf{0}
+\end{equation}
+
+Despejando $\boldsymbol{\Sigma}$ y sustituyendo el estimador de la media $\hat{\boldsymbol{\mu}} = \bar{\mathbf{y}}$:
+
+\begin{equation}
+\hat{\boldsymbol{\Sigma}}_{\text{MLE}} = \frac{1}{n} \mathbf{S}_0 = \frac{1}{n} \sum_{i=1}^n (\mathbf{y}_i - \bar{\mathbf{y}})(\mathbf{y}_i - \bar{\mathbf{y}})^T
+\end{equation}
+
+Puesto que $\mathbb{E}[\hat{\boldsymbol{\Sigma}}_{\text{MLE}}] = \frac{n-1}{n} \boldsymbol{\Sigma}$, en la práctica se suele emplear la matriz muestral insesgada $\mathbf{S}$:
+
+\begin{equation}
+\mathbf{S} = \frac{1}{n-1} \sum_{i=1}^n (\mathbf{y}_i - \bar{\mathbf{y}})(\mathbf{y}_i - \bar{\mathbf{y}})^T
+\end{equation}
+
+### Ejemplo Práctico en R
+
+```{r estimacion-sigma, eval=TRUE, echo=TRUE}
+# Simulacion de muestra multivariada normal en R
+set.seed(123)
+n <- 100
+p <- 3
+
+mu_true <- c(2, 5, -1)
+Sigma_true <- matrix(c(4.0, 1.2, -0.8,
+                       1.2, 3.0,  0.5,
+                      -0.8, 0.5,  2.0), nrow = p, ncol = p)
+
+# Simulación con paquete MASS
+if (!requireNamespace("MASS", quietly = TRUE)) install.packages("MASS")
+X <- MASS::mvrnorm(n = n, mu = mu_true, Sigma = Sigma_true)
+
+# 1. Estimador de Máxima Verosimilitud (y_bar)
+y_bar <- colMeans(X)
+
+
+# 2. Matriz de Covarianza Muestral Insesgada (S) [1/(n-1)]
+S_unbiased <- cov(X)
+
+# 3. Estimador de Máxima Verosimilitud (Sigma_hat_MLE) [1/n]
+Sigma_MLE <- ((n - 1) / n) * S_unbiased
+
+# Comparación con verdaderos valores
+cat("Vector de Medias Verdadero (mu):\n")
+print(mu_true)
+
+cat("\nVector de Medias Muestral (y_bar = hat{mu}):\n")
+print(round(y_bar, 4))
+
+cat("\nError Estándar por Componente (SE):\n")
+print(round(sqrt(diag(cov(X)/n)), 4))
+
+
+cat("Sigma Verdadera:\n")
+print(Sigma_true)
+
+cat("\nMatriz Muestral Insesgada (S):\n")
+print(round(S_unbiased, 4))
+
+cat("\nEstimador MLE (Sigma_hat):\n")
+print(round(Sigma_MLE, 4))
+
+```
+### Validación del Supuesto de Normalidad Multivariada {#norm-valida}
+
+Para realizar inferencia estadística válida en el contexto multivariado (como pruebas de hipótesis $T^2$ de Hotelling, MANOVA o Análisis Discriminante), es fundamental verificar que el vector aleatorio $p$-dimensional $\mathbf{Y} = [Y_1, Y_2, \dots, Y_p]'$ siga una **distribución Normal Multivariada** $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$.
+
+Cabe destacar que la normalidad marginal de cada una de las variables componentes es una condición **necesaria pero no suficiente** para garantizar la normalidad multivariada.
+
+#### Métodos Gráficos: Gráfico Q-Q Chi-Cuadrado
+
+El método gráfico por excelencia se basa en la **Distancia Mahalanobis** ($d_i^2$). Para una muestra aleatoria de vectores $\mathbf{Y}_1, \dots, \mathbf{Y}_n$, la distancia cuadrática del $i$-ésimo individuo al vector de medias muestral $\bar{\mathbf{Y}}$ viene dada por:
+
+\begin{equation}
+d_i^2 = (\mathbf{Y}_i - \bar{\mathbf{Y}})' \mathbf{S}^{-1} (\mathbf{Y}_i - \bar{\mathbf{Y}}), \quad i = 1, \dots, n
+\end{equation}
+
+Si la población de origen es $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, las distancias al cuadrado se distribuyen aproximadamente como una variable **Chi-cuadrada con $p$ grados de libertad**:
+
+$$d_i^2 \dot{\sim} \chi^2_{(p)}$$
+
+Al ordenar las distancias muestrales $d_{(1)}^2 \le d_{(2)}^2 \le \dots \le d_{(n)}^2$ y graficarlas frente a los cuantiles teóricos $q_i = \chi^2_{(p)}\left(\frac{i - 0.5}{n}\right)$, los puntos deben alinearse sobre la diagonal de $45^\circ$.
+
+#### Pruebas Formales de Hipótesis
+
+Para contrastar formalmente $H_0: \mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ frente a $H_1: \mathbf{Y} \nsim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, se utilizan principalmente las siguientes pruebas:
+
+* Prueba de Asimetría y Curtosis de Mardia
+Mardia definió los coeficientes de asimetría ($b_{1,p}$) y curtosis ($b_{2,p}$) multivariados como:
+
+\begin{align}
+b_{1,p} &= \frac{1}{n^2} \sum_{i=1}^{n} \sum_{j=1}^{n} \left[ (\mathbf{Y}_i - \bar{\mathbf{Y}})' \mathbf{S}^{-1} (\mathbf{Y}_j - \bar{\mathbf{Y}}) \right]^3 \\
+b_{2,p} &= \frac{1}{n} \sum_{i=1}^{n} \left[ (\mathbf{Y}_i - \bar{\mathbf{Y}})' \mathbf{S}^{-1} (\mathbf{Y}_i - \bar{\mathbf{Y}}) \right]^2 = \frac{1}{n} \sum_{i=1}^{n} (d_i^2)^2
+\end{align}
+
+Bajo la hipótesis nula de normalidad multivariada, la asimetría se transforma asintóticamente a una distribución $\chi^2_{\frac{p(p+1)(p+2)}{6}}$ y la curtosis a una distribución normal estándar $N(0,1)$.
+
+* Prueba de Henze-Zirkler (HZ)
+Mide la distancia empírica entre la función característica observada en la muestra y la función característica teórica de la normal multivariada. Es altamente recomendada por su elevado poder estadístico y robustez frente a diversos tamaños muestrales.
+
 
 ## Distribución Wishart 
 
@@ -307,6 +498,7 @@ donde $\Gamma_p(\cdot)$ representa la función Gamma multivariada.
 La distribución Wishart es la **extensión multivariada de la distribución Chi-cuadrada ($\chi^2$)**. En particular, para el caso univariado ($p = 1$):
 
 $$\text{Si } M \sim W_1(n, \sigma^2) \implies \frac{M}{\sigma^2} \sim \chi^2_n$$
+
 ### Propiedades y Distribución Wishart Inversa
 
 Sean $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ una muestra aleatoria de una población $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$. La matriz de suma de cuadrados y productos cruzados centrados satisface:
@@ -317,19 +509,17 @@ o bien, expresado directamente para la matriz de covarianza muestral $\mathbf{S}
 
 $$\mathbf{S} \sim W_p\left(n-1, \frac{\boldsymbol{\Sigma}}{n-1}\right)$$
 
-### Caso Especial y Distribución Inversa
-
 * **Wishart Estándar:** Ocurre en el caso especial donde $\boldsymbol{\Sigma} = \mathbf{I}$. La distribución $W_p(n, \mathbf{I})$ se denomina *distribución Wishart estándar*.
 * **Distribución Wishart Inversa:** Si $\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$, entonces a la distribución de la matriz inversa $\mathbf{M}^{-1}$ se le conoce como *Wishart Inversa*:
   $$\mathbf{M}^{-1} \sim W_p^{-1}(n + p + 1, \boldsymbol{\Sigma}^{-1})$$
   con valor esperado:
   $$\mathbb{E}(\mathbf{M}^{-1}) = \frac{\boldsymbol{\Sigma}^{-1}}{n - p - 1}$$
 
----
-
 ### Teorema Central del Límite Multivariado
 Sean $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ una muestra aleatoria de una población $p$-variada con media $\boldsymbol{\mu}$ y covarianza $\boldsymbol{\Sigma}$. Entonces:
+
 1. $\bar{\mathbf{Y}} \sim N_p\left(\boldsymbol{\mu}, \frac{\boldsymbol{\Sigma}}{n}\right) \quad \text{o equivalentemente} \quad \sqrt{n}(\bar{\mathbf{Y}} - \boldsymbol{\mu}) \xrightarrow{d} N_p(\mathbf{0}, \boldsymbol{\Sigma})$
+
 2. $n(\bar{\mathbf{Y}} - \boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{Y}} - \boldsymbol{\mu}) \xrightarrow{d} \chi^2_{(p)}$ para $n$ grande relativo a $p$. *(Para $n$ pequeña relativo a $p$, se utiliza la transformación a distribución $F$)*.
 
 ### Propiedades Adicionales de la Distribución Wishart
@@ -342,20 +532,18 @@ Sean $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ una muestra aleatoria de una población
 4. **Proyección escalar:** Si $\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$ y $\mathbf{a} \in \mathbb{R}^p$ es un vector tal que $\mathbf{a}'\boldsymbol{\Sigma}\mathbf{a} \neq 0$, entonces:
    $$\frac{\mathbf{a}'\mathbf{M}\mathbf{a}}{\mathbf{a}'\boldsymbol{\Sigma}\mathbf{a}} \sim \chi^2_n$$
 
----
 
 ## Estadística $T^2$ de Hotelling
 
-### Recordatorio Univariado
-En el caso univariado ($p = 1$), para pruebas de hipótesis se utilizan las distribuciones $t$ y $F$:
-* **$t$-Student:** Si $X \sim N(\mu, \sigma^2)$ y $Y \sim \chi^2_{(n)}$ son independientes, entonces $t = \frac{X}{\sqrt{Y/n}} \sim t_{(n)}$.
-* **$F$-Fisher:** Si $H \sim \chi^2_{(\nu_1)}$ y $E \sim \chi^2_{(\nu_2)}$ son independientes, entonces $F = \frac{H/\nu_1}{E/\nu_2} \sim F_{(\nu_1, \nu_2)}$.
+Recordemos que en el caso univariado ($p = 1$), para pruebas de hipótesis se utilizan las distribuciones $t$ y $F$ las cuales se derivan de:
+
+**$t$-Student:** Si $X \sim N(\mu, \sigma^2)$ y $Y \sim \chi^2_{(n)}$ son independientes, entonces $t = \frac{X}{\sqrt{Y/n}} \sim t_{(n)}$.
+
+**$F$-Fisher:** Si $H \sim \chi^2_{(\nu_1)}$ y $E \sim \chi^2_{(\nu_2)}$ son independientes, entonces $F = \frac{H/\nu_1}{E/\nu_2} \sim F_{(\nu_1, \nu_2)}$.
 
 La extensión multivariada de la prueba $t$-Student es la **Estadística $T^2$ de Hotelling**.
 
----
-
-### Definición Formal
+### Definición
 
 Sean $\mathbf{Y}$ y $\mathbf{Q}$ variables aleatorias independientes donde $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ y $\mathbf{Q} \sim W_p(n, \boldsymbol{\Sigma})$ con $n > p$. Se define la **estadística $T^2$ de Hotelling** como:
 
@@ -366,8 +554,6 @@ Tiene una distribución proporcional a la $F$ de Fisher no centrada:
 $$\frac{n - p + 1}{p n} T^2 \sim F(p, n - p + 1, \gamma)$$
 
 donde $\gamma = \boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}$ representa el parámetro de no centralidad. Cuando $p = 1$, la relación se reduce a $T^2 \sim F_{(1, n)}$.
-
----
 
 ### Aplicación Muestral y Pruebas de Hipótesis
 
