@@ -190,12 +190,13 @@ Además de las representaciones univariantes tradicionales, es conveniente repre
 
 Entre las herramientas gráficas principales para explorar datos multivariados destacan:
 
-+ Matrices de Dispersión (**Scatterplot Matrices**):} Gráficos cruzados de pares de variables.
-+ Diagramas de Estrellas (**Star Plots**):} Representación radial de las variables para cada individuo.
++ Matrices de Dispersión (**Scatterplot Matrices**): Gráficos cruzados de pares de variables.
++ Diagramas de Estrellas (**Star Plots**): Representación radial de las variables para cada individuo.
 + Caras de Chernoff: Asignación de variables a facciones del rostro humano.
 + Curvas de Andrews: Transformación del vector de observaciones en funciones trigonométricas continuas $f_{\mathbf{x}}(t)$ en el intervalo $[-\pi, \pi]$.
 
 ### Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)
+
 Cuando tenemos dos variables continuas, el equivalente a un histograma es una superficie de densidad o un gráfico de calor por casilleros (binning 2D).
 ```{r}
 library(ggplot2)
@@ -219,6 +220,7 @@ ggplot(datos_aire, aes(x = polucion, y = mortalidad)) +
     fill = "Frecuencia"
   )
 ```
+
 ### Gráfico de Dispersión 3D Interactivo
 Permite visualizar tres variables continuas simultáneamente en un espacio tridimensional.
 
@@ -247,6 +249,7 @@ plot_ly(
     )
   )
 ```
+
 ### Matriz de Dispersión (Pairs Plot / GGpairs)
 Es la herramienta estándar para visualizar múltiples variables de dos en dos, incluyendo distribuciones univariantes y coeficientes de correlación.
 ```{r}
@@ -263,6 +266,7 @@ ggpairs(
   diag = list(continuous = wrap("densityDiag", fill = "skyblue"))
 )
 ```
+
 ### Gráfico de Coordenadas Paralelas
 Representa cada observación ($n$) como una línea continua que atraviesa los ejes verticales paralelos correspondientes a cada variable ($p$).Fragmento de código
 ```{r}
@@ -279,6 +283,7 @@ ggparcoord(
   alphaLines = 0.4
 ) + theme_minimal()
 ```
+
 ### Caras de Chernoff
 Técnica icónica para datos multivariados donde los rasgos faciales (ojos, boca, forma del rostro) representan los valores de las variables cuantitativas de cada observación.
 ```{r}
@@ -295,6 +300,7 @@ faces(
   face.type = 1
 )
 ```
+
 ### Gráfico de Radar / Telaraña (Spider Plot)
 Útil para comparar perfiles multivariados o los centros de masa (medias) de diferentes grupos.
 ```{r}
@@ -332,6 +338,7 @@ legend(
   bty = "n"
 )
 ```
+
 ### Curvas de Andrews 
 Son una herramienta gráfica multivariada inventada por David F. Andrews (1972). Su idea fundamental es transformar cada observación multivariada $p$-dimensional $\mathbf{x}_i = (x_{i1}, x_{i2}, \dots, x_{ip})^t$ en una función fourier continua $f_i(t)$ en el intervalo $t \in [-\pi, \pi]$:$$f_i(t) = \frac{x_{i1}}{\sqrt{2}} + x_{i2}\sin(t) + x_{i3}\cos(t) + x_{i4}\sin(2t) + x_{i5}\cos(2t) + \dots$$De esta forma, cada punto u observación en un espacio $p$-dimensional se representa como una curva suave bidimensional definida en el intervalo $t \in [-\pi, \pi]$. 
 

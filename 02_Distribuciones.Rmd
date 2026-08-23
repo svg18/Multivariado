@@ -19,15 +19,36 @@ Como vimos, la forma de presentar la información propia para un análisis multi
 
 + Ángulo entre vectores: $\cos(\theta) = \frac{\langle\mathbf{x}, \mathbf{y}\rangle}{\|\mathbf{x}\| \|\mathbf{y}\|}$.
 
++ Matriz cuadrada: es aquella con igual número de renglones y columnas
+
 + Matriz ortogonal: Matriz cuadrada $\mathbf{A}$ tal que $\mathbf{A}\mathbf{A}^t = \mathbf{I}$, lo cual implica que $\mathbf{A}^t = \mathbf{A}^{-1}$.
 
 + Matriz transpuesta: Se define la transpuesta de una matriz $\mathbf{A}$, como la matriz que tiene como renglones las columnas de $\mathbf{A}$, y la denotaremos por $\mathbf{A}^t$.
+
+Propiedades de la transpuesta
+
+i) Dada una matriz, siempre existe la transpuesta y es única
+ii) $(\mathbf{A}^t)^t=\mathbf{A}$
+iii) $\mathbf{A+B}^t=\mathbf{A}^t+\mathbf{B}^t$
+iv) $(\lambda \mathbf{A})^t=\lambda\mathbf{A}^t$, con $\lambda \in \mathbb{R}$
+v) $\mathbf{AB}^t=\mathbf{B}^t\mathbf{A}^t$
+vi) $(\mathbf{A}^{-1})^t=(\mathbf{A}^t)^{-1}$
 
 + Matriz simétrica: Se dice que una matriz $\mathbf{A}$ es simétrica si $a_{ij} = a_{ji}$ para todo $i \neq j$.
 
 + Matriz diagonal: Se dice que $\mathbf{A}$ es diagonal si $a_{ij} = 0$ para todo $i \neq j$.
 
 + Matriz ortogonal: Si $\mathbf{A}$ es una matriz cuadrada tal que $\mathbf{A}\mathbf{A}^t = \mathbf{I}$, se dice que $\mathbf{A}$ es una matriz ortogonal, y $\mathbf{A}^t = \mathbf{A}^{-1}$.
+
++ Rango de una matriz: El rango de una matriz $\mathbf{A}$, denotado por $\text{rango}(\mathbf{A})$, es el número máximo de renglones o columnas linealmente independientes.
+
++ Inversa de una matriz: Si $\mathbf{A}$ es una matriz no singular de dimensión $p \times p$, existe una única matriz $\mathbf{B}$ tal que:
+    \begin{equation}
+    \mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A} = \mathbf{I}
+    \end{equation}
+    donde $\mathbf{I}$ es la matriz identidad. A la matriz $\mathbf{B}$ se le denomina la *inversa* de $\mathbf{A}$, y la denotamos por $\mathbf{A}^{-1}$.
+
++ Matriz invertible: $\mathbf{A}$ es inevertible si existe $\mathbf{A}^{-1}$ talque $\mathbf{A}\mathbf{A}^{-1}= \mathbf{I}$
 
 + Traza de una matriz: La traza de una matriz es la suma de los elementos de su diagonal principal:$$\text{traza}(\mathbf{A}) = \sum_{i=1}^n a_{ii}$$
 
@@ -36,13 +57,44 @@ Propiedades de la traza
   i) $\text{traza}(\mathbf{A}\mathbf{B}) = \text{traza}(\mathbf{B}\mathbf{A})$
   ii) $\text{traza}(\mathbf{A}\mathbf{B}\mathbf{C}) = \text{traza}(\mathbf{C}\mathbf{A}\mathbf{B}) = \text{traza}(\mathbf{B}\mathbf{C}\mathbf{A})$ (*Propiedad Cíclica*)
 
-+ Rango de una matriz. El rango de una matriz $\mathbf{A}$, denotado por $\text{rango}(\mathbf{A})$, es el número máximo de renglones o columnas linealmente independientes.
++ Determinante de una matriz: Para una matriz cuadrada de orden $n$, el determinante se puede calcular fijando cualquier fila $i$:$$\det(A) = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} M_{ij}$$
 
-+ Inversa de una matriz. Si $\mathbf{A}$ es una matriz no singular de dimensión $p \times p$, existe una única matriz $\mathbf{B}$ tal que:
-    \begin{equation}
-    \mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A} = \mathbf{I}
-    \end{equation}
-    donde $\mathbf{I}$ es la matriz identidad. A la matriz $\mathbf{B}$ se le denomina la *inversa* de $\mathbf{A}$, y la denotamos por $\mathbf{A}^{-1}$.
+Donde: $a_{ij}$ es el elemento en la fila $i$, columna $j$.
+$M_{ij}$ es el menor, es decir, el determinante de la submatriz de dimensión $(n-1) \times (n-1)$ que resulta al eliminar la fila $i$ y la columna $j$.
+
+Propiedades
+
+i) Singularidad e Invertibilidad: Una matriz $A$ tiene inversa $A^{-1}$ si y solo si $\det(A) \neq 0$.
+ii) Producto de Matrices: $\det(AB) = \det(A) \cdot \det(B)$.
+iii) Transpuesta: $\det(A^t) = \det(A)$.
+iv) Valores Propios ($\lambda_i$): El determinante es igual al producto de los valores propios de la matriz: $\det(A) = \prod_{i=1}^{n} \lambda_i$.
+v) Variabilidad Generalizada: En estadística multivariada, el determinante de la matriz de covarianza $\det(S)$ se conoce como la varianza generalizada del conjunto de datos.
+
++ Matriz definida positiva: Una matriz simétrica $A$ de dimensión $p \times p$ es definida positiva si, para todo vector no nulo $\mathbf{x} \in \mathbb{R}^p$ ($\mathbf{x} \neq \mathbf{0}$), se cumple la siguiente forma cuadrática:$$\mathbf{x}^t A \mathbf{x} > 0$$
+
+Si la condición se relaja a $\mathbf{x}^t A \mathbf{x} \ge 0$, se dice que la matriz es semidefinida positiva.
+
+La matriz de Covarianza ($S$): Si no existen redundancias lineales exactas entre las variables, la matriz de covarianza muestral $S$ es definida positiva. Esto garantiza que las varianzas proyectadas en cualquier dirección $(\mathbf{a}^t S \mathbf{a})$ sean estrictamente mayores a cero.
+
++ Descomposición en valores singulares
+
+La Descomposición en Valores Singulares (SVD, por sus siglas en inglés Singular Value Decomposition) es un teorema fundamental del álgebra lineal que permite factorizar cualquier matriz real $X$ de dimensión $n \times p$ (sea rectangular o cuadrada, de rango lleno o no) en el producto de tres matrices con propiedades geométricas y estadísticas muy claras:
+
+$$X = U D V^t$$
+
+Componentes de la Factorización:
+
+$U$ (Matriz $n \times n$ ó $n \times p$ ortogonal): Sus columnas se denominan vectores singulares izquierdos. Son los vectores propios (eigenvectors) de la matriz de asociación entre observaciones $X X^t$. En estadística, representan las coordenadas de las observaciones en las nuevas dimensiones.
+
+$D$ (Matriz $n \times p$ ó $p \times p$ diagonal): Contiene los valores singulares $\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r > 0$ en la diagonal principal (donde $r = \text{rango}(X)$), ordenados de mayor a menor. Cada valor singular es la raíz cuadrada positiva de los valores propios de $X^t X$ ($\sigma_i = \sqrt{\lambda_i}$).
+
+$V$ (Matriz $p \times p$ ortogonal): Sus columnas se denominan vectores singulares derechos. Son los vectores propios (eigenvectors) de la matriz de asociación entre variables $X^t X$. En estadística, representan las cargas o pesos de las variables (loadings).
+
+Interpretación Geométrica y Estadística:
+
+Transformación geométrica: Cualquier transformación lineal representada por $X$ se descompone en tres pasos simples:Una rotación/reflexión en el espacio de entrada ($V^t$).Un escalamiento a lo largo de los ejes de coordenadas por los valores singulares ($D$).Una segunda rotación/reflexión en el espacio de salida ($U$).
+
+Compresión de datos y Reducción de Dimensión: Si solo conservamos los $k$ valores singulares más grandes ($k < r$), la matriz reconstruida $\tilde{X} = U_k D_k V_k^t$ es la mejor aproximación de rango $k$ a la matriz original $X$ bajo la norma de Frobenius (Teorema de Eckart-Young).Relación con Componentes Principales (ACP): Si la matriz de datos $X$ está centrada por columnas (media cero), SVD realiza el Análisis de Componentes Principales directamente sin necesidad de calcular explícitamente la matriz de covarianza.
 
 ### Ejemplo
 
@@ -110,31 +162,228 @@ print(round(I_calculada, 4))
 ```
 
 
-\begin{itemize}
-    \item \textbf{Producto Escalar:} $\langle\mathbf{x}, \mathbf{y}\rangle = \mathbf{x}'\mathbf{y} = \sum_{k=1}^p x_k y_k$
-    \item \textbf{Norma Euclidiana:} $\|\mathbf{x}\| = \sqrt{\mathbf{x}'\mathbf{x}} = \sqrt{\sum_{k=1}^p x_k^2}$
-    \item \textbf{Descomposición Espectral:} Para una matriz simétrica $\mathbf{A}_{p \times p}$:
-    \begin{equation}
-    \mathbf{A} = \mathbf{P} \mathbf{\Lambda} \mathbf{P}' = \sum_{i=1}^p \lambda_i \mathbf{e}_i \mathbf{e}_i'
-    \end{equation}
-    donde $\mathbf{\Lambda} = \text{diag}(\lambda_1, \dots, \lambda_p)$ contiene los eigenvalores y $\mathbf{P} = [\mathbf{e}_1, \dots, \mathbf{e}_p]$ los eigenvectores ortonormales.
-\end{itemize}
 
 ## Distribución Normal Multivariada
 
-Un vector aleatorio $\mathbf{X} = (X_1, \dots, X_p)'$ sigue una distribución normal multivariada $\mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ si su función de densidad de probabilidad está dada por:
+Sea $Y_i$ una variable aleatoria con distribución normal univariada $Y_i \sim N(\mu_i, \sigma^2)$. Su función de densidad de probabilidad está dada por:
+
+$$f_{Y_i}(y_i) = \frac{1}{\sigma \sqrt{2\pi}} \exp \left\{ -\frac{(y_i - \mu_i)^2}{2\sigma^2} \right\}, \quad -\infty < y_i < \infty$$
+
+Sea el vector de variables aleatorias independientes $\mathbf{Y}' = [Y_1, \dots, Y_p]$, donde $Y_i \sim N(\mu_i, \sigma^2)$.
+
+Por definición de función de densidad conjunta para variables independientes:
+
+\begin{align}
+f_{\mathbf{Y}}(\mathbf{y}) &= \prod_{i=1}^{p} f_{Y_i}(y_i) \\
+&= \prod_{i=1}^{p} \frac{1}{\sigma \sqrt{2\pi}} \exp \left\{ -\frac{(y_i - \mu_i)^2}{2\sigma^2} \right\} \\
+&= (2\pi)^{-\frac{p}{2}} \left( \frac{1}{\sigma^p} \right) \exp \left\{ -\sum_{i=1}^{p} \frac{(y_i - \mu_i)^2}{2\sigma^2} \right\}
+\end{align}
+
+Considerando la matriz escalar $p \times p$:
+
+$$\begin{bmatrix}
+\sigma^2 & 0 & \dots & 0 \\
+0 & \sigma^2 & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & \sigma^2
+\end{bmatrix} = \sigma^2 \mathbf{I}_p$$
+
+Se tiene que su determinante es $|\sigma^2 \mathbf{I}_p| = \sigma^{2p}$, lo cual implica que:
+
+$$\left( \sigma^{2p} \right)^{-\frac{1}{2}} = \frac{1}{\sigma^p}$$
+
+Sustituyendo esto en la densidad conjunta:
 
 \begin{equation}
-f(\mathbf{x}) = (2\pi)^{-p/2} |\boldsymbol{\Sigma}|^{-1/2} \exp\left( -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right)
+f_{\mathbf{Y}}(\mathbf{y}) = (2\pi)^{-\frac{p}{2}} \left| \sigma^2 \mathbf{I}_p \right|^{-\frac{1}{2}} \exp \left\{ -\sum_{i=1}^{p} \frac{(y_i - \mu_i)^2}{2\sigma^2} \right\}
 \end{equation}
 
-donde $\boldsymbol{\mu} \in \mathbb{R}^p$ es el vector de medias poblacionales y $\boldsymbol{\Sigma}_{p \times p}$ es la matriz de varianza-covarianza poblacional (definida positiva).
+Ahora, reescribiendo la suma del exponente en forma cuadrática vectorial con el vector de diferencias $(\mathbf{y} - \boldsymbol{\mu})$ y la matriz inversa $(\sigma^2 \mathbf{I}_p)^{-1}$:
 
-\subsection{Propiedades de la Normal Multivariada}
-\begin{enumerate}
-    \item Si $\mathbf{Y} = \mathbf{C}\mathbf{X}$ con $\mathbf{C}_{k \times p}$, entonces $\mathbf{Y} \sim \mathcal{N}_k(\mathbf{C}\boldsymbol{\mu}, \mathbf{C}\boldsymbol{\Sigma}\mathbf{C}')$.
-    \item La distancia de Mahalanobis cuadrática sigue una distribución chi-cuadrado:
-    \begin{equation}
-    (\mathbf{X} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{X} - \boldsymbol{\mu}) \sim \chi^2_p
-    \end{equation}
-\end{enumerate}
+\begin{align}
+(\mathbf{y} - \boldsymbol{\mu})' (\sigma^2 \mathbf{I}_p)^{-1} (\mathbf{y} - \boldsymbol{\mu}) &= \begin{bmatrix} y_1 - \mu_1 & \dots & y_p - \mu_p \end{bmatrix}_{1 \times p} \begin{bmatrix} \sigma^2 & & \\ & \sigma^2 & & \\ & & \ddots & \\ & & & \sigma^2 \end{bmatrix}_{p \times p}^{-1} \begin{bmatrix} y_1 - \mu_1 \\ y_2 - \mu_2 \\ \vdots \\ y_p - \mu_p \end{bmatrix}_{p \times 1} \\
+&= \sum_{i=1}^{p} \frac{(y_i - \mu_i)^2}{\sigma^2}
+\end{align}
+
+De esta manera, expresamos la densidad conjunta multivariada en su forma matricial completa:
+
+\begin{equation}
+f_{\mathbf{Y}}(\mathbf{y}) = (2\pi)^{-\frac{p}{2}} \left| \sigma^2 \mathbf{I}_p \right|^{-\frac{1}{2}} \exp \left\{ -\frac{1}{2} (\mathbf{y} - \boldsymbol{\mu})' \left( \sigma^2 \mathbf{I}_p \right)^{-1} (\mathbf{y} - \boldsymbol{\mu}) \right\}
+\end{equation}
+
+Por lo tanto:
+
+$$\mathbf{Y} \sim N_p\left(\boldsymbol{\mu}, \sigma^2 \mathbf{I}\right)$$
+Reemplazando $\sigma^2 \mathbf{I}_p$ por la matriz definida positiva de covarianzas $\boldsymbol{\Sigma}$, obtenemos una definición más general de la función de densidad normal multivariada como:
+
+\begin{equation}
+f_{\mathbf{Y}}(\mathbf{y}) = (2\pi)^{-\frac{p}{2}} |\boldsymbol{\Sigma}|^{-\frac{1}{2}} \exp \left\{ -\frac{1}{2} (\mathbf{y} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{y} - \boldsymbol{\mu}) \right\}
+\end{equation}
+
+$$\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$$
+Se dice que $\mathbf{Y}$ es un $p$-vector aleatorio con distribución normal $p$-variada o multivariada.
+
+**Observaciones:**
+
+* $\mathbb{E}(\mathbf{Y}) = \boldsymbol{\mu}, \quad \text{Var}(\mathbf{Y}) = \boldsymbol{\Sigma}$
+* $(\mathbf{x} - \boldsymbol{\mu})' \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu})$ es una medida de distancia entre $\mathbf{x}$ y $\boldsymbol{\mu}$ en unidades de "desviación estándar" (Distancia de Mahalanobis).
+* Si $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma}) \implies m_{\mathbf{Y}}(\mathbf{t}) = \mathbb{E}(e^{\mathbf{t}'\mathbf{X}}) = \exp \left\{ \mathbf{t}'\boldsymbol{\mu} + \frac{1}{2}\mathbf{t}'\boldsymbol{\Sigma}\mathbf{t} \right\}$ (Función generadora de momentos).
+
+---
+
+### Propiedades
+
+1. **Combinación lineal:** Si el vector aleatorio $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, entonces cualquier combinación lineal:
+   $$\mathbf{a}'\mathbf{Y} = a_1 Y_1 + a_2 Y_2 + \dots + a_p Y_p \sim N\left(\mathbf{a}'\boldsymbol{\mu}, \, \mathbf{a}'\boldsymbol{\Sigma}\mathbf{a}\right), \quad \text{con } \mathbf{a} \neq \mathbf{0}$$
+
+2. **Transformación afín:** Si $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, entonces para una matriz constante $\mathbf{A}_{q \times p}$ y un vector constante $\mathbf{b}_{q \times 1}$:
+   $$\mathbf{X} = \underset{q \times p}{\mathbf{A}} \underset{p \times 1}{\mathbf{Y}} + \underset{q \times 1}{\mathbf{b}} \sim N_q\left(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}'\right)$$
+
+3. **Partición de subvectores:** Particionando $\mathbf{Y} = [\mathbf{Y}_1', \mathbf{Y}_2']'$, $\boldsymbol{\mu} = \begin{bmatrix} \boldsymbol{\mu}_1 \\ \boldsymbol{\mu}_2 \end{bmatrix}$ y $\boldsymbol{\Sigma} = \begin{bmatrix} \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12} \\ \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{bmatrix}$, los subvectores de $\mathbf{Y}$ se distribuyen como:
+   $$\mathbf{Y}_1 \sim N_{p_1}(\boldsymbol{\mu}_1, \boldsymbol{\Sigma}_{11}) \quad \text{y} \quad \mathbf{Y}_2 \sim N_{p_2}(\boldsymbol{\mu}_2, \boldsymbol{\Sigma}_{22})$$
+   donde $p_1 + p_2 = p$.
+
+4. **Estandarización:** Para $\mathbf{X} = \boldsymbol{\Sigma}^{-1/2} (\mathbf{Y} - \boldsymbol{\mu})$, donde $\boldsymbol{\Sigma}^{-1/2}$ es simétrica definida positiva y la raíz cuadrada de $\boldsymbol{\Sigma}^{-1}$. Entonces:
+   $$\mathbf{X} \sim N_p(\mathbf{0}, \mathbf{I}) \quad \text{o bien} \quad X_i \sim N(0, 1)$$
+5. **Suma de vectores independientes:** Si $\mathbf{Y}_1$ y $\mathbf{Y}_2$ son vectores aleatorios independientes con distribución normal multivariada:
+   $$\mathbf{Y}_1 + \mathbf{Y}_2 \sim N_p\left(\boldsymbol{\mu}_1 + \boldsymbol{\mu}_2, \, \boldsymbol{\Sigma}_{11} + \boldsymbol{\Sigma}_{22}\right)$$
+
+   *Más general:* Si $\mathbf{Y}_i \sim N_p(\boldsymbol{\mu}_i, \boldsymbol{\Sigma}_i)$ y $a_1, a_2, \dots, a_n$ son constantes fijas, entonces la suma de $n$ vectores aleatorios de $p$ variables será:
+   $$\sum_{i=1}^{n} a_i \mathbf{Y}_i \sim N_p\left( \sum_{i=1}^{n} a_i \boldsymbol{\mu}_i, \, \sum_{i=1}^{n} a_i^2 \boldsymbol{\Sigma}_i \right)$$
+
+6. **Distribución de la media muestral:** Si $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ son vectores aleatorios independientes e idénticamente distribuidos (i.i.d.) con distribución multivariada $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, entonces:
+   $$\bar{\mathbf{Y}} = \frac{1}{n} \sum_{i=1}^{n} \mathbf{Y}_i \sim N_p\left(\boldsymbol{\mu}, \, \frac{\boldsymbol{\Sigma}}{n}\right)$$
+
+### Estimación de $\boldsymbol{\mu}$ y $\boldsymbol{\Sigma}$ {#estimacion-mu-sigma}
+
+Sea $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ y $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ realizaciones muestrales de $\mathbf{Y}$. Por la propiedad (6) tenemos que $\bar{\mathbf{Y}}$ es un estimador insesgado y consistente de $\boldsymbol{\mu}$:
+
+$$\hat{\boldsymbol{\mu}} = \bar{\mathbf{Y}}$$
+
+Estimador para $\boldsymbol{\Sigma}$
+
+Usando $\hat{\boldsymbol{\mu}} = \bar{\mathbf{Y}}$, sea $S$ la matriz de covarianzas muestral de dimensión $p \times p$. Consideremos:
+
+\begin{align}
+S &= \frac{1}{n-1} \sum_{i=1}^{n} (\mathbf{Y}_i - \bar{\mathbf{Y}})(\mathbf{Y}_i - \bar{\mathbf{Y}})' \quad \text{(Sumo y resto } \boldsymbol{\mu} \text{)} \\
+&= \frac{1}{n-1} \sum_{i=1}^{n} \left[ (\mathbf{Y}_i - \boldsymbol{\mu}) - (\bar{\mathbf{Y}} - \boldsymbol{\mu}) \right] \left[ (\mathbf{Y}_i - \boldsymbol{\mu}) - (\bar{\mathbf{Y}} - \boldsymbol{\mu}) \right]'
+\end{align}
+
+Entonces se obtiene $$(n-1)S=\mathbf{Y}'\mathbf{Y}-n\bar{\mathbf{Y}}\bar{\mathbf{Y}}'$$
+
+## Distribución Wishart 
+
+Recordemos que en el caso univariado si $Y_i \sim N(0, 1)$ independientes para $i = 1, \dots, n$, entonces:
+
+$$\sum_{i=1}^{n} Y_i^2 \sim \chi^2_{(n)}$$
+
+
+### Definición
+
+Sean $\mathbf{X}_1, \dots, \mathbf{X}_n$ vectores aleatorios independientes con distribución normal multivariada centrada:
+
+$$\mathbf{X}_i \sim N_p(\mathbf{0}, \boldsymbol{\Sigma})$$
+
+Sea $\mathbf{X}$ la matriz de datos de dimensión $p \times n$ dada por $\mathbf{X} = [\mathbf{X}_1, \dots, \mathbf{X}_n]$. 
+
+Se define la matriz aleatoria simétrica $\mathbf{M}$ de dimensión $p \times p$ como:
+
+$$\mathbf{M}_{p \times p} = \mathbf{X}\mathbf{X}' = \sum_{i=1}^{n} \mathbf{X}_i \mathbf{X}_i'$$
+
+Se dice que $\mathbf{M}$ tiene una **distribución Wishart** con $n$ grados de libertad y matriz de covarianzas $\boldsymbol{\Sigma}$, lo cual se denota por:
+
+$$\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$$
+
+### Función de Densidad
+
+Para $n \ge p$, la función de densidad de probabilidad de la matriz aleatoria $\mathbf{M}$ está dada por:
+
+\begin{equation}
+f(\mathbf{M}) = \frac{1}{2^{\frac{np}{2}} \Gamma_p\left(\frac{n}{2}\right) |\boldsymbol{\Sigma}|^{\frac{n}{2}}} |\mathbf{M}|^{\frac{n - p - 1}{2}} \exp \left\{ -\frac{1}{2} \text{tr}\left(\boldsymbol{\Sigma}^{-1} \mathbf{M}\right) \right\}
+\end{equation}
+
+donde $\Gamma_p(\cdot)$ representa la función Gamma multivariada.
+
+La distribución Wishart es la **extensión multivariada de la distribución Chi-cuadrada ($\chi^2$)**. En particular, para el caso univariado ($p = 1$):
+
+$$\text{Si } M \sim W_1(n, \sigma^2) \implies \frac{M}{\sigma^2} \sim \chi^2_n$$
+### Propiedades y Distribución Wishart Inversa
+
+Sean $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ una muestra aleatoria de una población $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$. La matriz de suma de cuadrados y productos cruzados centrados satisface:
+
+$$(n-1)\mathbf{S} = \sum_{i=1}^{n} (\mathbf{Y}_i - \bar{\mathbf{Y}})(\mathbf{Y}_i - \bar{\mathbf{Y}})' \sim W_p(n-1, \boldsymbol{\Sigma})$$
+
+o bien, expresado directamente para la matriz de covarianza muestral $\mathbf{S}$:
+
+$$\mathbf{S} \sim W_p\left(n-1, \frac{\boldsymbol{\Sigma}}{n-1}\right)$$
+
+### Caso Especial y Distribución Inversa
+
+* **Wishart Estándar:** Ocurre en el caso especial donde $\boldsymbol{\Sigma} = \mathbf{I}$. La distribución $W_p(n, \mathbf{I})$ se denomina *distribución Wishart estándar*.
+* **Distribución Wishart Inversa:** Si $\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$, entonces a la distribución de la matriz inversa $\mathbf{M}^{-1}$ se le conoce como *Wishart Inversa*:
+  $$\mathbf{M}^{-1} \sim W_p^{-1}(n + p + 1, \boldsymbol{\Sigma}^{-1})$$
+  con valor esperado:
+  $$\mathbb{E}(\mathbf{M}^{-1}) = \frac{\boldsymbol{\Sigma}^{-1}}{n - p - 1}$$
+
+---
+
+### Teorema Central del Límite Multivariado
+Sean $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ una muestra aleatoria de una población $p$-variada con media $\boldsymbol{\mu}$ y covarianza $\boldsymbol{\Sigma}$. Entonces:
+1. $\bar{\mathbf{Y}} \sim N_p\left(\boldsymbol{\mu}, \frac{\boldsymbol{\Sigma}}{n}\right) \quad \text{o equivalentemente} \quad \sqrt{n}(\bar{\mathbf{Y}} - \boldsymbol{\mu}) \xrightarrow{d} N_p(\mathbf{0}, \boldsymbol{\Sigma})$
+2. $n(\bar{\mathbf{Y}} - \boldsymbol{\mu})'\mathbf{S}^{-1}(\bar{\mathbf{Y}} - \boldsymbol{\mu}) \xrightarrow{d} \chi^2_{(p)}$ para $n$ grande relativo a $p$. *(Para $n$ pequeña relativo a $p$, se utiliza la transformación a distribución $F$)*.
+
+### Propiedades Adicionales de la Distribución Wishart
+1. **Transformación lineal:** Si $\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$ y $\mathbf{B}_{p \times m}$ es una matriz de rango completo, entonces:
+   $$\mathbf{B}'\mathbf{M}\mathbf{B} \sim W_m(n, \mathbf{B}'\boldsymbol{\Sigma}\mathbf{B})$$
+2. **Estandarización:** Si $\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$ con $\boldsymbol{\Sigma} > 0$, entonces:
+   $$\boldsymbol{\Sigma}^{-1/2}\mathbf{M}\boldsymbol{\Sigma}^{-1/2} \sim W_p(n, \mathbf{I}_p)$$
+3. **Aditividad:** Si $\mathbf{M}_i \sim W_p(n_i, \boldsymbol{\Sigma})$ son independientes para $i = 1, \dots, k$, entonces:
+   $$\sum_{i=1}^{k} \mathbf{M}_i \sim W_p\left(n, \boldsymbol{\Sigma}\right) \quad \text{donde } n = \sum_{i=1}^{k} n_i$$
+4. **Proyección escalar:** Si $\mathbf{M} \sim W_p(n, \boldsymbol{\Sigma})$ y $\mathbf{a} \in \mathbb{R}^p$ es un vector tal que $\mathbf{a}'\boldsymbol{\Sigma}\mathbf{a} \neq 0$, entonces:
+   $$\frac{\mathbf{a}'\mathbf{M}\mathbf{a}}{\mathbf{a}'\boldsymbol{\Sigma}\mathbf{a}} \sim \chi^2_n$$
+
+---
+
+## Estadística $T^2$ de Hotelling
+
+### Recordatorio Univariado
+En el caso univariado ($p = 1$), para pruebas de hipótesis se utilizan las distribuciones $t$ y $F$:
+* **$t$-Student:** Si $X \sim N(\mu, \sigma^2)$ y $Y \sim \chi^2_{(n)}$ son independientes, entonces $t = \frac{X}{\sqrt{Y/n}} \sim t_{(n)}$.
+* **$F$-Fisher:** Si $H \sim \chi^2_{(\nu_1)}$ y $E \sim \chi^2_{(\nu_2)}$ son independientes, entonces $F = \frac{H/\nu_1}{E/\nu_2} \sim F_{(\nu_1, \nu_2)}$.
+
+La extensión multivariada de la prueba $t$-Student es la **Estadística $T^2$ de Hotelling**.
+
+---
+
+### Definición Formal
+
+Sean $\mathbf{Y}$ y $\mathbf{Q}$ variables aleatorias independientes donde $\mathbf{Y} \sim N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ y $\mathbf{Q} \sim W_p(n, \boldsymbol{\Sigma})$ con $n > p$. Se define la **estadística $T^2$ de Hotelling** como:
+
+$$T^2 = n \mathbf{Y}' \mathbf{Q}^{-1} \mathbf{Y}$$
+
+Tiene una distribución proporcional a la $F$ de Fisher no centrada:
+
+$$\frac{n - p + 1}{p n} T^2 \sim F(p, n - p + 1, \gamma)$$
+
+donde $\gamma = \boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}$ representa el parámetro de no centralidad. Cuando $p = 1$, la relación se reduce a $T^2 \sim F_{(1, n)}$.
+
+---
+
+### Aplicación Muestral y Pruebas de Hipótesis
+
+Dada una muestra aleatoria $\mathbf{Y}_1, \dots, \mathbf{Y}_n$ de $N_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, tenemos que $\bar{\mathbf{Y}} \sim N_p\left(\boldsymbol{\mu}, \frac{\boldsymbol{\Sigma}}{n}\right)$ y $(n-1)\mathbf{S} \sim W_p(n-1, \boldsymbol{\Sigma})$.
+
+Definiendo la estadística muestral:
+
+$$T^2 = n (\bar{\mathbf{Y}} - \boldsymbol{\mu})' \mathbf{S}^{-1} (\bar{\mathbf{Y}} - \boldsymbol{\mu})$$
+
+se obtiene la relación exacta con la distribución $F$:
+
+$$\frac{n - p}{p(n - 1)} T^2 = \frac{n(n - p)}{p(n - 1)} (\bar{\mathbf{Y}} - \boldsymbol{\mu})' \mathbf{S}^{-1} (\bar{\mathbf{Y}} - \boldsymbol{\mu}) \sim F_{(p, n - p, \gamma)}$$
+
+#### Prueba de Hipótesis para la Media Multivariada
+Para probar $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ vs. $H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0$:
+* **Bajo $H_0$ es cierta:** El parámetro de no centralidad es $\gamma = 0$, por lo que la estadística se distribuye como una **$F$ centrada**: $F_{(p, n-p)}$.
+* **Bajo $H_1$:** El parámetro de no centralidad toma el valor $\gamma = n(\boldsymbol{\mu} - \boldsymbol{\mu}_0)'\boldsymbol{\Sigma}^{-1}(\boldsymbol{\mu} - \boldsymbol{\mu}_0)$.
+
+Esta estadística permite construir **regiones e intervalos de confianza simultáneos** para el vector de medias $\boldsymbol{\mu}$.
