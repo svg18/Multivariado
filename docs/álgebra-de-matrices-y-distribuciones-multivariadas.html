@@ -752,7 +752,12 @@ con valor esperado:
 <p><span class="math display">\[T^2 = n \mathbf{Y}&#39; \mathbf{Q}^{-1} \mathbf{Y}\]</span></p>
 <p>Tiene una distribución proporcional a la <span class="math inline">\(F\)</span> de Fisher no centrada:</p>
 <p><span class="math display">\[\frac{n - p + 1}{p n} T^2 \sim F(p, n - p + 1, \gamma)\]</span></p>
-<p>donde <span class="math inline">\(\gamma = \boldsymbol{\mu}&#39;\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}\)</span> representa el parámetro de no centralidad. Cuando <span class="math inline">\(p = 1\)</span>, la relación se reduce a <span class="math inline">\(T^2 \sim F_{(1, n)}\)</span>.</p>
+<p>donde <span class="math inline">\(\gamma = \boldsymbol{\mu}&#39;\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}\)</span> representa el parámetro de no centralidad.</p>
+<p>NOTAS:</p>
+<ol style="list-style-type: decimal">
+<li><p>Cuando <span class="math inline">\(p = 1\)</span>, la relación se reduce a <span class="math inline">\(T^2 \sim F_{(1, n)}\)</span>.</p></li>
+<li><p>Cuando <span class="math inline">\(\gamma=0\)</span> entonces la relación se reduce a <span class="math inline">\(T^2 \sim F_{(p, n-p)}\)</span> y por lo tanto <span class="math inline">\(\mathbb{E}(T^2)=\frac{(n-1)p}{(n-p-2)}\)</span> y <span class="math inline">\(Var(T^2)=\frac{2p(n-1)^2(n-2)}{(n-p-2)^2(n-p-4)}\)</span></p></li>
+</ol>
 </div>
 <div id="aplicación-muestral-y-pruebas-de-hipótesis" class="section level3 hasAnchor" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Aplicación Muestral y Pruebas de Hipótesis<a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#aplicaci%C3%B3n-muestral-y-pruebas-de-hip%C3%B3tesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -763,9 +768,9 @@ con valor esperado:
 <p><span class="math display">\[\frac{n - p}{p(n - 1)} T^2 = \frac{n(n - p)}{p(n - 1)} (\bar{\mathbf{Y}} - \boldsymbol{\mu})&#39; \mathbf{S}^{-1} (\bar{\mathbf{Y}} - \boldsymbol{\mu}) \sim F_{(p, n - p, \gamma)}\]</span></p>
 <div id="prueba-de-hipótesis-para-la-media-multivariada" class="section level4 hasAnchor" number="2.4.2.1">
 <h4><span class="header-section-number">2.4.2.1</span> Prueba de Hipótesis para la Media Multivariada<a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#prueba-de-hip%C3%B3tesis-para-la-media-multivariada" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Para probar <span class="math inline">\(H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0\)</span> vs. <span class="math inline">\(H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0\)</span>:
-* <strong>Bajo <span class="math inline">\(H_0\)</span> es cierta:</strong> El parámetro de no centralidad es <span class="math inline">\(\gamma = 0\)</span>, por lo que la estadística se distribuye como una <strong><span class="math inline">\(F\)</span> centrada</strong>: <span class="math inline">\(F_{(p, n-p)}\)</span>.
-* <strong>Bajo <span class="math inline">\(H_1\)</span>:</strong> El parámetro de no centralidad toma el valor <span class="math inline">\(\gamma = n(\boldsymbol{\mu} - \boldsymbol{\mu}_0)&#39;\boldsymbol{\Sigma}^{-1}(\boldsymbol{\mu} - \boldsymbol{\mu}_0)\)</span>.</p>
+<p>Para probar <span class="math inline">\(H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0\)</span> vs. <span class="math inline">\(H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0\)</span>:</p>
+<p><strong>Bajo <span class="math inline">\(H_0\)</span> es cierta:</strong> El parámetro de no centralidad es <span class="math inline">\(\gamma = 0\)</span>, por lo que la estadística se distribuye como una <strong><span class="math inline">\(F\)</span> centrada</strong>: <span class="math inline">\(F_{(p, n-p)}\)</span>.</p>
+<p><strong>Bajo <span class="math inline">\(H_1\)</span>:</strong> El parámetro de no centralidad toma el valor <span class="math inline">\(\gamma = n(\boldsymbol{\mu} - \boldsymbol{\mu}_0)&#39;\boldsymbol{\Sigma}^{-1}(\boldsymbol{\mu} - \boldsymbol{\mu}_0)\)</span>.</p>
 <p>Esta estadística permite construir <strong>regiones e intervalos de confianza simultáneos</strong> para el vector de medias <span class="math inline">\(\boldsymbol{\mu}\)</span>.</p>
 
 </div>
