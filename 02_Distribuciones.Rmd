@@ -553,7 +553,13 @@ Tiene una distribución proporcional a la $F$ de Fisher no centrada:
 
 $$\frac{n - p + 1}{p n} T^2 \sim F(p, n - p + 1, \gamma)$$
 
-donde $\gamma = \boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}$ representa el parámetro de no centralidad. Cuando $p = 1$, la relación se reduce a $T^2 \sim F_{(1, n)}$.
+donde $\gamma = \boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}$ representa el parámetro de no centralidad. 
+
+NOTAS: 
+
+1. Cuando $p = 1$, la relación se reduce a $T^2 \sim F_{(1, n)}$.
+
+2. Cuando $\gamma=0$ entonces la relación se reduce a $T^2 \sim F_{(p, n-p)}$ y por lo tanto $\mathbb{E}(T^2)=\frac{(n-1)p}{(n-p-2)}$ y $Var(T^2)=\frac{2p(n-1)^2(n-2)}{(n-p-2)^2(n-p-4)}$
 
 ### Aplicación Muestral y Pruebas de Hipótesis
 
@@ -569,7 +575,9 @@ $$\frac{n - p}{p(n - 1)} T^2 = \frac{n(n - p)}{p(n - 1)} (\bar{\mathbf{Y}} - \bo
 
 #### Prueba de Hipótesis para la Media Multivariada
 Para probar $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$ vs. $H_1: \boldsymbol{\mu} \neq \boldsymbol{\mu}_0$:
-* **Bajo $H_0$ es cierta:** El parámetro de no centralidad es $\gamma = 0$, por lo que la estadística se distribuye como una **$F$ centrada**: $F_{(p, n-p)}$.
-* **Bajo $H_1$:** El parámetro de no centralidad toma el valor $\gamma = n(\boldsymbol{\mu} - \boldsymbol{\mu}_0)'\boldsymbol{\Sigma}^{-1}(\boldsymbol{\mu} - \boldsymbol{\mu}_0)$.
+
+**Bajo $H_0$ es cierta:** El parámetro de no centralidad es $\gamma = 0$, por lo que la estadística se distribuye como una **$F$ centrada**: $F_{(p, n-p)}$.
+
+**Bajo $H_1$:** El parámetro de no centralidad toma el valor $\gamma = n(\boldsymbol{\mu} - \boldsymbol{\mu}_0)'\boldsymbol{\Sigma}^{-1}(\boldsymbol{\mu} - \boldsymbol{\mu}_0)$.
 
 Esta estadística permite construir **regiones e intervalos de confianza simultáneos** para el vector de medias $\boldsymbol{\mu}$.
