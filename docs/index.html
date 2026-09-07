@@ -241,10 +241,20 @@ div.csl-indent {
 <li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
 <li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
 <ul>
-<li class="chapter" data-level="3.0.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca"><i class="fa fa-check"></i><b>3.0.1</b> Reducción de dimensiones en <strong>PCA</strong></a></li>
-<li class="chapter" data-level="3.0.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes"><i class="fa fa-check"></i><b>3.0.2</b> Combinación de las variables en los Componentes</a></li>
-<li class="chapter" data-level="3.0.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca"><i class="fa fa-check"></i><b>3.0.3</b> Representación geométrica de los datos en <strong>PCA</strong></a></li>
-<li class="chapter" data-level="3.0.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca"><i class="fa fa-check"></i><b>3.0.4</b> Realización y análisis de los resultados del <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#componentes-principales"><i class="fa fa-check"></i><b>3.1</b> Componentes Principales</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.2</b> Cálculo de los Componentes Principales</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#proceso-de-extracci%C3%B3n-de-factores"><i class="fa fa-check"></i><b>3.2.1</b> Proceso de extracción de factores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#porcentajes-de-variabilidad"><i class="fa fa-check"></i><b>3.3</b> Porcentajes de Variabilidad</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales-a-partir-de-la-matriz-de-correlaciones"><i class="fa fa-check"></i><b>3.4</b> Cálculo de los Componentes Principales a partir de la Matriz de Correlaciones</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#matriz-factorial"><i class="fa fa-check"></i><b>3.5</b> Matriz Factorial</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-las-covarianzas-y-correlaciones-entre-las-variables-originales-y-los-factores"><i class="fa fa-check"></i><b>3.5.1</b> Cálculo de las covarianzas y correlaciones entre las variables originales y los factores</a></li>
+<li class="chapter" data-level="3.5.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#cambios-de-escalas-e-identificaci%C3%B3n-de-componentes"><i class="fa fa-check"></i><b>3.5.2</b> Cambios de escalas e identificación de componentes</a></li>
+<li class="chapter" data-level="3.5.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#identificaci%C3%B3n-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.5.3</b> Identificación de los componentes principales</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#ejemplo-contaminaci%C3%B3n-atmosf%C3%A9rica-en-ciudades-de-ee.-uu."><i class="fa fa-check"></i><b>3.6</b> Ejemplo: Contaminación Atmosférica en Ciudades de EE. UU.</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a></li>
 <li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
@@ -310,68 +320,41 @@ Matrix products: default
 
 
 locale:
-[1] LC_COLLATE=Spanish_Mexico.utf8 
-[2] LC_CTYPE=Spanish_Mexico.utf8   
-[3] LC_MONETARY=Spanish_Mexico.utf8
-[4] LC_NUMERIC=C                   
-[5] LC_TIME=Spanish_Mexico.utf8    
+[1] LC_COLLATE=Spanish_Mexico.utf8  LC_CTYPE=Spanish_Mexico.utf8    LC_MONETARY=Spanish_Mexico.utf8
+[4] LC_NUMERIC=C                    LC_TIME=Spanish_Mexico.utf8    
 
 time zone: America/Mexico_City
 tzcode source: internal
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods  
-[7] base     
+[1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] andrews_1.1.2              fmsb_0.7.6                
- [3] aplpack_1.3.5              GGally_2.4.0              
- [5] plotly_4.12.0              e1071_1.7-17              
- [7] factoextra_2.0.0           EFAtools_1.0.0            
- [9] PerformanceAnalytics_2.1.0 xts_0.14.2                
-[11] zoo_1.8-15                 TSA_1.3.1                 
-[13] forecast_9.0.2             kableExtra_1.4.1          
-[15] knitr_1.51                 latex2exp_0.9.8           
-[17] patchwork_1.3.2            lubridate_1.9.5           
-[19] forcats_1.0.1              stringr_1.6.0             
-[21] dplyr_1.2.1                purrr_1.2.2               
-[23] readr_2.2.0                tidyr_1.3.2               
-[25] tibble_3.3.1               ggplot2_4.0.3             
-[27] tidyverse_2.0.0           
+ [1] factoextra_2.0.0           EFAtools_1.0.0             PerformanceAnalytics_2.1.0 xts_0.14.2                
+ [5] zoo_1.8-15                 TSA_1.3.1                  forecast_9.0.2             kableExtra_1.4.1          
+ [9] knitr_1.51                 latex2exp_0.9.8            patchwork_1.3.2            lubridate_1.9.5           
+[13] forcats_1.0.1              stringr_1.6.0              dplyr_1.2.1                purrr_1.2.2               
+[17] readr_2.2.0                tidyr_1.3.2                tibble_3.3.1               ggplot2_4.0.3             
+[21] tidyverse_2.0.0            aplpack_1.3.5              TeachingDemos_2.13        
 
 loaded via a namespace (and not attached):
- [1] tcltk_4.4.1        remotes_2.5.0      rlang_1.2.0       
- [4] magrittr_2.0.5     otel_0.2.0         compiler_4.4.1    
- [7] mgcv_1.9-1         systemfonts_1.3.2  vctrs_0.7.3       
-[10] quadprog_1.5-8     profvis_0.4.0      crayon_1.5.3      
-[13] pkgconfig_2.0.3    fastmap_1.2.0      ellipsis_0.3.3    
-[16] fontawesome_0.5.3  labeling_0.4.3     promises_1.5.0    
-[19] rmarkdown_2.31     sessioninfo_1.2.3  tzdb_0.5.0        
-[22] xfun_0.57          cachem_1.1.0       jsonlite_2.0.0    
-[25] progress_1.2.3     later_1.4.8        gmp_0.7-5.1       
-[28] prettyunits_1.2.0  parallel_4.4.1     R6_2.6.1          
-[31] bslib_0.11.0       stringi_1.8.7      RColorBrewer_1.1-3
-[34] pkgload_1.5.2      jquerylib_0.1.4    Rcpp_1.1.1-1.1    
-[37] bookdown_0.46      usethis_3.2.1      httpuv_1.6.17     
-[40] Matrix_1.7-0       splines_4.4.1      timechange_0.4.0  
-[43] tidyselect_1.2.1   rstudioapi_0.18.0  yaml_2.3.12       
-[46] timeDate_4052.112  miniUI_0.1.2       pkgbuild_1.4.8    
-[49] lattice_0.22-6     shiny_1.13.0       withr_3.0.2       
-[52] S7_0.2.2           urca_1.3-4         evaluate_1.0.5    
-[55] ggstats_0.13.0     proxy_0.4-29       urlchecker_1.0.1  
-[58] xml2_1.5.2         pillar_1.11.1      renv_1.2.3        
-[61] generics_0.1.4     hms_1.1.4          scales_1.4.0      
-[64] xtable_1.8-8       leaps_3.2          class_7.3-22      
-[67] glue_1.8.1         lazyeval_0.2.3     tools_4.4.1       
-[70] data.table_1.18.4  locfit_1.5-9.12    fs_2.1.0          
-[73] grid_4.4.1         crosstalk_1.2.2    devtools_2.4.5    
-[76] colorspace_2.1-2   nlme_3.1-164       fracdiff_1.5-4    
-[79] cli_3.6.3          textshaping_1.0.5  viridisLite_0.4.3 
-[82] svglite_2.2.2      gtable_0.3.6       sass_0.4.10       
-[85] digest_0.6.37      ggrepel_0.9.8      htmlwidgets_1.6.4 
-[88] farver_2.1.2       memoise_2.0.1      htmltools_0.5.8.1 
-[91] lifecycle_1.0.5    httr_1.4.8         mime_0.13         
-[94] MASS_7.3-60.2     </code></pre>
+ [1] tidyselect_1.2.1   viridisLite_0.4.3  timeDate_4052.112  farver_2.1.2       S7_0.2.2          
+ [6] fastmap_1.2.0      promises_1.5.0     digest_0.6.37      timechange_0.4.0   mime_0.13         
+[11] lifecycle_1.0.5    ellipsis_0.3.3     magrittr_2.0.5     compiler_4.4.1     rlang_1.2.0       
+[16] sass_0.4.10        tools_4.4.1        yaml_2.3.12        htmlwidgets_1.6.4  pkgbuild_1.4.8    
+[21] xml2_1.5.2         RColorBrewer_1.1-3 pkgload_1.5.2      miniUI_0.1.2       withr_3.0.2       
+[26] grid_4.4.1         urlchecker_1.0.1   profvis_0.4.0      xtable_1.8-8       colorspace_2.1-2  
+[31] scales_1.4.0       cli_3.6.3          rmarkdown_2.31     generics_0.1.4     remotes_2.5.0     
+[36] otel_0.2.0         rstudioapi_0.18.0  tzdb_0.5.0         sessioninfo_1.2.3  cachem_1.1.0      
+[41] splines_4.4.1      parallel_4.4.1     urca_1.3-4         vctrs_0.7.3        devtools_2.4.5    
+[46] Matrix_1.7-0       jsonlite_2.0.0     bookdown_0.46      hms_1.1.4          ggrepel_0.9.8     
+[51] systemfonts_1.3.2  locfit_1.5-9.12    fontawesome_0.5.3  jquerylib_0.1.4    glue_1.8.1        
+[56] stringi_1.8.7      gtable_0.3.6       later_1.4.8        quadprog_1.5-8     pillar_1.11.1     
+[61] htmltools_0.5.8.1  R6_2.6.1           tcltk_4.4.1        textshaping_1.0.5  evaluate_1.0.5    
+[66] shiny_1.13.0       lattice_0.22-6     leaps_3.2          memoise_2.0.1      renv_1.2.3        
+[71] fracdiff_1.5-4     httpuv_1.6.17      bslib_0.11.0       Rcpp_1.1.1-1.1     svglite_2.2.2     
+[76] nlme_3.1-164       mgcv_1.9-1         xfun_0.57          fs_2.1.0           usethis_3.2.1     
+[81] pkgconfig_2.0.3   </code></pre>
 <p>Este libro fue escrito con <a href="http://bookdown.org/">bookdown</a> usando <a href="http://www.rstudio.com/ide/">RStudio</a>.</p>
 <p>Esta versión fue escrita con:</p>
 <pre><code>Finding R package dependencies ... Done!</code></pre>
@@ -384,10 +367,10 @@ loaded via a namespace (and not attached):
  collate  Spanish_Mexico.utf8
  ctype    Spanish_Mexico.utf8
  tz       America/Mexico_City
- date     2026-08-30
+ date     2026-09-06
  rstudio  2026.08.0+187 Yellow Yarrow (desktop)
  pandoc   3.8.3 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
- quarto   ERROR: Unknown command &quot;TMPDIR=C:/Users/chofi/AppData/Local/Temp/RtmpOGiFu5/file5c704d2c6db8&quot;. Did you mean command &quot;install&quot;? @ C:\\PROGRA~1\\RStudio\\RESOUR~1\\app\\bin\\quarto\\bin\\quarto.exe</code></pre>
+ quarto   ERROR: Unknown command &quot;TMPDIR=C:/Users/chofi/AppData/Local/Temp/Rtmpg18sRo/file38ac51d4493c&quot;. Did you mean command &quot;remove&quot;? @ C:\\PROGRA~1\\RStudio\\RESOUR~1\\app\\bin\\quarto\\bin\\quarto.exe</code></pre>
 </div>
 <div id="licencia" class="section level3 unnumbered hasAnchor">
 <h3>Licencia<a href="index.html#licencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>

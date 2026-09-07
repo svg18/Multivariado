@@ -241,10 +241,20 @@ div.csl-indent {
 <li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
 <li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
 <ul>
-<li class="chapter" data-level="3.0.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca"><i class="fa fa-check"></i><b>3.0.1</b> Reducción de dimensiones en <strong>PCA</strong></a></li>
-<li class="chapter" data-level="3.0.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes"><i class="fa fa-check"></i><b>3.0.2</b> Combinación de las variables en los Componentes</a></li>
-<li class="chapter" data-level="3.0.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca"><i class="fa fa-check"></i><b>3.0.3</b> Representación geométrica de los datos en <strong>PCA</strong></a></li>
-<li class="chapter" data-level="3.0.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca"><i class="fa fa-check"></i><b>3.0.4</b> Realización y análisis de los resultados del <strong>PCA</strong></a></li>
+<li class="chapter" data-level="3.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#componentes-principales"><i class="fa fa-check"></i><b>3.1</b> Componentes Principales</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.2</b> Cálculo de los Componentes Principales</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#proceso-de-extracci%C3%B3n-de-factores"><i class="fa fa-check"></i><b>3.2.1</b> Proceso de extracción de factores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#porcentajes-de-variabilidad"><i class="fa fa-check"></i><b>3.3</b> Porcentajes de Variabilidad</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales-a-partir-de-la-matriz-de-correlaciones"><i class="fa fa-check"></i><b>3.4</b> Cálculo de los Componentes Principales a partir de la Matriz de Correlaciones</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#matriz-factorial"><i class="fa fa-check"></i><b>3.5</b> Matriz Factorial</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-las-covarianzas-y-correlaciones-entre-las-variables-originales-y-los-factores"><i class="fa fa-check"></i><b>3.5.1</b> Cálculo de las covarianzas y correlaciones entre las variables originales y los factores</a></li>
+<li class="chapter" data-level="3.5.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#cambios-de-escalas-e-identificaci%C3%B3n-de-componentes"><i class="fa fa-check"></i><b>3.5.2</b> Cambios de escalas e identificación de componentes</a></li>
+<li class="chapter" data-level="3.5.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#identificaci%C3%B3n-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.5.3</b> Identificación de los componentes principales</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#ejemplo-contaminaci%C3%B3n-atmosf%C3%A9rica-en-ciudades-de-ee.-uu."><i class="fa fa-check"></i><b>3.6</b> Ejemplo: Contaminación Atmosférica en Ciudades de EE. UU.</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a></li>
 <li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
@@ -278,92 +288,251 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="análisis-de-componentes-principales-pca" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Capítulo 3</span> Análisis de Componentes Principales (PCA)<a href="análisis-de-componentes-principales-pca.html#an%C3%A1lisis-de-componentes-principales-pca" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>El <strong><em>Análisis de Componentes Principales</em></strong> (o <em>Principal Component Analysis</em> [<strong><em>PCA</em></strong>] por sus siglas en inglés) es una técnica dentro del conjunto de métodos agrupados en la categoría de <strong>Análisis Factorial</strong><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.<br />
-</p>
-<p>Las técnicas agrupadas dentro de la categoría de análisis factoriales son referidas como “técnicas sin variables dependiendientes” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span> , ya que no se basan en modelos causales sino que trabajan con todas las variables contenidas en un <code>data.frame</code> de manera simultánea.<br />
-</p>
-<p>En estos modelos “se deja que sea el análisis estadístico el que decida si existe una estructura”oculta” que se pueda reconocer en el material (datos). A este formato básico, o tal vez se debería decir que ante la ausencia de un formato básico (en los datos), se le denomina estructura latente. El análisis factorial se puede considerar como una técnica de análisis de la estructura latente.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
-</p>
-<p>Este tipo de análisis es muy útil si se desea examinar si un concepto puede ser “partido” (<em>split</em>) en un número diverso de características latentes (dimensiones), y de esa manera se puede simplificar el trabajo del análisis de las variables.<br />
-</p>
-<p>En los análisis factoriales se requiere contar con el registro de distintos casos, a la vez que se cuenta con sus valores u observaciones para más de dos variables. Dichas observaciones (variables o indicadores) deben ser medidos en escala <em>intervalar</em>. Y se asume que cada caso en sí mismo es diferente del resto, a partir de las variables que son de interés para el análisis.<br />
-</p>
-<div id="reducción-de-dimensiones-en-pca" class="section level3 hasAnchor" number="3.0.1">
-<h3><span class="header-section-number">3.0.1</span> Reducción de dimensiones en <strong>PCA</strong><a href="análisis-de-componentes-principales-pca.html#reducci%C3%B3n-de-dimensiones-en-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>La manera de simplificar el proceso de análisis de las variables ocurre a través de la “<em>reducción de dimensiones</em>” (latentes), esto se refiere a la creación de variables nuevas que servirán de resúmenes de las variables originales incluidas en el análisis. Al final se espera que estas últimas consistan en un número menor de “columnas” en la matriz de datos respecto de las variables originales y, así, trabajar posteriormente con las nuevas dimensiones o “<em>factores</em>”.<br />
-</p>
-<p>Un <em>factor</em> se puede entender como “un concepto-madre (<em>mother-concept</em>) que ofrece un resumen de un subgrupo de indicadores, que miden lo mismo de manera más amplia. En otras palabras, consideramos a los diagramas basados en el análisis factorial como modelos de medición y no como modelos causales.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>, p 267)</span></p>
-<p>Sin embargo, al integrar varias variables o <em>ítems</em> en otras dimensiones (latentes), se pueden caer en alguna de las situaciones extremas: la primera consiste en que todos los <em>ítems</em> estén muy correlacionados entre sí en donde “en este caso el material de investigación (datos) tendrá una estructura basada en una dimensión, y para todos los indicadores (<em>ítems</em> o variables) mostrarán pesos (<em>loadings</em>) elevados en una variable latente (<em>factor</em>).” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span>.<br />
-</p>
-<p>El otro extremo consiste en que para cada uno de los indicadores utilizados (<em>ítems</em> o variables), cada uno de ellos miden cosas muy diferentes entre sí, y por ello se crean una nueva dimensión para cada uno de los indicadores. “Para esta solución con un factor para cada indicador no se aprenderá nada pues la estructura latente para los datos será tan compleja como lo fue la estructura manifiesta original de los datos.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
-</p>
-<p>En el análisis <strong>PCA</strong> no se refiere a las variables latentes como “factores” sino como “<strong>componentes</strong>”, y en esta técnica se generarán tantos <strong>componentes</strong> como indicadores sean incluidos en el análisis. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
-</p>
+<p>Cuando se recoge la información de una muestra de datos, lo más frecuente es tomar el mayor número posible de variables. Sin embargo, si tomamos demasiadas variables sobre un conjunto de objetos, por ejemplo 20 variables, tendremos que considerar <span class="math inline">\(\binom{20}{2}=180\)</span> posibles coeficientes de correlación; si son 40 variables dicho número aumenta hasta 780. Evidentemente, en este caso es difícil visualizar relaciones entre las variables.</p>
+<p>Otro problema que se presenta es la fuerte correlación que muchas veces se presenta entre las variables: si tomamos demasiadas variables (cosa que en general sucede cuando no se sabe demasiado sobre los datos o sólo se tiene ánimo exploratorio), lo normal es que estén relacionadas o que midan lo mismo bajo distintos puntos de vista. Por ejemplo, en estudios médicos, la presión sanguínea a la salida del corazón y a la salida de los pulmones están fuertemente relacionadas.</p>
+<p>Se hace necesario, pues, reducir el número de variables. Es importante resaltar el hecho de que el concepto de mayor información se relaciona con el de mayor variabilidad o varianza. Cuanto mayor sea la variabilidad de los datos (varianza) se considera que existe mayor información, lo cual está relacionado con el concepto de entropía. <em>(Entropía de la información: el grado de incertidumbre que existe sobre un conjunto de datos)</em></p>
+<div id="componentes-principales" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Componentes Principales<a href="análisis-de-componentes-principales-pca.html#componentes-principales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Estas técnicas fueron inicialmente desarrolladas por Pearson a finales del siglo XIX y posteriormente fueron estudiadas por Hotelling en los años 30 del siglo XX. Sin embargo, hasta la aparición de los ordenadores no se empezaron a popularizar.</p>
+<p>Para estudiar las relaciones que se presentan entre <span class="math inline">\(p\)</span> variables correlacionadas (que miden información común) se puede transformar el conjunto original de variables en otro conjunto de nuevas variables no correlacionadas entre sí (que no tenga repetición o redundancia en la información) llamado conjunto de componentes principales.</p>
+<p>Las nuevas variables son combinaciones lineales de las anteriores y se van construyendo según el orden de importancia en cuanto a la variabilidad total que recogen de la muestra.</p>
+<p>De modo ideal, se buscan <span class="math inline">\(m &lt; p\)</span> variables que sean combinaciones lineales de las <span class="math inline">\(p\)</span> originales y que no estén correlacionadas, recogiendo la mayor parte de la información o variabilidad de los datos.</p>
+<p>Si las variables originales no están correlacionadas de origen, entonces no tiene sentido realizar un análisis de componentes principales.</p>
+<p>El análisis de componentes principales es una técnica matemática que no requiere la suposición de normalidad multivariante de los datos, aunque si esto último se cumple se puede dar una interpretación más profunda de dichos componentes.</p>
 </div>
-<div id="combinación-de-las-variables-en-los-componentes" class="section level3 hasAnchor" number="3.0.2">
-<h3><span class="header-section-number">3.0.2</span> Combinación de las variables en los Componentes<a href="análisis-de-componentes-principales-pca.html#combinaci%C3%B3n-de-las-variables-en-los-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Si bien el método del <strong>PCA</strong> es una técnica que permite reducir las dimensiones de una matriz de datos a partir de la construcción de componentes <span class="math inline">\(C_i\)</span>, y así simplificar el análisis de los datos a la par de identificar la estructura latente de las variables incluidas en el análisis, también se reconoce que los objetivos de investigación para los que se ha utilizado el PCA se centran, de acuerdo con Tacq <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span> en:</p>
-<ol style="list-style-type: decimal">
-<li>Reducción de la multiplicidad a pocas unidades: desbrozar patrones complejos de asociaciones entre variables para, así, encontrar su esencia.</li>
-<li>Análisis de estructura latente: identificación de características latentes las que ocultan una estructura oculta en los datos.</li>
-<li>Desarrollo de tipologías empíricas a partir de las variables utilizadas.</li>
-<li>Reducción de dimensiones: reducción el espacio de <span class="math inline">\(n\)</span> variables a otro espacio de <span class="math inline">\(p\)</span> dimensiones, donde <span class="math inline">\(p\)</span> menor a <span class="math inline">\(n\)</span>.</li>
-<li>Construcción de índices o escalamiento: examinación sobre la posibilidad de reducir <span class="math inline">\(n\)</span> variables a una dimensión y, de ser posible, construir un índice de una sola dimensión o escala (caso especial de reducción de dimensiones con <span class="math inline">\(p = 1\)</span>).</li>
-<li>Ortogonalización de los predictores: transformación de la matriz de variables independientes en un análisis de regresión múltiple con multicolinealidad sustancial.</li>
-</ol>
-<p>En el <strong>PCA</strong>, inicialmente, cada componente se presenta como una combinación lineal de los indicadores incluidos, de tal manera que esta mezcla maximice la variabilidad que se extrae de dichos indicadores o variables. Por lo que cada componente es una combinación lineal de los indicadores que, además, han sido estandarizados de la manera siguiente para una situación con 3 componentes, de acuerdo con Tacq <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span>.</p>
-<p><span class="math display">\[C_i = u_{i1}z_1 + u_{i2}z_2 + u_{i3}z_3\]</span></p>
-<p>Donde:</p>
-<ul>
-<li><span class="math inline">\(C_i\)</span> = componente <span class="math inline">\(-i\)</span>,</li>
-<li><span class="math inline">\(x_i\)</span> = la variable <span class="math inline">\(-i\)</span> utilizado en el análisis, y se incluye en unidades estandarizadas, por lo que <span class="math inline">\(z_i\)</span>,</li>
-<li><span class="math inline">\(u_i\)</span> = consiste en valor para cada coeficiente del factor o componente.</li>
-</ul>
-<p>Pero para identificar estos componentes, que son mezclas de los indicadores o variables incluidas en el análisis, primero se deben cumplir 2 condiciones básicas, que restringen la búsqueda de combinaciones lineales de las variables:</p>
-<ol style="list-style-type: decimal">
-<li>Los componentes deben de ser perpendiculares entre sí (requisito de <em>ortogonalidad</em>).</li>
-<li>El primer componente debe de extraer la mayor variabilidad posible de las variables originales, el segundo componente debe extraer la mayor variabilidad posible de la variabilidad restante, etc., así hasta que toda la variabilidad sea extraída (método del eje principal [<em>principal axis method</em>]). <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></li>
-</ol>
-<p>En el proceso de construcción de los componentes, una característica importante del <strong>PCA</strong> consiste en que se calcularán tantos componentes como variables se hubieran incluido en el análisis, y entre todos se abarca la totalidad de la variación contenida en todas las variables de manera simultánea. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></p>
-<p>El modelo <strong>PCA</strong> también puede ser visto de otra manera, donde cada variable original se puede concebir como una combinación lineal de los componentes generados en el análisis, de la siguiente manera para una situación con 3 componentes: (269)</p>
-<p><span class="math display">\[z_i = a_{i1}C_1 + a_{i2}C_2 + a_{i3}C_3\]</span></p>
-<p>Donde:</p>
-<ul>
-<li><span class="math inline">\(a_i\)</span> = peso de cada componente (<em>component loading</em>).</li>
-</ul>
-<p>Los <em>pesos de cada componente</em> (<em>component loadings</em>) “son los pesos <em>beta</em>’s (<em>beta weights</em>) de una regresión múltiple de la variable (estandarizada), que se presenta como una función de los componentes calculados. Estos pesos <em>beta</em>’s son iguales a las correlaciones calculadas entre cada variable y cada componente.” <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></p>
+<div id="cálculo-de-los-componentes-principales" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Cálculo de los Componentes Principales<a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se considera una serie de variables <span class="math inline">\((x_1, x_2, \dots, x_p)\)</span> sobre un grupo de objetos o individuos y se trata de calcular, a partir de ellas, un nuevo conjunto de variables <span class="math inline">\(y_1, y_2, \dots, y_p\)</span> no correlacionadas entre sí, cuyas varianzas vayan decreciendo progresivamente.</p>
+<p>Cada <span class="math inline">\(y_j\)</span> (donde <span class="math inline">\(j = 1, \dots, p\)</span>) es una combinación lineal de las <span class="math inline">\(x_1, x_2, \dots, x_p\)</span> originales, es decir:</p>
+<p><span class="math display">\[y_j = a_{j1}x_1 + a_{j2}x_2 + \dots + a_{jp}x_p = a_j&#39;x\]</span></p>
+<p>siendo <span class="math inline">\(a_j&#39; = (a_{1j}, a_{2j}, \dots, a_{pj})\)</span> un vector de constantes, y</p>
+<p><span class="math display">\[x = \begin{bmatrix} x_1 \\ \vdots \\ x_p \end{bmatrix}\]</span></p>
+<p>Obviamente, si lo que queremos es maximizar la varianza, como veremos luego, una forma simple podría ser aumentar los coeficientes <span class="math inline">\(a_{ij}\)</span>. Por ello, para mantener la ortogonalidad de la transformación se impone que el módulo del vector <span class="math inline">\(a_j&#39; = (a_{1j}, a_{2j}, \dots, a_{pj})\)</span> sea <span class="math inline">\(1\)</span>. Es decir:</p>
+<p><span class="math display">\[a_j&#39;a_j = \sum_{k=1}^{p} a_{kj}^2 = 1\]</span></p>
+<p>El primer componente se calcula eligiendo <span class="math inline">\(a_1\)</span> de modo que <span class="math inline">\(y_1\)</span> tenga la mayor varianza posible, sujeta a la restricción de que <span class="math inline">\(a_1&#39;a_1 = 1\)</span>. El segundo componente principal se calcula obteniendo <span class="math inline">\(a_2\)</span> de modo que la variable obtenida, <span class="math inline">\(y_2\)</span>, no esté correlacionada con <span class="math inline">\(y_1\)</span>.</p>
+<p>Del mismo modo se eligen <span class="math inline">\(y_1, y_2, \dots, y_p\)</span> no correlacionados entre sí, de manera que las variables aleatorias obtenidas vayan teniendo cada vez menor varianza.</p>
+<div id="proceso-de-extracción-de-factores" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Proceso de extracción de factores<a href="análisis-de-componentes-principales-pca.html#proceso-de-extracci%C3%B3n-de-factores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Queremos elegir <span class="math inline">\(a_1\)</span> de modo que se maximice la varianza de <span class="math inline">\(y_1\)</span> sujeta a la restricción de que <span class="math inline">\(a_1&#39;a_1 = 1\)</span>:</p>
+<p><span class="math display">\[\text{Var}(y_1) = \text{Var}(a_1&#39;x) = a_1&#39;\Sigma a_1\]</span></p>
+<p>El método habitual para maximizar una función de varias variables sujeta a restricciones es el método de los multiplicadores de Lagrange.</p>
+<p>El problema consiste en maximizar la función <span class="math inline">\(a_1&#39;\Sigma a_1\)</span> sujeta a la restricción <span class="math inline">\(a_1&#39;a_1 = 1\)</span>. Se puede observar que la incógnita es precisamente <span class="math inline">\(a_1\)</span> (el vector desconocido que nos da la combinación lineal óptima).</p>
+<p>Así, construyo la función <span class="math inline">\(L\)</span>:</p>
+<p><span class="math display">\[L(a_1) = a_1&#39;\Sigma a_1 - \lambda(a_1&#39;a_1 - 1)\]</span></p>
+<p>y busco el máximo, derivando e igualando a 0:</p>
+<p><span class="math display">\[\frac{\partial L}{\partial a_1} = 2\Sigma a_1 - 2\lambda I a_1 = 0 \implies (\Sigma - \lambda I)a_1 = 0\]</span></p>
+<p>Esto es, en realidad, un sistema lineal de ecuaciones. Por el teorema de Rouché-Frobenius, para que el sistema tenga una solución distinta de 0 la matriz <span class="math inline">\((\Sigma - \lambda I)\)</span> tiene que ser singular. Esto implica que el determinante debe ser igual a cero:</p>
+<p><span class="math display">\[|\Sigma - \lambda I| = 0\]</span></p>
+<p>y de este modo, <span class="math inline">\(\lambda\)</span> es un valor propio de <span class="math inline">\(\Sigma\)</span>. La matriz de covarianzas <span class="math inline">\(\Sigma\)</span> es de orden <span class="math inline">\(p\)</span> y si además es definida positiva, tendrá <span class="math inline">\(p\)</span> valores propios distintos, <span class="math inline">\(\lambda_1, \lambda_2, \dots, \lambda_p\)</span> tales que <span class="math inline">\(\lambda_1 &gt; \lambda_2 &gt; \dots &gt; \lambda_p\)</span>.</p>
+<p>Se tiene que:</p>
+<p><span class="math display">\[\Sigma a_1 - \lambda I a_1 = 0 \implies \Sigma a_1 = \lambda a_1\]</span></p>
+<p><span class="math display">\[\text{Var}(y_1) = \text{Var}(a_1&#39;x) = a_1&#39;\Sigma a_1 = a_1&#39;\lambda I a_1 = \lambda a_1&#39;a_1 = \lambda \cdot 1 = \lambda\]</span></p>
+<p>Luego, para maximizar la varianza de <span class="math inline">\(y_1\)</span> se tiene que tomar el mayor valor propio, digamos <span class="math inline">\(\lambda_1\)</span>, y el correspondiente vector propio <span class="math inline">\(a_1\)</span>.</p>
+<p>Si <span class="math inline">\(a_1&#39; = (a_{11}, a_{12}, \dots, a_{1p})\)</span>, entonces:</p>
+<p><span class="math display">\[y_1 = a_1&#39;x = a_{11}x_1 + a_{12}x_2 + \dots + a_{1p}x_p\]</span></p>
+<p>El segundo componente principal, digamos <span class="math inline">\(y_2 = a_2&#39;x\)</span>, se obtiene mediante un argumento parecido, requiriendo que <span class="math inline">\(\text{Cov}(y_2, y_1) = 0\)</span>:</p>
+<p><span class="math display">\[\text{Cov}(y_2, y_1) = \text{Cov}(a_2&#39;x, a_1&#39;x) = a_2&#39; E[(x-\mu)(x-\mu)&#39;] a_1 = a_2&#39;\Sigma a_1 = 0\]</span></p>
+<p>Como <span class="math inline">\(\Sigma a_1 = \lambda a_1\)</span>, esto equivale a:</p>
+<p><span class="math display">\[a_2&#39;\Sigma a_1 = a_2&#39;\lambda a_1 = \lambda a_2&#39;a_1 = 0 \implies a_2&#39;a_1 = 0\]</span></p>
+<p>es decir, que los vectores sean ortogonales.</p>
+<p>Para maximizar <span class="math inline">\(\text{Var}(y_2) = a_2&#39;\Sigma a_2\)</span> sujeta a <span class="math inline">\(a_2&#39;a_2 = 1\)</span> y <span class="math inline">\(a_2&#39;a_1 = 0\)</span>, se toma la función:</p>
+<p><span class="math display">\[L(a_2) = a_2&#39;\Sigma a_2 - \lambda(a_2&#39;a_2 - 1) - \delta a_2&#39;a_1\]</span></p>
+<p>Derivando respecto a <span class="math inline">\(a_2\)</span>:</p>
+<p><span class="math display">\[\frac{\partial L(a_2)}{\partial a_2} = 2\Sigma a_2 - 2\lambda a_2 - \delta a_1 = 0\]</span></p>
+<p>Multiplicando por <span class="math inline">\(a_1&#39;\)</span>, obtenemos <span class="math inline">\(\delta = 0\)</span>, con lo que la ecuación se reduce a:</p>
+<p><span class="math display">\[(\Sigma - \lambda I)a_2 = 0\]</span></p>
+<p>Elegimos <span class="math inline">\(\lambda\)</span> como el segundo mayor valor propio de la matriz <span class="math inline">\(\Sigma\)</span> con su vector propio asociado <span class="math inline">\(a_2\)</span>.</p>
+<p>Extendiendo este razonamiento, todos los componentes <span class="math inline">\(y\)</span> se expresan como:</p>
+<p><span class="math display">\[y = Ax\]</span></p>
+<p>donde:</p>
+<p><span class="math display">\[y = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_p \end{bmatrix}, \quad A = \begin{bmatrix} a_{11} &amp; a_{12} &amp; \dots &amp; a_{1p} \\ a_{21} &amp; a_{22} &amp; \dots &amp; a_{2p} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{p1} &amp; a_{p2} &amp; \dots &amp; a_{pp} \end{bmatrix}, \quad x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_p \end{bmatrix}\]</span></p>
+<p>La matriz de covarianzas de <span class="math inline">\(y\)</span> será:</p>
+<p><span class="math display">\[\Lambda = \begin{bmatrix} \lambda_1 &amp; 0 &amp; \dots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \dots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \dots &amp; \lambda_p \end{bmatrix}\]</span></p>
+<p>Adicionalmente:</p>
+<p><span class="math display">\[\Lambda = \text{Var}(y) = A&#39;\text{Var}(x)A = A&#39;\Sigma A \implies \Sigma = A\Lambda A&#39;\]</span></p>
+<p>ya que <span class="math inline">\(A\)</span> es una matriz ortogonal (<span class="math inline">\(AA&#39; = I\)</span>).</p>
+<p>*NOTA SOBRE VALORES Y VECTORES PROPIOS: Una matriz puede ser vista como una función que transforma un vector en otro. Sin embargo, algunos vectores tienen una particularidad especial: al ser transformados por una matriz, no cambian de dirección, solo se estiran o comprimen. Estos son conocidos como vectores propios.</p>
+<p>Los valores propios, por otro lado, son los factores escalares que nos indican cuánto se estira o comprime un vector propio durante la transformación. En términos más simples, si un vector propio es un vector que no cambia de dirección, el valor propio es el número que describe cómo de «grande» o «pequeño» se hace ese vector al ser multiplicado por la matriz.*</p>
 </div>
-<div id="representación-geométrica-de-los-datos-en-pca" class="section level3 hasAnchor" number="3.0.3">
-<h3><span class="header-section-number">3.0.3</span> Representación geométrica de los datos en <strong>PCA</strong><a href="análisis-de-componentes-principales-pca.html#representaci%C3%B3n-geom%C3%A9trica-de-los-datos-en-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>El PCA se apoya en la representación geométrica de los datos, donde se trata de la <em>rotación</em> de un cubo que, originalmente, se ha construido con las variables de la matriz de datos. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span><br />
-</p>
-<p>De acuerdo con Tacq <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span> cada variable se representa en un espacio dimensional (una recta), y entre sí todas éstas son perpendiculares, formando un cubo. Si las variables están estandarizadas, entonces el origen del cubo se ubica en un <em>centroide</em>; este es el punto dentro del cubo en donde se concentran las medias de cada dimensión. Y sobre cada recta se representa la posición de cada uno de los casos de los que se extrajo la información.<br />
-</p>
-<p>En el PCA se busca delinear una recta a través del origen (centroide), de manera que la proyección de los casos sobre la línea permita contener a la mayor cantidad de dispersión (<em>maximal variance</em>). Cada una de dichas líneas es una combinación lineal (o componente).<br />
-</p>
-<p>Si llegase a ocurrir que todos los casos (representados por puntos sobre la gráfica) se posicionan sobre una recta (situación de <em>multicolinealidad perfecta</em>), entonces dicho componente representaría exhaustivamente a toda la información de la matriz de datos.<br />
-</p>
-<p>En caso de calcular más de un componente, los subsiguientes serán siempre perpendiculares al anterior y partirán del origen o centroide, y buscarán siempre maximizar la variación al cruzar a los casos.<br />
-</p>
-<p>A partir de dichas combinaciones lineales o componentes se forma un nuevo cubo, distinto al que se formó a partir de las variables originales, pero este se rota alrededor el origen del cubo hacia el nuevo cubo (formado por los componentes), mientras que los puntos o casos permanecen en su lugar. <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span></p>
-<p>A partir de dicha representación geométrica, la técnica del <strong>PCA</strong> se centra en los siguientes objetivos particulares o procedimentales <span class="citation">(<a href="#ref-tacq_multivariate_1998"><strong>tacq_multivariate_1998?</strong></a>)</span>:</p>
-<ol style="list-style-type: decimal">
-<li>Encontrar tantos componentes así como variables originales de tal manera que los componentes sean mutuamente ortogonales y secuencialmente extraigan la variación máxima de las variables. Para esto se debe examinar la <strong>eigenestructura</strong> de la matriz de datos <span class="math inline">\(X\)</span> o la correlación de la matriz <span class="math inline">\(R\)</span>. Los <strong>eigenvalores</strong> son las variantes de las proyecciones de puntos sobre cada uno de los componentes. Los <strong>eigenvectores</strong> son los cosenos de dirección, los que indican qué tanto debe rotarse el espacio de la variable original.</li>
-<li>Reducción del número de dimensiones mediante la examinación sobre cuáles de las variables cuentan con un peso elevado (<em>high loading</em>) sobre cada componente, buscando la “<em>estructura simple</em>”. Esto se logra mediante la examinación de la matriz <span class="math inline">\(A\)</span> de pesos de los componentes (<em>component loadings</em>), así como mediante el cálculo de las medidas de redundancia de cada componente.</li>
-<li>Rotación del espacio resultante de cada componente a un nuevo espacio, el que puede ofrecer una <em>estructura más simple</em> así como una mejor interpretación en términos del contenido.</li>
-</ol>
-<p>Tomando estos supuestos y requisitos en consideración, es que se puede avanzar en la realización del procedimiento del <strong>PCA</strong> en <code>R</code> y, posteriormente, analizar los resultados arrojados por el software, como se verá en la sección siguiente.</p>
 </div>
-<div id="realización-y-análisis-de-los-resultados-del-pca" class="section level3 hasAnchor" number="3.0.4">
-<h3><span class="header-section-number">3.0.4</span> Realización y análisis de los resultados del <strong>PCA</strong><a href="análisis-de-componentes-principales-pca.html#realizaci%C3%B3n-y-an%C3%A1lisis-de-los-resultados-del-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="porcentajes-de-variabilidad" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Porcentajes de Variabilidad<a href="análisis-de-componentes-principales-pca.html#porcentajes-de-variabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La varianza total de los componentes es:</p>
+<p><span class="math display">\[\sum_{i=1}^{p} \text{Var}(y_i) = \sum_{i=1}^{p} \lambda_i = \text{traza}(\Lambda)\]</span></p>
+<p>Por propiedades de la traza:</p>
+<p><span class="math display">\[\text{traza}(\Lambda) = \text{traza}(A&#39;\Sigma A) = \text{traza}(\Sigma A&#39;A) = \text{traza}(\Sigma) = \sum_{i=1}^{p} \text{Var}(x_i)\]</span></p>
+<p>Es decir, la suma de las varianzas de las variables originales y la suma de las varianzas
+de las componentes son iguales. Esto permite hablar del porcentaje de varianza total que
+recoge un componente principal específico.</p>
+<p>Entonces el porcentaje de varianza total recogido por el <span class="math inline">\(i\)</span>-ésimo componente es:</p>
+<p><span class="math display">\[\frac{\lambda_i}{\sum_{i=1}^{p} \lambda_i} = \frac{\lambda_i}{\sum_{i=1}^{p} \text{Var}(x_i)}\]</span></p>
+<p>Y la variabilidad acumulada por los primeros <span class="math inline">\(m\)</span> componentes (<span class="math inline">\(m &lt; p\)</span>) se calcula como:</p>
+<p><span class="math display">\[\frac{\sum_{i=1}^{m} \lambda_i}{\sum_{i=1}^{p} \text{Var}(x_i)}\]</span></p>
+<p>En la práctica, al tener en principio p variables, nos quedaremos con un número mucho menor de componentes que recoja un porcentaje amplio de la variabilidad total <span class="math inline">\(\sum_{i=1}^{p} \text{Var}(x_i)\)</span></p>
+</div>
+<div id="cálculo-de-los-componentes-principales-a-partir-de-la-matriz-de-correlaciones" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Cálculo de los Componentes Principales a partir de la Matriz de Correlaciones<a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales-a-partir-de-la-matriz-de-correlaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Habitualmente se calculan los componentes sobre variables originales estandarizadas (media 0, varianza 1), lo que equivale a calcularlos a partir de la matriz de correlaciones. Esto da igual importancia a todas las variables originales.</p>
+<p>Los componentes son los vectores propios de la matriz de correlaciones y son distintos de los de la matriz de covarianzas. Si se actúa así, se da igual importancia a todas las variables originales.</p>
+<p>En la matriz de correlaciones todos los elementos de la diagonal son iguales a 1. Si las variables originales están estandarizadas, esto implica que su matriz de covarianzas es igual a la de correlaciones, con lo que la variabilidad total (la traza) es igual al número total de variables <span class="math inline">\(p\)</span>.</p>
+<p>Por lo tanto la proporción de varianza explicada por el <span class="math inline">\(j\)</span>-ésimo componente será:</p>
+<p><span class="math display">\[\frac{\lambda_j}{p}\]</span></p>
+</div>
+<div id="matriz-factorial" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Matriz Factorial<a href="análisis-de-componentes-principales-pca.html#matriz-factorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En algunos programas como SPSS, los vectores propios se reescalan multiplicándolos por su correspondiente raíz del valor propio (<span class="math inline">\(\sqrt{\lambda_j}\)</span>):</p>
+<p><span class="math display">\[a_j^* = \lambda_j^{1/2} a_j \quad \text{para } j = 1, \dots, p\]</span></p>
+<p>De este modo, se suele presentar una tabla de vectores propios <span class="math inline">\(a_{j}^{*}\)</span> que forman la matriz factorial <span class="math inline">\(F\)</span>:</p>
+<p><span class="math display">\[F = (a_{1}^*, a_{2}^*, \dots, a_{p}^*)\]</span></p>
+<p>Si se eleva al cuadrado cada una de las columnas y se suman los términos se obtienen los valores propios (porque <span class="math inline">\(a_{j}&#39; a_{j} = 1\)</span>):</p>
+<p><span class="math display">\[a_{j}^{*&#39;} a_{j}^* = \lambda_{j}^{1/2} \cdot \lambda_{j}^{1/2} a_{j}&#39; a_{j} = \lambda_{j}\]</span></p>
+<p>Por otro lado, como <span class="math inline">\(\Sigma = A \Lambda A&#39;\)</span> y si se presenta como matriz factorial a <span class="math inline">\(F = A \Lambda^{1/2}\)</span>, se tiene que:</p>
+<p><span class="math display">\[\Sigma = F F&#39;\]</span></p>
+<p>Los elementos de <span class="math inline">\(F\)</span> son tales que los mayores valores indican una mayor importancia a la hora de definir un componente.</p>
+<p>Otra manera de verlo es considerar que como <span class="math inline">\(y = A x\)</span>, entonces <span class="math inline">\(x = A^{-1} y\)</span>, de modo que:</p>
+<p><span class="math display">\[\text{Cov}(x) = (A^{-1}) \text{Cov}(y) (A^{-1})&#39; = A \Lambda A&#39; = A \Lambda^{1/2} \Lambda^{1/2} A&#39; = F F&#39;\]</span></p>
+<p>ya que al ser <span class="math inline">\(A\)</span> ortogonal, resulta que <span class="math inline">\(A^{-1} = A&#39;\)</span>.</p>
+<p>Así, dada la matriz factorial <span class="math inline">\(F\)</span>, se pueden calcular las covarianzas de las variables originales, es decir, se puede recuperar la matriz de covarianzas original a partir de la matriz factorial. Si se toma un número menor de factores (<span class="math inline">\(m &lt; p\)</span>), se podrá reproducir aproximadamente <span class="math inline">\(\Sigma\)</span>.</p>
+<div id="cálculo-de-las-covarianzas-y-correlaciones-entre-las-variables-originales-y-los-factores" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Cálculo de las covarianzas y correlaciones entre las variables originales y los factores<a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-las-covarianzas-y-correlaciones-entre-las-variables-originales-y-los-factores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Como se tenía que <span class="math inline">\(x = A^{-1} y = A&#39; y\)</span>, por ser <span class="math inline">\(A\)</span> ortogonal, entonces:</p>
+<p><span class="math display">\[\text{Cov}(y_{j}, x_{i}) = \text{Cov}\left(y_{j}, \sum_{k=1}^{p} a_{ik} y_{k}\right) = a_{ij} \text{Var}(y_{j}) = \lambda_{j} a_{ij}\]</span></p>
+<p>donde <span class="math inline">\(y_{j}\)</span> es el factor <span class="math inline">\(j\)</span>-ésimo y <span class="math inline">\(x_{i}\)</span> es la variable original <span class="math inline">\(i\)</span>-ésima.</p>
+<p>Si suponemos que las variables originales están estandarizadas (<span class="math inline">\(\text{Var}(x_{i}) = 1\)</span> para <span class="math inline">\(i = 1, \dots, p\)</span>), entonces:</p>
+<p><span class="math display">\[\text{Cor}(y_{j}, x_{i}) = \frac{\lambda_{j} a_{ij}}{1 \cdot \lambda_{j}^{1/2}} = \lambda_{j}^{1/2} a_{ij}\]</span></p>
+<p>De este modo, la matriz de correlaciones entre <span class="math inline">\(y\)</span> y <span class="math inline">\(x\)</span> es:</p>
+<p><span class="math display">\[\text{Cor}(y, x) = \Lambda^{1/2} A&#39; = F&#39;\]</span></p>
+<p>con lo que la matriz factorial también mide las correlaciones entre las variables originales estandarizadas y los nuevos factores.</p>
+</div>
+<div id="cambios-de-escalas-e-identificación-de-componentes" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Cambios de escalas e identificación de componentes<a href="análisis-de-componentes-principales-pca.html#cambios-de-escalas-e-identificaci%C3%B3n-de-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si las variables originales <span class="math inline">\(x_{1}, \dots, x_{p}\)</span> no están correlacionadas de origen, entonces carece de sentido calcular unos componentes principales. Si se hiciera, se obtendrían exactamente las mismas variables pero reordenadas de mayor a menor varianza. Para saber si <span class="math inline">\(x_{1}, \dots, x_{p}\)</span> están correlacionadas, se puede calcular la matriz de correlaciones aplicándose posteriormente el test de esfericidad de Bartlett.</p>
+<p>El cálculo de los componentes principales de una serie de variables <span class="math inline">\(x_{1}, \dots, x_{p}\)</span> depende normalmente de las unidades de medida empleadas. Si transformamos las unidades de medida, lo más probable es que cambien a su vez los componentes obtenidos.</p>
+<p>Una solución frecuente que ya se ha mencionado es usar variables <span class="math inline">\(x_{1}, \dots, x_{p}\)</span> estandarizadas. Con ello, se eliminan las diferentes unidades de medida y se consideran todas las variables implícitamente equivalentes en cuanto a la información recogida.</p>
+</div>
+<div id="identificación-de-los-componentes-principales" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Identificación de los componentes principales<a href="análisis-de-componentes-principales-pca.html#identificaci%C3%B3n-de-los-componentes-principales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uno de los objetivos del cálculo de componentes principales es la identificación de los mismos, es decir, averiguar qué información de la muestra resumen. Sin embargo, este es un problema difícil que a menudo resulta subjetivo. Habitualmente, se conservan sólo aquellos componentes que recogen la mayor parte de la variabilidad, hecho que permite representar los datos según dos o tres dimensiones si se conservan dos o tres ejes factoriales, pudiéndose identificar entonces grupos naturales entre las observaciones.</p>
+</div>
+</div>
+<div id="ejemplo-contaminación-atmosférica-en-ciudades-de-ee.-uu." class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Ejemplo: Contaminación Atmosférica en Ciudades de EE. UU.<a href="análisis-de-componentes-principales-pca.html#ejemplo-contaminaci%C3%B3n-atmosf%C3%A9rica-en-ciudades-de-ee.-uu." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se dispone de una muestra de 41 ciudades de USA en las que se midieron diferentes variables relacionadas con la contaminación atmosférica.</p>
+<p>Las variables son:</p>
+<p>— Contenido en SO2</p>
+<p>— Temperatura anual en grados F.</p>
+<p>— Número de empresas mayores de 20 trabajadores.</p>
+<p>— Población (en miles de habitantes).</p>
+<p>— Velocidad media del viento.</p>
+<p>— Precipitación anual media.</p>
+<p>— Días lluviosos al año.</p>
+<p>Interesa investigar la relación entre la concentración en SO2 y el resto de variables, para eliminar relaciones entre las variables se desea emplear un análisis de componentes principales.</p>
+<pre><code>              SO2 Neg.Temp Empresas Poblacion Viento Precip Dias
+Phoenix        10     70.3      213       582    6.0   7.05   36
+Little Rock    13     61.0       91       132    8.2  48.52  100
+San Francisco  12     56.7      453       716    8.7  20.66   67
+Denver         17     51.9      454       515    9.0  12.95   86
+Hartford       56     49.1      412       158    9.0  43.37  127
+Wilmington     36     54.0       80        80    9.0  40.25  114</code></pre>
+<pre><code>      SO2            Neg.Temp        Empresas        Poblacion          Viento           Precip     
+ Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0   Min.   : 6.000   Min.   : 7.05  
+ 1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0   1st Qu.: 8.700   1st Qu.:30.96  
+ Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0   Median : 9.300   Median :38.74  
+ Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6   Mean   : 9.444   Mean   :36.77  
+ 3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0   3rd Qu.:10.600   3rd Qu.:43.11  
+ Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0   Max.   :12.700   Max.   :59.80  
+      Dias      
+ Min.   : 36.0  
+ 1st Qu.:103.0  
+ Median :115.0  
+ Mean   :113.9  
+ 3rd Qu.:128.0  
+ Max.   :166.0  </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>effect of variables:
+ modified item       Var        
+ &quot;height of face   &quot; &quot;SO2&quot;      
+ &quot;width of face    &quot; &quot;Neg.Temp&quot; 
+ &quot;structure of face&quot; &quot;Empresas&quot; 
+ &quot;height of mouth  &quot; &quot;Poblacion&quot;
+ &quot;width of mouth   &quot; &quot;Viento&quot;   
+ &quot;smiling          &quot; &quot;Precip&quot;   
+ &quot;height of eyes   &quot; &quot;Dias&quot;     
+ &quot;width of eyes    &quot; &quot;SO2&quot;      
+ &quot;height of hair   &quot; &quot;Neg.Temp&quot; 
+ &quot;width of hair   &quot;  &quot;Empresas&quot; 
+ &quot;style of hair   &quot;  &quot;Poblacion&quot;
+ &quot;height of nose  &quot;  &quot;Viento&quot;   
+ &quot;width of nose   &quot;  &quot;Precip&quot;   
+ &quot;width of ear    &quot;  &quot;Dias&quot;     
+ &quot;height of ear   &quot;  &quot;SO2&quot;      </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-22-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>             Neg.Temp    Empresas   Poblacion      Viento      Precip        Dias
+Neg.Temp   1.00000000 -0.19004216 -0.06267813 -0.34973963  0.38625342 -0.43024212
+Empresas  -0.19004216  1.00000000  0.95526935  0.23794683 -0.03241688  0.13182930
+Poblacion -0.06267813  0.95526935  1.00000000  0.21264375 -0.02611873  0.04208319
+Viento    -0.34973963  0.23794683  0.21264375  1.00000000 -0.01299438  0.16410559
+Precip     0.38625342 -0.03241688 -0.02611873 -0.01299438  1.00000000  0.49609671
+Dias      -0.43024212  0.13182930  0.04208319  0.16410559  0.49609671  1.00000000</code></pre>
+<pre><code>Importance of components:
+                          Comp.1    Comp.2    Comp.3    Comp.4     Comp.5      Comp.6
+Standard deviation     1.4819456 1.2247218 1.1809526 0.8719099 0.33848287 0.185599752
+Proportion of Variance 0.3660271 0.2499906 0.2324415 0.1267045 0.01909511 0.005741211
+Cumulative Proportion  0.3660271 0.6160177 0.8484592 0.9751637 0.99425879 1.000000000
+
+Loadings:
+          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6
+Neg.Temp   0.330  0.128  0.672  0.306  0.558  0.136
+Empresas  -0.612  0.168  0.273 -0.137 -0.102  0.703
+Poblacion -0.578  0.222  0.350               -0.695
+Viento    -0.354 -0.131 -0.297  0.869  0.113       
+Precip           -0.623  0.505  0.171 -0.568       
+Dias      -0.238 -0.708        -0.311  0.580       </code></pre>
+<pre><code>                           Comp.1      Comp.2
+Phoenix               2.440096802  4.19114925
+Little Rock           1.611599761 -0.34248684
+San Francisco         0.502073845  2.25528717
+Denver                0.207434109  1.96320936
+Hartford              0.219106349 -0.97630584
+Wilmington            0.996140738 -0.50074082
+Washington            0.022928417  0.05456742
+Jacksonville          1.227849872 -0.84912801
+Miami                 1.533160553 -1.40469861
+Atlanta               0.598994755 -0.58723563
+Chicago              -6.513881753  1.66838172
+Indianapolis         -0.308324007 -0.36049244
+Des Moines            0.131980292  0.06120607
+Wichita               0.196823158  0.67607441
+Louisville            0.423739264 -0.54055336
+New Orleans           1.453857066 -0.90075225
+Baltimore            -0.509380032 -0.02875397
+Detroit              -2.166694857  0.27060292
+Minneapolis-St. Paul -1.500032786 -0.24675569
+Kansas City           0.131303464  0.25205976
+St. Louis            -0.286187330  0.38438239
+Omaha                 0.133637672  0.38478358
+Alburquerque          1.417093145  2.86589024
+Albany                0.538945616 -0.79206938
+Buffalo              -1.390708909 -1.88030104
+Cincinnati            0.508220797 -0.48601020
+Cleveland            -1.766279326 -1.03942658
+Columbus              0.118835030 -0.64039358
+Philadelphia         -2.797074676  0.65847826
+Pittsburgh           -0.322264830 -1.02663680
+Providence           -0.069936477 -1.03390711
+Memphis               0.577848813 -0.32506654
+Nashville             0.910052287 -0.54346445
+Dallas                0.006878799  1.21181090
+Houston              -0.508419801  0.11271579
+Salt Lake City        0.912393969  1.54734758
+Norfolk               0.589141903 -0.75219052
+Richmond              1.171998946 -0.33494902
+Seattle              -0.481679438 -1.59742576
+Charleston            1.429753320 -1.21058365
+Milwaukee            -1.391024518 -0.15761872</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>Otra de las técnicas más utilizadas dentro de este conjunto corresponde al Análisis de Factores Principales (o <em>Principal Factor Analysis</em> [PFA]), pero ambas parten de supuestos teóricos distintos al momento de procesar los datos y en su interpretación.<a href="análisis-de-componentes-principales-pca.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
