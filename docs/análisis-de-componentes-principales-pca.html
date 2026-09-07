@@ -51,16 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
-<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
 <script>
@@ -141,28 +131,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -427,110 +395,154 @@ recoge un componente principal específico.</p>
 <p>— Precipitación anual media.</p>
 <p>— Días lluviosos al año.</p>
 <p>Interesa investigar la relación entre la concentración en SO2 y el resto de variables, para eliminar relaciones entre las variables se desea emplear un análisis de componentes principales.</p>
-<pre><code>              SO2 Neg.Temp Empresas Poblacion Viento Precip Dias
-Phoenix        10     70.3      213       582    6.0   7.05   36
-Little Rock    13     61.0       91       132    8.2  48.52  100
-San Francisco  12     56.7      453       716    8.7  20.66   67
-Denver         17     51.9      454       515    9.0  12.95   86
-Hartford       56     49.1      412       158    9.0  43.37  127
-Wilmington     36     54.0       80        80    9.0  40.25  114</code></pre>
-<pre><code>      SO2            Neg.Temp        Empresas        Poblacion          Viento           Precip     
- Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0   Min.   : 6.000   Min.   : 7.05  
- 1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0   1st Qu.: 8.700   1st Qu.:30.96  
- Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0   Median : 9.300   Median :38.74  
- Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6   Mean   : 9.444   Mean   :36.77  
- 3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0   3rd Qu.:10.600   3rd Qu.:43.11  
- Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0   Max.   :12.700   Max.   :59.80  
-      Dias      
- Min.   : 36.0  
- 1st Qu.:103.0  
- Median :115.0  
- Mean   :113.9  
- 3rd Qu.:128.0  
- Max.   :166.0  </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>effect of variables:
- modified item       Var        
- &quot;height of face   &quot; &quot;SO2&quot;      
- &quot;width of face    &quot; &quot;Neg.Temp&quot; 
- &quot;structure of face&quot; &quot;Empresas&quot; 
- &quot;height of mouth  &quot; &quot;Poblacion&quot;
- &quot;width of mouth   &quot; &quot;Viento&quot;   
- &quot;smiling          &quot; &quot;Precip&quot;   
- &quot;height of eyes   &quot; &quot;Dias&quot;     
- &quot;width of eyes    &quot; &quot;SO2&quot;      
- &quot;height of hair   &quot; &quot;Neg.Temp&quot; 
- &quot;width of hair   &quot;  &quot;Empresas&quot; 
- &quot;style of hair   &quot;  &quot;Poblacion&quot;
- &quot;height of nose  &quot;  &quot;Viento&quot;   
- &quot;width of nose   &quot;  &quot;Precip&quot;   
- &quot;width of ear    &quot;  &quot;Dias&quot;     
- &quot;height of ear   &quot;  &quot;SO2&quot;      </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-22-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<pre><code>             Neg.Temp    Empresas   Poblacion      Viento      Precip        Dias
-Neg.Temp   1.00000000 -0.19004216 -0.06267813 -0.34973963  0.38625342 -0.43024212
-Empresas  -0.19004216  1.00000000  0.95526935  0.23794683 -0.03241688  0.13182930
-Poblacion -0.06267813  0.95526935  1.00000000  0.21264375 -0.02611873  0.04208319
-Viento    -0.34973963  0.23794683  0.21264375  1.00000000 -0.01299438  0.16410559
-Precip     0.38625342 -0.03241688 -0.02611873 -0.01299438  1.00000000  0.49609671
-Dias      -0.43024212  0.13182930  0.04208319  0.16410559  0.49609671  1.00000000</code></pre>
-<pre><code>Importance of components:
-                          Comp.1    Comp.2    Comp.3    Comp.4     Comp.5      Comp.6
-Standard deviation     1.4819456 1.2247218 1.1809526 0.8719099 0.33848287 0.185599752
-Proportion of Variance 0.3660271 0.2499906 0.2324415 0.1267045 0.01909511 0.005741211
-Cumulative Proportion  0.3660271 0.6160177 0.8484592 0.9751637 0.99425879 1.000000000
-
-Loadings:
-          Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6
-Neg.Temp   0.330  0.128  0.672  0.306  0.558  0.136
-Empresas  -0.612  0.168  0.273 -0.137 -0.102  0.703
-Poblacion -0.578  0.222  0.350               -0.695
-Viento    -0.354 -0.131 -0.297  0.869  0.113       
-Precip           -0.623  0.505  0.171 -0.568       
-Dias      -0.238 -0.708        -0.311  0.580       </code></pre>
-<pre><code>                           Comp.1      Comp.2
-Phoenix               2.440096802  4.19114925
-Little Rock           1.611599761 -0.34248684
-San Francisco         0.502073845  2.25528717
-Denver                0.207434109  1.96320936
-Hartford              0.219106349 -0.97630584
-Wilmington            0.996140738 -0.50074082
-Washington            0.022928417  0.05456742
-Jacksonville          1.227849872 -0.84912801
-Miami                 1.533160553 -1.40469861
-Atlanta               0.598994755 -0.58723563
-Chicago              -6.513881753  1.66838172
-Indianapolis         -0.308324007 -0.36049244
-Des Moines            0.131980292  0.06120607
-Wichita               0.196823158  0.67607441
-Louisville            0.423739264 -0.54055336
-New Orleans           1.453857066 -0.90075225
-Baltimore            -0.509380032 -0.02875397
-Detroit              -2.166694857  0.27060292
-Minneapolis-St. Paul -1.500032786 -0.24675569
-Kansas City           0.131303464  0.25205976
-St. Louis            -0.286187330  0.38438239
-Omaha                 0.133637672  0.38478358
-Alburquerque          1.417093145  2.86589024
-Albany                0.538945616 -0.79206938
-Buffalo              -1.390708909 -1.88030104
-Cincinnati            0.508220797 -0.48601020
-Cleveland            -1.766279326 -1.03942658
-Columbus              0.118835030 -0.64039358
-Philadelphia         -2.797074676  0.65847826
-Pittsburgh           -0.322264830 -1.02663680
-Providence           -0.069936477 -1.03390711
-Memphis               0.577848813 -0.32506654
-Nashville             0.910052287 -0.54346445
-Dallas                0.006878799  1.21181090
-Houston              -0.508419801  0.11271579
-Salt Lake City        0.912393969  1.54734758
-Norfolk               0.589141903 -0.75219052
-Richmond              1.171998946 -0.33494902
-Seattle              -0.481679438 -1.59742576
-Charleston            1.429753320 -1.21058365
-Milwaukee            -1.391024518 -0.15761872</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-de-componentes-principales-pca.html#cb1-1" tabindex="-1"></a><span class="co"># Carga de datos de la muestra de 41 ciudades</span></span>
+<span id="cb1-2"><a href="análisis-de-componentes-principales-pca.html#cb1-2" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="análisis-de-componentes-principales-pca.html#cb1-3" tabindex="-1"></a>  <span class="at">SO2 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">13</span>, <span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">56</span>, <span class="dv">36</span>, <span class="dv">29</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">24</span>, <span class="dv">110</span>, <span class="dv">28</span>, <span class="dv">17</span>, <span class="dv">8</span>, <span class="dv">30</span>, <span class="dv">9</span>, <span class="dv">47</span>, <span class="dv">35</span>, <span class="dv">29</span>, <span class="dv">14</span>, <span class="dv">56</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">46</span>, <span class="dv">11</span>, <span class="dv">23</span>, <span class="dv">65</span>, <span class="dv">26</span>, <span class="dv">69</span>, <span class="dv">61</span>, <span class="dv">94</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">28</span>, <span class="dv">31</span>, <span class="dv">26</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">16</span>),</span>
+<span id="cb1-4"><a href="análisis-de-componentes-principales-pca.html#cb1-4" tabindex="-1"></a>  <span class="at">Neg.Temp =</span> <span class="fu">c</span>(<span class="fl">70.3</span>, <span class="fl">61.0</span>, <span class="fl">56.7</span>, <span class="fl">51.9</span>, <span class="fl">49.1</span>, <span class="fl">54.0</span>, <span class="fl">57.3</span>, <span class="fl">68.4</span>, <span class="fl">75.5</span>, <span class="fl">61.5</span>, <span class="fl">50.6</span>, <span class="fl">52.3</span>, <span class="fl">49.0</span>, <span class="fl">56.6</span>, <span class="fl">55.6</span>, <span class="fl">68.3</span>, <span class="fl">55.0</span>, <span class="fl">49.9</span>, <span class="fl">43.5</span>, <span class="fl">54.5</span>, <span class="fl">55.9</span>, <span class="fl">51.5</span>, <span class="fl">56.8</span>, <span class="fl">47.6</span>, <span class="fl">47.1</span>, <span class="fl">54.0</span>, <span class="fl">49.7</span>, <span class="fl">51.5</span>, <span class="fl">54.6</span>, <span class="fl">50.4</span>, <span class="fl">50.0</span>, <span class="fl">61.6</span>, <span class="fl">59.4</span>, <span class="fl">66.2</span>, <span class="fl">68.9</span>, <span class="fl">51.0</span>, <span class="fl">59.3</span>, <span class="fl">57.8</span>, <span class="fl">51.1</span>, <span class="fl">55.2</span>, <span class="fl">45.7</span>),</span>
+<span id="cb1-5"><a href="análisis-de-componentes-principales-pca.html#cb1-5" tabindex="-1"></a>  <span class="at">Empresas =</span> <span class="fu">c</span>(<span class="dv">213</span>, <span class="dv">91</span>, <span class="dv">453</span>, <span class="dv">454</span>, <span class="dv">412</span>, <span class="dv">80</span>, <span class="dv">434</span>, <span class="dv">136</span>, <span class="dv">207</span>, <span class="dv">368</span>, <span class="dv">3344</span>, <span class="dv">361</span>, <span class="dv">104</span>, <span class="dv">125</span>, <span class="dv">291</span>, <span class="dv">204</span>, <span class="dv">625</span>, <span class="dv">1064</span>, <span class="dv">699</span>, <span class="dv">381</span>, <span class="dv">775</span>, <span class="dv">181</span>, <span class="dv">46</span>, <span class="dv">44</span>, <span class="dv">391</span>, <span class="dv">462</span>, <span class="dv">1007</span>, <span class="dv">266</span>, <span class="dv">1692</span>, <span class="dv">347</span>, <span class="dv">343</span>, <span class="dv">337</span>, <span class="dv">275</span>, <span class="dv">641</span>, <span class="dv">721</span>, <span class="dv">137</span>, <span class="dv">96</span>, <span class="dv">197</span>, <span class="dv">379</span>, <span class="dv">35</span>, <span class="dv">569</span>),</span>
+<span id="cb1-6"><a href="análisis-de-componentes-principales-pca.html#cb1-6" tabindex="-1"></a>  <span class="at">Poblacion =</span> <span class="fu">c</span>(<span class="dv">582</span>, <span class="dv">132</span>, <span class="dv">716</span>, <span class="dv">515</span>, <span class="dv">158</span>, <span class="dv">80</span>, <span class="dv">757</span>, <span class="dv">529</span>, <span class="dv">335</span>, <span class="dv">497</span>, <span class="dv">3369</span>, <span class="dv">746</span>, <span class="dv">201</span>, <span class="dv">277</span>, <span class="dv">593</span>, <span class="dv">361</span>, <span class="dv">905</span>, <span class="dv">1513</span>, <span class="dv">744</span>, <span class="dv">507</span>, <span class="dv">622</span>, <span class="dv">347</span>, <span class="dv">244</span>, <span class="dv">116</span>, <span class="dv">463</span>, <span class="dv">453</span>, <span class="dv">751</span>, <span class="dv">540</span>, <span class="dv">1950</span>, <span class="dv">520</span>, <span class="dv">179</span>, <span class="dv">624</span>, <span class="dv">448</span>, <span class="dv">844</span>, <span class="dv">1233</span>, <span class="dv">176</span>, <span class="dv">308</span>, <span class="dv">299</span>, <span class="dv">531</span>, <span class="dv">71</span>, <span class="dv">717</span>),</span>
+<span id="cb1-7"><a href="análisis-de-componentes-principales-pca.html#cb1-7" tabindex="-1"></a>  <span class="at">Viento =</span> <span class="fu">c</span>(<span class="fl">6.0</span>, <span class="fl">8.2</span>, <span class="fl">8.7</span>, <span class="fl">9.0</span>, <span class="fl">9.0</span>, <span class="fl">9.0</span>, <span class="fl">9.3</span>, <span class="fl">8.8</span>, <span class="fl">9.0</span>, <span class="fl">9.1</span>, <span class="fl">10.4</span>, <span class="fl">9.7</span>, <span class="fl">11.2</span>, <span class="fl">12.7</span>, <span class="fl">8.3</span>, <span class="fl">8.4</span>, <span class="fl">9.6</span>, <span class="fl">10.1</span>, <span class="fl">10.6</span>, <span class="fl">10.0</span>, <span class="fl">9.5</span>, <span class="fl">10.9</span>, <span class="fl">8.9</span>, <span class="fl">8.8</span>, <span class="fl">12.4</span>, <span class="fl">7.1</span>, <span class="fl">10.9</span>, <span class="fl">8.6</span>, <span class="fl">9.6</span>, <span class="fl">9.4</span>, <span class="fl">10.6</span>, <span class="fl">9.2</span>, <span class="fl">7.9</span>, <span class="fl">10.9</span>, <span class="fl">10.8</span>, <span class="fl">8.7</span>, <span class="fl">10.6</span>, <span class="fl">7.6</span>, <span class="fl">9.4</span>, <span class="fl">6.5</span>, <span class="fl">11.8</span>),</span>
+<span id="cb1-8"><a href="análisis-de-componentes-principales-pca.html#cb1-8" tabindex="-1"></a>  <span class="at">Precip =</span> <span class="fu">c</span>(<span class="fl">7.05</span>, <span class="fl">48.52</span>, <span class="fl">20.66</span>, <span class="fl">12.95</span>, <span class="fl">43.37</span>, <span class="fl">40.25</span>, <span class="fl">38.89</span>, <span class="fl">54.47</span>, <span class="fl">59.80</span>, <span class="fl">48.34</span>, <span class="fl">34.44</span>, <span class="fl">38.74</span>, <span class="fl">30.85</span>, <span class="fl">30.58</span>, <span class="fl">43.11</span>, <span class="fl">56.77</span>, <span class="fl">41.31</span>, <span class="fl">30.96</span>, <span class="fl">25.94</span>, <span class="fl">37.00</span>, <span class="fl">35.89</span>, <span class="fl">30.18</span>, <span class="fl">7.77</span>, <span class="fl">33.36</span>, <span class="fl">36.11</span>, <span class="fl">39.04</span>, <span class="fl">34.99</span>, <span class="fl">37.01</span>, <span class="fl">39.93</span>, <span class="fl">36.22</span>, <span class="fl">42.75</span>, <span class="fl">49.10</span>, <span class="fl">46.00</span>, <span class="fl">35.94</span>, <span class="fl">48.19</span>, <span class="fl">15.17</span>, <span class="fl">44.68</span>, <span class="fl">42.59</span>, <span class="fl">38.79</span>, <span class="fl">40.75</span>, <span class="fl">29.07</span>),</span>
+<span id="cb1-9"><a href="análisis-de-componentes-principales-pca.html#cb1-9" tabindex="-1"></a>  <span class="at">Dias =</span> <span class="fu">c</span>(<span class="dv">36</span>, <span class="dv">100</span>, <span class="dv">67</span>, <span class="dv">86</span>, <span class="dv">127</span>, <span class="dv">114</span>, <span class="dv">111</span>, <span class="dv">116</span>, <span class="dv">128</span>, <span class="dv">115</span>, <span class="dv">122</span>, <span class="dv">121</span>, <span class="dv">103</span>, <span class="dv">82</span>, <span class="dv">123</span>, <span class="dv">113</span>, <span class="dv">111</span>, <span class="dv">129</span>, <span class="dv">137</span>, <span class="dv">99</span>, <span class="dv">105</span>, <span class="dv">98</span>, <span class="dv">58</span>, <span class="dv">135</span>, <span class="dv">166</span>, <span class="dv">132</span>, <span class="dv">155</span>, <span class="dv">134</span>, <span class="dv">115</span>, <span class="dv">147</span>, <span class="dv">125</span>, <span class="dv">105</span>, <span class="dv">119</span>, <span class="dv">78</span>, <span class="dv">103</span>, <span class="dv">89</span>, <span class="dv">116</span>, <span class="dv">115</span>, <span class="dv">164</span>, <span class="dv">148</span>, <span class="dv">123</span>)</span>
+<span id="cb1-10"><a href="análisis-de-componentes-principales-pca.html#cb1-10" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="análisis-de-componentes-principales-pca.html#cb1-11" tabindex="-1"></a><span class="fu">dimnames</span>(datos)[[<span class="dv">1</span>]]<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Phoenix&quot;</span>, <span class="st">&quot;Little Rock&quot;</span>, <span class="st">&quot;San Francisco&quot;</span>, <span class="st">&quot;Denver&quot;</span>, <span class="st">&quot;Hartford&quot;</span>, </span>
+<span id="cb1-12"><a href="análisis-de-componentes-principales-pca.html#cb1-12" tabindex="-1"></a>             <span class="st">&quot;Wilmington&quot;</span>, <span class="st">&quot;Washington&quot;</span>, <span class="st">&quot;Jacksonville&quot;</span>, <span class="st">&quot;Miami&quot;</span>, <span class="st">&quot;Atlanta&quot;</span>, </span>
+<span id="cb1-13"><a href="análisis-de-componentes-principales-pca.html#cb1-13" tabindex="-1"></a>             <span class="st">&quot;Chicago&quot;</span>, <span class="st">&quot;Indianapolis&quot;</span>, <span class="st">&quot;Des Moines&quot;</span>, <span class="st">&quot;Wichita&quot;</span>, <span class="st">&quot;Louisville&quot;</span>, </span>
+<span id="cb1-14"><a href="análisis-de-componentes-principales-pca.html#cb1-14" tabindex="-1"></a>             <span class="st">&quot;New Orleans&quot;</span>, <span class="st">&quot;Baltimore&quot;</span>, <span class="st">&quot;Detroit&quot;</span>, <span class="st">&quot;Minneapolis-St. Paul&quot;</span>, </span>
+<span id="cb1-15"><a href="análisis-de-componentes-principales-pca.html#cb1-15" tabindex="-1"></a>             <span class="st">&quot;Kansas City&quot;</span>, <span class="st">&quot;St. Louis&quot;</span>, <span class="st">&quot;Omaha&quot;</span>, <span class="st">&quot;Alburquerque&quot;</span>, <span class="st">&quot;Albany&quot;</span>, </span>
+<span id="cb1-16"><a href="análisis-de-componentes-principales-pca.html#cb1-16" tabindex="-1"></a>             <span class="st">&quot;Buffalo&quot;</span>, <span class="st">&quot;Cincinnati&quot;</span>, <span class="st">&quot;Cleveland&quot;</span>, <span class="st">&quot;Columbus&quot;</span>, <span class="st">&quot;Philadelphia&quot;</span>, </span>
+<span id="cb1-17"><a href="análisis-de-componentes-principales-pca.html#cb1-17" tabindex="-1"></a>             <span class="st">&quot;Pittsburgh&quot;</span>, <span class="st">&quot;Providence&quot;</span>, <span class="st">&quot;Memphis&quot;</span>, <span class="st">&quot;Nashville&quot;</span>, <span class="st">&quot;Dallas&quot;</span>, </span>
+<span id="cb1-18"><a href="análisis-de-componentes-principales-pca.html#cb1-18" tabindex="-1"></a>             <span class="st">&quot;Houston&quot;</span>, <span class="st">&quot;Salt Lake City&quot;</span>, <span class="st">&quot;Norfolk&quot;</span>, <span class="st">&quot;Richmond&quot;</span>, <span class="st">&quot;Seattle&quot;</span>, </span>
+<span id="cb1-19"><a href="análisis-de-componentes-principales-pca.html#cb1-19" tabindex="-1"></a>             <span class="st">&quot;Charleston&quot;</span>, <span class="st">&quot;Milwaukee&quot;</span>)</span>
+<span id="cb1-20"><a href="análisis-de-componentes-principales-pca.html#cb1-20" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="análisis-de-componentes-principales-pca.html#cb1-21" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<pre><code>##               SO2 Neg.Temp Empresas Poblacion Viento Precip Dias
+## Phoenix        10     70.3      213       582    6.0   7.05   36
+## Little Rock    13     61.0       91       132    8.2  48.52  100
+## San Francisco  12     56.7      453       716    8.7  20.66   67
+## Denver         17     51.9      454       515    9.0  12.95   86
+## Hartford       56     49.1      412       158    9.0  43.37  127
+## Wilmington     36     54.0       80        80    9.0  40.25  114</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="análisis-de-componentes-principales-pca.html#cb3-1" tabindex="-1"></a><span class="co"># Análisis descriptivo</span></span>
+<span id="cb3-2"><a href="análisis-de-componentes-principales-pca.html#cb3-2" tabindex="-1"></a><span class="fu">summary</span>(datos) </span></code></pre></div>
+<pre><code>##       SO2            Neg.Temp        Empresas        Poblacion     
+##  Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0  
+##  1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0  
+##  Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0  
+##  Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6  
+##  3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0  
+##  Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0  
+##      Viento           Precip           Dias      
+##  Min.   : 6.000   Min.   : 7.05   Min.   : 36.0  
+##  1st Qu.: 8.700   1st Qu.:30.96   1st Qu.:103.0  
+##  Median : 9.300   Median :38.74   Median :115.0  
+##  Mean   : 9.444   Mean   :36.77   Mean   :113.9  
+##  3rd Qu.:10.600   3rd Qu.:43.11   3rd Qu.:128.0  
+##  Max.   :12.700   Max.   :59.80   Max.   :166.0</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="análisis-de-componentes-principales-pca.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(TeachingDemos)</span>
+<span id="cb5-2"><a href="análisis-de-componentes-principales-pca.html#cb5-2" tabindex="-1"></a><span class="fu">faces</span>(datos)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="análisis-de-componentes-principales-pca.html#cb6-1" tabindex="-1"></a><span class="fu">faces2</span>(datos,<span class="at">nrows=</span><span class="dv">7</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="análisis-de-componentes-principales-pca.html#cb7-1" tabindex="-1"></a>panel.hist <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...)</span>
+<span id="cb7-2"><a href="análisis-de-componentes-principales-pca.html#cb7-2" tabindex="-1"></a>{</span>
+<span id="cb7-3"><a href="análisis-de-componentes-principales-pca.html#cb7-3" tabindex="-1"></a> usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
+<span id="cb7-4"><a href="análisis-de-componentes-principales-pca.html#cb7-4" tabindex="-1"></a> <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(usr[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">0</span>, <span class="fl">1.5</span>) )</span>
+<span id="cb7-5"><a href="análisis-de-componentes-principales-pca.html#cb7-5" tabindex="-1"></a> h <span class="ot">&lt;-</span> <span class="fu">hist</span>(x, <span class="at">plot =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-6"><a href="análisis-de-componentes-principales-pca.html#cb7-6" tabindex="-1"></a> breaks <span class="ot">&lt;-</span> h<span class="sc">$</span>breaks; nB <span class="ot">&lt;-</span> <span class="fu">length</span>(breaks)</span>
+<span id="cb7-7"><a href="análisis-de-componentes-principales-pca.html#cb7-7" tabindex="-1"></a> y <span class="ot">&lt;-</span> h<span class="sc">$</span>counts; y <span class="ot">&lt;-</span> y<span class="sc">/</span><span class="fu">max</span>(y)</span>
+<span id="cb7-8"><a href="análisis-de-componentes-principales-pca.html#cb7-8" tabindex="-1"></a> <span class="fu">rect</span>(breaks[<span class="sc">-</span>nB], <span class="dv">0</span>, breaks[<span class="sc">-</span><span class="dv">1</span>], y, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, ...)</span>
+<span id="cb7-9"><a href="análisis-de-componentes-principales-pca.html#cb7-9" tabindex="-1"></a>}</span>
+<span id="cb7-10"><a href="análisis-de-componentes-principales-pca.html#cb7-10" tabindex="-1"></a><span class="fu">pairs</span>(datos,<span class="at">diag.panel=</span>panel.hist)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="análisis-de-componentes-principales-pca.html#cb8-1" tabindex="-1"></a><span class="co"># Calculo la matriz de correlaciones</span></span>
+<span id="cb8-2"><a href="análisis-de-componentes-principales-pca.html#cb8-2" tabindex="-1"></a><span class="fu">cor</span>(datos[,<span class="sc">-</span><span class="dv">1</span>])</span></code></pre></div>
+<pre><code>##              Neg.Temp    Empresas   Poblacion      Viento      Precip
+## Neg.Temp   1.00000000 -0.19004216 -0.06267813 -0.34973963  0.38625342
+## Empresas  -0.19004216  1.00000000  0.95526935  0.23794683 -0.03241688
+## Poblacion -0.06267813  0.95526935  1.00000000  0.21264375 -0.02611873
+## Viento    -0.34973963  0.23794683  0.21264375  1.00000000 -0.01299438
+## Precip     0.38625342 -0.03241688 -0.02611873 -0.01299438  1.00000000
+## Dias      -0.43024212  0.13182930  0.04208319  0.16410559  0.49609671
+##                  Dias
+## Neg.Temp  -0.43024212
+## Empresas   0.13182930
+## Poblacion  0.04208319
+## Viento     0.16410559
+## Precip     0.49609671
+## Dias       1.00000000</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="análisis-de-componentes-principales-pca.html#cb10-1" tabindex="-1"></a><span class="co"># Calculo los componentes principales basados en la matriz de correlaciones</span></span>
+<span id="cb10-2"><a href="análisis-de-componentes-principales-pca.html#cb10-2" tabindex="-1"></a>apc1<span class="ot">&lt;-</span><span class="fu">princomp</span>(datos[,<span class="sc">-</span><span class="dv">1</span>],<span class="at">cor=</span><span class="cn">TRUE</span>)</span>
+<span id="cb10-3"><a href="análisis-de-componentes-principales-pca.html#cb10-3" tabindex="-1"></a><span class="fu">summary</span>(apc1,<span class="at">loadings=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Importance of components:
+##                           Comp.1    Comp.2    Comp.3    Comp.4     Comp.5
+## Standard deviation     1.4819456 1.2247218 1.1809526 0.8719099 0.33848287
+## Proportion of Variance 0.3660271 0.2499906 0.2324415 0.1267045 0.01909511
+## Cumulative Proportion  0.3660271 0.6160177 0.8484592 0.9751637 0.99425879
+##                             Comp.6
+## Standard deviation     0.185599752
+## Proportion of Variance 0.005741211
+## Cumulative Proportion  1.000000000
+## 
+## Loadings:
+##           Comp.1 Comp.2 Comp.3 Comp.4 Comp.5 Comp.6
+## Neg.Temp   0.330  0.128  0.672  0.306  0.558  0.136
+## Empresas  -0.612  0.168  0.273 -0.137 -0.102  0.703
+## Poblacion -0.578  0.222  0.350               -0.695
+## Viento    -0.354 -0.131 -0.297  0.869  0.113       
+## Precip           -0.623  0.505  0.171 -0.568       
+## Dias      -0.238 -0.708        -0.311  0.580</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="análisis-de-componentes-principales-pca.html#cb12-1" tabindex="-1"></a><span class="co"># Puntuaciones de los dos primeros compomentes</span></span>
+<span id="cb12-2"><a href="análisis-de-componentes-principales-pca.html#cb12-2" tabindex="-1"></a>apc1<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>##                            Comp.1      Comp.2
+## Phoenix               2.440096802  4.19114925
+## Little Rock           1.611599761 -0.34248684
+## San Francisco         0.502073845  2.25528717
+## Denver                0.207434109  1.96320936
+## Hartford              0.219106349 -0.97630584
+## Wilmington            0.996140738 -0.50074082
+## Washington            0.022928417  0.05456742
+## Jacksonville          1.227849872 -0.84912801
+## Miami                 1.533160553 -1.40469861
+## Atlanta               0.598994755 -0.58723563
+## Chicago              -6.513881753  1.66838172
+## Indianapolis         -0.308324007 -0.36049244
+## Des Moines            0.131980292  0.06120607
+## Wichita               0.196823158  0.67607441
+## Louisville            0.423739264 -0.54055336
+## New Orleans           1.453857066 -0.90075225
+## Baltimore            -0.509380032 -0.02875397
+## Detroit              -2.166694857  0.27060292
+## Minneapolis-St. Paul -1.500032786 -0.24675569
+## Kansas City           0.131303464  0.25205976
+## St. Louis            -0.286187330  0.38438239
+## Omaha                 0.133637672  0.38478358
+## Alburquerque          1.417093145  2.86589024
+## Albany                0.538945616 -0.79206938
+## Buffalo              -1.390708909 -1.88030104
+## Cincinnati            0.508220797 -0.48601020
+## Cleveland            -1.766279326 -1.03942658
+## Columbus              0.118835030 -0.64039358
+## Philadelphia         -2.797074676  0.65847826
+## Pittsburgh           -0.322264830 -1.02663680
+## Providence           -0.069936477 -1.03390711
+## Memphis               0.577848813 -0.32506654
+## Nashville             0.910052287 -0.54346445
+## Dallas                0.006878799  1.21181090
+## Houston              -0.508419801  0.11271579
+## Salt Lake City        0.912393969  1.54734758
+## Norfolk               0.589141903 -0.75219052
+## Richmond              1.171998946 -0.33494902
+## Seattle              -0.481679438 -1.59742576
+## Charleston            1.429753320 -1.21058365
+## Milwaukee            -1.391024518 -0.15761872</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="análisis-de-componentes-principales-pca.html#cb14-1" tabindex="-1"></a><span class="co">#par(pty=&quot;s&quot;)</span></span>
+<span id="cb14-2"><a href="análisis-de-componentes-principales-pca.html#cb14-2" tabindex="-1"></a><span class="fu">plot</span>(apc1<span class="sc">$</span>scores[,<span class="dv">1</span>],apc1<span class="sc">$</span>scores[,<span class="dv">2</span>],</span>
+<span id="cb14-3"><a href="análisis-de-componentes-principales-pca.html#cb14-3" tabindex="-1"></a><span class="at">ylim=</span><span class="fu">range</span>(apc1<span class="sc">$</span>scores[,<span class="dv">2</span>]),</span>
+<span id="cb14-4"><a href="análisis-de-componentes-principales-pca.html#cb14-4" tabindex="-1"></a><span class="at">xlab=</span><span class="st">&quot;PC1&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;PC2&quot;</span>,<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb14-5"><a href="análisis-de-componentes-principales-pca.html#cb14-5" tabindex="-1"></a><span class="fu">text</span>(apc1<span class="sc">$</span>scores[,<span class="dv">1</span>],apc1<span class="sc">$</span>scores[,<span class="dv">2</span>],</span>
+<span id="cb14-6"><a href="análisis-de-componentes-principales-pca.html#cb14-6" tabindex="-1"></a><span class="at">labels=</span><span class="fu">abbreviate</span>(<span class="fu">row.names</span>(datos)),<span class="at">cex=</span><span class="fl">0.8</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-4.png" alt="" width="672" /></p>
 
 </div>
 </div>
