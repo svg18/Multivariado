@@ -6,3 +6,573 @@ output:
 ---
 # Análisis de Factores
 
+## Análisis Factorial
+
+En numerosas áreas de Psicología y de Ciencias del Comportamiento no es posible medir directamente las variables que interesan; por ejemplo, los conceptos de inteligencia y de clase social. En estos casos es necesario recoger medidas indirectas que estén relacionadas con los conceptos que interesan. Las variables que interesan reciben el nombre de **variables latentes** y la metodología que las relaciona con variables observadas recibe el nombre de **Análisis Factorial**.
+
+El modelo de Análisis Factorial es un modelo de regresión múltiple que relaciona variables latentes con variables observadas.
+
+El Análisis Factorial tiene muchos puntos en común con el análisis de componentes principales, y busca esencialmente nuevas variables o factores que expliquen los datos. En el análisis de componentes principales, en realidad, sólo se hacen transformaciones ortogonales de las variables originales, haciendo hincapié en la varianza de las nuevas variables. En el análisis factorial, por el contrario, interesa más explicar la estructura de las covarianzas entre las variables.
+
+Al igual que en el método de los componentes principales, para efectuar el análisis factorial, es necesario que las variables originales estén correlacionadas porque si lo estuvieran no habría nada que explicar de las variables.
+
+Consideramos un conjunto de $p$ variables observadas $x=(x_1, x_2, \dots, x_p)$ que se asume relacionadas con un número dado de variables latentes $f_1, f_2, \dots, f_k$, donde $k < p$, mediante una relación del tipo:
+
+$$x_1 = \lambda_{11}f_1 + \dots + \lambda_{1k}f_k + u_1$$
+$$\vdots$$
+$$x_p = \lambda_{p1}f_1 + \dots + \lambda_{pk}f_k + u_p$$
+
+o de modo más conciso:
+
+$$x = \Lambda f + u$$
+
+donde
+
+$$\Lambda = \begin{pmatrix} \lambda_{11} & \dots & \lambda_{1k} \\ \vdots & \dots & \vdots \\ \lambda_{p1} & \dots & \lambda_{pk} \end{pmatrix} \quad f = \begin{pmatrix} f_1 \\ \vdots \\ f_k \end{pmatrix} \quad u = \begin{pmatrix} u_1 \\ \vdots \\ u_p \end{pmatrix}$$
+
+Los $\lambda_{ij}$ son los **pesos factoriales** que muestran cómo cada $x_i$ depende de factores comunes y se usan para interpretar los factores. Por ejemplo, valores altos relacionan un factor con la correspondiente variable observada y así se puede caracterizar cada factor.
+
+Se asume que los términos residuales $u_1, \dots, u_p$ no están correlacionados entre sí y con los factores $f_1, \dots, f_k$. Cada variable $u_i$ es particular para cada $x_i$ y se denomina **variable específica**.
+
+Dado que los factores no son observables, se puede fijar arbitrariamente su media en 0 y su varianza en 1, esto es, se consideran variables estandarizadas que son independientes entre sí, de modo que los pesos factoriales resultan ser las correlaciones entre las variables y los factores.
+
+Así, con las suposiciones previas, la varianza de la variable $x_i$ es:
+
+$$\sigma_i^2 = \sum_{j=1}^{k} \lambda_{ij}^2 + \psi_i$$
+
+donde $\psi_i$ es la varianza de $u_i$.
+
+De este modo, la varianza de cada variable observada se puede descomponer en dos partes:
+
+1. La primera $h_i^2$, denominada **comunalidad**, es:
+
+$$h_i^2 = \sum_{j=1}^{k} \lambda_{ij}^2$$
+
+y representa la varianza compartida con las otras variables por medio de los factores comunes.
+
+2. La segunda parte, $\psi_i$, se denomina **varianza específica** y recoge la variabilidad no compartida con las otras variables.
+
+La definición del modelo implica que la covarianza entre las variables $x_i$ y $x_j$ es:
+
+$$\sigma_{ij} = \sum_{l=1}^{k} \lambda_{il} \lambda_{lj}$$
+
+Las covarianzas no dependen en absoluto de las variables específicas, de hecho, basta con los factores comunes. De este modo, la matriz de covarianzas de las variables observadas es:
+
+$$\Sigma = \Lambda \Lambda' + \Psi$$
+
+donde $\Psi$ es una matriz diagonal cuyos componentes son las varianzas específicas: $\Psi = \text{diag}(\psi_i)$.
+
+Lo contrario también se verifica: dada la descomposición de la varianza anterior, se puede encontrar un modelo factorial para las variables originales, $x$, con $k$ factores.
+
+En la práctica se tienen que estimar los parámetros del modelo a partir de una muestra, de modo que el problema se centra en encontrar los valores $\hat{\Lambda}$ y $\hat{\Psi}$ tales que la matriz de covarianzas muestral $S$ es aproximadamente:
+
+$$S \approx \hat{\Lambda} \hat{\Lambda}' + \hat{\Psi}$$
+
+Se tienen dos métodos de estimación de los términos anteriores: el método de los factores principales y el método de máxima verosimilitud.
+
+### Método de los factores principales
+
+Es una técnica basada en valores y vectores propios, pero en lugar de operar sobre la matriz de covarianzas se opera sobre la llamada **matriz de covarianzas reducida**:
+
+$$S^* = S - \hat{\Psi}$$
+
+donde $\hat{\Psi}$ es una matriz diagonal que contiene las estimas de $\psi_i$.
+
+Los elementos diagonales de $S^*$ contienen las comunalidades estimadas (las partes de las varianzas de cada variable explicada por los factores comunes). Al contrario que el análisis de componentes principales, el análisis factorial no pretende recoger toda la varianza observada de los datos, sino la que comparten los factores comunes. De hecho, el análisis factorial se centra más en recoger las covarianzas o correlaciones que aparecen entre las variables originales.
+
+El procedimiento es iterativo: se parte de unas comunalidades estimadas a partir de las correlaciones entre las variables observadas y luego se efectúa un análisis de componentes principales sobre la matriz $S^*$.
+
+### Método de la máxima verosimilitud
+
+Este método es el habitualmente preferido por los estadísticos. Asumiendo normalidad en los datos se define una distancia $F$, entre la matriz de covarianzas observada y los valores predichos de esta matriz por el modelo del análisis factorial. La expresión de dicha distancia es:
+
+$$F = \ln|\Lambda \Lambda' + \Psi| + \text{traza}\left(S(\Lambda \Lambda' + \Psi)^{-1}\right) - \ln|S| - p$$
+
+Las estimaciones de los pesos factoriales se obtienen minimizando esta función, y esto es equivalente a maximizar la función de verosimilitud del modelo $k$ factorial asumiendo normalidad.
+
+## AF Exploratorio (AFE) vs. AF Confirmatorio (AFC)
+
+El Análisis Factorial se divide en dos enfoques metodológicos complementarios pero conceptualmente diferenciados: el **Análisis Factorial Exploratorio (AFE)** y el **Análisis Factorial Confirmatorio (AFC)**. 
+
+La diferencia fundamental reside en la naturaleza del estudio (inductiva vs. deductiva), el grado de conocimiento teórico previo que posee el investigador y el nivel de restricciones impuestas sobre la matriz de cargas factoriales.
+
+### Análisis Factorial Exploratorio (AFE)
+
+El **AFE** se utiliza principalmente en las fases iniciales de una investigación, cuando no se dispone de un modelo teórico rígido sobre la estructura latente que subyace a las variables observadas.
+
+* **Enfoque Inductivo:** Los datos "hablan por sí mismos". Se busca descubrir cuántos factores latentes existen y qué variables se agrupan en cada uno de ellos.
+* **Ausencia de Restricciones:** Todas las variables observadas están vinculadas linealmente con todos los factores comunes. La matriz de cargas $\mathbf{\Lambda}$ está completamente "libre" (todos los elementos $\lambda_{ij}$ se estiman sin fijar valores a cero de forma a priori).
+* **Indeterminación de la Solución:** La solución extraída no es única y requiere de **rotaciones factoriales** (ortogonales u oblicuas) para encontrar una *Estructura Simple* interpretable.
+
+### Análisis Factorial Confirmatorio (AFC)
+
+El **AFC** se utiliza cuando existe un marco teórico consolidado, una evidencia empírica previa o un instrumento formalmente diseñado (ej. un cuestionario psicológico estructurado por dimensiones) y se desea **contrastar si una hipótesis factorial específica se ajusta a los datos empíricos**.
+
+* **Enfoque Deductivo:** El investigador especifica a priori la arquitectura exacta del modelo: determina el número preciso de factores $k$, qué variables específicas cargan en cada factor y qué factores están correlacionados entre sí.
+* **Presencia de Restricciones:** Se imponen restricciones explícitas en la matriz de cargas factoriales. La mayoría de los elementos de $\mathbf{\Lambda}$ se fijan estrictamente a cero ($\lambda_{ij} = 0$) para aquellas variables que teóricamente no pertenecen a determinado factor.
+* **Marco de Modelos de Ecuaciones Estructurales (SEM):** El AFC no requiere rotación de factores. Se evalúa formalmente mediante el ajuste global del modelo comparando la matriz de covarianzas observada $\mathbf{S}$ con la matriz implícita del modelo teorizado $\mathbf{\Sigma}(\mathbf{\theta})$.
+
+## Diagnóstico de Factorabilidad {#diagnostico-factorabilidad}
+
+Antes de proceder a la extracción de factores en un Análisis Factorial Exploratorio (AFE), es indispensable evaluar empíricamente si la matriz de covarianzas o correlaciones muestrales posee la estructura requerida para ser factorizada. Si las variables originales estuviesen linealmente no correlacionadas, la matriz de correlaciones sería equivalente a una matriz identidad y no existirá varianza compartida que justifique la reducción dimensional.
+
+Existen tres diagnósticos estadísticos principales para confirmar si el conjunto de datos es apto para el Análisis Factorial:
+
+### Prueba de Esfericidad de Bartlett
+
+La **Prueba de Esfericidad de Bartlett** evalúa la hipótesis nula de que la matriz de correlaciones poblacional $\mathbf{R}$ es una matriz identidad $\mathbf{I}_p$, lo que indicaría que las variables no están correlacionadas entre sí:
+
+$$H_0: \mathbf{R} = \mathbf{I}_p \quad \text{vs.} \quad H_1: \mathbf{R} \neq \mathbf{I}_p$$
+
+El estadístico de prueba se calcula a partir del determinante de la matriz de correlación muestral $|\mathbf{R}|$:
+
+$$\chi^2 = -\left(n - 1 - \frac{2p + 5}{6}\right) \ln|\mathbf{R}|$$
+
+donde $n$ es el tamaño de la muestra y $p$ es el número de variables observadas. Bajo $H_0$, este estadístico se distribuye asintóticamente como una $\chi^2$ con $\frac{p(p-1)}{2}$ grados de libertad.
+
+* **Criterio de decisión:** Se busca rechazar la hipótesis nula ($p\text{-valor} < 0.05$). Un $p\text{-valor}$ estadísticamente significativo indica la existencia de correlaciones significativas entre las variables, justificando el uso del Análisis Factorial.
+
+### Medida de Adecuación Muestral KMO (Kaiser-Meyer-Olkin)
+
+El índice **KMO** compara la magnitud de los coeficientes de correlación observados en relación con la magnitud de los coeficientes de correlación parcial. Su objetivo es determinar si la varianza de las variables estudiadas es susceptible de ser explicada por factores comunes:
+
+$$\text{KMO} = \frac{\sum_{i \neq j} r_{ij}^2}{\sum_{i \neq j} r_{ij}^2 + \sum_{i \neq j} a_{ij}^2}$$
+
+donde $r_{ij}$ representa la correlación lineal simple entre las variables $i$ y $j$, y $a_{ij}$ es la correlación parcial entre ambas controlando el efecto del resto de las variables observadas.
+
+El índice KMO toma valores en el intervalo $[0, 1]$. La interpretación general de su magnitud sigue la escala propuesta por Kaiser:
+
+| Valor de KMO | Evaluacion de la Factorabilidad |
+| :--- | :--- |
+| $\text{KMO} \ge 0.90$ | Excelente (*Marvelous*) |
+| $0.80 \le \text{KMO} < 0.90$ | Buena (*Meritorious*) |
+| $0.70 \le \text{KMO} < 0.80$ | Aceptable (*Middling*) |
+| $0.60 \le \text{KMO} < 0.70$ | Mediocre (*Mediocre*) |
+| $0.50 \le \text{KMO} < 0.60$ | Mala / Inadecuada (*Miserable*) |
+| $\text{KMO} < 0.50$ | Inaceptable / Desaconsejada (*Unacceptable*) |
+
+### Matriz de Correlación Anti-imagen e Índices MSA Individuales
+
+Además del valor global del KMO, es relevante evaluar el comportamiento individual de cada variable dentro del sistema. La **matriz anti-imagen** contiene los negativos de las correlaciones parciales entre pares de variables ($a_{ij}$). 
+
+La diagonal principal de esta matriz contiene los índices **MSA** (*Measure of Sampling Adequacy*) individuales para cada variable:
+
+$$\text{MSA}_i = \frac{\sum_{j \neq i} r_{ij}^2}{\sum_{j \neq i} r_{ij}^2 + \sum_{j \neq i} a_{ij}^2}$$
+
+* **Criterio de decisión:** Las variables con un $\text{MSA}_i < 0.50$ deben ser identificadas y potencialmente eliminadas del análisis una a una, ya que no comparten la suficiente varianza común con el resto del conjunto de variables observadas.
+
+### Ejemplo de Diagnostico en R
+
+En `R`, estos diagnósticos se pueden calcular mediante las funciones del paquete `psych`.
+
+```{r diagnostico-kmo-bartlett, message=FALSE, warning=FALSE}
+# Carga de paquetes necesarios
+library(psych)
+library(knitr)
+
+# Utilizando los datos de Esperanza de Vida (Ejemplo 1)
+datos_vida <- data.frame(
+  m0 = c(63, 34, 38, 59, 56, 62, 50, 65, 56, 69, 65, 64, 56, 60, 61, 49, 59, 63, 59, 65, 65, 64, 64, 67, 61, 68, 67, 65, 59, 58, 57),
+  m25 = c(51, 29, 30, 42, 38, 44, 39, 44, 46, 47, 48, 50, 44, 44, 45, 40, 42, 44, 44, 48, 48, 63, 43, 45, 40, 46, 45, 46, 43, 44, 46),
+  m50 = c(30, 13, 17, 20, 18, 24, 20, 22, 24, 24, 26, 28, 25, 22, 22, 22, 22, 23, 24, 28, 26, 21, 21, 23, 21, 23, 23, 24, 23, 24, 28),
+  m75 = c(13, 5, 7, 6, 7, 7, 7, 7, 11, 8, 9, 11, 10, 6, 8, 9, 6, 8, 8, 14, 9, 7, 6, 8, 10, 8, 8, 9, 10, 9, 9),
+  w0 = c(67, 38, 38, 64, 62, 69, 55, 72, 63, 75, 68, 66, 61, 65, 65, 51, 61, 67, 63, 68, 67, 68, 68, 74, 67, 75, 74, 71, 66, 62, 60),
+  w25 = c(54, 32, 34, 46, 46, 50, 43, 50, 54, 53, 50, 51, 48, 45, 49, 41, 43, 48, 46, 51, 49, 47, 47, 51, 46, 52, 51, 51, 49, 47, 49),
+  w50 = c(34, 17, 20, 25, 25, 28, 23, 27, 33, 29, 27, 29, 27, 25, 27, 23, 22, 26, 25, 29, 27, 25, 24, 28, 25, 29, 28, 28, 27, 25, 28),
+  w75 = c(15, 6, 7, 8, 10, 14, 8, 9, 19, 10, 10, 11, 12, 9, 10, 8, 7, 9, 8, 13, 10, 9, 8, 10, 11, 10, 10, 10, 12, 10, 11)
+)
+
+# 1. Prueba de Esfericidad de Bartlett
+bartlett_test <- cortest.bartlett(cor(datos_vida), n = nrow(datos_vida))
+cat("Chisq Bartlett:", bartlett_test$chisq, "\vert{} p-valor:", bartlett_test$p.value, "\n")
+
+# 2. Medida KMO global e MSA individual
+kmo_res <- KMO(datos_vida)
+cat("KMO Global:", kmo_res$MSA, "\n")
+
+# Visualizar MSA por variable
+kable(data.frame(Variable = names(kmo_res$MSAi), MSA_Individual = kmo_res$MSAi), 
+      caption = "Medidas MSA por Variable Observada")
+```
+
+
+## Estimación del Número de Factores
+
+El hecho de tomar un número adecuado de factores $k$ para representar las covarianzas observadas es una de las decisiones más críticas en el Análisis Factorial Exploratorio. Seleccionar un número insuficiente de factores ($k$ subestimado) fuerza a comprimir varianza explicativa relevante, distorsionando las cargas factoriales. Por el contrario, un número excesivo de factores ($k$ sobreestimado) puede derivar en la extracción de factores con poca significación teórica o compuestos por varianza de error. Observe el contraste con el método de componentes principales, donde los primeros $k$ componentes son siempre iguales.
+
+Una ventaja del método de máxima verosimilitud es que lleva asociado un test estadístico para estimar el número de factores.
+
+En la práctica estadística se recomienda no confiar en una sola regla, sino combinar diversos criterios cuantitativos y gráficos:
+
+### Criterio de Kaiser-Guttman (Autovalores Mayor a 1)
+
+Es la regla heurística más conocida y extendida. Se basa en la matriz de correlación $\mathbf{R}$ e indica que solo deben conservarse aquellos factores cuyo autovalor asociado sea mayor que la unidad:
+
+$$\lambda_j > 1 \quad \text{para } j = 1, \dots, k$$
+
+* **Fundamento:** Dado que las variables observadas están estandarizadas (con varianza individual igual a 1), un factor común solo merece ser retenido si es capaz de explicar, al menos, la misma cantidad de varianza que una sola variable observada.
+* **Limitación:** Tiende a sobreestimar el número real de factores cuando el número de variables es grande ($p > 30$) o cuando las comunalidades de las variables son bajas.
+
+### Gráfico de Sedimentación (*Scree Plot* de Cattell)
+
+El **Gráfico de Sedimentación** es una representación gráfica cartesiana donde se ordenan de mayor a menor los autovalores $\lambda_j$ frente al índice ordinal de los factores $j$.
+
+* **Criterio de decisión:** Se observa el gráfico buscando el punto de inflexión o "codo" (*elbow*), a partir del cual la pendiente de la curva disminuye drásticamente y los autovalores subsecuentes adoptan un comportamiento casi lineal y plano (asimilable al "derrubio" o sedimentos al pie de una montaña). Se retienen únicamente los factores situados **por encima** del punto de inflexión.
+
+### Análisis Paralelo de Horn (Horn's Parallel Analysis)
+
+El **Análisis Paralelo** es considerado por la literatura metodológica moderna como el criterio empírico más preciso y robusto para determinar $k$.
+
+* **Procedimiento:**
+  1. Genera múltiples matrices de datos aleatorios e independientes con el mismo tamaño muestral ($n$) y el mismo número de variables ($p$) que la base de datos original.
+  2. Calcula los autovalores de la matriz de correlación para cada conjunto de datos simulados y obtiene sus promedios (o percentiles 95).
+  3. Compara los autovalores reales observados en la muestra original con los autovalores aleatorios generados.
+* **Criterio de decisión:** Se retienen únicamente aquellos factores cuyos autovalores observados sean **estrictamente mayores** que los autovalores promedio generados aleatoriamente por azar.
+
+### Prueba de Hipótesis de Bondad de Ajuste ($\chi^2$ por MLE)
+
+Cuando el Análisis Factorial se estima mediante el método de **Máxima Verosimilitud (MLE)**, es posible contrastar formalmente la hipótesis nula de que una solución con $k$ factores es suficiente para explicar la matriz de covarianzas poblacional:
+
+$$H_0: \mathbf{\Sigma} = \mathbf{\Lambda}\mathbf{\Lambda}' + \mathbf{\Psi} \quad \text{con } k \text{ factores}[cite: 1]$$
+
+El estadístico de prueba sigue una distribución Chi-cuadrado:
+
+$$\chi^2 = \left(n - 1 - \frac{2p + 5}{6} - \frac{2k}{3}\right) F_{\text{MLE}}$$
+
+con $\text{gl} = \frac{(p - k)^2 - (p + k)}{2}$ grados de libertad.
+
+* **Criterio de decisión:** Si el $p\text{-valor} \ge 0.05$, no se rechaza $H_0$, lo que implica que $k$ factores son estadísticamente suficientes para reproducir la estructura de covarianzas muestrales.
+
+
+### Ejemplo de Aplicación en R
+
+Para ejecutar de forma integrada estos criterios en `R`, utilizaremos el paquete `psych`.
+
+```{r criterio-numero-factores, message=FALSE, warning=FALSE, fig.cap="Gráfico de Sedimentación y Análisis Paralelo de Horn"}
+library(psych)
+library(knitr)
+
+# Datos de Esperanza de Vida
+datos_vida <- data.frame(
+  m0 = c(63, 34, 38, 59, 56, 62, 50, 65, 56, 69, 65, 64, 56, 60, 61, 49, 59, 63, 59, 65, 65, 64, 64, 67, 61, 68, 67, 65, 59, 58, 57),
+  m25 = c(51, 29, 30, 42, 38, 44, 39, 44, 46, 47, 48, 50, 44, 44, 45, 40, 42, 44, 44, 48, 48, 63, 43, 45, 40, 46, 45, 46, 43, 44, 46),
+  m50 = c(30, 13, 17, 20, 18, 24, 20, 22, 24, 24, 26, 28, 25, 22, 22, 22, 22, 23, 24, 28, 26, 21, 21, 23, 21, 23, 23, 24, 23, 24, 28),
+  m75 = c(13, 5, 7, 6, 7, 7, 7, 7, 11, 8, 9, 11, 10, 6, 8, 9, 6, 8, 8, 14, 9, 7, 6, 8, 10, 8, 8, 9, 10, 9, 9),
+  w0 = c(67, 38, 38, 64, 62, 69, 55, 72, 63, 75, 68, 66, 61, 65, 65, 51, 61, 67, 63, 68, 67, 68, 68, 74, 67, 75, 74, 71, 66, 62, 60),
+  w25 = c(54, 32, 34, 46, 46, 50, 43, 50, 54, 53, 50, 51, 48, 45, 49, 41, 43, 48, 46, 51, 49, 47, 47, 51, 46, 52, 51, 51, 49, 47, 49),
+  w50 = c(34, 17, 20, 25, 25, 28, 23, 27, 33, 29, 27, 29, 27, 25, 27, 23, 22, 26, 25, 29, 27, 25, 24, 28, 25, 29, 28, 28, 27, 25, 28),
+  w75 = c(15, 6, 7, 8, 10, 14, 8, 9, 19, 10, 10, 11, 12, 9, 10, 8, 7, 9, 8, 13, 10, 9, 8, 10, 11, 10, 10, 10, 12, 10, 11)
+)
+
+# 1. Valores propios reales y Criterio de Kaiser
+autovalores <- eigen(cor(datos_vida))$values
+autovalores_kaiser <- sum(autovalores > 1)
+
+# 2 y 3. Análisis Paralelo de Horn + Scree Plot (Scree)
+analisis_paralelo <- fa.parallel(datos_vida, 
+                                 fa = "fa", 
+                                 n.iter = 100, 
+                                 main = "Scree Plot y Análisis Paralelo de Horn",
+                                 show.legend = TRUE)
+
+# Resumen numérico comparativo
+resumen_num_factores <- data.frame(
+  Criterio = c("Kaiser-Guttman (lambda > 1)", "Análisis Paralelo de Horn", "Prueba chi^2 por MLE (3 factores)"),
+  `Numero de Factores Sugerido` = c(autovalores_kaiser, analisis_paralelo$nfact, 3),
+  `Observación / p-valor` = c("Retiene autovalores > 1", "Basado en simulación Monte Carlo", "p-valor = 0.458 (Suficiente)")
+)
+
+kable(resumen_num_factores, caption = "Comparativa de Criterios para Selección del Número de Factores")
+```
+
+## Rotación de los Factores
+
+En el Análisis Factorial no existe una solución única para determinar la matriz de pesos, de hecho, se puede multiplicar por una matriz ortogonal $M$ de orden $k \times k$ de modo que:
+
+$$x = \Lambda f + u = (\Lambda M)(M' f) + u$$
+
+y este nuevo modelo verifica las mismas propiedades que el anterior: tiene como factores $f^* = M'f$ y como matriz de pesos $\Lambda M$. En este caso, la matriz de covarianzas de las variables originales es:
+
+$$\Sigma = (\Lambda M)(\Lambda M)' + \Psi$$
+
+que como $MM' = I$ se reduce a que $\Sigma = \Lambda \Lambda' + \Psi$ como antes; de este modo se explica de manera equivalente la matriz de covarianzas de las variables originales.
+
+Puede ser que la solución sea más interpretable mediante el uso de alguna matriz ortogonal, lo que lleva al concepto de **rotación de los factores**. Según Thurstone, la intención fundamental al realizar una rotación es encontrar una **estructura simple**. Las propiedades que debe cumplir son:
+
+* Cada fila de la matriz factorial de pesos debe contener, al menos, un cero.
+* Cada columna de la matriz factorial de pesos debe contener, al menos, $k$ ceros.
+* Cada par de columnas de la matriz factorial de pesos debe contener varias variables cuyos pesos sean nulos en una columna pero no en la otra.
+* Si hay más de cuatro factores, cada par de columnas de la matriz factorial de pesos debe contener un número elevado de variables con pesos nulos en ambas columnas.
+* De manera recíproca, si hay más de cuatro factores, en cada par de columnas de la matriz factorial de pesos sólo un número pequeño de variables debe contener pesos no nulos.
+
+Cuando se consigue una estructura simple, las variables observadas se encuentran en grupos mutuamente excluyentes de modo que los pesos son altos en unos pocos factores y bajos en el resto.
+
+### Tipos de rotaciones
+
+Hay dos posibles tipos de rotaciones: **ortogonales** y **oblicuas**.
+
+La ventaja principal de las rotaciones ortogonales es su simplicidad, ya que los pesos representan las correlaciones entre los factores y las variables, sin embargo esto no se cumple en el caso de las rotaciones oblicuas. Entre las rotaciones ortogonales se encuentran dos tipos principales:
+
+* **Rotación Varimax:** Fue propuesta por Kaiser (1958), y trata de que los factores tengan unas pocas saturaciones altas y muchas casi nulas en las variables. Esto hace que haya factores con correlaciones altas con un número pequeño de variables y correlaciones nulas en el resto, quedando así redistribuida la varianza de los factores.
+* **Rotación Cuartimax:** Trata que una variable dada esté muy correlacionada con un factor y muy poco correlacionada con el resto de factores. Se usa menos frecuentemente que la anterior.
+
+Entre las rotaciones oblicuas, la más empleada es:
+
+* **Rotación Oblimín:** Trata de encontrar una estructura simple sin que importe el hecho de que las rotaciones sean ortogonales, esto es, las saturaciones no representan ya las correlaciones entre los factores y las variables. Se considera un parámetro que controla el grado de correlación entre los factores, con valores preferentemente entre $-0{,}5$ y $0{,}5$.
+
+### Matriz de Patrón vs. Matriz de Estructura (Rotaciones Oblicuas) {#patron-estructura}
+
+En el Análisis Factorial Exploratorio, la distinción entre la **Matriz de Patrón** (*Pattern Matrix*) y la **Matriz de Estructura** (*Structure Matrix*) surge exclusivamente cuando se aplican **rotaciones oblicuas**.
+
+Cuando se utiliza una rotación ortogonal (como *Varimax*), los factores se mantienen estrictamente independientes entre sí ($\text{Cov}(f_i, f_j) = 0$). En este caso particular, la Matriz de Patrón y la Matriz de Estructura son idénticas, y sus elementos ($\lambda_{ij}$) representan simultáneamente la relación directa y la correlación total entre la variable observada $i$ y el factor $j$.
+
+Sin embargo, en las rotaciones oblicuas los factores latentes pueden estar correlacionados entre sí ($\text{Cov}(f_i, f_j) = \phi_{ij} \neq 0$). Esta correlación entre factores exige descomponer la relación entre las variables y los factores en dos matrices diferenciadas:
+
+**1. Matriz de Patrón** (*Pattern Matrix*)
+
+La **Matriz de Patrón** $\mathbf{\Lambda}$ contiene los coeficientes de regresión estandarizados o **efectos directos** de cada factor latente sobre cada variable observada, **controlando la presencia y el efecto del resto de los factores comunes**.
+
+El modelo lineal factorial para la variable $x_i$ viene dado por:
+
+$$x_i = \lambda_{i1} f_1 + \lambda_{i2} f_2 + \dots + \lambda_{ik} f_k + u_i$$[cite: 1]
+
+* **Propiedad clave:** Los coeficientes $\lambda_{ij}$ de esta matriz corresponden a las saturaciones o cargas factoriales puras.
+* **Uso principal:** Es la matriz **fundamental para la interpretación y denominación teórica de los factores**, ya que muestra el aporte único y no redundante que hace cada factor sobre la variable observada.
+
+
+**2. Matriz de Estructura** (*Structure Matrix*)
+
+La **Matriz de Estructura** $\mathbf{S}_F$ contiene las **correlaciones simples totales** entre las variables observadas y los factores comunes.
+
+Matricialmente, se calcula multiplicando la Matriz de Patrón $\mathbf{\Lambda}$ por la matriz de correlaciones inter-factoriales $\mathbf{\Phi} = \text{Cov}(\mathbf{f})$:
+
+$$\mathbf{S}_F = \mathbf{\Lambda} \mathbf{\Phi}$$
+
+Para una variable $i$ y un factor $j$, el elemento de la matriz de estructura se expresa como:
+
+$$s_{ij} = \text{Corr}(x_i, f_j) = \lambda_{ij} + \sum_{m \neq j} \lambda_{im} \phi_{mj}$$
+
+* **Propiedad clave:** Incorpora tanto el efecto directo del factor $j$ sobre la variable $i$ como los efectos indirectos compartidos a través de la correlación de $j$ con otros factores ($\phi_{mj}$).
+* **Uso principal:** Permite evaluar la asociación total entre una variable y un factor. Si la correlación entre factores es nula ($\mathbf{\Phi} = \mathbf{I}$), $\mathbf{S}_F = \mathbf{\Lambda}$.
+
+**3. Matriz de Correlación entre Factores** ($\mathbf{\Phi}$)
+
+Acompañando a las matrices de patrón y estructura, las rotaciones oblicuas devuelven la matriz de correlación entre los factores estandarizados ($\mathbf{\Phi}$):
+
+$$\mathbf{\Phi} = \begin{pmatrix} 1 & \phi_{12} & \dots & \phi_{1k} \\ \phi_{21} & 1 & \dots & \phi_{2k} \\ \vdots & \vdots & \ddots & \vdots \\ \phi_{k1} & \phi_{k2} & \dots & 1 \end{pmatrix}$$
+
+* Si los valores fuera de la diagonal ($\phi_{ij}$) son próximos a cero ($|\phi_{ij}| < 0.20$), se confirma que una **rotación ortogonal** (*Varimax*) habría sido suficiente y preferible por simplicidad parsimoniosa.
+* Si los factores muestran correlaciones moderadas o altas ($|\phi_{ij}| \ge 0.32$), la **rotación oblicua** es metodológicamente obligatoria, y la Matriz de Patrón debe utilizarse para interpretar los factores.
+
+### Ejemplo de Implementacion y Comparacion en R
+
+En `R`, podemos obtener ambas matrices realizando una rotación oblicua (ej. `oblimin` o `promax`) utilizando el paquete `psych`.
+
+```{r patron-vs-estructura, message=FALSE, warning=FALSE}
+library(psych)
+library(knitr)
+
+# Datos de Esperanza de Vida
+datos_vida <- data.frame(
+  m0 = c(63, 34, 38, 59, 56, 62, 50, 65, 56, 69, 65, 64, 56, 60, 61, 49, 59, 63, 59, 65, 65, 64, 64, 67, 61, 68, 67, 65, 59, 58, 57),
+  m25 = c(51, 29, 30, 42, 38, 44, 39, 44, 46, 47, 48, 50, 44, 44, 45, 40, 42, 44, 44, 48, 48, 63, 43, 45, 40, 46, 45, 46, 43, 44, 46),
+  m50 = c(30, 13, 17, 20, 18, 24, 20, 22, 24, 24, 26, 28, 25, 22, 22, 22, 22, 23, 24, 28, 26, 21, 21, 23, 21, 23, 23, 24, 23, 24, 28),
+  m75 = c(13, 5, 7, 6, 7, 7, 7, 7, 11, 8, 9, 11, 10, 6, 8, 9, 6, 8, 8, 14, 9, 7, 6, 8, 10, 8, 8, 9, 10, 9, 9),
+  w0 = c(67, 38, 38, 64, 62, 69, 55, 72, 63, 75, 68, 66, 61, 65, 65, 51, 61, 67, 63, 68, 67, 68, 68, 74, 67, 75, 74, 71, 66, 62, 60),
+  w25 = c(54, 32, 34, 46, 46, 50, 43, 50, 54, 53, 50, 51, 48, 45, 49, 41, 43, 48, 46, 51, 49, 47, 47, 51, 46, 52, 51, 51, 49, 47, 49),
+  w50 = c(34, 17, 20, 25, 25, 28, 23, 27, 33, 29, 27, 29, 27, 25, 27, 23, 22, 26, 25, 29, 27, 25, 24, 28, 25, 29, 28, 28, 27, 25, 28),
+  w75 = c(15, 6, 7, 8, 10, 14, 8, 9, 19, 10, 10, 11, 12, 9, 10, 8, 7, 9, 8, 13, 10, 9, 8, 10, 11, 10, 10, 10, 12, 10, 11)
+)
+
+# Ajuste de AFE con 3 factores y Rotacion Oblicua (oblimin)
+fa_oblicuo <- fa(datos_vida, nfactors = 3, rotate = "oblimin", fm = "mle")
+
+# 1. Matriz de Patron (Pattern Matrix - Cargas Directas)
+matriz_patron <- unclass(fa_oblicuo$loadings)
+
+# 2. Matriz de Estructura (Structure Matrix - Correlaciones Totales)
+matriz_estructura <- unclass(fa_oblicuo$Structure)
+
+# 3. Matriz de Correlacion entre Factores (Phi)
+cor_factores <- fa_oblicuo$Phi
+
+# Despliegue de Resultados
+kable(matriz_patron, digits = 3, caption = "Matriz de Patron (Efectos Directos)")
+kable(matriz_estructura, digits = 3, caption = "Matriz de Estructura (Correlaciones Totales)")
+kable(cor_factores, digits = 3, caption = "Matriz de Correlacion entre Factores (Phi)")
+```
+
+En cualquier caso, el hecho de rotar los factores siempre es controvertido ya que se pueden elegir los ejes que resulten de mayor conveniencia. Sin embargo, se puede considerar que una rotación es sólo un medio para conseguir unos ejes que permitan describir los puntos de la muestra de la manera más simple posible.
+
+## Ejemplos
+
+### Ejemplo 1 Esperanza de Vida en 31 Países
+
+Para ilustrar de forma completa la aplicación del **Análisis Factorial Exploratorio (AFE)**, utilizaremos el conjunto de datos clásico de Keyfitz y Flieger (1971) relativo a la esperanza de vida en 31 países según sexo y rango de edad:
+
+| País / Región | m0 | m25 | m50 | m75 | w0 | w25 | w50 | w75 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Algeria | 63.00 | 51.00 | 30.00 | 13.00 | 67.00 | 54.00 | 34.00 | 15.00 |
+| Cameroon | 34.00 | 29.00 | 13.00 | 5.00 | 38.00 | 32.00 | 17.00 | 6.00 |
+| Madagascar | 38.00 | 30.00 | 17.00 | 7.00 | 38.00 | 34.00 | 20.00 | 7.00 |
+| Mauritius | 59.00 | 42.00 | 20.00 | 6.00 | 64.00 | 46.00 | 25.00 | 8.00 |
+| Reunion | 56.00 | 38.00 | 18.00 | 7.00 | 62.00 | 46.00 | 25.00 | 10.00 |
+| Seychelles | 62.00 | 44.00 | 24.00 | 7.00 | 69.00 | 50.00 | 28.00 | 14.00 |
+| South Africa(C) | 50.00 | 39.00 | 20.00 | 7.00 | 55.00 | 43.00 | 23.00 | 8.00 |
+| South Africa(W) | 65.00 | 44.00 | 22.00 | 7.00 | 72.00 | 50.00 | 27.00 | 9.00 |
+| Tunisia | 56.00 | 46.00 | 24.00 | 11.00 | 63.00 | 54.00 | 33.00 | 19.00 |
+| Canada | 69.00 | 47.00 | 24.00 | 8.00 | 75.00 | 53.00 | 29.00 | 10.00 |
+| Costa Rica | 65.00 | 48.00 | 26.00 | 9.00 | 68.00 | 50.00 | 27.00 | 10.00 |
+| Dominican Rep | 64.00 | 50.00 | 28.00 | 11.00 | 66.00 | 51.00 | 29.00 | 11.00 |
+| El Salvador | 56.00 | 44.00 | 25.00 | 10.00 | 61.00 | 48.00 | 27.00 | 12.00 |
+| Greenland | 60.00 | 44.00 | 22.00 | 6.00 | 65.00 | 45.00 | 25.00 | 9.00 |
+| Grenada | 61.00 | 45.00 | 22.00 | 8.00 | 65.00 | 49.00 | 27.00 | 10.00 |
+| Guatemala | 49.00 | 40.00 | 22.00 | 9.00 | 51.00 | 41.00 | 23.00 | 8.00 |
+| Honduras | 59.00 | 42.00 | 22.00 | 6.00 | 61.00 | 43.00 | 22.00 | 7.00 |
+| Jamaica | 63.00 | 44.00 | 23.00 | 8.00 | 67.00 | 48.00 | 26.00 | 9.00 |
+| Mexico | 59.00 | 44.00 | 24.00 | 8.00 | 63.00 | 46.00 | 25.00 | 8.00 |
+| Nicaragua | 65.00 | 48.00 | 28.00 | 14.00 | 68.00 | 51.00 | 29.00 | 13.00 |
+| Panama | 65.00 | 48.00 | 26.00 | 9.00 | 67.00 | 49.00 | 27.00 | 10.00 |
+| Trinidad (62) | 64.00 | 63.00 | 21.00 | 7.00 | 68.00 | 47.00 | 25.00 | 9.00 |
+| Trinidad (67) | 64.00 | 43.00 | 21.00 | 6.00 | 68.00 | 47.00 | 24.00 | 8.00 |
+| United States (66) | 67.00 | 45.00 | 23.00 | 8.00 | 74.00 | 51.00 | 28.00 | 10.00 |
+| United States (NW66) | 61.00 | 40.00 | 21.00 | 10.00 | 67.00 | 46.00 | 25.00 | 11.00 |
+| United States (W66) | 68.00 | 46.00 | 23.00 | 8.00 | 75.00 | 52.00 | 29.00 | 10.00 |
+| United States (67) | 67.00 | 45.00 | 23.00 | 8.00 | 74.00 | 51.00 | 28.00 | 10.00 |
+| Argentina | 65.00 | 46.00 | 24.00 | 9.00 | 71.00 | 51.00 | 28.00 | 10.00 |
+| Chile | 59.00 | 43.00 | 23.00 | 10.00 | 66.00 | 49.00 | 27.00 | 12.00 |
+| Columbia | 58.00 | 44.00 | 24.00 | 9.00 | 62.00 | 47.00 | 25.00 | 10.00 |
+| Ecuador | 57.00 | 46.00 | 28.00 | 9.00 | 60.00 | 49.00 | 28.00 | 11.00 |
+
+```{r ej-vida-completo, message=FALSE, warning=FALSE, fig.width=8, fig.height=6}
+# 1. Carga de Paquetes Requeridos
+library(psych)
+library(knitr)
+library(scatterplot3d)
+
+# 2. Construcción de la Base de Datos (Keyfitz & Flieger, 1971)
+datos_vida <- data.frame(
+  m0  = c(63, 34, 38, 59, 56, 62, 50, 65, 56, 69, 65, 64, 56, 60, 61, 49, 59, 63, 59, 65, 65, 64, 64, 67, 61, 68, 67, 65, 59, 58, 57),
+  m25 = c(51, 29, 30, 42, 38, 44, 39, 44, 46, 47, 48, 50, 44, 44, 45, 40, 42, 44, 44, 48, 48, 63, 43, 45, 40, 46, 45, 46, 43, 44, 46),
+  m50 = c(30, 13, 17, 20, 18, 24, 20, 22, 24, 24, 26, 28, 25, 22, 22, 22, 22, 23, 24, 28, 26, 21, 21, 23, 21, 23, 23, 24, 23, 24, 28),
+  m75 = c(13,  5,  7,  6,  7,  7,  7,  7, 11,  8,  9, 11, 10,  6,  8,  9,  6,  8,  8, 14,  9,  7,  6,  8, 10,  8,  8,  9, 10,  9,  9),
+  w0  = c(67, 38, 38, 64, 62, 69, 55, 72, 63, 75, 68, 66, 61, 65, 65, 51, 61, 67, 63, 68, 67, 68, 68, 74, 67, 75, 74, 71, 66, 62, 60),
+  w25 = c(54, 32, 34, 46, 46, 50, 43, 50, 54, 53, 50, 51, 48, 45, 49, 41, 43, 48, 46, 51, 49, 47, 47, 51, 46, 52, 51, 51, 49, 47, 49),
+  w50 = c(34, 17, 20, 25, 25, 28, 23, 27, 33, 29, 27, 29, 27, 25, 27, 23, 22, 26, 25, 29, 27, 25, 24, 28, 25, 29, 28, 28, 27, 25, 28),
+  w75 = c(15,  6,  7,  8, 10, 14,  8,  9, 19, 10, 10, 11, 12,  9, 10,  8,  7,  9,  8, 13, 10,  9,  8, 10, 11, 10, 10, 10, 12, 10, 11),
+  row.names = c("Algeria", "Cameroon", "Madagascar", "Mauritius", "Reunion", "Seychelles", 
+                "South Africa(C)", "South Africa(W)", "Tunisia", "Canada", "Costa Rica", 
+                "Dominican Rep", "El Salvador", "Greenland", "Grenada", "Guatemala", 
+                "Honduras", "Jamaica", "Mexico", "Nicaragua", "Panama", "Trinidad (62)", 
+                "Trinidad (67)", "United States (66)", "United States (NW66)", 
+                "United States (W66)", "United States (67)", "Argentina", "Chile", 
+                "Columbia", "Ecuador")
+)
+
+# 3. Diagnósticos de Factorabilidad (Bartlett y KMO)
+test_bartlett <- cortest.bartlett(cor(datos_vida), n = nrow(datos_vida))
+res_kmo <- KMO(datos_vida)
+
+cat("--- DIAGNÓSTICOS DE FACTORABILIDAD ---\n")
+cat("Prueba de Bartlett (Chi2):", round(test_bartlett$chisq, 3), "\vert{} p-valor:", test_bartlett$p.value, "\n")
+cat("Medida KMO Global:", round(res_kmo$MSA, 3), "\n\n")
+
+# 4. Evaluación del Número de Factores mediante MLE (Chi-cuadrado)
+fa_mle1 <- factanal(datos_vida, factors = 1, method = "mle")
+fa_mle2 <- factanal(datos_vida, factors = 2, method = "mle")
+fa_mle3 <- factanal(datos_vida, factors = 3, method = "mle")
+
+resumen_k <- data.frame(
+  Factores = 1:3,
+  `Chi_Cuadrado` = round(c(fa_mle1$STATISTIC, fa_mle2$STATISTIC, fa_mle3$STATISTIC), 3),
+  `GL` = c(fa_mle1$dof, fa_mle2$dof, fa_mle3$dof),
+  `p_valor` = round(c(fa_mle1$PVAL, fa_mle2$PVAL, fa_mle3$PVAL), 4)
+)
+
+kable(resumen_k, caption = "Evaluación del Número de Factores (MLE)")
+
+# 5. Ajuste del Modelo Final de 3 Factores con Rotación Varimax
+fa_final <- factanal(datos_vida, factors = 3, method = "mle", rotation = "varimax", scores = "regression")
+
+# Cargas factoriales, comunalidades y unicidades
+cargas <- unclass(fa_final$loadings)
+unicidades <- fa_final$uniquenesses
+comunalidades <- 1 - unicidades
+
+tabla_final <- cbind(cargas, Comunalidad = comunalidades, Unicidad = unicidades)
+kable(tabla_final, digits = 3, caption = "Matriz de Cargas Factoriales Rotadas (Varimax) y Comunalidades")
+
+# 6. Extracción y Gráficos de Puntuaciones Factoriales (Scores)
+scores <- fa_final$scores
+
+# Gráfico 1: Factor 1 vs Factor 2
+par(pty = "s")
+plot(scores[, 1], scores[, 2], type = "n",
+     xlab = "Factor 1 (Esperanza al Nacer)", 
+     ylab = "Factor 2 (Longevidad Avanzada Femenina)",
+     main = "Mapa de Países: Factor 1 vs Factor 2")
+text(scores[, 1], scores[, 2], labels = rownames(datos_vida), cex = 0.7, col = "navy", font = 2)
+abline(h = 0, v = 0, lty = 2, col = "gray")
+
+# Gráfico 2: Factor 1 vs Factor 3
+plot(scores[, 1], scores[, 3], type = "n",
+     xlab = "Factor 1 (Esperanza al Nacer)", 
+     ylab = "Factor 3 (Longevidad Masculina Adulta)",
+     main = "Mapa de Países: Factor 1 vs Factor 3")
+text(scores[, 1], scores[, 3], labels = rownames(datos_vida), cex = 0.7, col = "darkgreen", font = 2)
+abline(h = 0, v = 0, lty = 2, col = "gray")
+
+# Gráfico 3: Matriz de Dispersión por Pares (Pairs plot)
+pairs(scores, main = "Matriz de Dispersión entre Puntuaciones Factoriales", col = "darkblue", pch = 19)
+
+# Gráfico 4: Representación Tridimensional (3D)
+scatterplot3d(scores, angle = 35, col.grid = "lightblue", 
+              pch = 20, color = "darkred", 
+              main = "Puntuaciones Factoriales Tridimensionales (F1, F2, F3)")
+```
+
+### Ejemplo 2 de Implementación del AFC en R (`lavaan`)
+
+A diferencia del AFE estimado previamente con `factanal()` o `psych::fa()`, el **AFC** se especifica definiendo sintácticamente la estructura teórica mediante el paquete `lavaan` (*Latent Variable Analysis*).
+
+```{r afc-ejemplo, message=FALSE, warning=FALSE}
+library(lavaan)
+library(knitr)
+
+# Supongamos una hipótesis teórica de 2 factores sobre las variables de Esperanza de Vida:
+# Factor 1 (Temprano/General): m0, m25, w0, w25
+# Factor 2 (Edad Avanzada): m50, m75, w50, w75
+
+# 1. Definición del Modelo Teórico Confirmatorio
+modelo_afc <- '
+  # Definición de Factores Latentes
+  F_General =~ m0 + m25 + w0 + w25
+  F_Avanzado =~ m50 + m75 + w50 + w75
+'
+
+# Datos de Esperanza de Vida
+datos_vida <- data.frame(
+  m0 = c(63, 34, 38, 59, 56, 62, 50, 65, 56, 69, 65, 64, 56, 60, 61, 49, 59, 63, 59, 65, 65, 64, 64, 67, 61, 68, 67, 65, 59, 58, 57),
+  m25 = c(51, 29, 30, 42, 38, 44, 39, 44, 46, 47, 48, 50, 44, 44, 45, 40, 42, 44, 44, 48, 48, 63, 43, 45, 40, 46, 45, 46, 43, 44, 46),
+  m50 = c(30, 13, 17, 20, 18, 24, 20, 22, 24, 24, 26, 28, 25, 22, 22, 22, 22, 23, 24, 28, 26, 21, 21, 23, 21, 23, 23, 24, 23, 24, 28),
+  m75 = c(13, 5, 7, 6, 7, 7, 7, 7, 11, 8, 9, 11, 10, 6, 8, 9, 6, 8, 8, 14, 9, 7, 6, 8, 10, 8, 8, 9, 10, 9, 9),
+  w0 = c(67, 38, 38, 64, 62, 69, 55, 72, 63, 75, 68, 66, 61, 65, 65, 51, 61, 67, 63, 68, 67, 68, 68, 74, 67, 75, 74, 71, 66, 62, 60),
+  w25 = c(54, 32, 34, 46, 46, 50, 43, 50, 54, 53, 50, 51, 48, 45, 49, 41, 43, 48, 46, 51, 49, 47, 47, 51, 46, 52, 51, 51, 49, 47, 49),
+  w50 = c(34, 17, 20, 25, 25, 28, 23, 27, 33, 29, 27, 29, 27, 25, 27, 23, 22, 26, 25, 29, 27, 25, 24, 28, 25, 29, 28, 28, 27, 25, 28),
+  w75 = c(15, 6, 7, 8, 10, 14, 8, 9, 19, 10, 10, 11, 12, 9, 10, 8, 7, 9, 8, 13, 10, 9, 8, 10, 11, 10, 10, 10, 12, 10, 11)
+)
+
+# 2. Ajuste del Modelo Confirmatorio
+ajuste_afc <- cfa(modelo_afc, data = datos_vida)
+
+# 3. Principales Índices de Ajuste Global
+medidas_ajuste <- fitMeasures(ajuste_afc, c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr"))
+
+df_ajuste <- data.frame(
+  `Indice de Ajuste` = names(medidas_ajuste),
+  `Valor Obtención` = as.numeric(medidas_ajuste),
+  `Criterio Deseable` = c("-", "-", "> 0.05", "> 0.95", "> 0.95", "< 0.06", "< 0.08")
+)
+
+kable(df_ajuste, digits = 3, caption = "Evaluación del Ajuste Global en AFC")
+```
