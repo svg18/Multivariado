@@ -295,7 +295,23 @@ div.csl-indent {
 <li class="chapter" data-level="4.6.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-2-de-implementaci%C3%B3n-del-afc-en-r-lavaan"><i class="fa fa-check"></i><b>4.6.2</b> Ejemplo 2 de Implementación del AFC en R (<code>lavaan</code>)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-tabla-de-contingencia-y-la-estructura-de-datos"><i class="fa fa-check"></i><b>5.1</b> La Tabla de Contingencia y la Estructura de Datos</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#estructura-formal-de-la-tabla-de-contingencia"><i class="fa fa-check"></i><b>5.1.1</b> Estructura Formal de la Tabla de Contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#perfiles-marginales-y-perfiles-condicionales"><i class="fa fa-check"></i><b>5.2</b> Perfiles Marginales y Perfiles Condicionales</a></li>
+<li class="chapter" data-level="5.3" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-m%C3%A9trica-de-la-distancia-chi-cuadrada-chi2"><i class="fa fa-check"></i><b>5.3</b> La Métrica de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#propiedades-de-la-distancia-chi-cuadrada"><i class="fa fa-check"></i><b>5.3.1</b> Propiedades de la Distancia Chi-Cuadrada</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos"><i class="fa fa-check"></i><b>5.4</b> Dependencia, Independencia y Análisis de Residuos</a></li>
+<li class="chapter" data-level="5.5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#reducci%C3%B3n-dimensional-y-espacio-factorial"><i class="fa fa-check"></i><b>5.5</b> Reducción Dimensional y Espacio Factorial</a></li>
+<li class="chapter" data-level="5.6" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos"><i class="fa fa-check"></i><b>5.6</b> Descomposición Matemática (SVD de la Matriz de Residuos)</a></li>
+<li class="chapter" data-level="5.7" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>5.7</b> Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
+<li class="chapter" data-level="5.8" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple"><i class="fa fa-check"></i><b>5.8</b> Implementación Práctica en R (Análisis de Correspondencias Simple)</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
 <li class="part"><span><b>III Métodos de clasificación</b></span></li>
 <li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
@@ -472,20 +488,13 @@ San Francisco  12     56.7      453       716    8.7  20.66   67
 Denver         17     51.9      454       515    9.0  12.95   86
 Hartford       56     49.1      412       158    9.0  43.37  127
 Wilmington     36     54.0       80        80    9.0  40.25  114</code></pre>
-<pre><code>      SO2            Neg.Temp        Empresas        Poblacion          Viento           Precip     
- Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0   Min.   : 6.000   Min.   : 7.05  
- 1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0   1st Qu.: 8.700   1st Qu.:30.96  
- Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0   Median : 9.300   Median :38.74  
- Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6   Mean   : 9.444   Mean   :36.77  
- 3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0   3rd Qu.:10.600   3rd Qu.:43.11  
- Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0   Max.   :12.700   Max.   :59.80  
-      Dias      
- Min.   : 36.0  
- 1st Qu.:103.0  
- Median :115.0  
- Mean   :113.9  
- 3rd Qu.:128.0  
- Max.   :166.0  </code></pre>
+<pre><code>      SO2            Neg.Temp        Empresas        Poblacion          Viento           Precip           Dias      
+ Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0   Min.   : 6.000   Min.   : 7.05   Min.   : 36.0  
+ 1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0   1st Qu.: 8.700   1st Qu.:30.96   1st Qu.:103.0  
+ Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0   Median : 9.300   Median :38.74   Median :115.0  
+ Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6   Mean   : 9.444   Mean   :36.77   Mean   :113.9  
+ 3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0   3rd Qu.:10.600   3rd Qu.:43.11   3rd Qu.:128.0  
+ Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0   Max.   :12.700   Max.   :59.80   Max.   :166.0  </code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-14-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-14-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>             Neg.Temp    Empresas   Poblacion      Viento      Precip        Dias
 Neg.Temp   1.00000000 -0.19004216 -0.06267813 -0.34973963  0.38625342 -0.43024212

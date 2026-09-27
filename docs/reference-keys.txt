@@ -77,6 +77,16 @@ ejemplos
 ejemplo-1-esperanza-de-vida-en-31-países
 ejemplo-2-de-implementación-del-afc-en-r-lavaan
 análisis-de-correspondencias
+la-tabla-de-contingencia-y-la-estructura-de-datos
+estructura-formal-de-la-tabla-de-contingencia
+perfiles-marginales-y-perfiles-condicionales
+la-métrica-de-la-distancia-chi-cuadrada-chi2
+propiedades-de-la-distancia-chi-cuadrada
+dependencia-independencia-y-análisis-de-residuos
+reducción-dimensional-y-espacio-factorial
+descomposición-matemática-svd-de-la-matriz-de-residuos
+extensión-análisis-de-correspondencias-múltiples-acm
+implementación-práctica-en-r-análisis-de-correspondencias-simple
 escalamiento-multidimensional
 análisis-de-conglomerados
 análisis-discriminante

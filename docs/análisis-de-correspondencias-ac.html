@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 5 Análisis de Correspondencias | Análisis Multivariado</title>
+  <title>Capítulo 6 Análisis de Correspondencias (AC) | Análisis Multivariado</title>
   <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 5 Análisis de Correspondencias | Análisis Multivariado" />
+  <meta property="og:title" content="Capítulo 6 Análisis de Correspondencias (AC) | Análisis Multivariado" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 5 Análisis de Correspondencias | Análisis Multivariado" />
+  <meta name="twitter:title" content="Capítulo 6 Análisis de Correspondencias (AC) | Análisis Multivariado" />
   
   <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="análisis-de-factores.html"/>
+<link rel="prev" href="análisis-de-correspondencias.html"/>
 <link rel="next" href="escalamiento-multidimensional.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -51,16 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
-<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
 <script>
@@ -141,28 +131,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -295,31 +263,46 @@ div.csl-indent {
 <li class="chapter" data-level="4.6.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-2-de-implementaci%C3%B3n-del-afc-en-r-lavaan"><i class="fa fa-check"></i><b>4.6.2</b> Ejemplo 2 de Implementación del AFC en R (<code>lavaan</code>)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a></li>
+<li class="chapter" data-level="6" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html"><i class="fa fa-check"></i><b>6</b> Análisis de Correspondencias (AC)</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-tabla-de-contingencia-y-la-estructura-de-datos"><i class="fa fa-check"></i><b>5.1</b> La Tabla de Contingencia y la Estructura de Datos</a>
+<li class="chapter" data-level="6.1" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#objetivos-b%C3%A1sicos-del-an%C3%A1lisis"><i class="fa fa-check"></i><b>6.1</b> 1. Objetivos Básicos del Análisis</a></li>
+<li class="chapter" data-level="6.2" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#la-tabla-de-contingencia-y-la-estructura-de-datos"><i class="fa fa-check"></i><b>6.2</b> 2. La Tabla de Contingencia y la Estructura de Datos</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#estructura-formal-de-la-tabla-de-contingencia"><i class="fa fa-check"></i><b>5.1.1</b> Estructura Formal de la Tabla de Contingencia</a></li>
+<li class="chapter" data-level="6.2.1" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#estructura-formal-de-la-tabla-de-contingencia"><i class="fa fa-check"></i><b>6.2.1</b> 2.1. Estructura Formal de la Tabla de Contingencia</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#perfiles-marginales-y-perfiles-condicionales"><i class="fa fa-check"></i><b>5.2</b> Perfiles Marginales y Perfiles Condicionales</a></li>
-<li class="chapter" data-level="5.3" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-m%C3%A9trica-de-la-distancia-chi-cuadrada-chi2"><i class="fa fa-check"></i><b>5.3</b> La Métrica de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)</a>
+<li class="chapter" data-level="6.3" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#perfiles-marginales-y-perfiles-condicionales"><i class="fa fa-check"></i><b>6.3</b> 3. Perfiles Marginales y Perfiles Condicionales</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#propiedades-de-la-distancia-chi-cuadrada"><i class="fa fa-check"></i><b>5.3.1</b> Propiedades de la Distancia Chi-Cuadrada</a></li>
+<li class="chapter" data-level="6.3.1" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#perfiles-marginales"><i class="fa fa-check"></i><b>6.3.1</b> 3.1. Perfiles Marginales</a></li>
+<li class="chapter" data-level="6.3.2" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#perfiles-condicionales"><i class="fa fa-check"></i><b>6.3.2</b> 3.2. Perfiles Condicionales</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos"><i class="fa fa-check"></i><b>5.4</b> Dependencia, Independencia y Análisis de Residuos</a></li>
-<li class="chapter" data-level="5.5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#reducci%C3%B3n-dimensional-y-espacio-factorial"><i class="fa fa-check"></i><b>5.5</b> Reducción Dimensional y Espacio Factorial</a></li>
-<li class="chapter" data-level="5.6" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos"><i class="fa fa-check"></i><b>5.6</b> Descomposición Matemática (SVD de la Matriz de Residuos)</a></li>
-<li class="chapter" data-level="5.7" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>5.7</b> Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
-<li class="chapter" data-level="5.8" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple"><i class="fa fa-check"></i><b>5.8</b> Implementación Práctica en R (Análisis de Correspondencias Simple)</a></li>
+<li class="chapter" data-level="6.4" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#la-m%C3%A9tica-de-la-distancia-chi-cuadrada-chi2"><i class="fa fa-check"></i><b>6.4</b> 4. La Mética de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#distancia-entre-perfiles-fila"><i class="fa fa-check"></i><b>6.4.1</b> 4.1. Distancia entre Perfiles Fila</a></li>
+<li class="chapter" data-level="6.4.2" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#distancia-entre-perfiles-columna"><i class="fa fa-check"></i><b>6.4.2</b> 4.2. Distancia entre Perfiles Columna</a></li>
+<li class="chapter" data-level="6.4.3" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#propiedades-de-la-distancia-chi-cuadrada"><i class="fa fa-check"></i><b>6.4.3</b> 4.3. Propiedades de la Distancia Chi-Cuadrada</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="chapter" data-level="6.5" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos"><i class="fa fa-check"></i><b>6.5</b> 5. Dependencia, Independencia y Análisis de Residuos</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#comportamiento-bajo-h_0"><i class="fa fa-check"></i><b>6.5.1</b> Comportamiento bajo <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="6.5.2" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#an%C3%A1lisis-de-residuos-estandarizados-y-ajustados"><i class="fa fa-check"></i><b>6.5.2</b> Análisis de Residuos Estandarizados y Ajustados</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#reducci%C3%B3n-dimensional-y-espacio-factorial"><i class="fa fa-check"></i><b>6.6</b> 6. Reducción Dimensional y Espacio Factorial</a></li>
+<li class="chapter" data-level="6.7" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos"><i class="fa fa-check"></i><b>6.7</b> 7. Descomposición Matemática (SVD de la Matriz de Residuos)</a></li>
+<li class="chapter" data-level="6.8" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>6.8</b> 8. Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
+<li class="chapter" data-level="6.9" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r"><i class="fa fa-check"></i><b>6.9</b> 9. Implementación Práctica en R</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="análisis-de-correspondencias-ac.html"><a href="análisis-de-correspondencias-ac.html#an%C3%A1lisis-de-correspondencias-simple-acs"><i class="fa fa-check"></i><b>6.9.1</b> 9.1. Análisis de Correspondencias Simple (ACS)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>7</b> Escalamiento multidimensional</a></li>
 <li class="part"><span><b>III Métodos de clasificación</b></span></li>
-<li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
-<li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
+<li class="chapter" data-level="8" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>8</b> Análisis de conglomerados</a></li>
+<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a></li>
 <li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
-<li class="chapter" data-level="9" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>9</b> Análisis de Correlación Canónica</a></li>
-<li class="chapter" data-level="10" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>10</b> Coeficiente RV</a></li>
-<li class="chapter" data-level="11" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>11</b> Análisis de Procrustes</a></li>
+<li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="12" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>12</b> Análisis de Procrustes</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -340,25 +323,30 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análisis-de-correspondencias" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Capítulo 5</span> Análisis de Correspondencias<a href="análisis-de-correspondencias.html#an%C3%A1lisis-de-correspondencias" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="análisis-de-correspondencias-ac" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Análisis de Correspondencias (AC)<a href="análisis-de-correspondencias-ac.html#an%C3%A1lisis-de-correspondencias-ac" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>El <strong>Análisis de Correspondencias (AC)</strong> es una técnica estadística de análisis multivariado y de reducción de dimensionalidad cuyo objetivo principal es resumir una gran cantidad de datos en un número reducido de dimensiones, sufriendo la menor pérdida de información posible.</p>
 <p>En este sentido, guarda una fuerte analogía conceptual con el <em>Análisis de Componentes Principales (ACP)</em> y el <em>Análisis Factorial</em>, con la diferencia fundamental de que el análisis de correspondencias se aplica específicamente sobre <strong>variables categóricas u ordinales</strong>.</p>
-<p>El análisis de correspondencias solo requiere que los datos representen las posibles respuestas o modalidades de variables cualitativas organizadas en categorías. Dependiendo del número de variables analizadas simultáneamente, el análisis se clasifica en:</p>
-<p><strong>Análisis de Correspondencias Simple (ACS)</strong>: Estudio cruzado entre dos variables categóricas.</p>
-<p><strong>Análisis de Correspondencias Múltiples (ACM)</strong>: Estudio simultáneo de tres o más variables categóricas.</p>
-<p>El análisis de correspondencias simple persigue dos objetivos centrales:</p>
+<p>El análisis de correspondencias solo requiere que los datos representen las posibles respuestas o modalidades de variables cualitativas organizadas en categorías. Dependiendo del número de variables analizadas simultáneamente, el análisis se clasifica en:
+* <strong>Análisis de Correspondencias Simple (ACS)</strong>: Estudio cruzado entre dos variables categóricas[cite: 1].
+* <strong>Análisis de Correspondencias Múltiples (ACM)</strong>: Estudio simultáneo de tres o más variables categóricas.</p>
+<hr />
+<div id="objetivos-básicos-del-análisis" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> 1. Objetivos Básicos del Análisis<a href="análisis-de-correspondencias-ac.html#objetivos-b%C3%A1sicos-del-an%C3%A1lisis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis de correspondencias persigue dos objetivos centrales[cite: 1]:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Asociación entre categorías de una misma variable</strong>: Medir y analizar la semejanza o proximidad entre las categorías de únicamente las filas o únicamente las columnas.</p></li>
-<li><p><strong>Asociación entre categorías de variables distintas</strong>: Estudiar la relación de dependencia, atracción o repulsión entre las categorías de las filas y las columnas.</p></li>
+<li><strong>Asociación entre categorías de una misma variable</strong>: Medir y analizar la semejanza o proximidad entre las categorías de únicamente las filas o únicamente las columnas[cite: 1].</li>
+<li><strong>Asociación entre categorías de variables distintas</strong>: Estudiar la relación de dependencia, atracción o repulsión entre las categorías de las filas y las columnas[cite: 1].</li>
 </ol>
-<p>Esta técnica mide las relaciones de dependencia e independencia a partir de una <strong>tabla de contingencia</strong>. De este modo, las relaciones geométricas de cercanía o lejanía entre los puntos proyectados reflejan fielmente las relaciones de dependencia y semejanza existentes en la población analizada.</p>
-<div id="la-tabla-de-contingencia-y-la-estructura-de-datos" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> La Tabla de Contingencia y la Estructura de Datos<a href="análisis-de-correspondencias.html#la-tabla-de-contingencia-y-la-estructura-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sean <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> dos variables categóricas con conjuntos de modalidades <span class="math inline">\(\{x_1, x_2, \dots, x_k\}\)</span> y <span class="math inline">\(\{y_1, y_2, \dots, y_m\}\)</span>, respectivamente. Se observan ambas variables sobre <span class="math inline">\(N\)</span> elementos de una población.</p>
-<p>La intersección entre la fila <span class="math inline">\(i\)</span> (correspondiente a <span class="math inline">\(x_i\)</span>) y la columna <span class="math inline">\(j\)</span> (correspondiente a <span class="math inline">\(y_j\)</span>) da lugar a una celda o casilla con una frecuencia observada <span class="math inline">\(n_{ij}\)</span>.</p>
-<div id="estructura-formal-de-la-tabla-de-contingencia" class="section level3 hasAnchor" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Estructura Formal de la Tabla de Contingencia<a href="análisis-de-correspondencias.html#estructura-formal-de-la-tabla-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Esta técnica mide las relaciones de dependencia e independencia a partir de una <strong>tabla de contingencia</strong>[cite: 1]. De este modo, las relaciones geométricas de cercanía o lejanía entre los puntos proyectados reflejan fielmente las relaciones de dependencia y semejanza existentes en la población analizada[cite: 1].</p>
+<hr />
+</div>
+<div id="la-tabla-de-contingencia-y-la-estructura-de-datos" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> 2. La Tabla de Contingencia y la Estructura de Datos<a href="análisis-de-correspondencias-ac.html#la-tabla-de-contingencia-y-la-estructura-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sean <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> dos variables categóricas con conjuntos de modalidades <span class="math inline">\(\{x_1, x_2, \dots, x_k\}\)</span> y <span class="math inline">\(\{y_1, y_2, \dots, y_m\}\)</span>, respectivamente[cite: 1]. Se observan ambas variables sobre <span class="math inline">\(N\)</span> elementos de una población[cite: 1].</p>
+<p>La intersección entre la fila <span class="math inline">\(i\)</span> (correspondiente a <span class="math inline">\(x_i\)</span>) y la columna <span class="math inline">\(j\)</span> (correspondiente a <span class="math inline">\(y_j\)</span>) da lugar a una celda o casilla con una frecuencia observada <span class="math inline">\(n_{ij}\)</span>[cite: 1].</p>
+<div id="estructura-formal-de-la-tabla-de-contingencia" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> 2.1. Estructura Formal de la Tabla de Contingencia<a href="análisis-de-correspondencias-ac.html#estructura-formal-de-la-tabla-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table>
 <colgroup>
 <col width="12%" />
@@ -391,7 +379,7 @@ div.csl-indent {
 <td align="center"><span class="math inline">\(n_{1j} \quad (e_{1j})\)</span></td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
 <td align="center"><span class="math inline">\(n_{1m} \quad (e_{1m})\)</span></td>
-<td align="center"><span class="math inline">\(N_{1\bullet}\)</span></td>
+<td align="center"><span class="math inline">\(N_{1\bullet}\)</span>[cite: 1]</td>
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_2\)</span></strong></td>
@@ -401,7 +389,7 @@ div.csl-indent {
 <td align="center"><span class="math inline">\(n_{2j} \quad (e_{2j})\)</span></td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
 <td align="center"><span class="math inline">\(n_{2m} \quad (e_{2m})\)</span></td>
-<td align="center"><span class="math inline">\(N_{2\bullet}\)</span></td>
+<td align="center"><span class="math inline">\(N_{2\bullet}\)</span>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(\vdots\)</span></td>
@@ -421,7 +409,7 @@ div.csl-indent {
 <td align="center"><span class="math inline">\(n_{ij} \quad (e_{ij})\)</span></td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
 <td align="center"><span class="math inline">\(n_{im} \quad (e_{im})\)</span></td>
-<td align="center"><span class="math inline">\(N_{i\bullet} = \sum_{j=1}^{m} n_{ij}\)</span></td>
+<td align="center"><span class="math inline">\(N_{i\bullet} = \sum_{j=1}^{m} n_{ij}\)</span>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(\vdots\)</span></td>
@@ -441,29 +429,38 @@ div.csl-indent {
 <td align="center"><span class="math inline">\(n_{kj} \quad (e_{kj})\)</span></td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
 <td align="center"><span class="math inline">\(n_{km} \quad (e_{km})\)</span></td>
-<td align="center"><span class="math inline">\(N_{k\bullet}\)</span></td>
+<td align="center"><span class="math inline">\(N_{k\bullet}\)</span>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>Totales Columna (<span class="math inline">\(N_{\bullet j}\)</span>)</strong></td>
-<td align="center"><span class="math inline">\(N_{\bullet 1}\)</span></td>
-<td align="center"><span class="math inline">\(N_{\bullet 2}\)</span></td>
+<td align="center"><span class="math inline">\(N_{\bullet 1}\)</span>[cite: 1]</td>
+<td align="center"><span class="math inline">\(N_{\bullet 2}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(N_{\bullet j} = \sum_{i=1}^{k} n_{ij}\)</span></td>
+<td align="center"><span class="math inline">\(N_{\bullet j} = \sum_{i=1}^{k} n_{ij}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(N_{\bullet m}\)</span></td>
-<td align="center"><strong>Gran Total</strong>: <span class="math inline">\(N_{\bullet\bullet} = \sum_{i=1}^{k} N_{i\bullet} = \sum_{j=1}^{m} N_{\bullet j}\)</span></td>
+<td align="center"><span class="math inline">\(N_{\bullet m}\)</span>[cite: 1]</td>
+<td align="center"><strong>Gran Total</strong>: <span class="math inline">\(N_{\bullet\bullet} = \sum_{i=1}^{k} N_{i\bullet} = \sum_{j=1}^{m} N_{\bullet j}\)</span>[cite: 1]</td>
 </tr>
 </tbody>
 </table>
-<p>Bajo la hipótesis de independencia entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>, el número esperado de observaciones para la celda <span class="math inline">\((i, j)\)</span> se define como:
-<span class="math display">\[e_{ij} = \frac{N_{i\bullet} \cdot N_{\bullet j}}{N_{\bullet\bullet}}\]</span></p>
+<div id="frecuencias-esperadas-e_ij" class="section level4 hasAnchor" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> Frecuencias Esperadas (<span class="math inline">\(e_{ij}\)</span>)<a href="análisis-de-correspondencias-ac.html#frecuencias-esperadas-e_ij" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Bajo la hipótesis de independencia entre <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>, el número esperado de observaciones para la celda <span class="math inline">\((i, j)\)</span> se define como[cite: 1]:
+<span class="math display">\[e_{ij} = \frac{N_{i\bullet} \cdot N_{\bullet j}}{N_{\bullet\bullet}}\]</span>
+[cite: 1]</p>
+<hr />
 </div>
 </div>
-<div id="perfiles-marginales-y-perfiles-condicionales" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Perfiles Marginales y Perfiles Condicionales<a href="análisis-de-correspondencias.html#perfiles-marginales-y-perfiles-condicionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para descomponer probabilísticamente la información de la tabla de contingencia, se calculan las distribuciones marginales y condicionales.</p>
-<p>Los perfiles marginales describen las distribuciones marginales no condicionadas de las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>.</p>
-<p><strong>Distribución Marginal de <span class="math inline">\(X\)</span></strong> (Frecuencias relativas marginales de las filas):</p>
+</div>
+<div id="perfiles-marginales-y-perfiles-condicionales" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 3. Perfiles Marginales y Perfiles Condicionales<a href="análisis-de-correspondencias-ac.html#perfiles-marginales-y-perfiles-condicionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para descomponer probabilísticamente la información de la tabla de contingencia, se calculan las distribuciones marginales y condicionales[cite: 1].</p>
+<div id="perfiles-marginales" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> 3.1. Perfiles Marginales<a href="análisis-de-correspondencias-ac.html#perfiles-marginales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Describen las distribuciones marginales no condicionadas de las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>[cite: 1]:</p>
+<ul>
+<li><strong>Distribución Marginal de <span class="math inline">\(X\)</span></strong> (Frecuencias relativas marginales de las filas)[cite: 1]:</li>
+</ul>
 <table>
 <colgroup>
 <col width="12%" />
@@ -490,17 +487,19 @@ div.csl-indent {
 <tbody>
 <tr class="odd">
 <td align="center"><strong>Frecuencias Relativas</strong></td>
-<td align="center"><span class="math inline">\(\frac{N_{1\bullet}}{N_{\bullet\bullet}}\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N_{2\bullet}}{N_{\bullet\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{N_{1\bullet}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><span class="math inline">\(\frac{N_{2\bullet}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N_{i\bullet}}{N_{\bullet\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{N_{i\bullet}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N_{k\bullet}}{N_{\bullet\bullet}}\)</span></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><span class="math inline">\(\frac{N_{k\bullet}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Distribución Marginal de <span class="math inline">\(Y\)</span></strong> (Frecuencias relativas marginales de las columnas):</p>
+<ul>
+<li><strong>Distribución Marginal de <span class="math inline">\(Y\)</span></strong> (Frecuencias relativas marginales de las columnas)[cite: 1]:</li>
+</ul>
 <table>
 <colgroup>
 <col width="12%" />
@@ -527,19 +526,24 @@ div.csl-indent {
 <tbody>
 <tr class="odd">
 <td align="center"><strong>Frecuencias Relativas</strong></td>
-<td align="center"><span class="math inline">\(\frac{N_{\bullet 1}}{N_{\bullet\bullet}}\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N_{\bullet 2}}{N_{\bullet\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{N_{\bullet 1}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><span class="math inline">\(\frac{N_{\bullet 2}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N_{\bullet j}}{N_{\bullet\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{N_{\bullet j}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{N_{\bullet m}}{N_{\bullet\bullet}}\)</span></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><span class="math inline">\(\frac{N_{\bullet m}}{N_{\bullet\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 </tbody>
 </table>
-<p>Los perfiles condicionales describen las distribuciones de una variable dada la presencia de una modalidad específica de la otra variable.</p>
-<p><strong>Perfiles Fila <span class="math inline">\(f(Y \mid X = x_i)\)</span></strong>
-Describen las distribuciones condicionadas de la variable <span class="math inline">\(Y\)</span> por las distintas modalidades de la variable <span class="math inline">\(X\)</span>. Se obtienen a partir de la tabla de contingencia y el perfil marginal de <span class="math inline">\(X\)</span>:</p>
+<hr />
+</div>
+<div id="perfiles-condicionales" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> 3.2. Perfiles Condicionales<a href="análisis-de-correspondencias-ac.html#perfiles-condicionales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los perfiles condicionales describen las distribuciones de una variable dada la presencia de una modalidad específica de la otra variable[cite: 1].</p>
+<div id="a.-perfiles-fila-fy-mid-x-x_i" class="section level4 hasAnchor" number="6.3.2.1">
+<h4><span class="header-section-number">6.3.2.1</span> A. Perfiles Fila <span class="math inline">\(f(Y \mid X = x_i)\)</span><a href="análisis-de-correspondencias-ac.html#a.-perfiles-fila-fy-mid-x-x_i" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Describen las distribuciones condicionadas de la variable <span class="math inline">\(Y\)</span> por las distintas modalidades de la variable <span class="math inline">\(X\)</span>[cite: 1]. Se obtienen a partir de la tabla de contingencia y el perfil marginal de <span class="math inline">\(X\)</span>[cite: 1]:</p>
 <table style="width:100%;">
 <colgroup>
 <col width="14%" />
@@ -564,21 +568,21 @@ Describen las distribuciones condicionadas de la variable <span class="math inli
 <tbody>
 <tr class="odd">
 <td align="center"><strong><span class="math inline">\(x_1\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{11}}{N_{1\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{11}}{N_{1\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{1j}}{N_{1\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{1j}}{N_{1\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{1m}}{N_{1\bullet}}\)</span></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><span class="math inline">\(\frac{n_{1m}}{N_{1\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_2\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{21}}{N_{2\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{21}}{N_{2\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{2j}}{N_{2\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{2j}}{N_{2\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{2m}}{N_{2\bullet}}\)</span></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><span class="math inline">\(\frac{n_{2m}}{N_{2\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(\vdots\)</span></td>
@@ -591,12 +595,12 @@ Describen las distribuciones condicionadas de la variable <span class="math inli
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_i\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{i1}}{N_{i\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{i1}}{N_{i\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{ij}}{N_{i\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{ij}}{N_{i\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{im}}{N_{i\bullet}}\)</span></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><span class="math inline">\(\frac{n_{im}}{N_{i\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(\vdots\)</span></td>
@@ -609,17 +613,19 @@ Describen las distribuciones condicionadas de la variable <span class="math inli
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_k\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{k1}}{N_{k\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{k1}}{N_{k\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{kj}}{N_{k\bullet}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{kj}}{N_{k\bullet}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{km}}{N_{k\bullet}}\)</span></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><span class="math inline">\(\frac{n_{km}}{N_{k\bullet}}\)</span>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Perfiles Columna <span class="math inline">\(f(X \mid Y = y_j)\)</span></strong>
-De forma análoga, los perfiles columna describen las distribuciones condicionadas de la variable <span class="math inline">\(X\)</span> por las distintas modalidades de la variable <span class="math inline">\(Y\)</span>:</p>
+</div>
+<div id="b.-perfiles-columna-fx-mid-y-y_j" class="section level4 hasAnchor" number="6.3.2.2">
+<h4><span class="header-section-number">6.3.2.2</span> B. Perfiles Columna <span class="math inline">\(f(X \mid Y = y_j)\)</span><a href="análisis-de-correspondencias-ac.html#b.-perfiles-columna-fx-mid-y-y_j" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>De forma análoga, los perfiles columna describen las distribuciones condicionadas de la variable <span class="math inline">\(X\)</span> por las distintas modalidades de la variable <span class="math inline">\(Y\)</span>[cite: 1]:</p>
 <table>
 <colgroup>
 <col width="12%" />
@@ -646,23 +652,23 @@ De forma análoga, los perfiles columna describen las distribuciones condicionad
 <tbody>
 <tr class="odd">
 <td align="center"><strong><span class="math inline">\(x_1\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{11}}{N_{\bullet 1}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{11}}{N_{\bullet 1}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{1i}}{N_{\bullet i}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{1i}}{N_{\bullet i}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{1j}}{N_{\bullet j}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{1j}}{N_{\bullet j}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{1m}}{N_{\bullet m}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{1m}}{N_{\bullet m}}\)</span>[cite: 1]</td>
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_2\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{21}}{N_{\bullet 1}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{21}}{N_{\bullet 1}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{2i}}{N_{\bullet i}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{2i}}{N_{\bullet i}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{2j}}{N_{\bullet j}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{2j}}{N_{\bullet j}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{2m}}{N_{\bullet m}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{2m}}{N_{\bullet m}}\)</span>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(\vdots\)</span></td>
@@ -676,13 +682,13 @@ De forma análoga, los perfiles columna describen las distribuciones condicionad
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_i\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{i1}}{N_{\bullet 1}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{i1}}{N_{\bullet 1}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{ii}}{N_{\bullet i}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{ii}}{N_{\bullet i}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{ij}}{N_{\bullet j}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{ij}}{N_{\bullet j}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{im}}{N_{\bullet m}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{im}}{N_{\bullet m}}\)</span>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(\vdots\)</span></td>
@@ -696,66 +702,86 @@ De forma análoga, los perfiles columna describen las distribuciones condicionad
 </tr>
 <tr class="even">
 <td align="center"><strong><span class="math inline">\(x_k\)</span></strong></td>
-<td align="center"><span class="math inline">\(\frac{n_{k1}}{N_{\bullet 1}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{k1}}{N_{\bullet 1}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{ki}}{N_{\bullet i}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{ki}}{N_{\bullet i}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{kj}}{N_{\bullet j}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{kj}}{N_{\bullet j}}\)</span>[cite: 1]</td>
 <td align="center"><span class="math inline">\(\dots\)</span></td>
-<td align="center"><span class="math inline">\(\frac{n_{km}}{N_{\bullet m}}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{n_{km}}{N_{\bullet m}}\)</span>[cite: 1]</td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>Total</strong></td>
-<td align="center"><strong>1</strong></td>
-<td align="center"><strong>1</strong></td>
-<td align="center"><strong>1</strong></td>
-<td align="center"><strong>1</strong></td>
-<td align="center"><strong>1</strong></td>
-<td align="center"><strong>1</strong></td>
-<td align="center"><strong>1</strong></td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
+<td align="center"><strong>1</strong>[cite: 1]</td>
 </tr>
 </tbody>
 </table>
 <hr />
 </div>
-<div id="la-métrica-de-la-distancia-chi-cuadrada-chi2" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> La Métrica de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)<a href="análisis-de-correspondencias.html#la-m%C3%A9trica-de-la-distancia-chi-cuadrada-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En el espacio factorial, la distancia entre dos perfiles no se mide mediante la distancia euclidiana estándar, sino a través de la <strong>distancia Chi-cuadrada</strong>.</p>
-<p>Se define la distancia Chi-cuadrada entre dos perfiles fila <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> (<span class="math inline">\(d_{ij}^f\)</span>) como:</p>
+</div>
+</div>
+<div id="la-mética-de-la-distancia-chi-cuadrada-chi2" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> 4. La Mética de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)<a href="análisis-de-correspondencias-ac.html#la-m%C3%A9tica-de-la-distancia-chi-cuadrada-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En el espacio factorial, la distancia entre dos perfiles no se mide mediante la distancia euclidiana estándar, sino a través de la <strong>distancia Chi-cuadrada</strong>[cite: 1].</p>
+<div id="distancia-entre-perfiles-fila" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> 4.1. Distancia entre Perfiles Fila<a href="análisis-de-correspondencias-ac.html#distancia-entre-perfiles-fila" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se define la distancia Chi-cuadrada entre dos perfiles fila <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> (<span class="math inline">\(d_{ij}^f\)</span>) como[cite: 1]:</p>
 <p><span class="math display">\[d_{ij}^f = \sum_{h=1}^{m} \frac{1}{N_{\bullet h}} \left[ \frac{n_{ih}}{N_{i\bullet}} - \frac{n_{jh}}{N_{j\bullet}} \right]^2\]</span>
-De forma análoga, se define la distancia Chi-cuadrada entre dos perfiles columna <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> (<span class="math inline">\(d_{ij}^c\)</span>) como:</p>
-<p><span class="math display">\[d_{ij}^c = \sum_{h=1}^{k} \frac{1}{N_{h\bullet}} \left[ \frac{n_{hi}}{N_{\bullet i}} - \frac{n_{hj}}{N_{\bullet j}} \right]^2\]</span></p>
-<div id="propiedades-de-la-distancia-chi-cuadrada" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Propiedades de la Distancia Chi-Cuadrada<a href="análisis-de-correspondencias.html#propiedades-de-la-distancia-chi-cuadrada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+[cite: 1]</p>
+</div>
+<div id="distancia-entre-perfiles-columna" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> 4.2. Distancia entre Perfiles Columna<a href="análisis-de-correspondencias-ac.html#distancia-entre-perfiles-columna" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>De forma análoga, se define la distancia Chi-cuadrada entre dos perfiles columna <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> (<span class="math inline">\(d_{ij}^c\)</span>) como[cite: 1]:</p>
+<p><span class="math display">\[d_{ij}^c = \sum_{h=1}^{k} \frac{1}{N_{h\bullet}} \left[ \frac{n_{hi}}{N_{\bullet i}} - \frac{n_{hj}}{N_{\bullet j}} \right]^2\]</span>
+[cite: 1]</p>
+</div>
+<div id="propiedades-de-la-distancia-chi-cuadrada" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> 4.3. Propiedades de la Distancia Chi-Cuadrada<a href="análisis-de-correspondencias-ac.html#propiedades-de-la-distancia-chi-cuadrada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li><p><strong>Ponderación por Masa</strong>: Cumple con ponderar cada perfil por un peso (“masa”). Cada fila o columna está afectada por una masa que es proporcional a su importancia o frecuencia relativa en el conjunto global.</p></li>
-<li><p><strong>Principio de Equivalencia Distribucional</strong>: Postula que si dos categorías poseen perfiles condicionales idénticos, estas pueden ser sustituidas por una sola categoría fusionada que tenga como masa la suma de sus pesos individuales, <strong>sin que esto modifique las distancias</strong> entre las demás filas o columnas restantes del análisis.</p></li>
+<li><strong>Ponderación por Masa</strong>: Cumple con ponderar cada perfil por un peso (“masa”)[cite: 1]. Cada fila o columna está afectada por una masa que es proporcional a su importancia o frecuencia relativa en el conjunto global[cite: 1].</li>
+<li><strong>Principio de Equivalencia Distribucional</strong>: Postula que si dos categorías poseen perfiles condicionales idénticos, estas pueden ser sustituidas por una sola categoría fusionada que tenga como masa la suma de sus pesos individuales, <strong>sin que esto modifique las distancias</strong> entre las demás filas o columnas restantes del análisis[cite: 1].</li>
 </ol>
+<hr />
 </div>
 </div>
-<div id="dependencia-independencia-y-análisis-de-residuos" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Dependencia, Independencia y Análisis de Residuos<a href="análisis-de-correspondencias.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La comprobación de la existencia o no de relación entre las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> se realiza mediante contrastes de hipótesis sobre la independencia de dichas variables, utilizando habitualmente la <strong>prueba Chi-cuadrada de Pearson</strong>:</p>
-<p><span class="math display">\[\begin{cases} H_0: \text{Ambas variables son independientes.} \\ H_1: \text{Existe una relación de dependencia entre las variables.} \end{cases}\]</span></p>
-<p>El estadístico de prueba compara los perfiles fila y columna observados con los perfiles marginales correspondientes. Bajo la hipótesis nula (<span class="math inline">\(H_0\)</span>), todos los perfiles fila (respecto a cada columna) son iguales entre sí e iguales al perfil marginal de <span class="math inline">\(X\)</span>.</p>
-<p>Si la hipótesis nula se rechaza, se concluye que las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> son dependientes, siendo conveniente analizar los perfiles condicionales y los <strong>residuos del modelo</strong>.</p>
-<p>Para que el análisis de residuos resulte adecuado, es necesario ajustarlos y estandarizarlos. Siguiendo la propuesta de <strong>Haberman (1978)</strong>, esto se realiza dividiendo el residuo bruto de cada celda por su error típico estimado:</p>
+<div id="dependencia-independencia-y-análisis-de-residuos" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> 5. Dependencia, Independencia y Análisis de Residuos<a href="análisis-de-correspondencias-ac.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La comprobación de la existencia o no de relación entre las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> se realiza mediante contrastes de hipótesis sobre la independencia de dichas variables, utilizando habitualmente la <strong>prueba Chi-cuadrada de Pearson</strong>[cite: 1]:</p>
+<p><span class="math display">\[\begin{cases} H_0: \text{Ambas variables son independientes.} \\ H_1: \text{Existe una relación de dependencia entre las variables.} \end{cases}\]</span>
+[cite: 1]</p>
+<div id="comportamiento-bajo-h_0" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Comportamiento bajo <span class="math inline">\(H_0\)</span><a href="análisis-de-correspondencias-ac.html#comportamiento-bajo-h_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El estadístico de prueba compara los perfiles fila y columna observados con los perfiles marginales correspondientes[cite: 1]. Bajo la hipótesis nula (<span class="math inline">\(H_0\)</span>), todos los perfiles fila (respecto a cada columna) son iguales entre sí e iguales al perfil marginal de <span class="math inline">\(X\)</span>[cite: 1].</p>
+</div>
+<div id="análisis-de-residuos-estandarizados-y-ajustados" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Análisis de Residuos Estandarizados y Ajustados<a href="análisis-de-correspondencias-ac.html#an%C3%A1lisis-de-residuos-estandarizados-y-ajustados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si la hipótesis nula se rechaza, se concluye que las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> son dependientes, siendo conveniente analizar los perfiles condicionales y los <strong>residuos del modelo</strong>[cite: 1].</p>
+<p>Para que el análisis de residuos resulte adecuado, es necesario ajustarlos y estandarizarlos[cite: 1]. Siguiendo la propuesta de <strong>Haberman (1978)</strong>, esto se realiza dividiendo el residuo bruto de cada celda por su error típico estimado[cite: 1]:</p>
 <p><span class="math display">\[r_{ij} = \frac{n_{ij} - e_{ij}}{\sqrt{e_{ij} \left(1 - \frac{N_{i\bullet}}{N_{\bullet\bullet}}\right) \left(1 - \frac{N_{\bullet j}}{N_{\bullet\bullet}}\right)}}\]</span></p>
 <p>Valores de <span class="math inline">\(\vert{}r_{ij}\vert{} &gt; 1.96\)</span> indican casillas con desviaciones estadísticamente significativas respecto a la independencia (atracción si <span class="math inline">\(r_{ij} &gt; 0\)</span>, repulsión si <span class="math inline">\(r_{ij} &lt; 0\)</span>).</p>
+<hr />
 </div>
-<div id="reducción-dimensional-y-espacio-factorial" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Reducción Dimensional y Espacio Factorial<a href="análisis-de-correspondencias.html#reducci%C3%B3n-dimensional-y-espacio-factorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Al analizar el cruce entre dos variables categóricas mediante el Análisis de Correspondencias se busca:</p>
+</div>
+<div id="reducción-dimensional-y-espacio-factorial" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> 6. Reducción Dimensional y Espacio Factorial<a href="análisis-de-correspondencias-ac.html#reducci%C3%B3n-dimensional-y-espacio-factorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al analizar el cruce entre dos variables categóricas mediante el Análisis de Correspondencias se busca[cite: 1]:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Reducir la información</strong>: Condensar los datos en un número pequeño de factores o dimensiones principales que expliquen la variabilidad (medida como <em>Inercia Total</em>, <span class="math inline">\(\Phi^2 = \frac{\chi^2}{N_{\bullet\bullet}}\)</span>) de modo resumido y sencillo.</p></li>
-<li><p><strong>Crear un espacio factorial</strong>: Construir un sistema de ejes ortogonales en el que ubicar simultáneamente categorías de filas y columnas, permitiendo establecer grados de semejanza y diferencia entre ellas.</p></li>
+<li><strong>Reducir la información</strong>: Condensar los datos en un número pequeño de factores o dimensiones principales que expliquen la variabilidad (medida como <em>Inercia Total</em>, <span class="math inline">\(\Phi^2 = \frac{\chi^2}{N_{\bullet\bullet}}\)</span>) de modo resumido y sencillo[cite: 1].</li>
+<li><strong>Crear un espacio factorial</strong>: Construir un sistema de ejes ortogonales en el que ubicar simultáneamente categorías de filas y columnas, permitiendo establecer grados de semejanza y diferencia entre ellas[cite: 1].</li>
 </ol>
-<p>Todo esto permite en última instancia:
-* Analizar semejanzas y diferencias entre las categorías de una misma variable.
-* Analizar la relación de dependencia, semejanza y diferencia entre las categorías de distintas variables.</p>
+<p>Todo esto permite en última instancia[cite: 1]:
+* Analizar semejanzas y diferencias entre las categorías de una misma variable[cite: 1].
+* Analizar la relación de dependencia, semejanza y diferencia entre las categorías de distintas variables[cite: 1].</p>
+<hr />
 </div>
-<div id="descomposición-matemática-svd-de-la-matriz-de-residuos" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Descomposición Matemática (SVD de la Matriz de Residuos)<a href="análisis-de-correspondencias.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="descomposición-matemática-svd-de-la-matriz-de-residuos" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> 7. Descomposición Matemática (SVD de la Matriz de Residuos)<a href="análisis-de-correspondencias-ac.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para obtener las coordenadas factoriales, se define la matriz de correspondencias <span class="math inline">\(P = \frac{1}{N_{\bullet\bullet}} N\)</span>, donde <span class="math inline">\(N\)</span> es la tabla de contingencia.</p>
 <p>Sean <span class="math inline">\(D_r = \text{diag}\left(\frac{N_{i\bullet}}{N_{\bullet\bullet}}\right)\)</span> y <span class="math inline">\(D_c = \text{diag}\left(\frac{N_{\bullet j}}{N_{\bullet\bullet}}\right)\)</span> las matrices diagonales de masas de filas y columnas. Se realiza la Descomposición en Valores Singulares (SVD) sobre la matriz de residuos estandarizados <span class="math inline">\(A\)</span>:</p>
 <p><span class="math display">\[A = D_r^{-1/2} (P - r c^T) D_c^{-1/2} = U \Gamma V^T\]</span></p>
@@ -765,46 +791,67 @@ De forma análoga, se define la distancia Chi-cuadrada entre dos perfiles column
 * Las autovalores o inercias de cada dimensión corresponden a <span class="math inline">\(\lambda_\alpha = \gamma_\alpha^2\)</span>.</p>
 <p>Las <strong>coordenadas principales de las filas</strong> (<span class="math inline">\(F\)</span>) y <strong>columnas</strong> (<span class="math inline">\(G\)</span>) para la representación gráfica vienen dadas por:</p>
 <p><span class="math display">\[F = D_r^{-1/2} U \Gamma \quad \text{y} \quad G = D_c^{-1/2} V \Gamma\]</span></p>
+<hr />
 </div>
-<div id="extensión-análisis-de-correspondencias-múltiples-acm" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Extensión: Análisis de Correspondencias Múltiples (ACM)<a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="extensión-análisis-de-correspondencias-múltiples-acm" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> 8. Extensión: Análisis de Correspondencias Múltiples (ACM)<a href="análisis-de-correspondencias-ac.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Cuando se analiza un conjunto de <span class="math inline">\(p &gt; 2\)</span> variables categóricas, el análisis simple se generaliza al <strong>Análisis de Correspondencias Múltiples (ACM)</strong>.</p>
 <p>Existen dos formas principales de estructurar las matrices para el ACM:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Matriz Indicadora (<span class="math inline">\(Z\)</span>)</strong>: Matriz binaria donde cada fila es un individuo y cada columna es una categoría de alguna variable. Si se analizan <span class="math inline">\(p\)</span> variables con un total de <span class="math inline">\(K\)</span> categorías sumadas, <span class="math inline">\(Z\)</span> tiene dimensión <span class="math inline">\(N \times K\)</span>.</li>
 <li><strong>Matriz de Burt (<span class="math inline">\(B\)</span>)</strong>: Matriz simétrica de bloque <span class="math inline">\(K \times K\)</span> definida como <span class="math inline">\(B = Z^T Z\)</span>. Contiene en su diagonal las frecuencias marginales de las categorías y fuera de la diagonal todas las tablas de contingencia cruzadas de a pares.</li>
 </ol>
+<hr />
 </div>
-<div id="implementación-práctica-en-r-análisis-de-correspondencias-simple" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Implementación Práctica en R (Análisis de Correspondencias Simple)<a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="implementación-práctica-en-r" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> 9. Implementación Práctica en R<a href="análisis-de-correspondencias-ac.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En el lenguaje R, el paquete recomendado para ejecutar Análisis de Correspondencias es <code>FactoMineR</code>, combinado con <code>factoextra</code> para la visualización.</p>
-<pre><code>              Mejora_Alta Mejora_Media Sin_Mejora
-Tratamiento_A          30           15          5
-Tratamiento_B          10           25         15
-Tratamiento_C           5           10         35</code></pre>
-<pre><code>
-    Pearson&#39;s Chi-squared test
+<div id="análisis-de-correspondencias-simple-acs" class="section level3 hasAnchor" number="6.9.1">
+<h3><span class="header-section-number">6.9.1</span> 9.1. Análisis de Correspondencias Simple (ACS)<a href="análisis-de-correspondencias-ac.html#an%C3%A1lisis-de-correspondencias-simple-acs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-de-correspondencias-ac.html#cb1-1" tabindex="-1"></a><span class="co"># Cargar librerías necesarias</span></span>
+<span id="cb1-2"><a href="análisis-de-correspondencias-ac.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span></code></pre></div>
+<pre><code>## Warning: package &#39;FactoMineR&#39; was built under R version 4.4.3</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="análisis-de-correspondencias-ac.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code></pre></div>
+<pre><code>## Warning: package &#39;factoextra&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Cargando paquete requerido: ggplot2</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.4.3</code></pre>
+<pre><code>## Welcome to factoextra!</code></pre>
+<pre><code>## Want to learn more? See two factoextra-related books at https://www.datanovia.com/en/product/practical-guide-to-principal-component-methods-in-r/</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="análisis-de-correspondencias-ac.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="análisis-de-correspondencias-ac.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="análisis-de-correspondencias-ac.html#cb9-3" tabindex="-1"></a><span class="co"># Crear una tabla de contingencia de ejemplo</span></span>
+<span id="cb9-4"><a href="análisis-de-correspondencias-ac.html#cb9-4" tabindex="-1"></a><span class="co"># Ejemplo: Tipo de Tratamiento Médico vs Nivel de Mejora</span></span>
+<span id="cb9-5"><a href="análisis-de-correspondencias-ac.html#cb9-5" tabindex="-1"></a>tabla_datos <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">15</span>, <span class="dv">5</span>,</span>
+<span id="cb9-6"><a href="análisis-de-correspondencias-ac.html#cb9-6" tabindex="-1"></a>                        <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">15</span>,</span>
+<span id="cb9-7"><a href="análisis-de-correspondencias-ac.html#cb9-7" tabindex="-1"></a>                        <span class="dv">5</span>,  <span class="dv">10</span>, <span class="dv">35</span>), </span>
+<span id="cb9-8"><a href="análisis-de-correspondencias-ac.html#cb9-8" tabindex="-1"></a>                      <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-9"><a href="análisis-de-correspondencias-ac.html#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="análisis-de-correspondencias-ac.html#cb9-10" tabindex="-1"></a><span class="fu">rownames</span>(tabla_datos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Tratamiento_A&quot;</span>, <span class="st">&quot;Tratamiento_B&quot;</span>, <span class="st">&quot;Tratamiento_C&quot;</span>)</span>
+<span id="cb9-11"><a href="análisis-de-correspondencias-ac.html#cb9-11" tabindex="-1"></a><span class="fu">colnames</span>(tabla_datos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Mejora_Alta&quot;</span>, <span class="st">&quot;Mejora_Media&quot;</span>, <span class="st">&quot;Sin_Mejora&quot;</span>)</span>
+<span id="cb9-12"><a href="análisis-de-correspondencias-ac.html#cb9-12" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="análisis-de-correspondencias-ac.html#cb9-13" tabindex="-1"></a><span class="co"># 1. Prueba de Chi-Cuadrada de Pearson</span></span>
+<span id="cb9-14"><a href="análisis-de-correspondencias-ac.html#cb9-14" tabindex="-1"></a>prueba_chi <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla_datos)</span>
+<span id="cb9-15"><a href="análisis-de-correspondencias-ac.html#cb9-15" tabindex="-1"></a><span class="fu">print</span>(prueba_chi)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tabla_datos
+## X-squared = 55.788, df = 4, p-value = 2.221e-11</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="análisis-de-correspondencias-ac.html#cb11-1" tabindex="-1"></a><span class="co"># 2. Ejecucción del Análisis de Correspondencias</span></span>
+<span id="cb11-2"><a href="análisis-de-correspondencias-ac.html#cb11-2" tabindex="-1"></a>res_ca <span class="ot">&lt;-</span> <span class="fu">CA</span>(tabla_datos, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-3"><a href="análisis-de-correspondencias-ac.html#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="análisis-de-correspondencias-ac.html#cb11-4" tabindex="-1"></a><span class="co"># 3. Resumen de Inercia y Autovalores</span></span>
+<span id="cb11-5"><a href="análisis-de-correspondencias-ac.html#cb11-5" tabindex="-1"></a><span class="fu">get_eigenvalue</span>(res_ca)</span></code></pre></div>
+<pre><code>##       eigenvalue variance.percent cumulative.variance.percent
+## Dim.1 0.30754492         82.69133                    82.69133
+## Dim.2 0.06437427         17.30867                   100.00000</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="análisis-de-correspondencias-ac.html#cb13-1" tabindex="-1"></a><span class="co"># Gráfico de codo (Scree plot de inercia)</span></span>
+<span id="cb13-2"><a href="análisis-de-correspondencias-ac.html#cb13-2" tabindex="-1"></a><span class="fu">fviz_screeplot</span>(res_ca, <span class="at">addlabels =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="análisis-de-correspondencias-ac.html#cb13-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Porcentaje de Inercia Explicada por Dimensión&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Inercia (%)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="análisis-de-correspondencias-ac.html#cb13-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" /></p>
 
-data:  tabla_datos
-X-squared = 55.788, df = 4, p-value = 2.221e-11</code></pre>
-<p>Dado que <span class="math inline">\(p\text{-valor} &lt; 0.05\)</span>, se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>) de independencia. Concluimos que existe una fuerte relación de dependencia entre el tipo de tratamiento administrado y la respuesta de mejora del paciente. Esto justifica plenamente la exploración del mapa factorial del Análisis de Correspondencias.</p>
-<pre><code>      eigenvalue variance.percent cumulative.variance.percent
-Dim.1 0.30754492         82.69133                    82.69133
-Dim.2 0.06437427         17.30867                   100.00000</code></pre>
-<p>Conclusión de reducción dimensional: El mapa factorial bidimensional (<span class="math inline">\(2\text{D}\)</span>) retiene el <span class="math inline">\(100\%\)</span> de la inercia total de la tabla. La Dimensión 1 captura por sí sola la gran mayoría de la variabilidad (<span class="math inline">\(82.8\%\)</span>), reflejando el patrón dominante de la tabla.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-17-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<p>El biplot proyecta conjuntamente las categorías de filas y columnas:</p>
-<p>Eje Horizontal (Dimensión 1 - <span class="math inline">\(82.7\%\)</span> de inercia):Separa claramente en el extremo derecho a Tratamiento_A y Mejora_Alta, y en el extremo izquierdo a Tratamiento_C y Sin_Mejora.</p>
-<p>Interpretación del Eje <span class="math inline">\(X\)</span>: Representa un gradiente o escala clínica de efectividad terapéutica, que va desde “Eficacia Alta / Éxito Terapéutico” (derecha) hasta “Falta de Respuesta / Fracaso Terapéutico” (izquierda).</p>
-<p>Asociaciones Específicas (Atracción y Cercanía de Perfiles):</p>
-<p><strong>Tratamiento_A <span class="math inline">\(\leftrightarrow\)</span> Mejora_Alta</strong>: La fuerte proximidad entre ambas categorías señala que el Tratamiento A presenta una proporción de pacientes con mejora alta sustancialmente mayor que la esperada bajo independencia. Es el tratamiento más efectivo.</p>
-<p><strong>Tratamiento_C <span class="math inline">\(\leftrightarrow\)</span> Sin_Mejora</strong>: Se ubican juntos en el lado opuesto del eje 1, indicando que el Tratamiento C está estrechamente asociado a pacientes que no experimentan mejora alguna.</p>
-<p><strong>Tratamiento_B <span class="math inline">\(\leftrightarrow\)</span> Mejora_Media</strong>: Ambas categorías se proyectan cerca de la zona central y hacia la parte inferior (Dimensión 2), reflejando un perfil intermedio o moderado de respuesta.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<p>Al examinar los valores de <span class="math inline">\(cos^2\)</span>:Todas las categorías (Tratamiento_A, Tratamiento_B, Tratamiento_C, Mejora_Alta, Mejora_Media, Sin_Mejora) presentan un <span class="math inline">\(cos^2 &gt; 0.90\)</span> en el plano proyectado (<span class="math inline">\(1+2\)</span>).Lo que nos lleva a concluir que no existen categorías distorsionadas por la proyección plana; las distancias observadas en el biplot refieren de manera correcta la métrica Chi-cuadrada real del espacio multidimensional.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
-<p>Puntos con contribución superior a la media (<span class="math inline">\(\frac{100}{\text{N° categorías}}\)</span>) definen la interpretación del eje, ya que la contribución determina el impacto de una categoría en la orientación del eje.</p>
-
+</div>
 </div>
 </div>
             </section>
@@ -812,7 +859,7 @@ Dim.2 0.06437427         17.30867                   100.00000</code></pre>
           </div>
         </div>
       </div>
-<a href="análisis-de-factores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-correspondencias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="escalamiento-multidimensional.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
