@@ -4,7 +4,138 @@ output:
     includes:
       in_header: ga.html
 ---
-# Escalamiento multidimensional
 
-Estos modelos se puede decir son determinados por una fuente externa, además de que suponen linealidad. Es decir que el valor actual de la serie $X_t$ esta influenciado por los valores de la fuente externa.
+# Escalamiento Multidimensional (MDS)
 
+El **Escalamiento Multidimensional (MDS)** es una técnica de reducción de dimensiones que busca representar un conjunto de $n$ objetos (estímulos, productos o percepciones) en un espacio geométrico de menor dimensión (comúnmente $q = 2$ o $q = 3$), utilizando únicamente una medición de proximidad entre ellos, sin necesidad de observar directamente los vectores de variables originales.
+
+## Introducción y Antecedentes Históricos
+
+La historia de las técnicas de escalamiento multidimensional comenzó formalmente con el trabajo de **Torgerson (1952)**, quien introdujo el término y esbozó las primeras ideas teóricas. Posteriormente, diversos investigadores continuaron desarrollando técnicas con el propósito central de obtener una representación euclideana que respete, lo más fielmente posible, las relaciones de proximidad entre los objetos estudiados.
+
+El MDS es una herramienta clave para identificar dimensiones principales o subyacentes. Las técnicas de escalamiento infieren las dimensiones latentes en una serie de objetos considerados "similares". Una vez recolectados los datos, el MDS permite determinar:
+
+1. **Qué dimensiones usar** cuando se están evaluando todas las variables.
+2. **Cuántas dimensiones se deben usar** en un espacio geométrico específico.
+3. **La relativa importancia** de cada una de las dimensiones identificadas.
+4. **Cómo están relacionadas** entre sí las variables u objetos analizados.
+
+## Fundamentos y Requisitos del MDS
+
+Para llevar a cabo un análisis de escalamiento multidimensional de forma rigurosa, se requiere contar con dos elementos fundamentales:
+
+1. **Un conjunto de datos de proximidad o similaridad:** Números que expresen todas o la mayoría de las combinaciones de pares de similaridades/disimilitudes dentro de un grupo de objetos. La proximidad suele construirse a partir de percepciones, preferencias o juicios subjetivos sobre los objetos.
+2. **Un algoritmo computacional:** Un procedimiento que lleve a cabo el cálculo y la optimización de la configuración espacial.
+
+El objetivo central del MDS es transformar las evaluaciones de preferencia o similaridad en distancias métricas dentro de un espacio multidimensional. 
+
+Si dos objetos $A$ y $B$ son clasificados por los individuos como altamente similares en comparación con otros objetos, el método de escalamiento asignará un valor de distancia pequeño entre ellos en la representación espacial.
+
+En el análisis multivariado a través de MDS se distinguen dos tipos principales de dimensiones:
+
+**Dimensiones Objetivas:** Atributos inherentes y medibles físicamente en la variable o sujeto (por ejemplo, peso, altura, precio, aceleración).
+
+**Dimensiones Perceptivas:** Atributos asignados de forma subjetiva por los individuos que evalúan o clasifican los objetos (por ejemplo, calidad percibida, comodidad, prestigio).
+
+**El reto clave en MDS:** Comprender e interpretar las dimensiones perceptivas e intentar, cuando sea posible, relacionarlas formalmente con las dimensiones objetivas.
+
+
+## Formulación Matemática de los Métodos de MDS
+
+### MDS Clásico o Métrico (Principal Coordinate Analysis - PCoA)
+Partiendo de una matriz de distancias al cuadrado $D^{(2)} = (d_{ij}^2)_{n \times n}$:
+
+1. Se construye la matriz de centrado numérico $\mathbf{H} = \mathbf{I}_n - \frac{1}{n}\mathbf{1}\mathbf{1}^T$.
+2. Se calcula la matriz de producto interno centrado $B$:
+   $$B = -\frac{1}{2} \mathbf{H} D^{(2)} \mathbf{H}$$
+3. Se realiza la descomposición espectral de $B$:
+   $$B = V \Lambda V^T$$
+4. Las coordenadas proyectadas $X$ en $q$ dimensiones corresponden a:
+   $$X = V_q \Lambda_q^{1/2}$$
+
+*(Nota: Si la matriz $D$ se genera estrictamente con distancias euclidianas a partir de variables cuantitativas, la solución del MDS clásico coincide numéricamente con el Análisis de Componentes Principales).*
+
+### MDS No Métrico (Ordinal)
+Cuando los datos representan ordenamientos o juicios cualitativos, se utiliza el MDS No Métrico. Este busca una transformación monotónica $f(d_{ij}) \approx \hat{d}_{ij}$ que preserve el orden de los pares.
+
+La bondad de ajuste se mide a través del indicador **Stress** ($S$):
+
+$$\text{Stress} = \sqrt{\frac{\sum_{i < j} (f(d_{ij}) - \delta_{ij})^2}{\sum_{i < j} \delta_{ij}^2}}$$
+
+Donde $\delta_{ij}$ es la distancia en el mapa proyectado.
+
+| Valor de Stress | Calidad del Ajuste |
+| :--- | :--- |
+| $> 0.20$ | Pobre / Inaceptable |
+| $0.10 - 0.20$ | Aceptable / Regular |
+| $0.05 - 0.10$ | Bueno |
+| $< 0.05$ | Excelente |
+
+
+## Cuadro Comparativo de Métodos de Reducción de Dimensiones
+
+| Característica | ACP (PCA) | MDS Clásico (PCoA) | MDS No Métrico |
+| :--- | :--- | :--- | :--- |
+| **Entrada Principal** | Matriz de datos $X_{n \times p}$ | Matriz de distancias $D_{n \times n}$ | Matriz de disimilitudes $D_{n \times n}$ |
+| **Enfoque de Medición** | Variables objetivas | Distancias métricas | Juicios/Percepciones ordinales |
+| **Preservación** | Varianza explicada | Distancias euclidianas | Orden de rangos/Similaridad |
+| **Criterio de Ajuste** | Eigenvalores / SVD | Eigenvalores de $B$ | Minimización de Stress |
+
+
+## Ejemplo Práctico en R 
+
+En esta sección se implementa la técnica en R integrándola al flujo del libro.
+
+```{r, message=FALSE, warning=FALSE}
+# Cargar librerías necesarias
+library(tidyverse)
+library(MASS)
+
+# 1. Matriz de distancias (Ejemplo con datos multivariados o matriz de distancias)
+data("USArrests")
+dist_matrix <- dist(scale(USArrests), method = "euclidean")
+
+# 2. MDS Clásico (cmdscale)
+mds_classic <- cmdscale(dist_matrix, k = 2, eig = TRUE)
+
+df_mds_classic <- as.data.frame(mds_classic$points) %>%
+  rename(Dim1 = V1, Dim2 = V2) %>%
+  rownames_to_column(var = "Estado")
+
+# Gráfico MDS Clásico
+ggplot(df_mds_classic, aes(x = Dim1, y = Dim2, label = Estado)) +
+  geom_point(color = "steelblue", size = 2) +
+  geom_text(vjust = -0.5, size = 3) +
+  theme_minimal() +
+  labs(title = "MDS Clásico (PCoA) - USArrests",
+       x = "Dimensión 1", y = "Dimensión 2")
+
+# 3. MDS No Métrico (isoMDS)
+mds_nonmetric <- isoMDS(dist_matrix, k = 2)
+
+df_mds_nonmetric <- as.data.frame(mds_nonmetric$points) %>%
+  rename(Dim1 = V1, Dim2 = V2) %>%
+  rownames_to_column(var = "Estado")
+
+# Gráfico MDS No Métrico
+ggplot(df_mds_nonmetric, aes(x = Dim1, y = Dim2, label = Estado)) +
+  geom_point(color = "darkred", size = 2) +
+  geom_text(vjust = -0.5, size = 3) +
+  theme_minimal() +
+  labs(title = paste("MDS No Métrico - Stress:", round(mds_nonmetric$stress, 2), "%"),
+       x = "Dimensión 1", y = "Dimensión 2")
+```
+
+### Diagnóstico de Ajuste: Diagrama de Shepard
+El Diagrama de Shepard compara las distancias originales frente a las distancias proyectadas en la configuración multidimensional para confirmar que el algoritmo preservó las proximidades adecuadamente.
+
+```{r, message=FALSE, warning=FALSE}
+# Diagnóstico de Shepard
+shepard_data <- Shepard(dist_matrix, mds_nonmetric$points)
+
+plot(shepard_data, pch = 20, col = "gray40",
+     xlab = "Distancias / Disimilitudes Originales",
+     ylab = "Distancias Configurada / Proyectada",
+     main = "Diagrama de Shepard")
+lines(shepard_data$x, shepard_data$yf, type = "S", col = "red", lwd = 2)
+```
