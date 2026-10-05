@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="análisis-de-factores.html"/>
-<link rel="next" href="escalamiento-multidimensional.html"/>
+<link rel="next" href="escalamiento-multidimensional-mds.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -312,7 +312,21 @@ div.csl-indent {
 <li class="chapter" data-level="5.7" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>5.7</b> Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
 <li class="chapter" data-level="5.8" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple"><i class="fa fa-check"></i><b>5.8</b> Implementación Práctica en R (Análisis de Correspondencias Simple)</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html"><i class="fa fa-check"></i><b>6</b> Escalamiento Multidimensional (MDS)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#introducci%C3%B3n-y-antecedentes-hist%C3%B3ricos"><i class="fa fa-check"></i><b>6.1</b> Introducción y Antecedentes Históricos</a></li>
+<li class="chapter" data-level="6.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#fundamentos-y-requisitos-del-mds"><i class="fa fa-check"></i><b>6.2</b> Fundamentos y Requisitos del MDS</a></li>
+<li class="chapter" data-level="6.3" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#formulaci%C3%B3n-matem%C3%A1tica-de-los-m%C3%A9todos-de-mds"><i class="fa fa-check"></i><b>6.3</b> Formulación Matemática de los Métodos de MDS</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-cl%C3%A1sico-o-m%C3%A9trico-principal-coordinate-analysis---pcoa"><i class="fa fa-check"></i><b>6.3.1</b> MDS Clásico o Métrico (Principal Coordinate Analysis - PCoA)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-no-m%C3%A9trico-ordinal"><i class="fa fa-check"></i><b>6.3.2</b> MDS No Métrico (Ordinal)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#cuadro-comparativo-de-m%C3%A9todos-de-reducci%C3%B3n-de-dimensiones"><i class="fa fa-check"></i><b>6.4</b> Cuadro Comparativo de Métodos de Reducción de Dimensiones</a></li>
+<li class="chapter" data-level="6.5" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#ejemplo-pr%C3%A1ctico-en-r-1"><i class="fa fa-check"></i><b>6.5</b> Ejemplo Práctico en R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#diagn%C3%B3stico-de-ajuste-diagrama-de-shepard"><i class="fa fa-check"></i><b>6.5.1</b> Diagnóstico de Ajuste: Diagrama de Shepard</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>III Métodos de clasificación</b></span></li>
 <li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
 <li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
@@ -792,7 +806,7 @@ X-squared = 55.788, df = 4, p-value = 2.221e-11</code></pre>
 Dim.1 0.30754492         82.69133                    82.69133
 Dim.2 0.06437427         17.30867                   100.00000</code></pre>
 <p>Conclusión de reducción dimensional: El mapa factorial bidimensional (<span class="math inline">\(2\text{D}\)</span>) retiene el <span class="math inline">\(100\%\)</span> de la inercia total de la tabla. La Dimensión 1 captura por sí sola la gran mayoría de la variabilidad (<span class="math inline">\(82.8\%\)</span>), reflejando el patrón dominante de la tabla.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-17-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-25-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>El biplot proyecta conjuntamente las categorías de filas y columnas:</p>
 <p>Eje Horizontal (Dimensión 1 - <span class="math inline">\(82.7\%\)</span> de inercia):Separa claramente en el extremo derecho a Tratamiento_A y Mejora_Alta, y en el extremo izquierdo a Tratamiento_C y Sin_Mejora.</p>
 <p>Interpretación del Eje <span class="math inline">\(X\)</span>: Representa un gradiente o escala clínica de efectividad terapéutica, que va desde “Eficacia Alta / Éxito Terapéutico” (derecha) hasta “Falta de Respuesta / Fracaso Terapéutico” (izquierda).</p>
@@ -800,9 +814,9 @@ Dim.2 0.06437427         17.30867                   100.00000</code></pre>
 <p><strong>Tratamiento_A <span class="math inline">\(\leftrightarrow\)</span> Mejora_Alta</strong>: La fuerte proximidad entre ambas categorías señala que el Tratamiento A presenta una proporción de pacientes con mejora alta sustancialmente mayor que la esperada bajo independencia. Es el tratamiento más efectivo.</p>
 <p><strong>Tratamiento_C <span class="math inline">\(\leftrightarrow\)</span> Sin_Mejora</strong>: Se ubican juntos en el lado opuesto del eje 1, indicando que el Tratamiento C está estrechamente asociado a pacientes que no experimentan mejora alguna.</p>
 <p><strong>Tratamiento_B <span class="math inline">\(\leftrightarrow\)</span> Mejora_Media</strong>: Ambas categorías se proyectan cerca de la zona central y hacia la parte inferior (Dimensión 2), reflejando un perfil intermedio o moderado de respuesta.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Al examinar los valores de <span class="math inline">\(cos^2\)</span>:Todas las categorías (Tratamiento_A, Tratamiento_B, Tratamiento_C, Mejora_Alta, Mejora_Media, Sin_Mejora) presentan un <span class="math inline">\(cos^2 &gt; 0.90\)</span> en el plano proyectado (<span class="math inline">\(1+2\)</span>).Lo que nos lleva a concluir que no existen categorías distorsionadas por la proyección plana; las distancias observadas en el biplot refieren de manera correcta la métrica Chi-cuadrada real del espacio multidimensional.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Puntos con contribución superior a la media (<span class="math inline">\(\frac{100}{\text{N° categorías}}\)</span>) definen la interpretación del eje, ya que la contribución determina el impacto de una categoría en la orientación del eje.</p>
 
 </div>
@@ -813,7 +827,7 @@ Dim.2 0.06437427         17.30867                   100.00000</code></pre>
         </div>
       </div>
 <a href="análisis-de-factores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="escalamiento-multidimensional.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="escalamiento-multidimensional-mds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

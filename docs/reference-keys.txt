@@ -87,7 +87,15 @@ reducción-dimensional-y-espacio-factorial
 descomposición-matemática-svd-de-la-matriz-de-residuos
 extensión-análisis-de-correspondencias-múltiples-acm
 implementación-práctica-en-r-análisis-de-correspondencias-simple
-escalamiento-multidimensional
+escalamiento-multidimensional-mds
+introducción-y-antecedentes-históricos
+fundamentos-y-requisitos-del-mds
+formulación-matemática-de-los-métodos-de-mds
+mds-clásico-o-métrico-principal-coordinate-analysis---pcoa
+mds-no-métrico-ordinal
+cuadro-comparativo-de-métodos-de-reducción-de-dimensiones
+ejemplo-práctico-en-r-1
+diagnóstico-de-ajuste-diagrama-de-shepard
 análisis-de-conglomerados
 análisis-discriminante
 análisis-de-correlación-canónica

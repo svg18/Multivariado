@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 Análisis de conglomerados | Análisis Multivariado</title>
+  <title>Capítulo 6 Escalamiento Multidimensional (MDS) | Análisis Multivariado</title>
   <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 Análisis de conglomerados | Análisis Multivariado" />
+  <meta property="og:title" content="Capítulo 6 Escalamiento Multidimensional (MDS) | Análisis Multivariado" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 Análisis de conglomerados | Análisis Multivariado" />
+  <meta name="twitter:title" content="Capítulo 6 Escalamiento Multidimensional (MDS) | Análisis Multivariado" />
   
   <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="escalamiento-multidimensional-mds.html"/>
-<link rel="next" href="análisis-discriminante.html"/>
+<link rel="prev" href="análisis-de-correspondencias.html"/>
+<link rel="next" href="análisis-de-conglomerados.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -354,17 +354,158 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análisis-de-conglomerados" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Capítulo 7</span> Análisis de conglomerados<a href="análisis-de-conglomerados.html#an%C3%A1lisis-de-conglomerados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="escalamiento-multidimensional-mds" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Escalamiento Multidimensional (MDS)<a href="escalamiento-multidimensional-mds.html#escalamiento-multidimensional-mds" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El <strong>Escalamiento Multidimensional (MDS)</strong> es una técnica de reducción de dimensiones que busca representar un conjunto de <span class="math inline">\(n\)</span> objetos (estímulos, productos o percepciones) en un espacio geométrico de menor dimensión (comúnmente <span class="math inline">\(q = 2\)</span> o <span class="math inline">\(q = 3\)</span>), utilizando únicamente una medición de proximidad entre ellos, sin necesidad de observar directamente los vectores de variables originales.</p>
+<div id="introducción-y-antecedentes-históricos" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introducción y Antecedentes Históricos<a href="escalamiento-multidimensional-mds.html#introducci%C3%B3n-y-antecedentes-hist%C3%B3ricos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La historia de las técnicas de escalamiento multidimensional comenzó formalmente con el trabajo de <strong>Torgerson (1952)</strong>, quien introdujo el término y esbozó las primeras ideas teóricas. Posteriormente, diversos investigadores continuaron desarrollando técnicas con el propósito central de obtener una representación euclideana que respete, lo más fielmente posible, las relaciones de proximidad entre los objetos estudiados.</p>
+<p>El MDS es una herramienta clave para identificar dimensiones principales o subyacentes. Las técnicas de escalamiento infieren las dimensiones latentes en una serie de objetos considerados “similares”. Una vez recolectados los datos, el MDS permite determinar:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Qué dimensiones usar</strong> cuando se están evaluando todas las variables.</li>
+<li><strong>Cuántas dimensiones se deben usar</strong> en un espacio geométrico específico.</li>
+<li><strong>La relativa importancia</strong> de cada una de las dimensiones identificadas.</li>
+<li><strong>Cómo están relacionadas</strong> entre sí las variables u objetos analizados.</li>
+</ol>
+</div>
+<div id="fundamentos-y-requisitos-del-mds" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Fundamentos y Requisitos del MDS<a href="escalamiento-multidimensional-mds.html#fundamentos-y-requisitos-del-mds" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para llevar a cabo un análisis de escalamiento multidimensional de forma rigurosa, se requiere contar con dos elementos fundamentales:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Un conjunto de datos de proximidad o similaridad:</strong> Números que expresen todas o la mayoría de las combinaciones de pares de similaridades/disimilitudes dentro de un grupo de objetos. La proximidad suele construirse a partir de percepciones, preferencias o juicios subjetivos sobre los objetos.</li>
+<li><strong>Un algoritmo computacional:</strong> Un procedimiento que lleve a cabo el cálculo y la optimización de la configuración espacial.</li>
+</ol>
+<p>El objetivo central del MDS es transformar las evaluaciones de preferencia o similaridad en distancias métricas dentro de un espacio multidimensional.</p>
+<p>Si dos objetos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son clasificados por los individuos como altamente similares en comparación con otros objetos, el método de escalamiento asignará un valor de distancia pequeño entre ellos en la representación espacial.</p>
+<p>En el análisis multivariado a través de MDS se distinguen dos tipos principales de dimensiones:</p>
+<p><strong>Dimensiones Objetivas:</strong> Atributos inherentes y medibles físicamente en la variable o sujeto (por ejemplo, peso, altura, precio, aceleración).</p>
+<p><strong>Dimensiones Perceptivas:</strong> Atributos asignados de forma subjetiva por los individuos que evalúan o clasifican los objetos (por ejemplo, calidad percibida, comodidad, prestigio).</p>
+<p><strong>El reto clave en MDS:</strong> Comprender e interpretar las dimensiones perceptivas e intentar, cuando sea posible, relacionarlas formalmente con las dimensiones objetivas.</p>
+</div>
+<div id="formulación-matemática-de-los-métodos-de-mds" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Formulación Matemática de los Métodos de MDS<a href="escalamiento-multidimensional-mds.html#formulaci%C3%B3n-matem%C3%A1tica-de-los-m%C3%A9todos-de-mds" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mds-clásico-o-métrico-principal-coordinate-analysis---pcoa" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> MDS Clásico o Métrico (Principal Coordinate Analysis - PCoA)<a href="escalamiento-multidimensional-mds.html#mds-cl%C3%A1sico-o-m%C3%A9trico-principal-coordinate-analysis---pcoa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Partiendo de una matriz de distancias al cuadrado <span class="math inline">\(D^{(2)} = (d_{ij}^2)_{n \times n}\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Se construye la matriz de centrado numérico <span class="math inline">\(\mathbf{H} = \mathbf{I}_n - \frac{1}{n}\mathbf{1}\mathbf{1}^T\)</span>.</li>
+<li>Se calcula la matriz de producto interno centrado <span class="math inline">\(B\)</span>:
+<span class="math display">\[B = -\frac{1}{2} \mathbf{H} D^{(2)} \mathbf{H}\]</span></li>
+<li>Se realiza la descomposición espectral de <span class="math inline">\(B\)</span>:
+<span class="math display">\[B = V \Lambda V^T\]</span></li>
+<li>Las coordenadas proyectadas <span class="math inline">\(X\)</span> en <span class="math inline">\(q\)</span> dimensiones corresponden a:
+<span class="math display">\[X = V_q \Lambda_q^{1/2}\]</span></li>
+</ol>
+<p><em>(Nota: Si la matriz <span class="math inline">\(D\)</span> se genera estrictamente con distancias euclidianas a partir de variables cuantitativas, la solución del MDS clásico coincide numéricamente con el Análisis de Componentes Principales).</em></p>
+</div>
+<div id="mds-no-métrico-ordinal" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> MDS No Métrico (Ordinal)<a href="escalamiento-multidimensional-mds.html#mds-no-m%C3%A9trico-ordinal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando los datos representan ordenamientos o juicios cualitativos, se utiliza el MDS No Métrico. Este busca una transformación monotónica <span class="math inline">\(f(d_{ij}) \approx \hat{d}_{ij}\)</span> que preserve el orden de los pares.</p>
+<p>La bondad de ajuste se mide a través del indicador <strong>Stress</strong> (<span class="math inline">\(S\)</span>):</p>
+<p><span class="math display">\[\text{Stress} = \sqrt{\frac{\sum_{i &lt; j} (f(d_{ij}) - \delta_{ij})^2}{\sum_{i &lt; j} \delta_{ij}^2}}\]</span></p>
+<p>Donde <span class="math inline">\(\delta_{ij}\)</span> es la distancia en el mapa proyectado.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Valor de Stress</th>
+<th align="left">Calidad del Ajuste</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(&gt; 0.20\)</span></td>
+<td align="left">Pobre / Inaceptable</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(0.10 - 0.20\)</span></td>
+<td align="left">Aceptable / Regular</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(0.05 - 0.10\)</span></td>
+<td align="left">Bueno</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(&lt; 0.05\)</span></td>
+<td align="left">Excelente</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cuadro-comparativo-de-métodos-de-reducción-de-dimensiones" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Cuadro Comparativo de Métodos de Reducción de Dimensiones<a href="escalamiento-multidimensional-mds.html#cuadro-comparativo-de-m%C3%A9todos-de-reducci%C3%B3n-de-dimensiones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Característica</th>
+<th align="left">ACP (PCA)</th>
+<th align="left">MDS Clásico (PCoA)</th>
+<th align="left">MDS No Métrico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Entrada Principal</strong></td>
+<td align="left">Matriz de datos <span class="math inline">\(X_{n \times p}\)</span></td>
+<td align="left">Matriz de distancias <span class="math inline">\(D_{n \times n}\)</span></td>
+<td align="left">Matriz de disimilitudes <span class="math inline">\(D_{n \times n}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Enfoque de Medición</strong></td>
+<td align="left">Variables objetivas</td>
+<td align="left">Distancias métricas</td>
+<td align="left">Juicios/Percepciones ordinales</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Preservación</strong></td>
+<td align="left">Varianza explicada</td>
+<td align="left">Distancias euclidianas</td>
+<td align="left">Orden de rangos/Similaridad</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Criterio de Ajuste</strong></td>
+<td align="left">Eigenvalores / SVD</td>
+<td align="left">Eigenvalores de <span class="math inline">\(B\)</span></td>
+<td align="left">Minimización de Stress</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ejemplo-práctico-en-r-1" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Ejemplo Práctico en R<a href="escalamiento-multidimensional-mds.html#ejemplo-pr%C3%A1ctico-en-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En esta sección se implementa la técnica en R integrándola al flujo del libro.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>initial  value 10.553806 
+iter   5 value 7.910898
+iter   5 value 7.910350
+iter   5 value 7.910350
+final  value 7.910350 
+converged</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div id="diagnóstico-de-ajuste-diagrama-de-shepard" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Diagnóstico de Ajuste: Diagrama de Shepard<a href="escalamiento-multidimensional-mds.html#diagn%C3%B3stico-de-ajuste-diagrama-de-shepard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El Diagrama de Shepard compara las distancias originales frente a las distancias proyectadas en la configuración multidimensional para confirmar que el algoritmo preservó las proximidades adecuadamente.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
+</div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="escalamiento-multidimensional-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="análisis-discriminante.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="análisis-de-correspondencias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-conglomerados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

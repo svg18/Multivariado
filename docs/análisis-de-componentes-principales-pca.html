@@ -312,7 +312,21 @@ div.csl-indent {
 <li class="chapter" data-level="5.7" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>5.7</b> Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
 <li class="chapter" data-level="5.8" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple"><i class="fa fa-check"></i><b>5.8</b> Implementación Práctica en R (Análisis de Correspondencias Simple)</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="escalamiento-multidimensional.html"><a href="escalamiento-multidimensional.html"><i class="fa fa-check"></i><b>6</b> Escalamiento multidimensional</a></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html"><i class="fa fa-check"></i><b>6</b> Escalamiento Multidimensional (MDS)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#introducci%C3%B3n-y-antecedentes-hist%C3%B3ricos"><i class="fa fa-check"></i><b>6.1</b> Introducción y Antecedentes Históricos</a></li>
+<li class="chapter" data-level="6.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#fundamentos-y-requisitos-del-mds"><i class="fa fa-check"></i><b>6.2</b> Fundamentos y Requisitos del MDS</a></li>
+<li class="chapter" data-level="6.3" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#formulaci%C3%B3n-matem%C3%A1tica-de-los-m%C3%A9todos-de-mds"><i class="fa fa-check"></i><b>6.3</b> Formulación Matemática de los Métodos de MDS</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-cl%C3%A1sico-o-m%C3%A9trico-principal-coordinate-analysis---pcoa"><i class="fa fa-check"></i><b>6.3.1</b> MDS Clásico o Métrico (Principal Coordinate Analysis - PCoA)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-no-m%C3%A9trico-ordinal"><i class="fa fa-check"></i><b>6.3.2</b> MDS No Métrico (Ordinal)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#cuadro-comparativo-de-m%C3%A9todos-de-reducci%C3%B3n-de-dimensiones"><i class="fa fa-check"></i><b>6.4</b> Cuadro Comparativo de Métodos de Reducción de Dimensiones</a></li>
+<li class="chapter" data-level="6.5" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#ejemplo-pr%C3%A1ctico-en-r-1"><i class="fa fa-check"></i><b>6.5</b> Ejemplo Práctico en R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#diagn%C3%B3stico-de-ajuste-diagrama-de-shepard"><i class="fa fa-check"></i><b>6.5.1</b> Diagnóstico de Ajuste: Diagrama de Shepard</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>III Métodos de clasificación</b></span></li>
 <li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
 <li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
@@ -488,14 +502,21 @@ San Francisco  12     56.7      453       716    8.7  20.66   67
 Denver         17     51.9      454       515    9.0  12.95   86
 Hartford       56     49.1      412       158    9.0  43.37  127
 Wilmington     36     54.0       80        80    9.0  40.25  114</code></pre>
-<pre><code>      SO2            Neg.Temp        Empresas        Poblacion          Viento           Precip           Dias      
- Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0   Min.   : 6.000   Min.   : 7.05   Min.   : 36.0  
- 1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0   1st Qu.: 8.700   1st Qu.:30.96   1st Qu.:103.0  
- Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0   Median : 9.300   Median :38.74   Median :115.0  
- Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6   Mean   : 9.444   Mean   :36.77   Mean   :113.9  
- 3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0   3rd Qu.:10.600   3rd Qu.:43.11   3rd Qu.:128.0  
- Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0   Max.   :12.700   Max.   :59.80   Max.   :166.0  </code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-14-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-14-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>      SO2            Neg.Temp        Empresas        Poblacion          Viento           Precip     
+ Min.   :  8.00   Min.   :43.50   Min.   :  35.0   Min.   :  71.0   Min.   : 6.000   Min.   : 7.05  
+ 1st Qu.: 13.00   1st Qu.:50.60   1st Qu.: 181.0   1st Qu.: 299.0   1st Qu.: 8.700   1st Qu.:30.96  
+ Median : 26.00   Median :54.60   Median : 347.0   Median : 515.0   Median : 9.300   Median :38.74  
+ Mean   : 30.05   Mean   :55.76   Mean   : 463.1   Mean   : 608.6   Mean   : 9.444   Mean   :36.77  
+ 3rd Qu.: 35.00   3rd Qu.:59.30   3rd Qu.: 462.0   3rd Qu.: 717.0   3rd Qu.:10.600   3rd Qu.:43.11  
+ Max.   :110.00   Max.   :75.50   Max.   :3344.0   Max.   :3369.0   Max.   :12.700   Max.   :59.80  
+      Dias      
+ Min.   : 36.0  
+ 1st Qu.:103.0  
+ Median :115.0  
+ Mean   :113.9  
+ 3rd Qu.:128.0  
+ Max.   :166.0  </code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-22-2.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-22-3.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>             Neg.Temp    Empresas   Poblacion      Viento      Precip        Dias
 Neg.Temp   1.00000000 -0.19004216 -0.06267813 -0.34973963  0.38625342 -0.43024212
 Empresas  -0.19004216  1.00000000  0.95526935  0.23794683 -0.03241688  0.13182930
@@ -559,7 +580,7 @@ Richmond              1.171998946 -0.33494902
 Seattle              -0.481679438 -1.59742576
 Charleston            1.429753320 -1.21058365
 Milwaukee            -1.391024518 -0.15761872</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-4.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
