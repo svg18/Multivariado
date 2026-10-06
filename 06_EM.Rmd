@@ -84,7 +84,17 @@ Donde $\delta_{ij}$ es la distancia en el mapa proyectado.
 
 ## Ejemplo Práctico en R 
 
-En esta sección se implementa la técnica en R integrándola al flujo del libro.
+En esta sección se presenta la aplicación práctica del Escalamiento Multidimensional (MDS) utilizando el lenguaje de programación R. El objetivo principal es ilustrar de manera concreta cómo transformar una matriz de datos multivariados en una representación espacial de menor dimensión ($q = 2$) mediante dos enfoques: el MDS Clásico (métrico) y el MDS No Métrico.
+
+Para la demostración se utiliza el conjunto de datos USArrests, el cual contiene estadísticas sobre tasas de criminalidad y porcentaje de población urbana en los distintos estados de EE. UU. 
+
+A través de este análisis se busca responder a preguntas clave expuestas en la teoría:
+
+Agrupamiento y cercanía: ¿Qué estados presentan perfiles de criminalidad y urbanización similares entre sí?
+
+Identificación de dimensiones: ¿Qué representan geométricamente el eje horizontal (Dimensión 1) y el eje vertical (Dimensión 2) en el mapa perceptual resultante?
+
+Evaluación del ajuste: ¿Qué tan bien se conservaron las distancias originales al proyectarlas a un espacio bidimensional, evaluado mediante la métrica de Stress y el Diagrama de Shepard?
 
 ```{r, message=FALSE, warning=FALSE}
 # Cargar librerías necesarias
