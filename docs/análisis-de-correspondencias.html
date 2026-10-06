@@ -792,21 +792,56 @@ De forma análoga, se define la distancia Chi-cuadrada entre dos perfiles column
 <div id="implementación-práctica-en-r-análisis-de-correspondencias-simple" class="section level2 hasAnchor" number="5.8">
 <h2><span class="header-section-number">5.8</span> Implementación Práctica en R (Análisis de Correspondencias Simple)<a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En el lenguaje R, el paquete recomendado para ejecutar Análisis de Correspondencias es <code>FactoMineR</code>, combinado con <code>factoextra</code> para la visualización.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="análisis-de-correspondencias.html#cb118-1" tabindex="-1"></a><span class="co"># Cargar librerías necesarias</span></span>
+<span id="cb118-2"><a href="análisis-de-correspondencias.html#cb118-2" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb118-3"><a href="análisis-de-correspondencias.html#cb118-3" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb118-4"><a href="análisis-de-correspondencias.html#cb118-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb118-5"><a href="análisis-de-correspondencias.html#cb118-5" tabindex="-1"></a></span>
+<span id="cb118-6"><a href="análisis-de-correspondencias.html#cb118-6" tabindex="-1"></a><span class="co"># Crear una tabla de contingencia de ejemplo</span></span>
+<span id="cb118-7"><a href="análisis-de-correspondencias.html#cb118-7" tabindex="-1"></a><span class="co"># Ejemplo: Tipo de Tratamiento Médico vs Nivel de Mejora</span></span>
+<span id="cb118-8"><a href="análisis-de-correspondencias.html#cb118-8" tabindex="-1"></a>tabla_datos <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">15</span>, <span class="dv">5</span>,</span>
+<span id="cb118-9"><a href="análisis-de-correspondencias.html#cb118-9" tabindex="-1"></a>                        <span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">15</span>,</span>
+<span id="cb118-10"><a href="análisis-de-correspondencias.html#cb118-10" tabindex="-1"></a>                        <span class="dv">5</span>,  <span class="dv">10</span>, <span class="dv">35</span>), </span>
+<span id="cb118-11"><a href="análisis-de-correspondencias.html#cb118-11" tabindex="-1"></a>                      <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb118-12"><a href="análisis-de-correspondencias.html#cb118-12" tabindex="-1"></a></span>
+<span id="cb118-13"><a href="análisis-de-correspondencias.html#cb118-13" tabindex="-1"></a><span class="fu">rownames</span>(tabla_datos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Tratamiento_A&quot;</span>, <span class="st">&quot;Tratamiento_B&quot;</span>, <span class="st">&quot;Tratamiento_C&quot;</span>)</span>
+<span id="cb118-14"><a href="análisis-de-correspondencias.html#cb118-14" tabindex="-1"></a><span class="fu">colnames</span>(tabla_datos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Mejora_Alta&quot;</span>, <span class="st">&quot;Mejora_Media&quot;</span>, <span class="st">&quot;Sin_Mejora&quot;</span>)</span>
+<span id="cb118-15"><a href="análisis-de-correspondencias.html#cb118-15" tabindex="-1"></a><span class="fu">print</span>(tabla_datos)</span></code></pre></div>
 <pre><code>              Mejora_Alta Mejora_Media Sin_Mejora
 Tratamiento_A          30           15          5
 Tratamiento_B          10           25         15
 Tratamiento_C           5           10         35</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="análisis-de-correspondencias.html#cb120-1" tabindex="-1"></a><span class="co"># 1. Prueba de Chi-Cuadrada de Pearson</span></span>
+<span id="cb120-2"><a href="análisis-de-correspondencias.html#cb120-2" tabindex="-1"></a>prueba_chi <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla_datos)</span>
+<span id="cb120-3"><a href="análisis-de-correspondencias.html#cb120-3" tabindex="-1"></a><span class="fu">print</span>(prueba_chi)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s Chi-squared test
 
 data:  tabla_datos
 X-squared = 55.788, df = 4, p-value = 2.221e-11</code></pre>
 <p>Dado que <span class="math inline">\(p\text{-valor} &lt; 0.05\)</span>, se rechaza la hipótesis nula (<span class="math inline">\(H_0\)</span>) de independencia. Concluimos que existe una fuerte relación de dependencia entre el tipo de tratamiento administrado y la respuesta de mejora del paciente. Esto justifica plenamente la exploración del mapa factorial del Análisis de Correspondencias.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="análisis-de-correspondencias.html#cb122-1" tabindex="-1"></a><span class="co"># 2. Ejecucción del Análisis de Correspondencias</span></span>
+<span id="cb122-2"><a href="análisis-de-correspondencias.html#cb122-2" tabindex="-1"></a>res_ca <span class="ot">&lt;-</span> <span class="fu">CA</span>(tabla_datos, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb122-3"><a href="análisis-de-correspondencias.html#cb122-3" tabindex="-1"></a></span>
+<span id="cb122-4"><a href="análisis-de-correspondencias.html#cb122-4" tabindex="-1"></a><span class="co"># 3. Resumen de Inercia y Autovalores</span></span>
+<span id="cb122-5"><a href="análisis-de-correspondencias.html#cb122-5" tabindex="-1"></a><span class="fu">get_eigenvalue</span>(res_ca)</span></code></pre></div>
 <pre><code>      eigenvalue variance.percent cumulative.variance.percent
 Dim.1 0.30754492         82.69133                    82.69133
 Dim.2 0.06437427         17.30867                   100.00000</code></pre>
 <p>Conclusión de reducción dimensional: El mapa factorial bidimensional (<span class="math inline">\(2\text{D}\)</span>) retiene el <span class="math inline">\(100\%\)</span> de la inercia total de la tabla. La Dimensión 1 captura por sí sola la gran mayoría de la variabilidad (<span class="math inline">\(82.8\%\)</span>), reflejando el patrón dominante de la tabla.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-25-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="análisis-de-correspondencias.html#cb124-1" tabindex="-1"></a><span class="co"># Gráfico de codo (Scree plot de inercia)</span></span>
+<span id="cb124-2"><a href="análisis-de-correspondencias.html#cb124-2" tabindex="-1"></a><span class="fu">fviz_screeplot</span>(res_ca, <span class="at">addlabels =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb124-3"><a href="análisis-de-correspondencias.html#cb124-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Porcentaje de Inercia Explicada por Dimensión&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Inercia (%)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-4"><a href="análisis-de-correspondencias.html#cb124-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="análisis-de-correspondencias.html#cb125-1" tabindex="-1"></a><span class="co"># Biplot simétrico del Análisis de Correspondencias</span></span>
+<span id="cb125-2"><a href="análisis-de-correspondencias.html#cb125-2" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(res_ca, </span>
+<span id="cb125-3"><a href="análisis-de-correspondencias.html#cb125-3" tabindex="-1"></a>               <span class="at">repel =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb125-4"><a href="análisis-de-correspondencias.html#cb125-4" tabindex="-1"></a>               <span class="at">col.row =</span> <span class="st">&quot;steelblue&quot;</span>, </span>
+<span id="cb125-5"><a href="análisis-de-correspondencias.html#cb125-5" tabindex="-1"></a>               <span class="at">col.col =</span> <span class="st">&quot;darkred&quot;</span>) <span class="sc">+</span></span>
+<span id="cb125-6"><a href="análisis-de-correspondencias.html#cb125-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Plano Factorial - Análisis de Correspondencias&quot;</span>) <span class="sc">+</span></span>
+<span id="cb125-7"><a href="análisis-de-correspondencias.html#cb125-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>El biplot proyecta conjuntamente las categorías de filas y columnas:</p>
 <p>Eje Horizontal (Dimensión 1 - <span class="math inline">\(82.7\%\)</span> de inercia):Separa claramente en el extremo derecho a Tratamiento_A y Mejora_Alta, y en el extremo izquierdo a Tratamiento_C y Sin_Mejora.</p>
 <p>Interpretación del Eje <span class="math inline">\(X\)</span>: Representa un gradiente o escala clínica de efectividad terapéutica, que va desde “Eficacia Alta / Éxito Terapéutico” (derecha) hasta “Falta de Respuesta / Fracaso Terapéutico” (izquierda).</p>
@@ -814,9 +849,15 @@ Dim.2 0.06437427         17.30867                   100.00000</code></pre>
 <p><strong>Tratamiento_A <span class="math inline">\(\leftrightarrow\)</span> Mejora_Alta</strong>: La fuerte proximidad entre ambas categorías señala que el Tratamiento A presenta una proporción de pacientes con mejora alta sustancialmente mayor que la esperada bajo independencia. Es el tratamiento más efectivo.</p>
 <p><strong>Tratamiento_C <span class="math inline">\(\leftrightarrow\)</span> Sin_Mejora</strong>: Se ubican juntos en el lado opuesto del eje 1, indicando que el Tratamiento C está estrechamente asociado a pacientes que no experimentan mejora alguna.</p>
 <p><strong>Tratamiento_B <span class="math inline">\(\leftrightarrow\)</span> Mejora_Media</strong>: Ambas categorías se proyectan cerca de la zona central y hacia la parte inferior (Dimensión 2), reflejando un perfil intermedio o moderado de respuesta.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="análisis-de-correspondencias.html#cb126-1" tabindex="-1"></a><span class="co"># Evaluación de la calidad de representación (cos2) de las filas</span></span>
+<span id="cb126-2"><a href="análisis-de-correspondencias.html#cb126-2" tabindex="-1"></a><span class="fu">fviz_ca_row</span>(res_ca, <span class="at">col.row =</span> <span class="st">&quot;cos2&quot;</span>, </span>
+<span id="cb126-3"><a href="análisis-de-correspondencias.html#cb126-3" tabindex="-1"></a>            <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb126-4"><a href="análisis-de-correspondencias.html#cb126-4" tabindex="-1"></a>            <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Al examinar los valores de <span class="math inline">\(cos^2\)</span>:Todas las categorías (Tratamiento_A, Tratamiento_B, Tratamiento_C, Mejora_Alta, Mejora_Media, Sin_Mejora) presentan un <span class="math inline">\(cos^2 &gt; 0.90\)</span> en el plano proyectado (<span class="math inline">\(1+2\)</span>).Lo que nos lleva a concluir que no existen categorías distorsionadas por la proyección plana; las distancias observadas en el biplot refieren de manera correcta la métrica Chi-cuadrada real del espacio multidimensional.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="análisis-de-correspondencias.html#cb127-1" tabindex="-1"></a><span class="co"># Contribuciones de las categorías columna a la Dimensión 1</span></span>
+<span id="cb127-2"><a href="análisis-de-correspondencias.html#cb127-2" tabindex="-1"></a><span class="fu">fviz_contrib</span>(res_ca, <span class="at">choice =</span> <span class="st">&quot;col&quot;</span>, <span class="at">axes =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Puntos con contribución superior a la media (<span class="math inline">\(\frac{100}{\text{N° categorías}}\)</span>) definen la interpretación del eje, ya que la contribución determina el impacto de una categoría en la orientación del eje.</p>
 
 </div>

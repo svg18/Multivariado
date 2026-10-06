@@ -479,19 +479,67 @@ div.csl-indent {
 </div>
 <div id="ejemplo-práctico-en-r-1" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Ejemplo Práctico en R<a href="escalamiento-multidimensional-mds.html#ejemplo-pr%C3%A1ctico-en-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En esta sección se implementa la técnica en R integrándola al flujo del libro.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>En esta sección se presenta la aplicación práctica del Escalamiento Multidimensional (MDS) utilizando el lenguaje de programación R. El objetivo principal es ilustrar de manera concreta cómo transformar una matriz de datos multivariados en una representación espacial de menor dimensión (<span class="math inline">\(q = 2\)</span>) mediante dos enfoques: el MDS Clásico (métrico) y el MDS No Métrico.</p>
+<p>Para la demostración se utiliza el conjunto de datos USArrests, el cual contiene estadísticas sobre tasas de criminalidad y porcentaje de población urbana en los distintos estados de EE. UU.</p>
+<p>A través de este análisis se busca responder a preguntas clave expuestas en la teoría:</p>
+<p>Agrupamiento y cercanía: ¿Qué estados presentan perfiles de criminalidad y urbanización similares entre sí?</p>
+<p>Identificación de dimensiones: ¿Qué representan geométricamente el eje horizontal (Dimensión 1) y el eje vertical (Dimensión 2) en el mapa perceptual resultante?</p>
+<p>Evaluación del ajuste: ¿Qué tan bien se conservaron las distancias originales al proyectarlas a un espacio bidimensional, evaluado mediante la métrica de Stress y el Diagrama de Shepard?</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="escalamiento-multidimensional-mds.html#cb128-1" tabindex="-1"></a><span class="co"># Cargar librerías necesarias</span></span>
+<span id="cb128-2"><a href="escalamiento-multidimensional-mds.html#cb128-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb128-3"><a href="escalamiento-multidimensional-mds.html#cb128-3" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb128-4"><a href="escalamiento-multidimensional-mds.html#cb128-4" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="escalamiento-multidimensional-mds.html#cb128-5" tabindex="-1"></a><span class="co"># 1. Matriz de distancias (Ejemplo con datos multivariados o matriz de distancias)</span></span>
+<span id="cb128-6"><a href="escalamiento-multidimensional-mds.html#cb128-6" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;USArrests&quot;</span>)</span>
+<span id="cb128-7"><a href="escalamiento-multidimensional-mds.html#cb128-7" tabindex="-1"></a>dist_matrix <span class="ot">&lt;-</span> <span class="fu">dist</span>(<span class="fu">scale</span>(USArrests), <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb128-8"><a href="escalamiento-multidimensional-mds.html#cb128-8" tabindex="-1"></a></span>
+<span id="cb128-9"><a href="escalamiento-multidimensional-mds.html#cb128-9" tabindex="-1"></a><span class="co"># 2. MDS Clásico (cmdscale)</span></span>
+<span id="cb128-10"><a href="escalamiento-multidimensional-mds.html#cb128-10" tabindex="-1"></a>mds_classic <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(dist_matrix, <span class="at">k =</span> <span class="dv">2</span>, <span class="at">eig =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb128-11"><a href="escalamiento-multidimensional-mds.html#cb128-11" tabindex="-1"></a></span>
+<span id="cb128-12"><a href="escalamiento-multidimensional-mds.html#cb128-12" tabindex="-1"></a>df_mds_classic <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mds_classic<span class="sc">$</span>points) <span class="sc">%&gt;%</span></span>
+<span id="cb128-13"><a href="escalamiento-multidimensional-mds.html#cb128-13" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Dim1 =</span> V1, <span class="at">Dim2 =</span> V2) <span class="sc">%&gt;%</span></span>
+<span id="cb128-14"><a href="escalamiento-multidimensional-mds.html#cb128-14" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">&quot;Estado&quot;</span>)</span>
+<span id="cb128-15"><a href="escalamiento-multidimensional-mds.html#cb128-15" tabindex="-1"></a></span>
+<span id="cb128-16"><a href="escalamiento-multidimensional-mds.html#cb128-16" tabindex="-1"></a><span class="co"># Gráfico MDS Clásico</span></span>
+<span id="cb128-17"><a href="escalamiento-multidimensional-mds.html#cb128-17" tabindex="-1"></a><span class="fu">ggplot</span>(df_mds_classic, <span class="fu">aes</span>(<span class="at">x =</span> Dim1, <span class="at">y =</span> Dim2, <span class="at">label =</span> Estado)) <span class="sc">+</span></span>
+<span id="cb128-18"><a href="escalamiento-multidimensional-mds.html#cb128-18" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb128-19"><a href="escalamiento-multidimensional-mds.html#cb128-19" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb128-20"><a href="escalamiento-multidimensional-mds.html#cb128-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb128-21"><a href="escalamiento-multidimensional-mds.html#cb128-21" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;MDS Clásico (PCoA) - USArrests&quot;</span>,</span>
+<span id="cb128-22"><a href="escalamiento-multidimensional-mds.html#cb128-22" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Dimensión 1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Dimensión 2&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="escalamiento-multidimensional-mds.html#cb129-1" tabindex="-1"></a><span class="co"># 3. MDS No Métrico (isoMDS)</span></span>
+<span id="cb129-2"><a href="escalamiento-multidimensional-mds.html#cb129-2" tabindex="-1"></a>mds_nonmetric <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(dist_matrix, <span class="at">k =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>initial  value 10.553806 
 iter   5 value 7.910898
 iter   5 value 7.910350
 iter   5 value 7.910350
 final  value 7.910350 
 converged</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-28-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="escalamiento-multidimensional-mds.html#cb131-1" tabindex="-1"></a>df_mds_nonmetric <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mds_nonmetric<span class="sc">$</span>points) <span class="sc">%&gt;%</span></span>
+<span id="cb131-2"><a href="escalamiento-multidimensional-mds.html#cb131-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Dim1 =</span> V1, <span class="at">Dim2 =</span> V2) <span class="sc">%&gt;%</span></span>
+<span id="cb131-3"><a href="escalamiento-multidimensional-mds.html#cb131-3" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">&quot;Estado&quot;</span>)</span>
+<span id="cb131-4"><a href="escalamiento-multidimensional-mds.html#cb131-4" tabindex="-1"></a></span>
+<span id="cb131-5"><a href="escalamiento-multidimensional-mds.html#cb131-5" tabindex="-1"></a><span class="co"># Gráfico MDS No Métrico</span></span>
+<span id="cb131-6"><a href="escalamiento-multidimensional-mds.html#cb131-6" tabindex="-1"></a><span class="fu">ggplot</span>(df_mds_nonmetric, <span class="fu">aes</span>(<span class="at">x =</span> Dim1, <span class="at">y =</span> Dim2, <span class="at">label =</span> Estado)) <span class="sc">+</span></span>
+<span id="cb131-7"><a href="escalamiento-multidimensional-mds.html#cb131-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb131-8"><a href="escalamiento-multidimensional-mds.html#cb131-8" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb131-9"><a href="escalamiento-multidimensional-mds.html#cb131-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb131-10"><a href="escalamiento-multidimensional-mds.html#cb131-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;MDS No Métrico - Stress:&quot;</span>, <span class="fu">round</span>(mds_nonmetric<span class="sc">$</span>stress, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>),</span>
+<span id="cb131-11"><a href="escalamiento-multidimensional-mds.html#cb131-11" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Dimensión 1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Dimensión 2&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <div id="diagnóstico-de-ajuste-diagrama-de-shepard" class="section level3 hasAnchor" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Diagnóstico de Ajuste: Diagrama de Shepard<a href="escalamiento-multidimensional-mds.html#diagn%C3%B3stico-de-ajuste-diagrama-de-shepard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El Diagrama de Shepard compara las distancias originales frente a las distancias proyectadas en la configuración multidimensional para confirmar que el algoritmo preservó las proximidades adecuadamente.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="escalamiento-multidimensional-mds.html#cb132-1" tabindex="-1"></a><span class="co"># Diagnóstico de Shepard</span></span>
+<span id="cb132-2"><a href="escalamiento-multidimensional-mds.html#cb132-2" tabindex="-1"></a>shepard_data <span class="ot">&lt;-</span> <span class="fu">Shepard</span>(dist_matrix, mds_nonmetric<span class="sc">$</span>points)</span>
+<span id="cb132-3"><a href="escalamiento-multidimensional-mds.html#cb132-3" tabindex="-1"></a></span>
+<span id="cb132-4"><a href="escalamiento-multidimensional-mds.html#cb132-4" tabindex="-1"></a><span class="fu">plot</span>(shepard_data, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;gray40&quot;</span>,</span>
+<span id="cb132-5"><a href="escalamiento-multidimensional-mds.html#cb132-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Distancias / Disimilitudes Originales&quot;</span>,</span>
+<span id="cb132-6"><a href="escalamiento-multidimensional-mds.html#cb132-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Distancias Configurada / Proyectada&quot;</span>,</span>
+<span id="cb132-7"><a href="escalamiento-multidimensional-mds.html#cb132-7" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Diagrama de Shepard&quot;</span>)</span>
+<span id="cb132-8"><a href="escalamiento-multidimensional-mds.html#cb132-8" tabindex="-1"></a><span class="fu">lines</span>(shepard_data<span class="sc">$</span>x, shepard_data<span class="sc">$</span>yf, <span class="at">type =</span> <span class="st">&quot;S&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
