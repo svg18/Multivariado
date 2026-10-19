@@ -31,7 +31,7 @@ Ejemplo 2: Enfoque No Supervisado (iris)
 
 Si prescindimos de la columna Species, el problema se convierte en un análisis no supervisado. El algoritmo debe agrupar las 150 flores basándose únicamente en la proximidad geométrica en un espacio de cuatro dimensiones.
 
-## Visualización Intuitiva de Ambos Paradojas
+## Visualización Intuitiva de ambas Paradojas
 
 Para ilustrar la diferencia fundamental entre ambos enfoques, consideremos un conjunto de datos multivariado bidimensional $X \in \mathbb{R}^2$:
 
@@ -69,6 +69,8 @@ p_nosupervisado <- ggplot(datos_sim, aes(x = X1, y = X2)) +
 p_supervisado + p_nosupervisado
 ```
 
+---
+
 ## Métricas de Distancia y Similitud
 
 En el análisis multivariado, la cuantificación de la cercanía, parecido o disimilitud entre observaciones es el pilar fundamental sobre el que se construyen tanto los métodos de **clasificación no supervisada** (análisis de conglomerados) como varios algoritmos de **clasificación supervisada** (como $k$-NN o la regla de distancia mínima al centroide).
@@ -87,6 +89,8 @@ Para que una función $d(x_i, x_j)$ sea considerada formalmente una **métrica d
 4. **Desigualdad triangular:** $d(x_i, x_k) \le d(x_i, x_j) + d(x_j, x_k)$
 
 > **Nota:** Cuando una medida satisface los tres primeros axiomas pero no necesariamente la desigualdad triangular, se le denomina **pseudométrica** o **medida de disimilitud**.
+
+---
 
 ## Métricas de Distancia para Variables Continuas
 
@@ -110,7 +114,6 @@ Dependiendo del valor fijado para $q$, obtenemos tres de las métricas continuas
 
   $$d_{Cheb}(x_i, x_j) = \max_{k=1,\dots,p} \vert{}x_{ik} - x_{jk}\vert{}$$
 
----
 
 ### Distancia Euclidiana Estandarizada
 
@@ -120,11 +123,10 @@ Para corregir esto, se realiza una estandarización previa dividiendo las difere
 
 $$d_{SE}(x_i, x_j) = \sqrt{\sum_{k=1}^{p} \frac{(x_{ik} - x_{jk})^2}{s_k^2}}$$
 
-Matrencialmente, si $D_s = \text{diag}(s_1^2, s_2^2, \dots, s_p^2)$ es la matriz diagonal de varianzas:
+Entonces, si $D_s = \text{diag}(s_1^2, s_2^2, \dots, s_p^2)$ es la matriz diagonal de varianzas:
 
 $$d_{SE}(x_i, x_j) = \sqrt{(x_i - x_j)^T D_s^{-1} (x_i - x_j)}$$
 
----
 
 ### Distancia de Mahalanobis
 
@@ -143,7 +145,6 @@ $$S = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})(x_i - \bar{x})^T$$
 2. **Descorrelación:** Pondera las variaciones en direcciones con mayor o menor variabilidad conjunta.
 3. **Detección de atípicos multivariados:** Permite medir la distancia desde un punto individual $x_i$ hasta el centroide del grupo $\bar{x}$.
 
----
 
 ### Ejemplo Práctico en R: Comparación de Métricas Continuas
 
@@ -183,6 +184,8 @@ kable(d_mah, digits = 2, caption = "Tabla 1.3: Distancia de Mahalanobis (Ajustad
 
 Interpretación: En la Tabla 1.1, la enorme diferencia en los caballos de fuerza (hp) entre el Maserati Bora y los otros vehículos infla de manera desproporcionada la distancia. Al estandarizar (Tabla 1.2) o incorporar la covarianza multivariada con Mahalanobis (Tabla 1.3), las variables aportan de forma ponderada e insesgada.
 
+---
+
 ## Medidas de Similitud y Disimilitud para Datos Binarios y Cualitativos
 
 Cuando los vectores de datos multivariados representan atributos dicotómicos de presencia ($1$) o ausencia ($0$), las métricas de distancia concebidas para variables continuas (como la Euclidiana) resultan conceptualmente inadecuadas.
@@ -203,30 +206,27 @@ Donde las frecuencias absolutas representan:
 * $d$: Número de características **ausentes en ambos** individuos (coincidencias $0-0$).
 * $p = a + b + c + d$: Número total de características evaluadas.
 
----
 
 ### Principales Coeficientes de Similitud Binaria
 
-#### 1. Coeficiente de Coincidencia Simple (*Simple Matching Coefficient - SMC*)
+#### Coeficiente de Coincidencia Simple (*Simple Matching Coefficient - SMC*)
 Asigna un peso simétrico tanto a las coincidencias de presencia ($1-1$) como a las coincidencias de ausencia ($0-0$):
 
 $$S_{SMC} = \frac{a + d}{a + b + c + d}$$
 
 * **Ámbito de aplicación:** Se utiliza cuando la ausencia compartida de un atributo aporta valor explicativo al problema (por ejemplo, respuestas de "Sí / No" de igual peso en encuestas de satisfacción).
 
-#### 2. Coeficiente de Jaccard
+#### Coeficiente de Jaccard
 Excluye deliberadamente del cálculo el recuento de ausencias compartidas ($d$):
 
 $$S_{Jaccard} = \frac{a}{a + b + c}$$
 
 * **Ámbito de aplicación:** Es la métrica estándar cuando las coincidencias de ausencia no transmiten información relevante o inflarían artificialmente la similitud (por ejemplo, presencia de mutaciones genéticas raras, registro de especies en ecología o coincidencia de palabras clave en minería de texto).
 
-#### 3. Coeficiente de Sørensen-Dice
+#### Coeficiente de Sørensen-Dice
 Atribuye el doble de importancia a las coincidencias de presencia positiva ($a$):
 
 $$S_{Dice} = \frac{2a}{2a + b + c}$$
-
----
 
 ### Transformación de Coeficientes de Similitud a Métricas de Distancia
 
@@ -236,9 +236,7 @@ Para aplicar algoritmos de agrupamiento (*clustering*) o escalamiento multidimen
 
 $$d_{ij} = 1 - S_{ij} \quad \text{o} \quad d_{ij} = \sqrt{1 - S_{ij}}$$
 
----
-
-### Ejemplo Práctico en R: Cálculo Manual y Automatizado
+### Ejemplo Práctico
 
 En este ejemplo se comparan tres especímenes analizados sobre $8$ marcadores biológicos binarios ($1 = \text{Presencia}$, $0 = \text{Ausencia}$).
 
@@ -285,13 +283,14 @@ kable(tabla_coeficientes, digits = 3, caption = "Métricas de coincidencia y coe
 ```
 Observa la comparación entre Esp_B y Esp_C. Poseen $5$ ausencias compartidas ($0-0$). El coeficiente Simple Matching refleja una distancia pequeña ($d_{SMC} = 0.250$) al contabilizar esas ausencias como similitud. En cambio, la distancia de Jaccard ($d_{Jaccard} = 0.667$) ignora los $0-0$, reflejando una menor similitud biológica real al tener solo un marcador positivo coincidente.
 
+---
+
 ## Distancias para Datos Mixtos: Coeficiente y Distancia de Gower
 
 En estudios aplicados de análisis multivariado es común encontrar matrices de datos heterogéneas que combinan simultáneamente variables **continuas**, **ordinales**, **nominales** y **binarias**. En estos escenarios, las distancias clásicas (como la Euclidiana o la de Mahalanobis) no resultan aplicables.
 
 El **coeficiente de disimilitud de Gower** (Gower, 1971) permite evaluar la distancia global entre dos observaciones $i$ y $j$ ponderando las distancias parciales calculadas para cada tipo de variable.
 
----
 
 ### Formulación Matemática
 
@@ -310,8 +309,6 @@ Donde:
 2. **Variables Continuas u Ordinales (Estandarizadas por Rango):**
    $$s_{ijk} = 1 - \frac{\vert{}x_{ik} - x_{jk}\vert{}}{R_k}$$
    donde $R_k = \max(X_k) - \min(X_k)$ es el rango muestral total de la variable $k$.
-
----
 
 ### Ejemplo Práctico en R: Distancia de Gower con `cluster::daisy`
 
@@ -347,6 +344,8 @@ kable(matriz_gower_mat, digits = 3, caption = "Matriz de Disimilitud de Gower d_
 ```
 
 Observa que la disimilitud entre el Cliente_A y el Cliente_C es muy cercana a cero ($d_G \approx 0.019$), ya que coinciden en las variables categóricas y presentan valores numéricos sumamente próximos. Por el contrario, el Cliente_B muestra una elevada disimilitud con respecto a los otros dos ($d_G > 0.98$).
+
+---
 
 ## Cuadro Resumen: Guía para la Selección de Métricas de Distancia
 
