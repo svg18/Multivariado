@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 Análisis de conglomerados | Análisis Multivariado</title>
+  <title>Capítulo 8 Análisis de conglomerados | Análisis Multivariado</title>
   <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 Análisis de conglomerados | Análisis Multivariado" />
+  <meta property="og:title" content="Capítulo 8 Análisis de conglomerados | Análisis Multivariado" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 Análisis de conglomerados | Análisis Multivariado" />
+  <meta name="twitter:title" content="Capítulo 8 Análisis de conglomerados | Análisis Multivariado" />
   
   <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
   
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="escalamiento-multidimensional-mds.html"/>
+<link rel="prev" href="métodos-de-clasificación.html"/>
 <link rel="next" href="análisis-discriminante.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -328,12 +328,57 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 <li class="part"><span><b>III Métodos de clasificación</b></span></li>
-<li class="chapter" data-level="7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>7</b> Análisis de conglomerados</a></li>
-<li class="chapter" data-level="8" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>8</b> Análisis discriminante</a></li>
+<li class="chapter" data-level="7" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html"><i class="fa fa-check"></i><b>7</b> Métodos de clasificación</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambos-paradojas"><i class="fa fa-check"></i><b>7.1</b> Visualización Intuitiva de Ambos Paradojas</a></li>
+<li class="chapter" data-level="7.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-y-similitud"><i class="fa fa-check"></i><b>7.2</b> Métricas de Distancia y Similitud</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#propiedades-matem%C3%A1ticas-de-una-m%C3%A9trica-de-distancia"><i class="fa fa-check"></i><b>7.2.1</b> Propiedades Matemáticas de una Métrica de Distancia</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-para-variables-continuas"><i class="fa fa-check"></i><b>7.3</b> Métricas de Distancia para Variables Continuas</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#familia-de-distancias-de-minkowski"><i class="fa fa-check"></i><b>7.3.1</b> Familia de Distancias de Minkowski</a></li>
+<li class="chapter" data-level="7.3.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancia-euclidiana-estandarizada"><i class="fa fa-check"></i><b>7.3.2</b> Distancia Euclidiana Estandarizada</a></li>
+<li class="chapter" data-level="7.3.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancia-de-mahalanobis"><i class="fa fa-check"></i><b>7.3.3</b> Distancia de Mahalanobis</a></li>
+<li class="chapter" data-level="7.3.4" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-comparaci%C3%B3n-de-m%C3%A9tricas-continuas"><i class="fa fa-check"></i><b>7.3.4</b> Ejemplo Práctico en R: Comparación de Métricas Continuas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#medidas-de-similitud-y-disimilitud-para-datos-binarios-y-cualitativos"><i class="fa fa-check"></i><b>7.4</b> Medidas de Similitud y Disimilitud para Datos Binarios y Cualitativos</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#principales-coeficientes-de-similitud-binaria"><i class="fa fa-check"></i><b>7.4.1</b> Principales Coeficientes de Similitud Binaria</a></li>
+<li class="chapter" data-level="7.4.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#transformaci%C3%B3n-de-coeficientes-de-similitud-a-m%C3%A9tricas-de-distancia"><i class="fa fa-check"></i><b>7.4.2</b> Transformación de Coeficientes de Similitud a Métricas de Distancia</a></li>
+<li class="chapter" data-level="7.4.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-c%C3%A1lculo-manual-y-automatizado"><i class="fa fa-check"></i><b>7.4.3</b> Ejemplo Práctico en R: Cálculo Manual y Automatizado</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower"><i class="fa fa-check"></i><b>7.5</b> Distancias para Datos Mixtos: Coeficiente y Distancia de Gower</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#formulaci%C3%B3n-matem%C3%A1tica"><i class="fa fa-check"></i><b>7.5.1</b> Formulación Matemática</a></li>
+<li class="chapter" data-level="7.5.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-distancia-de-gower-con-clusterdaisy"><i class="fa fa-check"></i><b>7.5.2</b> Ejemplo Práctico en R: Distancia de Gower con <code>cluster::daisy</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#cuadro-resumen-gu%C3%ADa-para-la-selecci%C3%B3n-de-m%C3%A9tricas-de-distancia"><i class="fa fa-check"></i><b>7.6</b> Cuadro Resumen: Guía para la Selección de Métricas de Distancia</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>8</b> Análisis de conglomerados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#naturaleza-y-supuestos-del-an%C3%A1lisis-de-conglomerados"><i class="fa fa-check"></i><b>8.1</b> Naturaleza y Supuestos del Análisis de Conglomerados</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#condiciones-para-una-aplicaci%C3%B3n-%C3%B3ptima"><i class="fa fa-check"></i><b>8.1.1</b> Condiciones para una Aplicación Óptima</a></li>
+<li class="chapter" data-level="8.1.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#etapas-del-an%C3%A1lisis-de-conglomerados"><i class="fa fa-check"></i><b>8.1.2</b> Etapas del Análisis de Conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#m%C3%A9todos-jer%C3%A1rquicos"><i class="fa fa-check"></i><b>8.2</b> Métodos Jerárquicos</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#criterios-de-enlace-linkage-entre-conglomerados"><i class="fa fa-check"></i><b>8.2.1</b> Criterios de Enlace (<em>Linkage</em>) entre Conglomerados</a></li>
+<li class="chapter" data-level="8.2.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#representaci%C3%B3n-gr%C3%A1fica-el-dendrograma"><i class="fa fa-check"></i><b>8.2.2</b> Representación Gráfica: El Dendrograma</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#m%C3%A9todos-no-jer%C3%A1rquicos-particionales"><i class="fa fa-check"></i><b>8.3</b> Métodos No Jerárquicos (Particionales)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#principios-fundamentales"><i class="fa fa-check"></i><b>8.3.1</b> Principios Fundamentales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#algoritmo-k-means-k-medias"><i class="fa fa-check"></i><b>8.3.2</b> Algoritmo <span class="math inline">\(K\)</span>-Means (<span class="math inline">\(K\)</span>-Medias)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#ejemplo-pr%C3%A1ctico-en-r-k-means-con-diagn%C3%B3stico-de-k-%C3%B3ptimo"><i class="fa fa-check"></i><b>8.3.3</b> Ejemplo Práctico en R: <span class="math inline">\(K\)</span>-Means con Diagnóstico de <span class="math inline">\(K\)</span> Óptimo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a></li>
 <li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
-<li class="chapter" data-level="9" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>9</b> Análisis de Correlación Canónica</a></li>
-<li class="chapter" data-level="10" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>10</b> Coeficiente RV</a></li>
-<li class="chapter" data-level="11" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>11</b> Análisis de Procrustes</a></li>
+<li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="12" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>12</b> Análisis de Procrustes</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
 
@@ -354,16 +399,386 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="análisis-de-conglomerados" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Capítulo 7</span> Análisis de conglomerados<a href="análisis-de-conglomerados.html#an%C3%A1lisis-de-conglomerados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="análisis-de-conglomerados" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Capítulo 8</span> Análisis de conglomerados<a href="análisis-de-conglomerados.html#an%C3%A1lisis-de-conglomerados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El <strong>Análisis de Conglomerados</strong> (o <em>Clustering</em>) comprende un conjunto de técnicas estadísticas multivariadas de <strong>aprendizaje no supervisado</strong> orientadas a particionar o agrupar un conjunto de <span class="math inline">\(n\)</span> observaciones (o individuos) en <span class="math inline">\(K\)</span> clases o grupos homogéneos (<em>clusters</em>).</p>
+<p>El principio rector del análisis de conglomerados es geométrico y descriptivo: busca maximizar la <strong>homogeneidad intragrupo</strong> (mínima variabilidad o distancia dentro de cada grupo) y la <strong>heterogeneidad intergrupo</strong> (máxima distancia o separación entre los centros de los diferentes grupos).</p>
+<div id="naturaleza-y-supuestos-del-análisis-de-conglomerados" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Naturaleza y Supuestos del Análisis de Conglomerados<a href="análisis-de-conglomerados.html#naturaleza-y-supuestos-del-an%C3%A1lisis-de-conglomerados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A diferencia de las técnicas de aprendizaje supervisado (como el Análisis Discriminante o la Regresión Logística), el análisis de conglomerados presenta las siguientes características fundamentales:</p>
+<ul>
+<li><strong>Ausencia de variable respuesta (<span class="math inline">\(Y\)</span>):</strong> No existen etiquetas previas ni categorías conocidas <em>a priori</em>.</li>
+<li><strong>Técnica no inferencial:</strong> Es un procedimiento exploratorio y descriptivo; no requiere supuestos de normalidad multivariada, linealidad o homocedasticidad.</li>
+<li><strong>Sensibilidad a las covariables:</strong> La inclusión o exclusión de variables irrelevantes puede alterar sustancialmente la estructura final de los grupos.</li>
+</ul>
+<div id="condiciones-para-una-aplicación-óptima" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Condiciones para una Aplicación Óptima<a href="análisis-de-conglomerados.html#condiciones-para-una-aplicaci%C3%B3n-%C3%B3ptima" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Tratamiento de valores atípicos (<em>outliers</em>):</strong> Los puntos atípicos distorsionan los centroides o actúan como conglomerados unitarios.</li>
+<li><strong>Escala homogénea o estandarización:</strong> Cuando las variables están medidas en unidades o magnitudes distintas, se deben estandarizar (mediante puntuaciones <span class="math inline">\(Z\)</span> o transformaciones de rango) para evitar que una variable domine sobre las demás.</li>
+<li><strong>Poca o nula multicolinealidad:</strong> Si dos variables están fuertemente correlacionadas, están aportando información redundante y sobreponderando esa dimensión en el cálculo de las distancias.</li>
+</ol>
+</div>
+<div id="etapas-del-análisis-de-conglomerados" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Etapas del Análisis de Conglomerados<a href="análisis-de-conglomerados.html#etapas-del-an%C3%A1lisis-de-conglomerados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cualquier estudio de clasificación de conglomerados debe seguir un flujo metodológico de cuatro etapas:</p>
+<p><span class="math display">\[\text{1. Selección de Variables} \longrightarrow \text{2. Medida de Asociación/Distancia} \longrightarrow \text{3. Algoritmo de Clustering} \longrightarrow \text{4. Validación e Interpretación}\]</span></p>
+<p>Los algoritmos de formación de conglomerados se dividen fundamentalmente en dos categorías:</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Criterio de Comparación</th>
+<th align="left">Métodos Jerárquicos</th>
+<th align="left">Métodos No Jerárquicos (<span class="math inline">\(K\)</span>-Medias / PAM)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Definición de <span class="math inline">\(K\)</span></strong></td>
+<td align="left">No exige definir el número de grupos <em>a priori</em>.</td>
+<td align="left">Exige definir el número <span class="math inline">\(K\)</span> de grupos previamente.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Proceso Algorítmico</strong></td>
+<td align="left">Iterativo en <span class="math inline">\((n-1)\)</span> pasos, jerárquico de abajo a arriba o viceversa.</td>
+<td align="left">Reasignación iterativa comparando distancias a los centroides de los grupos.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Visualización y Salida</strong></td>
+<td align="left">Genera una estructura jerárquica o árbol (Dendrograma).</td>
+<td align="left">Proporciona las coordenadas finales de los centroides de cada grupo.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Tamaño de Muestra (<span class="math inline">\(n\)</span>)</strong></td>
+<td align="left">Requiere gran cantidad de cálculos (<span class="math inline">\(O(n^2)\)</span>), limitado para muestras grandes.</td>
+<td align="left">Eficiente computacionalmente; ideal para grandes volúmenes de datos.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Flexibilidad de Asignación</strong></td>
+<td align="left">Asignación rígida: las uniones previas no se pueden deshacer.</td>
+<td align="left">Reasignación dinámica: un elemento puede cambiar de grupo en cada iteración.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Objeto de Análisis</strong></td>
+<td align="left">Pueden aplicarse tanto sobre individuos/casos como sobre variables.</td>
+<td align="left">Solo se aplican sobre casos o individuos.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="métodos-jerárquicos" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Métodos Jerárquicos<a href="análisis-de-conglomerados.html#m%C3%A9todos-jer%C3%A1rquicos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los métodos jerárquicos construyen una estructura anidada de particiones. Se dividen en:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Aglomerativos (<em>Bottom-up</em>):</strong> Parten de <span class="math inline">\(n\)</span> conglomerados unitarios (cada individuo es un grupo) y en cada paso fusionan los dos grupos más cercanos hasta formar un único grupo global de tamaño <span class="math inline">\(n\)</span>.</li>
+<li><strong>Disociativos (<em>Top-down</em>):</strong> Parten de un único conglomerado global con los <span class="math inline">\(n\)</span> individuos y lo dividen sucesivamente en subgrupos cada vez más homogéneos.</li>
+</ol>
+<div id="criterios-de-enlace-linkage-entre-conglomerados" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Criterios de Enlace (<em>Linkage</em>) entre Conglomerados<a href="análisis-de-conglomerados.html#criterios-de-enlace-linkage-entre-conglomerados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La distancia <span class="math inline">\(D(A, B)\)</span> entre dos conglomerados <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> depende de la regla de asociación utilizada:</p>
+<div id="vecino-más-próximo-single-linkage-salto-mínimo" class="section level4 hasAnchor" number="8.2.1.1">
+<h4><span class="header-section-number">8.2.1.1</span> Vecino Más Próximo (<em>Single Linkage / Salto Mínimo</em>)<a href="análisis-de-conglomerados.html#vecino-m%C3%A1s-pr%C3%B3ximo-single-linkage-salto-m%C3%ADnimo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Mide la distancia mínima entre un elemento del grupo <span class="math inline">\(A\)</span> y uno del grupo <span class="math inline">\(B\)</span>:</p>
+<p><span class="math display">\[D_{\text{Single}}(A, B) = \min_{x_i \in A, \, x_j \in B} d(x_i, x_j)\]</span></p>
+<ul>
+<li><strong>Inconveniente:</strong> Tiende a crear conglomerados alargados en cadena (<em>chaining effect</em>).</li>
+</ul>
+</div>
+<div id="vecino-más-lejano-complete-linkage-salto-máximo" class="section level4 hasAnchor" number="8.2.1.2">
+<h4><span class="header-section-number">8.2.1.2</span> Vecino Más Lejano (<em>Complete Linkage / Salto Máximo</em>)<a href="análisis-de-conglomerados.html#vecino-m%C3%A1s-lejano-complete-linkage-salto-m%C3%A1ximo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Mide la distancia máxima entre elementos de ambos grupos:</p>
+<p><span class="math display">\[D_{\text{Complete}}(A, B) = \max_{x_i \in A, \, x_j \in B} d(x_i, x_j)\]</span></p>
+<ul>
+<li><strong>Propiedad:</strong> Produce grupos compactos y de diámetros similares.</li>
+</ul>
+</div>
+<div id="promedio-entre-grupos-average-linkage---upgma" class="section level4 hasAnchor" number="8.2.1.3">
+<h4><span class="header-section-number">8.2.1.3</span> Promedio entre Grupos (<em>Average Linkage - UPGMA</em>)<a href="análisis-de-conglomerados.html#promedio-entre-grupos-average-linkage---upgma" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Calcula el promedio de las distancias entre todos los pares formados por un elemento de <span class="math inline">\(A\)</span> y uno de <span class="math inline">\(B\)</span>:</p>
+<p><span class="math display">\[D_{\text{Average}}(A, B) = \frac{1}{|A| \cdot |B|} \sum_{x_i \in A} \sum_{x_j \in B} d(x_i, x_j)\]</span></p>
+</div>
+<div id="método-del-centroide" class="section level4 hasAnchor" number="8.2.1.4">
+<h4><span class="header-section-number">8.2.1.4</span> Método del Centroide<a href="análisis-de-conglomerados.html#m%C3%A9todo-del-centroide" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Evalúa la distancia entre los centroides (vectores de medias <span class="math inline">\(\bar{x}_A\)</span> y <span class="math inline">\(\bar{x}_B\)</span>) de cada grupo:</p>
+<p><span class="math display">\[D_{\text{Centroide}}(A, B) = d(\bar{x}_A, \bar{x}_B)\]</span></p>
+</div>
+<div id="método-de-ward-mínima-varianza-pérdida-de-inercia" class="section level4 hasAnchor" number="8.2.1.5">
+<h4><span class="header-section-number">8.2.1.5</span> Método de Ward (<em>Mínima Varianza / Pérdida de Inercia</em>)<a href="análisis-de-conglomerados.html#m%C3%A9todo-de-ward-m%C3%ADnima-varianza-p%C3%A9rdida-de-inercia" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Fusiona los dos grupos que minimizan el incremento en la <strong>Suma de Cuadrados Intragrupo (<span class="math inline">\(SSE\)</span>)</strong>:</p>
+<p><span class="math display">\[\Delta SSE = \frac{|A| \cdot |B|}{|A| + |B|} \|\bar{x}_A - \bar{x}_B\|^2\]</span></p>
+<ul>
+<li><strong>Propiedad:</strong> Es uno de los métodos más potentes en la práctica, creando grupos con varianzas similares y tamaños balanceados.</li>
+</ul>
+</div>
+</div>
+<div id="representación-gráfica-el-dendrograma" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Representación Gráfica: El Dendrograma<a href="análisis-de-conglomerados.html#representaci%C3%B3n-gr%C3%A1fica-el-dendrograma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El dendrograma es la representación en forma de árbol binario de la jerarquía de agrupaciones. La altura de los codos o uniones horizontales indica la distancia a la cual se fusionaron dos conglomerados.</p>
+<div id="criterio-del-salto-brusco-para-determinar-k" class="section level4 hasAnchor" number="8.2.2.1">
+<h4><span class="header-section-number">8.2.2.1</span> Criterio del Salto Brusco para determinar <span class="math inline">\(K\)</span>:<a href="análisis-de-conglomerados.html#criterio-del-salto-brusco-para-determinar-k" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para elegir el número óptimo de grupos <span class="math inline">\(K\)</span>, se busca en el gráfico de evolución de las distancias el paso donde se produce un incremento brusco en la distancia de fusión.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="análisis-de-conglomerados.html#cb141-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb141-2"><a href="análisis-de-conglomerados.html#cb141-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb141-3"><a href="análisis-de-conglomerados.html#cb141-3" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;factoextra&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;factoextra&quot;</span>)</span>
+<span id="cb141-4"><a href="análisis-de-conglomerados.html#cb141-4" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb141-5"><a href="análisis-de-conglomerados.html#cb141-5" tabindex="-1"></a></span>
+<span id="cb141-6"><a href="análisis-de-conglomerados.html#cb141-6" tabindex="-1"></a><span class="co"># 1. Conjunto de datos de prueba: USArrests</span></span>
+<span id="cb141-7"><a href="análisis-de-conglomerados.html#cb141-7" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;USArrests&quot;</span>)</span>
+<span id="cb141-8"><a href="análisis-de-conglomerados.html#cb141-8" tabindex="-1"></a>datos_esc <span class="ot">&lt;-</span> <span class="fu">scale</span>(USArrests)</span>
+<span id="cb141-9"><a href="análisis-de-conglomerados.html#cb141-9" tabindex="-1"></a></span>
+<span id="cb141-10"><a href="análisis-de-conglomerados.html#cb141-10" tabindex="-1"></a><span class="co"># 2. Matriz de distancias Euclidianas</span></span>
+<span id="cb141-11"><a href="análisis-de-conglomerados.html#cb141-11" tabindex="-1"></a>dist_euc <span class="ot">&lt;-</span> <span class="fu">dist</span>(datos_esc, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb141-12"><a href="análisis-de-conglomerados.html#cb141-12" tabindex="-1"></a></span>
+<span id="cb141-13"><a href="análisis-de-conglomerados.html#cb141-13" tabindex="-1"></a><span class="co"># 3. Agrupamiento con el Método de Ward</span></span>
+<span id="cb141-14"><a href="análisis-de-conglomerados.html#cb141-14" tabindex="-1"></a>hc_ward <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist_euc, <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb141-15"><a href="análisis-de-conglomerados.html#cb141-15" tabindex="-1"></a></span>
+<span id="cb141-16"><a href="análisis-de-conglomerados.html#cb141-16" tabindex="-1"></a><span class="co"># 4. Dendrograma con corte horizontal en K = 4</span></span>
+<span id="cb141-17"><a href="análisis-de-conglomerados.html#cb141-17" tabindex="-1"></a><span class="fu">fviz_dend</span>(hc_ward, <span class="at">k =</span> <span class="dv">4</span>, </span>
+<span id="cb141-18"><a href="análisis-de-conglomerados.html#cb141-18" tabindex="-1"></a>          <span class="at">rect =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb141-19"><a href="análisis-de-conglomerados.html#cb141-19" tabindex="-1"></a>          <span class="at">rect_fill =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb141-20"><a href="análisis-de-conglomerados.html#cb141-20" tabindex="-1"></a>          <span class="at">rect_border =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb141-21"><a href="análisis-de-conglomerados.html#cb141-21" tabindex="-1"></a>          <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(),</span>
+<span id="cb141-22"><a href="análisis-de-conglomerados.html#cb141-22" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">&quot;Dendrograma: Método de Ward (USArrests)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ejemplo-dendrograma-manual"></span>
+<img src="_main_files/figure-html/ejemplo-dendrograma-manual-1.png" alt="Dendrograma de clustering jerárquico aglomerativo (Ward) en R sobre datos estandarizados." width="672" />
+<p class="caption">
+Figura 8.1: Dendrograma de clustering jerárquico aglomerativo (Ward) en R sobre datos estandarizados.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="métodos-no-jerárquicos-particionales" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Métodos No Jerárquicos (Particionales)<a href="análisis-de-conglomerados.html#m%C3%A9todos-no-jer%C3%A1rquicos-particionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A diferencia de los métodos jerárquicos, los <strong>métodos no jerárquicos</strong> parten directamente de la matriz original de datos numéricos (o coordenadas) y no requieren construir una matriz de proximidades completa ni una estructura anidada en forma de árbol.</p>
+<p>Estos algoritmos dividen directamente el conjunto de <span class="math inline">\(n\)</span> observaciones en <span class="math inline">\(K\)</span> conglomerados independientes y mutuamente excluyentes, donde el número de grupos <span class="math inline">\(K\)</span> debe ser prefijado por el usuario antes de iniciar el procedimiento.</p>
+<div id="principios-fundamentales" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Principios Fundamentales<a href="análisis-de-conglomerados.html#principios-fundamentales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los métodos no jerárquicos son especialmente eficientes para el análisis de grandes conjuntos de datos (donde el cálculo de matrices de distancia <span class="math inline">\(n \times n\)</span> resulta computacionalmente inviable) y se basan en procesos de <strong>reasignación iterativa</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Partición Inicial:</strong> Se fijan <span class="math inline">\(K\)</span> centroides iniciales en el espacio <span class="math inline">\(p\)</span>-dimensional.</li>
+<li><strong>Reasignación Dinámica:</strong> Cada observación es asignada al centroide más cercano en términos de distancia geométrica. A diferencia de los métodos jerárquicos (donde una unión no puede deshacerse), una observación asignada a un conglomerado en una iteración puede cambiar a otro grupo en pasos posteriores si esto mejora el criterio de homogeneidad.</li>
+<li><strong>Optimización Intragrupo:</strong> El proceso itera recalculando los centroides de los grupos tras cada incorporación hasta que la asignación de observaciones converge y se estabiliza.</li>
+</ol>
+</div>
+<div id="algoritmo-k-means-k-medias" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Algoritmo <span class="math inline">\(K\)</span>-Means (<span class="math inline">\(K\)</span>-Medias)<a href="análisis-de-conglomerados.html#algoritmo-k-means-k-medias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El objetivo matemático de <span class="math inline">\(K\)</span>-Means es particionar las <span class="math inline">\(n\)</span> observaciones en <span class="math inline">\(K\)</span> conjuntos <span class="math inline">\(S = \{S_1, S_2, \dots, S_K\}\)</span> minimizando la variabilidad dentro de los grupos, expresada a través de la <strong>Suma de Cuadrados Intragrupo (<span class="math inline">\(WSS\)</span> o <span class="math inline">\(SSE\)</span>)</strong>:</p>
+<p><span class="math display">\[\min_{S} \sum_{k=1}^{K} \sum_{x_i \in S_k} \Vert{}x_i - \mu_k\Vert{}^2\]</span></p>
+<p>Donde:
+* <span class="math inline">\(x_i\)</span>: Vector de observaciones de la <span class="math inline">\(i\)</span>-ésima entidad en un espacio de <span class="math inline">\(p\)</span> variables.
+* <span class="math inline">\(\mu_k\)</span>: Centroide (vector de medias muestrales) de las observaciones asignadas al <span class="math inline">\(k\)</span>-ésimo conglomerado.
+* <span class="math inline">\(\Vert{}x_i - \mu_k\Vert{}^2\)</span>: Distancia Euclidiana al cuadrado entre la observación y el centroide de su grupo.</p>
+<div id="pasos-del-algoritmo-de-reasignación-iterativa" class="section level4 hasAnchor" number="8.3.2.1">
+<h4><span class="header-section-number">8.3.2.1</span> Pasos del Algoritmo de Reasignación Iterativa:<a href="análisis-de-conglomerados.html#pasos-del-algoritmo-de-reasignaci%C3%B3n-iterativa" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Inicialización:</strong> Seleccionar <span class="math inline">\(K\)</span> puntos iniciales como centros de los conglomerados (pueden ser seleccionados aleatoriamente o fijados como los puntos más distantes entre sí).</li>
+<li><strong>Asignación de Casos:</strong> Calcular la distancia entre cada objeto <span class="math inline">\(x_i\)</span> y los <span class="math inline">\(K\)</span> centroides, asignando cada caso al conglomerado con el centroide más próximo:
+<span class="math display">\[S_k^{(t)} = \{x_i : \Vert{}x_i - \mu_k^{(t)}\Vert{}^2 \le \Vert{}x_i - \mu_j^{(t)}\Vert{}^2, \, \forall j \neq k\}\]</span></li>
+<li><strong>Actualización de Centroides:</strong> Recalcular las coordenadas del centroide de cada grupo como el promedio numérico de sus miembros actuales:
+<span class="math display">\[\mu_k^{(t+1)} = \frac{1}{\vert{}S_k^{(t)}\vert{}} \sum_{x_i \in S_k^{(t)}} x_i\]</span></li>
+<li><strong>Criterio de Convergencia:</strong> Repetir los pasos 2 y 3 hasta que la asignación de casos no varíe o el desplazamiento de los centroides caiga por debajo de una tolerancia especificada (<span class="math inline">\(\epsilon \to 0\)</span>).</li>
+</ol>
+</div>
+</div>
+<div id="ejemplo-práctico-en-r-k-means-con-diagnóstico-de-k-óptimo" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Ejemplo Práctico en R: <span class="math inline">\(K\)</span>-Means con Diagnóstico de <span class="math inline">\(K\)</span> Óptimo<a href="análisis-de-conglomerados.html#ejemplo-pr%C3%A1ctico-en-r-k-means-con-diagn%C3%B3stico-de-k-%C3%B3ptimo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A continuación, ejecutamos la selección del número óptimo de conglomerados mediante el <strong>Método del Codo</strong> y la <strong>Silueta Promedio</strong>, finalizando con el ajuste e interpretación de un modelo <span class="math inline">\(K\)</span>-Means sobre la base de datos <code>USArrests</code>.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="análisis-de-conglomerados.html#cb142-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb142-2"><a href="análisis-de-conglomerados.html#cb142-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb142-3"><a href="análisis-de-conglomerados.html#cb142-3" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb142-4"><a href="análisis-de-conglomerados.html#cb142-4" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;factoextra&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;factoextra&quot;</span>)</span>
+<span id="cb142-5"><a href="análisis-de-conglomerados.html#cb142-5" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb142-6"><a href="análisis-de-conglomerados.html#cb142-6" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;patchwork&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb142-7"><a href="análisis-de-conglomerados.html#cb142-7" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb142-8"><a href="análisis-de-conglomerados.html#cb142-8" tabindex="-1"></a></span>
+<span id="cb142-9"><a href="análisis-de-conglomerados.html#cb142-9" tabindex="-1"></a><span class="co"># 1. Carga y estandarización de variables (Puntuaciones Z)</span></span>
+<span id="cb142-10"><a href="análisis-de-conglomerados.html#cb142-10" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;USArrests&quot;</span>)</span>
+<span id="cb142-11"><a href="análisis-de-conglomerados.html#cb142-11" tabindex="-1"></a>datos_std <span class="ot">&lt;-</span> <span class="fu">scale</span>(USArrests)</span>
+<span id="cb142-12"><a href="análisis-de-conglomerados.html#cb142-12" tabindex="-1"></a></span>
+<span id="cb142-13"><a href="análisis-de-conglomerados.html#cb142-13" tabindex="-1"></a><span class="co"># Mostrar las primeras observaciones estandarizadas</span></span>
+<span id="cb142-14"><a href="análisis-de-conglomerados.html#cb142-14" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(datos_std), <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">&quot;Primeras observaciones estandarizadas (USArrests)&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:kmeans-preparacion">Table 8.1: </span>Primeras observaciones estandarizadas (USArrests)</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Murder</th>
+<th align="right">Assault</th>
+<th align="right">UrbanPop</th>
+<th align="right">Rape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Alabama</td>
+<td align="right">1.243</td>
+<td align="right">0.783</td>
+<td align="right">-0.521</td>
+<td align="right">-0.003</td>
+</tr>
+<tr class="even">
+<td align="left">Alaska</td>
+<td align="right">0.508</td>
+<td align="right">1.107</td>
+<td align="right">-1.212</td>
+<td align="right">2.484</td>
+</tr>
+<tr class="odd">
+<td align="left">Arizona</td>
+<td align="right">0.072</td>
+<td align="right">1.479</td>
+<td align="right">0.999</td>
+<td align="right">1.043</td>
+</tr>
+<tr class="even">
+<td align="left">Arkansas</td>
+<td align="right">0.232</td>
+<td align="right">0.231</td>
+<td align="right">-1.074</td>
+<td align="right">-0.185</td>
+</tr>
+<tr class="odd">
+<td align="left">California</td>
+<td align="right">0.278</td>
+<td align="right">1.263</td>
+<td align="right">1.759</td>
+<td align="right">2.068</td>
+</tr>
+<tr class="even">
+<td align="left">Colorado</td>
+<td align="right">0.026</td>
+<td align="right">0.399</td>
+<td align="right">0.861</td>
+<td align="right">1.865</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="análisis-de-conglomerados.html#cb143-1" tabindex="-1"></a><span class="co"># Determinación Cuantitativa del Número de Grupos ($K$)</span></span>
+<span id="cb143-2"><a href="análisis-de-conglomerados.html#cb143-2" tabindex="-1"></a></span>
+<span id="cb143-3"><a href="análisis-de-conglomerados.html#cb143-3" tabindex="-1"></a>  <span class="co"># Gráfico 1: Método del Codo (Suma de cuadrados intragrupo)</span></span>
+<span id="cb143-4"><a href="análisis-de-conglomerados.html#cb143-4" tabindex="-1"></a>p_codo <span class="ot">&lt;-</span> <span class="fu">fviz_nbclust</span>(datos_std, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="sc">+</span></span>
+<span id="cb143-5"><a href="análisis-de-conglomerados.html#cb143-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Método del Codo (WSS)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de Grupos K&quot;</span>, <span class="at">y =</span> <span class="st">&quot;WSS Intragrupo&quot;</span>) <span class="sc">+</span></span>
+<span id="cb143-6"><a href="análisis-de-conglomerados.html#cb143-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb143-7"><a href="análisis-de-conglomerados.html#cb143-7" tabindex="-1"></a></span>
+<span id="cb143-8"><a href="análisis-de-conglomerados.html#cb143-8" tabindex="-1"></a><span class="co"># Gráfico 2: Método de la Silueta Promedio</span></span>
+<span id="cb143-9"><a href="análisis-de-conglomerados.html#cb143-9" tabindex="-1"></a>p_silueta <span class="ot">&lt;-</span> <span class="fu">fviz_nbclust</span>(datos_std, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>) <span class="sc">+</span></span>
+<span id="cb143-10"><a href="análisis-de-conglomerados.html#cb143-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Método de la Silueta Media&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Número de Grupos K&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Silueta Promedio&quot;</span>) <span class="sc">+</span></span>
+<span id="cb143-11"><a href="análisis-de-conglomerados.html#cb143-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb143-12"><a href="análisis-de-conglomerados.html#cb143-12" tabindex="-1"></a></span>
+<span id="cb143-13"><a href="análisis-de-conglomerados.html#cb143-13" tabindex="-1"></a><span class="co"># Despliegue en paralelo</span></span>
+<span id="cb143-14"><a href="análisis-de-conglomerados.html#cb143-14" tabindex="-1"></a>p_codo <span class="sc">+</span> p_silueta</span></code></pre></div>
+<p><img src="_main_files/figure-html/kmeans-preparacion-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="análisis-de-conglomerados.html#cb144-1" tabindex="-1"></a><span class="co"># Ajuste de K-Means fijando K = 4 y 25 inicios aleatorios para evitar mínimos locales</span></span>
+<span id="cb144-2"><a href="análisis-de-conglomerados.html#cb144-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb144-3"><a href="análisis-de-conglomerados.html#cb144-3" tabindex="-1"></a>km_res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(datos_std, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb144-4"><a href="análisis-de-conglomerados.html#cb144-4" tabindex="-1"></a></span>
+<span id="cb144-5"><a href="análisis-de-conglomerados.html#cb144-5" tabindex="-1"></a><span class="co"># Centroides finales de los conglomerados (en escala estandarizada)</span></span>
+<span id="cb144-6"><a href="análisis-de-conglomerados.html#cb144-6" tabindex="-1"></a><span class="fu">kable</span>(km_res<span class="sc">$</span>centers, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">&quot;Centroides finales de los conglomerados&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:kmeans-preparacion">Table 8.1: </span>Centroides finales de los conglomerados</caption>
+<thead>
+<tr class="header">
+<th align="right">Murder</th>
+<th align="right">Assault</th>
+<th align="right">UrbanPop</th>
+<th align="right">Rape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1.412</td>
+<td align="right">0.874</td>
+<td align="right">-0.815</td>
+<td align="right">0.019</td>
+</tr>
+<tr class="even">
+<td align="right">-0.962</td>
+<td align="right">-1.107</td>
+<td align="right">-0.930</td>
+<td align="right">-0.967</td>
+</tr>
+<tr class="odd">
+<td align="right">-0.489</td>
+<td align="right">-0.383</td>
+<td align="right">0.576</td>
+<td align="right">-0.262</td>
+</tr>
+<tr class="even">
+<td align="right">0.695</td>
+<td align="right">1.039</td>
+<td align="right">0.723</td>
+<td align="right">1.277</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="análisis-de-conglomerados.html#cb145-1" tabindex="-1"></a><span class="co"># Visualización gráfica de los conglomerados formados</span></span>
+<span id="cb145-2"><a href="análisis-de-conglomerados.html#cb145-2" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km_res, <span class="at">data =</span> datos_std,</span>
+<span id="cb145-3"><a href="análisis-de-conglomerados.html#cb145-3" tabindex="-1"></a>             <span class="at">ellipse.type =</span> <span class="st">&quot;convex&quot;</span>,</span>
+<span id="cb145-4"><a href="análisis-de-conglomerados.html#cb145-4" tabindex="-1"></a>             <span class="at">palette =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb145-5"><a href="análisis-de-conglomerados.html#cb145-5" tabindex="-1"></a>             <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(),</span>
+<span id="cb145-6"><a href="análisis-de-conglomerados.html#cb145-6" tabindex="-1"></a>             <span class="at">main =</span> <span class="st">&quot;Clustering K-Means (K = 4)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/kmeans-preparacion-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p>Diagnóstico ANOVA Univariante de la Clasificación</p>
+<p>Para caracterizar el perfil de los conglomerados y medir la relevancia de cada variable en la separación de los grupos, se utiliza un contraste de varianza ANOVA univariante. <span class="math display">\[\text{Ratio } F = \frac{\text{Media Cuadrática Intergrupos}}{\text{Media Cuadrática Intragrupo}}\]</span>Un valor <span class="math inline">\(F\)</span> elevado indica que la variabilidad entre los grupos es significativamente mayor que la variabilidad dentro de los mismos, validando que el algoritmo logró separar adecuadamente las observaciones en esa dimensión.</p>
+<p><strong>Nota Metodológica</strong>: Los niveles de significación (<span class="math inline">\(p\)</span>-valores) de esta prueba ANOVA deben interpretarse exclusivamente con fines descriptivos, puesto que el algoritmo <span class="math inline">\(K\)</span>-Means optimiza directamente los datos para maximizar la separación intergrupo.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="análisis-de-conglomerados.html#cb146-1" tabindex="-1"></a><span class="co"># Creación del data frame original con el conglomerado de pertenencia</span></span>
+<span id="cb146-2"><a href="análisis-de-conglomerados.html#cb146-2" tabindex="-1"></a>df_resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(USArrests, <span class="at">Cluster =</span> <span class="fu">as.factor</span>(km_res<span class="sc">$</span>cluster))</span>
+<span id="cb146-3"><a href="análisis-de-conglomerados.html#cb146-3" tabindex="-1"></a></span>
+<span id="cb146-4"><a href="análisis-de-conglomerados.html#cb146-4" tabindex="-1"></a><span class="co"># Ejemplo de prueba ANOVA descriptiva para la variable Murder</span></span>
+<span id="cb146-5"><a href="análisis-de-conglomerados.html#cb146-5" tabindex="-1"></a>anova_murder <span class="ot">&lt;-</span> <span class="fu">aov</span>(Murder <span class="sc">~</span> Cluster, <span class="at">data =</span> df_resultados)</span>
+<span id="cb146-6"><a href="análisis-de-conglomerados.html#cb146-6" tabindex="-1"></a>summary_anova <span class="ot">&lt;-</span> <span class="fu">summary</span>(anova_murder)</span>
+<span id="cb146-7"><a href="análisis-de-conglomerados.html#cb146-7" tabindex="-1"></a></span>
+<span id="cb146-8"><a href="análisis-de-conglomerados.html#cb146-8" tabindex="-1"></a><span class="co"># Resumen estilizado del ANOVA para la primera variable</span></span>
+<span id="cb146-9"><a href="análisis-de-conglomerados.html#cb146-9" tabindex="-1"></a><span class="fu">kable</span>(summary_anova[[<span class="dv">1</span>]], <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">&quot;Análisis de Varianza (ANOVA) descriptivo para la variable Murder&quot;</span>)</span></code></pre></div>
+<table>
+<caption>(#tab:km_res)Análisis de Varianza (ANOVA) descriptivo para la variable Murder</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Df</th>
+<th align="right">Sum Sq</th>
+<th align="right">Mean Sq</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cluster</td>
+<td align="right">3</td>
+<td align="right">722.398</td>
+<td align="right">240.799</td>
+<td align="right">53.471</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Residuals</td>
+<td align="right">46</td>
+<td align="right">207.155</td>
+<td align="right">4.503</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="escalamiento-multidimensional-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="métodos-de-clasificación.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="análisis-discriminante.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

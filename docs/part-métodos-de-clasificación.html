@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 (PART) Métodos de clasificación | Análisis Multivariado</title>
+  <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 (PART) Métodos de clasificación | Análisis Multivariado" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 (PART) Métodos de clasificación | Análisis Multivariado" />
+  
+  <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="escalamiento-multidimensional-mds.html"/>
+<link rel="next" href="análisis-de-conglomerados.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXGNMPV7WK');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Multivariado</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-t%C3%A9cnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Datos multivariados</b></span></li>
+<li class="chapter" data-level="1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html"><i class="fa fa-check"></i><b>1</b> Análisis descriptivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#algo-de-historia"><i class="fa fa-check"></i><b>1.1</b> Algo de historia</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados"><i class="fa fa-check"></i><b>1.2</b> Introducción a los Datos Multivariados</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#estructura-matricial-de-los-datos"><i class="fa fa-check"></i><b>1.3</b> Estructura Matricial de los Datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#vector-de-medias-muestrales"><i class="fa fa-check"></i><b>1.3.1</b> Vector de Medias Muestrales</a></li>
+<li class="chapter" data-level="1.3.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral"><i class="fa fa-check"></i><b>1.3.2</b> Matriz de Varianza-Covarianza Muestral</a></li>
+<li class="chapter" data-level="1.3.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral"><i class="fa fa-check"></i><b>1.3.3</b> Matriz de Correlación Muestral</a></li>
+<li class="chapter" data-level="1.3.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#ejemplo"><i class="fa fa-check"></i><b>1.3.4</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas"><i class="fa fa-check"></i><b>1.4</b> Descripciones Gráficas Multivariadas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d"><i class="fa fa-check"></i><b>1.4.1</b> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-dispersi%C3%B3n-3d-interactivo"><i class="fa fa-check"></i><b>1.4.2</b> Gráfico de Dispersión 3D Interactivo</a></li>
+<li class="chapter" data-level="1.4.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs"><i class="fa fa-check"></i><b>1.4.3</b> Matriz de Dispersión (Pairs Plot / GGpairs)</a></li>
+<li class="chapter" data-level="1.4.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-coordenadas-paralelas"><i class="fa fa-check"></i><b>1.4.4</b> Gráfico de Coordenadas Paralelas</a></li>
+<li class="chapter" data-level="1.4.5" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#caras-de-chernoff"><i class="fa fa-check"></i><b>1.4.5</b> Caras de Chernoff</a></li>
+<li class="chapter" data-level="1.4.6" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot"><i class="fa fa-check"></i><b>1.4.6</b> Gráfico de Radar / Telaraña (Spider Plot)</a></li>
+<li class="chapter" data-level="1.4.7" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#curvas-de-andrews"><i class="fa fa-check"></i><b>1.4.7</b> Curvas de Andrews</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html"><i class="fa fa-check"></i><b>2</b> Álgebra de Matrices y Distribuciones Multivariadas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#resultados-importantes-de-%C3%A1lgebra-lineal"><i class="fa fa-check"></i><b>2.1</b> Resultados importantes de álgebra lineal</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-1"><i class="fa fa-check"></i><b>2.1.1</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-normal-multivariada"><i class="fa fa-check"></i><b>2.2</b> Distribución Normal Multivariada</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#propiedades"><i class="fa fa-check"></i><b>2.2.1</b> Propiedades</a></li>
+<li class="chapter" data-level="2.2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#estimacion-mu-sigma"><i class="fa fa-check"></i><b>2.2.2</b> Estimación de <span class="math inline">\(\boldsymbol{\mu}\)</span> y <span class="math inline">\(\boldsymbol{\Sigma}\)</span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-pr%C3%A1ctico-en-r"><i class="fa fa-check"></i><b>2.2.3</b> Ejemplo Práctico en R</a></li>
+<li class="chapter" data-level="2.2.4" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#norm-valida"><i class="fa fa-check"></i><b>2.2.4</b> Validación del Supuesto de Normalidad Multivariada</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-wishart"><i class="fa fa-check"></i><b>2.3</b> Distribución Wishart</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#definici%C3%B3n"><i class="fa fa-check"></i><b>2.3.1</b> Definición</a></li>
+<li class="chapter" data-level="2.3.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#funci%C3%B3n-de-densidad"><i class="fa fa-check"></i><b>2.3.2</b> Función de Densidad</a></li>
+<li class="chapter" data-level="2.3.3" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#propiedades-y-distribuci%C3%B3n-wishart-inversa"><i class="fa fa-check"></i><b>2.3.3</b> Propiedades y Distribución Wishart Inversa</a></li>
+<li class="chapter" data-level="2.3.4" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#teorema-central-del-l%C3%ADmite-multivariado"><i class="fa fa-check"></i><b>2.3.4</b> Teorema Central del Límite Multivariado</a></li>
+<li class="chapter" data-level="2.3.5" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#propiedades-adicionales-de-la-distribuci%C3%B3n-wishart"><i class="fa fa-check"></i><b>2.3.5</b> Propiedades Adicionales de la Distribución Wishart</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#estad%C3%ADstica-t2-de-hotelling"><i class="fa fa-check"></i><b>2.4</b> Estadística <span class="math inline">\(T^2\)</span> de Hotelling</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#definici%C3%B3n-1"><i class="fa fa-check"></i><b>2.4.1</b> Definición</a></li>
+<li class="chapter" data-level="2.4.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#aplicaci%C3%B3n-muestral-y-pruebas-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>2.4.2</b> Aplicación Muestral y Pruebas de Hipótesis</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
+<li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#componentes-principales"><i class="fa fa-check"></i><b>3.1</b> Componentes Principales</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.2</b> Cálculo de los Componentes Principales</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#proceso-de-extracci%C3%B3n-de-factores"><i class="fa fa-check"></i><b>3.2.1</b> Proceso de extracción de factores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#porcentajes-de-variabilidad"><i class="fa fa-check"></i><b>3.3</b> Porcentajes de Variabilidad</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales-a-partir-de-la-matriz-de-correlaciones"><i class="fa fa-check"></i><b>3.4</b> Cálculo de los Componentes Principales a partir de la Matriz de Correlaciones</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#matriz-factorial"><i class="fa fa-check"></i><b>3.5</b> Matriz Factorial</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-las-covarianzas-y-correlaciones-entre-las-variables-originales-y-los-factores"><i class="fa fa-check"></i><b>3.5.1</b> Cálculo de las covarianzas y correlaciones entre las variables originales y los factores</a></li>
+<li class="chapter" data-level="3.5.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#cambios-de-escalas-e-identificaci%C3%B3n-de-componentes"><i class="fa fa-check"></i><b>3.5.2</b> Cambios de escalas e identificación de componentes</a></li>
+<li class="chapter" data-level="3.5.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#identificaci%C3%B3n-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.5.3</b> Identificación de los componentes principales</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#ejemplo-contaminaci%C3%B3n-atmosf%C3%A9rica-en-ciudades-de-ee.-uu."><i class="fa fa-check"></i><b>3.6</b> Ejemplo: Contaminación Atmosférica en Ciudades de EE. UU.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-factorial"><i class="fa fa-check"></i><b>4.1</b> Análisis Factorial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#m%C3%A9todo-de-los-factores-principales"><i class="fa fa-check"></i><b>4.1.1</b> Método de los factores principales</a></li>
+<li class="chapter" data-level="4.1.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#m%C3%A9todo-de-la-m%C3%A1xima-verosimilitud"><i class="fa fa-check"></i><b>4.1.2</b> Método de la máxima verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#af-exploratorio-afe-vs.-af-confirmatorio-afc"><i class="fa fa-check"></i><b>4.2</b> AF Exploratorio (AFE) vs. AF Confirmatorio (AFC)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-factorial-exploratorio-afe"><i class="fa fa-check"></i><b>4.2.1</b> Análisis Factorial Exploratorio (AFE)</a></li>
+<li class="chapter" data-level="4.2.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-factorial-confirmatorio-afc"><i class="fa fa-check"></i><b>4.2.2</b> Análisis Factorial Confirmatorio (AFC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#diagnostico-factorabilidad"><i class="fa fa-check"></i><b>4.3</b> Diagnóstico de Factorabilidad</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#prueba-de-esfericidad-de-bartlett"><i class="fa fa-check"></i><b>4.3.1</b> Prueba de Esfericidad de Bartlett</a></li>
+<li class="chapter" data-level="4.3.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#medida-de-adecuaci%C3%B3n-muestral-kmo-kaiser-meyer-olkin"><i class="fa fa-check"></i><b>4.3.2</b> Medida de Adecuación Muestral KMO (Kaiser-Meyer-Olkin)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#matriz-de-correlaci%C3%B3n-anti-imagen-e-%C3%ADndices-msa-individuales"><i class="fa fa-check"></i><b>4.3.3</b> Matriz de Correlación Anti-imagen e Índices MSA Individuales</a></li>
+<li class="chapter" data-level="4.3.4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-de-diagnostico-en-r"><i class="fa fa-check"></i><b>4.3.4</b> Ejemplo de Diagnostico en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#estimaci%C3%B3n-del-n%C3%BAmero-de-factores"><i class="fa fa-check"></i><b>4.4</b> Estimación del Número de Factores</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#criterio-de-kaiser-guttman-autovalores-mayor-a-1"><i class="fa fa-check"></i><b>4.4.1</b> Criterio de Kaiser-Guttman (Autovalores Mayor a 1)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#gr%C3%A1fico-de-sedimentaci%C3%B3n-scree-plot-de-cattell"><i class="fa fa-check"></i><b>4.4.2</b> Gráfico de Sedimentación (<em>Scree Plot</em> de Cattell)</a></li>
+<li class="chapter" data-level="4.4.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-paralelo-de-horn-horns-parallel-analysis"><i class="fa fa-check"></i><b>4.4.3</b> Análisis Paralelo de Horn (Horn’s Parallel Analysis)</a></li>
+<li class="chapter" data-level="4.4.4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#prueba-de-hip%C3%B3tesis-de-bondad-de-ajuste-chi2-por-mle"><i class="fa fa-check"></i><b>4.4.4</b> Prueba de Hipótesis de Bondad de Ajuste (<span class="math inline">\(\chi^2\)</span> por MLE)</a></li>
+<li class="chapter" data-level="4.4.5" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-de-aplicaci%C3%B3n-en-r"><i class="fa fa-check"></i><b>4.4.5</b> Ejemplo de Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#rotaci%C3%B3n-de-los-factores"><i class="fa fa-check"></i><b>4.5</b> Rotación de los Factores</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#tipos-de-rotaciones"><i class="fa fa-check"></i><b>4.5.1</b> Tipos de rotaciones</a></li>
+<li class="chapter" data-level="4.5.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#patron-estructura"><i class="fa fa-check"></i><b>4.5.2</b> Matriz de Patrón vs. Matriz de Estructura (Rotaciones Oblicuas)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-de-implementacion-y-comparacion-en-r"><i class="fa fa-check"></i><b>4.5.3</b> Ejemplo de Implementacion y Comparacion en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplos"><i class="fa fa-check"></i><b>4.6</b> Ejemplos</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-1-esperanza-de-vida-en-31-pa%C3%ADses"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplo 1 Esperanza de Vida en 31 Países</a></li>
+<li class="chapter" data-level="4.6.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-2-de-implementaci%C3%B3n-del-afc-en-r-lavaan"><i class="fa fa-check"></i><b>4.6.2</b> Ejemplo 2 de Implementación del AFC en R (<code>lavaan</code>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-tabla-de-contingencia-y-la-estructura-de-datos"><i class="fa fa-check"></i><b>5.1</b> La Tabla de Contingencia y la Estructura de Datos</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#estructura-formal-de-la-tabla-de-contingencia"><i class="fa fa-check"></i><b>5.1.1</b> Estructura Formal de la Tabla de Contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#perfiles-marginales-y-perfiles-condicionales"><i class="fa fa-check"></i><b>5.2</b> Perfiles Marginales y Perfiles Condicionales</a></li>
+<li class="chapter" data-level="5.3" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-m%C3%A9trica-de-la-distancia-chi-cuadrada-chi2"><i class="fa fa-check"></i><b>5.3</b> La Métrica de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#propiedades-de-la-distancia-chi-cuadrada"><i class="fa fa-check"></i><b>5.3.1</b> Propiedades de la Distancia Chi-Cuadrada</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos"><i class="fa fa-check"></i><b>5.4</b> Dependencia, Independencia y Análisis de Residuos</a></li>
+<li class="chapter" data-level="5.5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#reducci%C3%B3n-dimensional-y-espacio-factorial"><i class="fa fa-check"></i><b>5.5</b> Reducción Dimensional y Espacio Factorial</a></li>
+<li class="chapter" data-level="5.6" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos"><i class="fa fa-check"></i><b>5.6</b> Descomposición Matemática (SVD de la Matriz de Residuos)</a></li>
+<li class="chapter" data-level="5.7" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>5.7</b> Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
+<li class="chapter" data-level="5.8" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple"><i class="fa fa-check"></i><b>5.8</b> Implementación Práctica en R (Análisis de Correspondencias Simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html"><i class="fa fa-check"></i><b>6</b> Escalamiento Multidimensional (MDS)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#introducci%C3%B3n-y-antecedentes-hist%C3%B3ricos"><i class="fa fa-check"></i><b>6.1</b> Introducción y Antecedentes Históricos</a></li>
+<li class="chapter" data-level="6.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#fundamentos-y-requisitos-del-mds"><i class="fa fa-check"></i><b>6.2</b> Fundamentos y Requisitos del MDS</a></li>
+<li class="chapter" data-level="6.3" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#formulaci%C3%B3n-matem%C3%A1tica-de-los-m%C3%A9todos-de-mds"><i class="fa fa-check"></i><b>6.3</b> Formulación Matemática de los Métodos de MDS</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-cl%C3%A1sico-o-m%C3%A9trico-principal-coordinate-analysis---pcoa"><i class="fa fa-check"></i><b>6.3.1</b> MDS Clásico o Métrico (Principal Coordinate Analysis - PCoA)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-no-m%C3%A9trico-ordinal"><i class="fa fa-check"></i><b>6.3.2</b> MDS No Métrico (Ordinal)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#cuadro-comparativo-de-m%C3%A9todos-de-reducci%C3%B3n-de-dimensiones"><i class="fa fa-check"></i><b>6.4</b> Cuadro Comparativo de Métodos de Reducción de Dimensiones</a></li>
+<li class="chapter" data-level="6.5" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#ejemplo-pr%C3%A1ctico-en-r-1"><i class="fa fa-check"></i><b>6.5</b> Ejemplo Práctico en R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#diagn%C3%B3stico-de-ajuste-diagrama-de-shepard"><i class="fa fa-check"></i><b>6.5.1</b> Diagnóstico de Ajuste: Diagrama de Shepard</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="part-métodos-de-clasificación.html"><a href="part-métodos-de-clasificación.html"><i class="fa fa-check"></i><b>7</b> (PART) Métodos de clasificación</a></li>
+<li class="chapter" data-level="8" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>8</b> Análisis de conglomerados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#introducci%C3%B3n-a-m%C3%A9todos-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>8.1</b> Introducción a métodos de clasificación</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#visualizaci%C3%B3n-intuitiva-de-ambos-paradojas"><i class="fa fa-check"></i><b>8.1.1</b> Visualización Intuitiva de Ambos Paradojas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#m%C3%A9tricas-de-distancia-y-similitud"><i class="fa fa-check"></i><b>8.2</b> Métricas de Distancia y Similitud</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#propiedades-matem%C3%A1ticas-de-una-m%C3%A9trica-de-distancia"><i class="fa fa-check"></i><b>8.2.1</b> Propiedades Matemáticas de una Métrica de Distancia</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#m%C3%A9tricas-de-distancia-para-variables-continuas"><i class="fa fa-check"></i><b>8.3</b> Métricas de Distancia para Variables Continuas</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#familia-de-distancias-de-minkowski"><i class="fa fa-check"></i><b>8.3.1</b> 1. Familia de Distancias de Minkowski</a></li>
+<li class="chapter" data-level="8.3.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#distancia-euclidiana-estandarizada"><i class="fa fa-check"></i><b>8.3.2</b> 2. Distancia Euclidiana Estandarizada</a></li>
+<li class="chapter" data-level="8.3.3" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#distancia-de-mahalanobis"><i class="fa fa-check"></i><b>8.3.3</b> 3. Distancia de Mahalanobis</a></li>
+<li class="chapter" data-level="8.3.4" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#ejemplo-pr%C3%A1ctico-en-r-comparaci%C3%B3n-de-m%C3%A9tricas-continuas"><i class="fa fa-check"></i><b>8.3.4</b> Ejemplo Práctico en R: Comparación de Métricas Continuas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a></li>
+<li class="part"><span><b>III Análisis de relaciones entre estructuras multivariadas</b></span></li>
+<li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="12" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>12</b> Análisis de Procrustes</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Multivariado</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-métodos-de-clasificación" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> (PART) Métodos de clasificación<a href="part-métodos-de-clasificación.html#part-m%C3%A9todos-de-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En el ámbito del análisis de datos multivariados, la <strong>clasificación</strong> comprende el conjunto de técnicas estadísticas y algorítmicas diseñadas para categorizar unidades observacionales (individuos, clientes, especies, muestras biológicas, transacciones) en grupos o clases homogéneas basándose en un conjunto de variables explicativas <span class="math inline">\(X = (X_1, X_2, \dots, X_p)^T\)</span>.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="escalamiento-multidimensional-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-conglomerados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "ga": "G-1PKNTHL5YP"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

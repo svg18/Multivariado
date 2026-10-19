@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Métodos de clasificación | Análisis Multivariado</title>
+  <meta name="description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Métodos de clasificación | Análisis Multivariado" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Métodos de clasificación | Análisis Multivariado" />
+  
+  <meta name="twitter:description" content="Material para el curso Análisis Multivariado en la Facultad de Ciencias, Universidad Nacional Autónoma de México" />
+  
+
+<meta name="author" content="Sofía Villers Gómez" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="escalamiento-multidimensional-mds.html"/>
+<link rel="next" href="análisis-de-conglomerados.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CXGNMPV7WK');
+</script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análisis Multivariado</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i>Objetivos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#estructura"><i class="fa fa-check"></i>Estructura</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#detalles-t%C3%A9cnicos"><i class="fa fa-check"></i>Detalles técnicos</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licencia"><i class="fa fa-check"></i>Licencia</a></li>
+</ul></li>
+<li class="part"><span><b>I Datos multivariados</b></span></li>
+<li class="chapter" data-level="1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html"><i class="fa fa-check"></i><b>1</b> Análisis descriptivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#algo-de-historia"><i class="fa fa-check"></i><b>1.1</b> Algo de historia</a></li>
+<li class="chapter" data-level="1.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#introducci%C3%B3n-a-los-datos-multivariados"><i class="fa fa-check"></i><b>1.2</b> Introducción a los Datos Multivariados</a></li>
+<li class="chapter" data-level="1.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#estructura-matricial-de-los-datos"><i class="fa fa-check"></i><b>1.3</b> Estructura Matricial de los Datos</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#vector-de-medias-muestrales"><i class="fa fa-check"></i><b>1.3.1</b> Vector de Medias Muestrales</a></li>
+<li class="chapter" data-level="1.3.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-varianza-covarianza-muestral"><i class="fa fa-check"></i><b>1.3.2</b> Matriz de Varianza-Covarianza Muestral</a></li>
+<li class="chapter" data-level="1.3.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-correlaci%C3%B3n-muestral"><i class="fa fa-check"></i><b>1.3.3</b> Matriz de Correlación Muestral</a></li>
+<li class="chapter" data-level="1.3.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#ejemplo"><i class="fa fa-check"></i><b>1.3.4</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#descripciones-gr%C3%A1ficas-multivariadas"><i class="fa fa-check"></i><b>1.4</b> Descripciones Gráficas Multivariadas</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#equivalente-multidimensional-de-histogramas-heatmap-densidad-2d"><i class="fa fa-check"></i><b>1.4.1</b> Equivalente Multidimensional de Histogramas (Heatmap / Densidad 2D)</a></li>
+<li class="chapter" data-level="1.4.2" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-dispersi%C3%B3n-3d-interactivo"><i class="fa fa-check"></i><b>1.4.2</b> Gráfico de Dispersión 3D Interactivo</a></li>
+<li class="chapter" data-level="1.4.3" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#matriz-de-dispersi%C3%B3n-pairs-plot-ggpairs"><i class="fa fa-check"></i><b>1.4.3</b> Matriz de Dispersión (Pairs Plot / GGpairs)</a></li>
+<li class="chapter" data-level="1.4.4" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-coordenadas-paralelas"><i class="fa fa-check"></i><b>1.4.4</b> Gráfico de Coordenadas Paralelas</a></li>
+<li class="chapter" data-level="1.4.5" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#caras-de-chernoff"><i class="fa fa-check"></i><b>1.4.5</b> Caras de Chernoff</a></li>
+<li class="chapter" data-level="1.4.6" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#gr%C3%A1fico-de-radar-telara%C3%B1a-spider-plot"><i class="fa fa-check"></i><b>1.4.6</b> Gráfico de Radar / Telaraña (Spider Plot)</a></li>
+<li class="chapter" data-level="1.4.7" data-path="análisis-descriptivo.html"><a href="análisis-descriptivo.html#curvas-de-andrews"><i class="fa fa-check"></i><b>1.4.7</b> Curvas de Andrews</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html"><i class="fa fa-check"></i><b>2</b> Álgebra de Matrices y Distribuciones Multivariadas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#resultados-importantes-de-%C3%A1lgebra-lineal"><i class="fa fa-check"></i><b>2.1</b> Resultados importantes de álgebra lineal</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-1"><i class="fa fa-check"></i><b>2.1.1</b> Ejemplo</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-normal-multivariada"><i class="fa fa-check"></i><b>2.2</b> Distribución Normal Multivariada</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#propiedades"><i class="fa fa-check"></i><b>2.2.1</b> Propiedades</a></li>
+<li class="chapter" data-level="2.2.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#estimacion-mu-sigma"><i class="fa fa-check"></i><b>2.2.2</b> Estimación de <span class="math inline">\(\boldsymbol{\mu}\)</span> y <span class="math inline">\(\boldsymbol{\Sigma}\)</span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#ejemplo-pr%C3%A1ctico-en-r"><i class="fa fa-check"></i><b>2.2.3</b> Ejemplo Práctico en R</a></li>
+<li class="chapter" data-level="2.2.4" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#norm-valida"><i class="fa fa-check"></i><b>2.2.4</b> Validación del Supuesto de Normalidad Multivariada</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#distribuci%C3%B3n-wishart"><i class="fa fa-check"></i><b>2.3</b> Distribución Wishart</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#definici%C3%B3n"><i class="fa fa-check"></i><b>2.3.1</b> Definición</a></li>
+<li class="chapter" data-level="2.3.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#funci%C3%B3n-de-densidad"><i class="fa fa-check"></i><b>2.3.2</b> Función de Densidad</a></li>
+<li class="chapter" data-level="2.3.3" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#propiedades-y-distribuci%C3%B3n-wishart-inversa"><i class="fa fa-check"></i><b>2.3.3</b> Propiedades y Distribución Wishart Inversa</a></li>
+<li class="chapter" data-level="2.3.4" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#teorema-central-del-l%C3%ADmite-multivariado"><i class="fa fa-check"></i><b>2.3.4</b> Teorema Central del Límite Multivariado</a></li>
+<li class="chapter" data-level="2.3.5" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#propiedades-adicionales-de-la-distribuci%C3%B3n-wishart"><i class="fa fa-check"></i><b>2.3.5</b> Propiedades Adicionales de la Distribución Wishart</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#estad%C3%ADstica-t2-de-hotelling"><i class="fa fa-check"></i><b>2.4</b> Estadística <span class="math inline">\(T^2\)</span> de Hotelling</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#definici%C3%B3n-1"><i class="fa fa-check"></i><b>2.4.1</b> Definición</a></li>
+<li class="chapter" data-level="2.4.2" data-path="álgebra-de-matrices-y-distribuciones-multivariadas.html"><a href="álgebra-de-matrices-y-distribuciones-multivariadas.html#aplicaci%C3%B3n-muestral-y-pruebas-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>2.4.2</b> Aplicación Muestral y Pruebas de Hipótesis</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Técnicas de reducción de dimensión</b></span></li>
+<li class="chapter" data-level="3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html"><i class="fa fa-check"></i><b>3</b> Análisis de Componentes Principales (PCA)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#componentes-principales"><i class="fa fa-check"></i><b>3.1</b> Componentes Principales</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.2</b> Cálculo de los Componentes Principales</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#proceso-de-extracci%C3%B3n-de-factores"><i class="fa fa-check"></i><b>3.2.1</b> Proceso de extracción de factores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#porcentajes-de-variabilidad"><i class="fa fa-check"></i><b>3.3</b> Porcentajes de Variabilidad</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-los-componentes-principales-a-partir-de-la-matriz-de-correlaciones"><i class="fa fa-check"></i><b>3.4</b> Cálculo de los Componentes Principales a partir de la Matriz de Correlaciones</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#matriz-factorial"><i class="fa fa-check"></i><b>3.5</b> Matriz Factorial</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#c%C3%A1lculo-de-las-covarianzas-y-correlaciones-entre-las-variables-originales-y-los-factores"><i class="fa fa-check"></i><b>3.5.1</b> Cálculo de las covarianzas y correlaciones entre las variables originales y los factores</a></li>
+<li class="chapter" data-level="3.5.2" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#cambios-de-escalas-e-identificaci%C3%B3n-de-componentes"><i class="fa fa-check"></i><b>3.5.2</b> Cambios de escalas e identificación de componentes</a></li>
+<li class="chapter" data-level="3.5.3" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#identificaci%C3%B3n-de-los-componentes-principales"><i class="fa fa-check"></i><b>3.5.3</b> Identificación de los componentes principales</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-componentes-principales-pca.html"><a href="análisis-de-componentes-principales-pca.html#ejemplo-contaminaci%C3%B3n-atmosf%C3%A9rica-en-ciudades-de-ee.-uu."><i class="fa fa-check"></i><b>3.6</b> Ejemplo: Contaminación Atmosférica en Ciudades de EE. UU.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html"><i class="fa fa-check"></i><b>4</b> Análisis de Factores</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-factorial"><i class="fa fa-check"></i><b>4.1</b> Análisis Factorial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#m%C3%A9todo-de-los-factores-principales"><i class="fa fa-check"></i><b>4.1.1</b> Método de los factores principales</a></li>
+<li class="chapter" data-level="4.1.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#m%C3%A9todo-de-la-m%C3%A1xima-verosimilitud"><i class="fa fa-check"></i><b>4.1.2</b> Método de la máxima verosimilitud</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#af-exploratorio-afe-vs.-af-confirmatorio-afc"><i class="fa fa-check"></i><b>4.2</b> AF Exploratorio (AFE) vs. AF Confirmatorio (AFC)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-factorial-exploratorio-afe"><i class="fa fa-check"></i><b>4.2.1</b> Análisis Factorial Exploratorio (AFE)</a></li>
+<li class="chapter" data-level="4.2.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-factorial-confirmatorio-afc"><i class="fa fa-check"></i><b>4.2.2</b> Análisis Factorial Confirmatorio (AFC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#diagnostico-factorabilidad"><i class="fa fa-check"></i><b>4.3</b> Diagnóstico de Factorabilidad</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#prueba-de-esfericidad-de-bartlett"><i class="fa fa-check"></i><b>4.3.1</b> Prueba de Esfericidad de Bartlett</a></li>
+<li class="chapter" data-level="4.3.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#medida-de-adecuaci%C3%B3n-muestral-kmo-kaiser-meyer-olkin"><i class="fa fa-check"></i><b>4.3.2</b> Medida de Adecuación Muestral KMO (Kaiser-Meyer-Olkin)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#matriz-de-correlaci%C3%B3n-anti-imagen-e-%C3%ADndices-msa-individuales"><i class="fa fa-check"></i><b>4.3.3</b> Matriz de Correlación Anti-imagen e Índices MSA Individuales</a></li>
+<li class="chapter" data-level="4.3.4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-de-diagnostico-en-r"><i class="fa fa-check"></i><b>4.3.4</b> Ejemplo de Diagnostico en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#estimaci%C3%B3n-del-n%C3%BAmero-de-factores"><i class="fa fa-check"></i><b>4.4</b> Estimación del Número de Factores</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#criterio-de-kaiser-guttman-autovalores-mayor-a-1"><i class="fa fa-check"></i><b>4.4.1</b> Criterio de Kaiser-Guttman (Autovalores Mayor a 1)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#gr%C3%A1fico-de-sedimentaci%C3%B3n-scree-plot-de-cattell"><i class="fa fa-check"></i><b>4.4.2</b> Gráfico de Sedimentación (<em>Scree Plot</em> de Cattell)</a></li>
+<li class="chapter" data-level="4.4.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#an%C3%A1lisis-paralelo-de-horn-horns-parallel-analysis"><i class="fa fa-check"></i><b>4.4.3</b> Análisis Paralelo de Horn (Horn’s Parallel Analysis)</a></li>
+<li class="chapter" data-level="4.4.4" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#prueba-de-hip%C3%B3tesis-de-bondad-de-ajuste-chi2-por-mle"><i class="fa fa-check"></i><b>4.4.4</b> Prueba de Hipótesis de Bondad de Ajuste (<span class="math inline">\(\chi^2\)</span> por MLE)</a></li>
+<li class="chapter" data-level="4.4.5" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-de-aplicaci%C3%B3n-en-r"><i class="fa fa-check"></i><b>4.4.5</b> Ejemplo de Aplicación en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#rotaci%C3%B3n-de-los-factores"><i class="fa fa-check"></i><b>4.5</b> Rotación de los Factores</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#tipos-de-rotaciones"><i class="fa fa-check"></i><b>4.5.1</b> Tipos de rotaciones</a></li>
+<li class="chapter" data-level="4.5.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#patron-estructura"><i class="fa fa-check"></i><b>4.5.2</b> Matriz de Patrón vs. Matriz de Estructura (Rotaciones Oblicuas)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-de-implementacion-y-comparacion-en-r"><i class="fa fa-check"></i><b>4.5.3</b> Ejemplo de Implementacion y Comparacion en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplos"><i class="fa fa-check"></i><b>4.6</b> Ejemplos</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-1-esperanza-de-vida-en-31-pa%C3%ADses"><i class="fa fa-check"></i><b>4.6.1</b> Ejemplo 1 Esperanza de Vida en 31 Países</a></li>
+<li class="chapter" data-level="4.6.2" data-path="análisis-de-factores.html"><a href="análisis-de-factores.html#ejemplo-2-de-implementaci%C3%B3n-del-afc-en-r-lavaan"><i class="fa fa-check"></i><b>4.6.2</b> Ejemplo 2 de Implementación del AFC en R (<code>lavaan</code>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html"><i class="fa fa-check"></i><b>5</b> Análisis de Correspondencias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-tabla-de-contingencia-y-la-estructura-de-datos"><i class="fa fa-check"></i><b>5.1</b> La Tabla de Contingencia y la Estructura de Datos</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#estructura-formal-de-la-tabla-de-contingencia"><i class="fa fa-check"></i><b>5.1.1</b> Estructura Formal de la Tabla de Contingencia</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#perfiles-marginales-y-perfiles-condicionales"><i class="fa fa-check"></i><b>5.2</b> Perfiles Marginales y Perfiles Condicionales</a></li>
+<li class="chapter" data-level="5.3" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#la-m%C3%A9trica-de-la-distancia-chi-cuadrada-chi2"><i class="fa fa-check"></i><b>5.3</b> La Métrica de la Distancia Chi-Cuadrada (<span class="math inline">\(\chi^2\)</span>)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#propiedades-de-la-distancia-chi-cuadrada"><i class="fa fa-check"></i><b>5.3.1</b> Propiedades de la Distancia Chi-Cuadrada</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#dependencia-independencia-y-an%C3%A1lisis-de-residuos"><i class="fa fa-check"></i><b>5.4</b> Dependencia, Independencia y Análisis de Residuos</a></li>
+<li class="chapter" data-level="5.5" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#reducci%C3%B3n-dimensional-y-espacio-factorial"><i class="fa fa-check"></i><b>5.5</b> Reducción Dimensional y Espacio Factorial</a></li>
+<li class="chapter" data-level="5.6" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#descomposici%C3%B3n-matem%C3%A1tica-svd-de-la-matriz-de-residuos"><i class="fa fa-check"></i><b>5.6</b> Descomposición Matemática (SVD de la Matriz de Residuos)</a></li>
+<li class="chapter" data-level="5.7" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#extensi%C3%B3n-an%C3%A1lisis-de-correspondencias-m%C3%BAltiples-acm"><i class="fa fa-check"></i><b>5.7</b> Extensión: Análisis de Correspondencias Múltiples (ACM)</a></li>
+<li class="chapter" data-level="5.8" data-path="análisis-de-correspondencias.html"><a href="análisis-de-correspondencias.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-an%C3%A1lisis-de-correspondencias-simple"><i class="fa fa-check"></i><b>5.8</b> Implementación Práctica en R (Análisis de Correspondencias Simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html"><i class="fa fa-check"></i><b>6</b> Escalamiento Multidimensional (MDS)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#introducci%C3%B3n-y-antecedentes-hist%C3%B3ricos"><i class="fa fa-check"></i><b>6.1</b> Introducción y Antecedentes Históricos</a></li>
+<li class="chapter" data-level="6.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#fundamentos-y-requisitos-del-mds"><i class="fa fa-check"></i><b>6.2</b> Fundamentos y Requisitos del MDS</a></li>
+<li class="chapter" data-level="6.3" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#formulaci%C3%B3n-matem%C3%A1tica-de-los-m%C3%A9todos-de-mds"><i class="fa fa-check"></i><b>6.3</b> Formulación Matemática de los Métodos de MDS</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-cl%C3%A1sico-o-m%C3%A9trico-principal-coordinate-analysis---pcoa"><i class="fa fa-check"></i><b>6.3.1</b> MDS Clásico o Métrico (Principal Coordinate Analysis - PCoA)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#mds-no-m%C3%A9trico-ordinal"><i class="fa fa-check"></i><b>6.3.2</b> MDS No Métrico (Ordinal)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#cuadro-comparativo-de-m%C3%A9todos-de-reducci%C3%B3n-de-dimensiones"><i class="fa fa-check"></i><b>6.4</b> Cuadro Comparativo de Métodos de Reducción de Dimensiones</a></li>
+<li class="chapter" data-level="6.5" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#ejemplo-pr%C3%A1ctico-en-r-1"><i class="fa fa-check"></i><b>6.5</b> Ejemplo Práctico en R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="escalamiento-multidimensional-mds.html"><a href="escalamiento-multidimensional-mds.html#diagn%C3%B3stico-de-ajuste-diagrama-de-shepard"><i class="fa fa-check"></i><b>6.5.1</b> Diagnóstico de Ajuste: Diagrama de Shepard</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>III Métodos de clasificación</b></span></li>
+<li class="chapter" data-level="7" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html"><i class="fa fa-check"></i><b>7</b> Métodos de clasificación</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambos-paradojas"><i class="fa fa-check"></i><b>7.1</b> Visualización Intuitiva de Ambos Paradojas</a></li>
+<li class="chapter" data-level="7.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-y-similitud"><i class="fa fa-check"></i><b>7.2</b> Métricas de Distancia y Similitud</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#propiedades-matem%C3%A1ticas-de-una-m%C3%A9trica-de-distancia"><i class="fa fa-check"></i><b>7.2.1</b> Propiedades Matemáticas de una Métrica de Distancia</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-para-variables-continuas"><i class="fa fa-check"></i><b>7.3</b> Métricas de Distancia para Variables Continuas</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#familia-de-distancias-de-minkowski"><i class="fa fa-check"></i><b>7.3.1</b> Familia de Distancias de Minkowski</a></li>
+<li class="chapter" data-level="7.3.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancia-euclidiana-estandarizada"><i class="fa fa-check"></i><b>7.3.2</b> Distancia Euclidiana Estandarizada</a></li>
+<li class="chapter" data-level="7.3.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancia-de-mahalanobis"><i class="fa fa-check"></i><b>7.3.3</b> Distancia de Mahalanobis</a></li>
+<li class="chapter" data-level="7.3.4" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-comparaci%C3%B3n-de-m%C3%A9tricas-continuas"><i class="fa fa-check"></i><b>7.3.4</b> Ejemplo Práctico en R: Comparación de Métricas Continuas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#medidas-de-similitud-y-disimilitud-para-datos-binarios-y-cualitativos"><i class="fa fa-check"></i><b>7.4</b> Medidas de Similitud y Disimilitud para Datos Binarios y Cualitativos</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#principales-coeficientes-de-similitud-binaria"><i class="fa fa-check"></i><b>7.4.1</b> Principales Coeficientes de Similitud Binaria</a></li>
+<li class="chapter" data-level="7.4.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#transformaci%C3%B3n-de-coeficientes-de-similitud-a-m%C3%A9tricas-de-distancia"><i class="fa fa-check"></i><b>7.4.2</b> Transformación de Coeficientes de Similitud a Métricas de Distancia</a></li>
+<li class="chapter" data-level="7.4.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-c%C3%A1lculo-manual-y-automatizado"><i class="fa fa-check"></i><b>7.4.3</b> Ejemplo Práctico en R: Cálculo Manual y Automatizado</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower"><i class="fa fa-check"></i><b>7.5</b> Distancias para Datos Mixtos: Coeficiente y Distancia de Gower</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#formulaci%C3%B3n-matem%C3%A1tica"><i class="fa fa-check"></i><b>7.5.1</b> Formulación Matemática</a></li>
+<li class="chapter" data-level="7.5.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-distancia-de-gower-con-clusterdaisy"><i class="fa fa-check"></i><b>7.5.2</b> Ejemplo Práctico en R: Distancia de Gower con <code>cluster::daisy</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#cuadro-resumen-gu%C3%ADa-para-la-selecci%C3%B3n-de-m%C3%A9tricas-de-distancia"><i class="fa fa-check"></i><b>7.6</b> Cuadro Resumen: Guía para la Selección de Métricas de Distancia</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html"><i class="fa fa-check"></i><b>8</b> Análisis de conglomerados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#naturaleza-y-supuestos-del-an%C3%A1lisis-de-conglomerados"><i class="fa fa-check"></i><b>8.1</b> Naturaleza y Supuestos del Análisis de Conglomerados</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#condiciones-para-una-aplicaci%C3%B3n-%C3%B3ptima"><i class="fa fa-check"></i><b>8.1.1</b> Condiciones para una Aplicación Óptima</a></li>
+<li class="chapter" data-level="8.1.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#etapas-del-an%C3%A1lisis-de-conglomerados"><i class="fa fa-check"></i><b>8.1.2</b> Etapas del Análisis de Conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#m%C3%A9todos-jer%C3%A1rquicos"><i class="fa fa-check"></i><b>8.2</b> Métodos Jerárquicos</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#criterios-de-enlace-linkage-entre-conglomerados"><i class="fa fa-check"></i><b>8.2.1</b> Criterios de Enlace (<em>Linkage</em>) entre Conglomerados</a></li>
+<li class="chapter" data-level="8.2.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#representaci%C3%B3n-gr%C3%A1fica-el-dendrograma"><i class="fa fa-check"></i><b>8.2.2</b> Representación Gráfica: El Dendrograma</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#m%C3%A9todos-no-jer%C3%A1rquicos-particionales"><i class="fa fa-check"></i><b>8.3</b> Métodos No Jerárquicos (Particionales)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#principios-fundamentales"><i class="fa fa-check"></i><b>8.3.1</b> Principios Fundamentales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#algoritmo-k-means-k-medias"><i class="fa fa-check"></i><b>8.3.2</b> Algoritmo <span class="math inline">\(K\)</span>-Means (<span class="math inline">\(K\)</span>-Medias)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#ejemplo-pr%C3%A1ctico-en-r-k-means-con-diagn%C3%B3stico-de-k-%C3%B3ptimo"><i class="fa fa-check"></i><b>8.3.3</b> Ejemplo Práctico en R: <span class="math inline">\(K\)</span>-Means con Diagnóstico de <span class="math inline">\(K\)</span> Óptimo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a></li>
+<li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
+<li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
+<li class="chapter" data-level="12" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>12</b> Análisis de Procrustes</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Hecho con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análisis Multivariado</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="métodos-de-clasificación" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Capítulo 7</span> Métodos de clasificación<a href="métodos-de-clasificación.html#m%C3%A9todos-de-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En el ámbito del análisis de datos multivariados, la <strong>clasificación</strong> comprende el conjunto de técnicas estadísticas y algorítmicas diseñadas para categorizar unidades observacionales (individuos, clientes, especies, muestras biológicas, transacciones) en grupos o clases homogéneas basándose en un conjunto de variables explicativas <span class="math inline">\(X = (X_1, X_2, \dots, X_p)^T\)</span>.</p>
+<p>A medida que la dimensión del espacio de características <span class="math inline">\(p\)</span> aumenta, la inspección gráfica simple resulta insuficiente. Los métodos de clasificación multivariada proveen un marco analítico riguroso para reducir la complejidad dimensional y extraer patrones organizativos de los datos.</p>
+<p>El objetivo central de los métodos de clasificación es establecer una función de mapeo <span class="math inline">\(g: \mathcal{X} \rightarrow \mathcal{G}\)</span>, donde <span class="math inline">\(\mathcal{X} \subseteq \mathbb{R}^p\)</span> representa el espacio multivariado de características y <span class="math inline">\(\mathcal{G} = \{g_1, g_2, \dots, g_K\}\)</span> denota el conjunto de categorías o clases posibles.</p>
+<p>La distinción conceptual primaria entre las técnicas de clasificación multivariada radica en la presencia o ausencia de una variable respuesta categórica (etiqueta o clase) previa al análisis.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Criterio de Comparación</th>
+<th align="left">Clasificación Supervisada (Discriminante)</th>
+<th align="left">Clasificación No Supervisada (Conglomerados)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Variable Respuesta (<span class="math inline">\(Y\)</span>)</strong></td>
+<td align="left">Conocida <em>a priori</em> (Etiquetada).</td>
+<td align="left">Ausente / Desconocida (No etiquetada).</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Objetivo Principal</strong></td>
+<td align="left">Entrenar reglas de decisión para clasificar nuevas observaciones o explicar qué variables diferencian a los grupos.</td>
+<td align="left">Descubrir agrupaciones naturales o patrones ocultos de similitud entre observaciones.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Técnicas Representativas</strong></td>
+<td align="left">LDA, QDA, Regresión Logística, <span class="math inline">\(k\)</span>-NN, Árboles CART.</td>
+<td align="left">Conglomerados Jerárquicos, K-Means, DBSCAN, GMM.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Evaluación del Modelo</strong></td>
+<td align="left">Matriz de confusión, Sensibilidad, Especificidad, Curvas ROC / AUC.</td>
+<td align="left">Coeficiente de Silueta, Criterio del Codo (<em>Elbow Method</em>), Índice de Rand.</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo 1: Enfoque Supervisado (<code>iris</code>)</p>
+<p>En el conjunto de datos <code>iris</code>, la variable <code>Species</code> actúa como etiqueta supervisada. El objetivo consiste en construir un modelo que aprenda la relación entre las medidas morfométricas y las especies definidas.</p>
+<p>Ejemplo 2: Enfoque No Supervisado (iris)</p>
+<p>Si prescindimos de la columna Species, el problema se convierte en un análisis no supervisado. El algoritmo debe agrupar las 150 flores basándose únicamente en la proximidad geométrica en un espacio de cuatro dimensiones.</p>
+<div id="visualización-intuitiva-de-ambos-paradojas" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Visualización Intuitiva de Ambos Paradojas<a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambos-paradojas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para ilustrar la diferencia fundamental entre ambos enfoques, consideremos un conjunto de datos multivariado bidimensional <span class="math inline">\(X \in \mathbb{R}^2\)</span>:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="métodos-de-clasificación.html#cb133-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb133-2"><a href="métodos-de-clasificación.html#cb133-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb133-3"><a href="métodos-de-clasificación.html#cb133-3" tabindex="-1"></a></span>
+<span id="cb133-4"><a href="métodos-de-clasificación.html#cb133-4" tabindex="-1"></a><span class="co"># Generación de datos sintéticos bivariados</span></span>
+<span id="cb133-5"><a href="métodos-de-clasificación.html#cb133-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb133-6"><a href="métodos-de-clasificación.html#cb133-6" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb133-7"><a href="métodos-de-clasificación.html#cb133-7" tabindex="-1"></a>clase_A <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X1 =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="at">X2 =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">3</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="at">Grupo =</span> <span class="st">&quot;Clase A&quot;</span>)</span>
+<span id="cb133-8"><a href="métodos-de-clasificación.html#cb133-8" tabindex="-1"></a>clase_B <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X1 =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="at">X2 =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="fl">0.8</span>), <span class="at">Grupo =</span> <span class="st">&quot;Clase B&quot;</span>)</span>
+<span id="cb133-9"><a href="métodos-de-clasificación.html#cb133-9" tabindex="-1"></a>datos_sim <span class="ot">&lt;-</span> <span class="fu">rbind</span>(clase_A, clase_B)</span>
+<span id="cb133-10"><a href="métodos-de-clasificación.html#cb133-10" tabindex="-1"></a></span>
+<span id="cb133-11"><a href="métodos-de-clasificación.html#cb133-11" tabindex="-1"></a><span class="co"># 1. Gráfico Supervisado (Etiquetas conocidas)</span></span>
+<span id="cb133-12"><a href="métodos-de-clasificación.html#cb133-12" tabindex="-1"></a>p_supervisado <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(datos_sim, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2, <span class="at">color =</span> Grupo)) <span class="sc">+</span></span>
+<span id="cb133-13"><a href="métodos-de-clasificación.html#cb133-13" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb133-14"><a href="métodos-de-clasificación.html#cb133-14" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">8</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb133-15"><a href="métodos-de-clasificación.html#cb133-15" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Clase A&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2b5c8f&quot;</span>, <span class="st">&quot;Clase B&quot;</span> <span class="ot">=</span> <span class="st">&quot;#d95f02&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb133-16"><a href="métodos-de-clasificación.html#cb133-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Clasificación Supervisada&quot;</span>,</span>
+<span id="cb133-17"><a href="métodos-de-clasificación.html#cb133-17" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Frontera de decisión estimada con etiquetas&quot;</span>,</span>
+<span id="cb133-18"><a href="métodos-de-clasificación.html#cb133-18" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Variable X1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Variable X2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb133-19"><a href="métodos-de-clasificación.html#cb133-19" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb133-20"><a href="métodos-de-clasificación.html#cb133-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb133-21"><a href="métodos-de-clasificación.html#cb133-21" tabindex="-1"></a></span>
+<span id="cb133-22"><a href="métodos-de-clasificación.html#cb133-22" tabindex="-1"></a><span class="co"># 2. Gráfico No Supervisado (Sin etiquetas previas)</span></span>
+<span id="cb133-23"><a href="métodos-de-clasificación.html#cb133-23" tabindex="-1"></a>p_nosupervisado <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(datos_sim, <span class="fu">aes</span>(<span class="at">x =</span> X1, <span class="at">y =</span> X2)) <span class="sc">+</span></span>
+<span id="cb133-24"><a href="métodos-de-clasificación.html#cb133-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">color =</span> <span class="st">&quot;grey30&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb133-25"><a href="métodos-de-clasificación.html#cb133-25" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Clasificación No Supervisada&quot;</span>,</span>
+<span id="cb133-26"><a href="métodos-de-clasificación.html#cb133-26" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Identificación de conglomerados por proximidad&quot;</span>,</span>
+<span id="cb133-27"><a href="métodos-de-clasificación.html#cb133-27" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Variable X1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Variable X2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb133-28"><a href="métodos-de-clasificación.html#cb133-28" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb133-29"><a href="métodos-de-clasificación.html#cb133-29" tabindex="-1"></a></span>
+<span id="cb133-30"><a href="métodos-de-clasificación.html#cb133-30" tabindex="-1"></a><span class="co"># Despliegue lado a lado con patchwork</span></span>
+<span id="cb133-31"><a href="métodos-de-clasificación.html#cb133-31" tabindex="-1"></a>p_supervisado <span class="sc">+</span> p_nosupervisado</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:intro-visualizacion"></span>
+<img src="_main_files/figure-html/intro-visualizacion-1.png" alt="Diferencia gráfica entre la perspectiva supervisada (con etiquetas) y no supervisada (sin etiquetas)." width="672" />
+<p class="caption">
+Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas) y no supervisada (sin etiquetas).
+</p>
+</div>
+</div>
+<div id="métricas-de-distancia-y-similitud" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Métricas de Distancia y Similitud<a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-y-similitud" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En el análisis multivariado, la cuantificación de la cercanía, parecido o disimilitud entre observaciones es el pilar fundamental sobre el que se construyen tanto los métodos de <strong>clasificación no supervisada</strong> (análisis de conglomerados) como varios algoritmos de <strong>clasificación supervisada</strong> (como <span class="math inline">\(k\)</span>-NN o la regla de distancia mínima al centroide).</p>
+<p>Dado un conjunto de datos multivariado representado por una matriz <span class="math inline">\(X_{n \times p}\)</span>, donde <span class="math inline">\(n\)</span> es el número de observaciones e <span class="math inline">\(i, j \in \{1, 2, \dots, n\}\)</span>, denotamos a las observaciones <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> como vectores columna en un espacio de dimension <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[x_i = \begin{pmatrix} x_{i1} \\ x_{i2} \\ \vdots \\ x_{ip} \end{pmatrix}, \quad x_j = \begin{pmatrix} x_{j1} \\ x_{j2} \\ \vdots \\ x_{jp} \end{pmatrix}\]</span></p>
+<div id="propiedades-matemáticas-de-una-métrica-de-distancia" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Propiedades Matemáticas de una Métrica de Distancia<a href="métodos-de-clasificación.html#propiedades-matem%C3%A1ticas-de-una-m%C3%A9trica-de-distancia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para que una función <span class="math inline">\(d(x_i, x_j)\)</span> sea considerada formalmente una <strong>métrica de distancia</strong>, debe cumplir con los siguientes cuatro axiomas para todo <span class="math inline">\(x_i, x_j, x_k \in \mathbb{R}^p\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><strong>No negatividad:</strong> <span class="math inline">\(d(x_i, x_j) \ge 0\)</span></li>
+<li><strong>Identidad de los indiscernibles:</strong> <span class="math inline">\(d(x_i, x_j) = 0 \iff x_i = x_j\)</span></li>
+<li><strong>Simetría:</strong> <span class="math inline">\(d(x_i, x_j) = d(x_j, x_i)\)</span></li>
+<li><strong>Desigualdad triangular:</strong> <span class="math inline">\(d(x_i, x_k) \le d(x_i, x_j) + d(x_j, x_k)\)</span></li>
+</ol>
+<blockquote>
+<p><strong>Nota:</strong> Cuando una medida satisface los tres primeros axiomas pero no necesariamente la desigualdad triangular, se le denomina <strong>pseudométrica</strong> o <strong>medida de disimilitud</strong>.</p>
+</blockquote>
+</div>
+</div>
+<div id="métricas-de-distancia-para-variables-continuas" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Métricas de Distancia para Variables Continuas<a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-para-variables-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="familia-de-distancias-de-minkowski" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Familia de Distancias de Minkowski<a href="métodos-de-clasificación.html#familia-de-distancias-de-minkowski" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La <strong>distancia de Minkowski</strong> es una familia paramétrica de métricas indexada por un escalar <span class="math inline">\(q \ge 1\)</span>:</p>
+<p><span class="math display">\[d_{MK}(x_i, x_j) = \left( \sum_{k=1}^{p} \vert{}x_{ik} - x_{jk}\vert{}^q \right)^{\frac{1}{q}}\]</span></p>
+<p>Dependiendo del valor fijado para <span class="math inline">\(q\)</span>, obtenemos tres de las métricas continuas más utilizadas:</p>
+<ul>
+<li><p><strong>Distancia Manhattan (<span class="math inline">\(q = 1\)</span>):</strong> También conocida como <em>City-Block</em> o <span class="math inline">\(L_1\)</span>. Suma las diferencias absolutas dimensión por dimensión:</p>
+<p><span class="math display">\[d_M(x_i, x_j) = \sum_{k=1}^{p} \vert{}x_{ik} - x_{jk}\vert{}\]</span></p></li>
+<li><p><strong>Distancia Euclidiana (<span class="math inline">\(q = 2\)</span>):</strong> Corresponde a la norma <span class="math inline">\(L_2\)</span> o distancia geométrica en el espacio euclídeo:</p>
+<p><span class="math display">\[d_E(x_i, x_j) = \sqrt{\sum_{k=1}^{p} (x_{ik} - x_{jk})^2} = \sqrt{(x_i - x_j)^T (x_i - x_j)}\]</span></p></li>
+<li><p><strong>Distancia Chebyshev (<span class="math inline">\(q \to \infty\)</span>):</strong> Corresponde a la norma <span class="math inline">\(L_\infty\)</span> y toma la máxima diferencia absoluta a lo largo de cualquier dimensión:</p>
+<p><span class="math display">\[d_{Cheb}(x_i, x_j) = \max_{k=1,\dots,p} \vert{}x_{ik} - x_{jk}\vert{}\]</span></p></li>
+</ul>
+<hr />
+</div>
+<div id="distancia-euclidiana-estandarizada" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Distancia Euclidiana Estandarizada<a href="métodos-de-clasificación.html#distancia-euclidiana-estandarizada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La distancia Euclidiana convencional presenta una severa limitación: <strong>es dependiente de la escala de medición</strong>. Si una variable posee una varianza mucho mayor que las demás (por ejemplo, ingresos monetarios frente a edad en años), dominará casi por completo el cálculo de la distancia.</p>
+<p>Para corregir esto, se realiza una estandarización previa dividiendo las diferencias al cuadrado entre las varianzas muestrales <span class="math inline">\(s_k^2\)</span> de cada covariable:</p>
+<p><span class="math display">\[d_{SE}(x_i, x_j) = \sqrt{\sum_{k=1}^{p} \frac{(x_{ik} - x_{jk})^2}{s_k^2}}\]</span></p>
+<p>Matrencialmente, si <span class="math inline">\(D_s = \text{diag}(s_1^2, s_2^2, \dots, s_p^2)\)</span> es la matriz diagonal de varianzas:</p>
+<p><span class="math display">\[d_{SE}(x_i, x_j) = \sqrt{(x_i - x_j)^T D_s^{-1} (x_i - x_j)}\]</span></p>
+<hr />
+</div>
+<div id="distancia-de-mahalanobis" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Distancia de Mahalanobis<a href="métodos-de-clasificación.html#distancia-de-mahalanobis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Aunque la distancia Euclidiana estandarizada corrige la diferencia de escalas, asume implícitamente que las covariables son <strong>independientes entre sí</strong>.</p>
+<p>La <strong>distancia de Mahalanobis</strong> resuelve tanto la disparidad de escalas como la <strong>correlación o redundancia lineal</strong> entre variables, sustituyendo la matriz diagonal de varianzas por la matriz de covarianza muestral <span class="math inline">\(S\)</span>:</p>
+<p><span class="math display">\[d_{Mah}(x_i, x_j) = \sqrt{(x_i - x_j)^T S^{-1} (x_i - x_j)}\]</span></p>
+<p>donde la matriz de covarianza <span class="math inline">\(S\)</span> se define como:</p>
+<p><span class="math display">\[S = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})(x_i - \bar{x})^T\]</span></p>
+<div id="ventajas-clave-de-la-distancia-de-mahalanobis" class="section level4 hasAnchor" number="7.3.3.1">
+<h4><span class="header-section-number">7.3.3.1</span> Ventajas clave de la Distancia de Mahalanobis:<a href="métodos-de-clasificación.html#ventajas-clave-de-la-distancia-de-mahalanobis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Invariancia de escala:</strong> Es insensible a cambios lineales en las unidades de medida.</li>
+<li><strong>Descorrelación:</strong> Pondera las variaciones en direcciones con mayor o menor variabilidad conjunta.</li>
+<li><strong>Detección de atípicos multivariados:</strong> Permite medir la distancia desde un punto individual <span class="math inline">\(x_i\)</span> hasta el centroide del grupo <span class="math inline">\(\bar{x}\)</span>.</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="ejemplo-práctico-en-r-comparación-de-métricas-continuas" class="section level3 hasAnchor" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Ejemplo Práctico en R: Comparación de Métricas Continuas<a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-comparaci%C3%B3n-de-m%C3%A9tricas-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Evaluaremos las distancias entre tres vehículos del dataset <code>mtcars</code> analizando tres variables continuas: <code>mpg</code> (millas por galón), <code>hp</code> (caballos de fuerza) y <code>wt</code> (peso en miles de libras).</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="métodos-de-clasificación.html#cb134-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb134-2"><a href="métodos-de-clasificación.html#cb134-2" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="métodos-de-clasificación.html#cb134-3" tabindex="-1"></a><span class="co"># Seleccionar 3 vehículos contrastantes</span></span>
+<span id="cb134-4"><a href="métodos-de-clasificación.html#cb134-4" tabindex="-1"></a>autos <span class="ot">&lt;-</span> mtcars[<span class="fu">c</span>(<span class="st">&quot;Mazda RX4&quot;</span>, <span class="st">&quot;Maserati Bora&quot;</span>, <span class="st">&quot;Fiat 128&quot;</span>), <span class="fu">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)]</span>
+<span id="cb134-5"><a href="métodos-de-clasificación.html#cb134-5" tabindex="-1"></a></span>
+<span id="cb134-6"><a href="métodos-de-clasificación.html#cb134-6" tabindex="-1"></a><span class="co"># 1. Distancia Euclidiana (Sin estandarizar)</span></span>
+<span id="cb134-7"><a href="métodos-de-clasificación.html#cb134-7" tabindex="-1"></a>d_euclidea <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(autos, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>))</span>
+<span id="cb134-8"><a href="métodos-de-clasificación.html#cb134-8" tabindex="-1"></a></span>
+<span id="cb134-9"><a href="métodos-de-clasificación.html#cb134-9" tabindex="-1"></a><span class="co"># 2. Distancia Euclidiana Estandarizada (Z-score)</span></span>
+<span id="cb134-10"><a href="métodos-de-clasificación.html#cb134-10" tabindex="-1"></a>autos_z <span class="ot">&lt;-</span> <span class="fu">scale</span>(autos)</span>
+<span id="cb134-11"><a href="métodos-de-clasificación.html#cb134-11" tabindex="-1"></a>d_euclidea_z <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(autos_z, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>))</span>
+<span id="cb134-12"><a href="métodos-de-clasificación.html#cb134-12" tabindex="-1"></a></span>
+<span id="cb134-13"><a href="métodos-de-clasificación.html#cb134-13" tabindex="-1"></a><span class="co"># 3. Distancia Manhattan</span></span>
+<span id="cb134-14"><a href="métodos-de-clasificación.html#cb134-14" tabindex="-1"></a>d_manhattan <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(autos_z, <span class="at">method =</span> <span class="st">&quot;manhattan&quot;</span>))</span>
+<span id="cb134-15"><a href="métodos-de-clasificación.html#cb134-15" tabindex="-1"></a></span>
+<span id="cb134-16"><a href="métodos-de-clasificación.html#cb134-16" tabindex="-1"></a><span class="co"># 4. Distancia de Mahalanobis</span></span>
+<span id="cb134-17"><a href="métodos-de-clasificación.html#cb134-17" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">cov</span>(mtcars[, <span class="fu">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)]) <span class="co"># Matriz de covarianza global</span></span>
+<span id="cb134-18"><a href="métodos-de-clasificación.html#cb134-18" tabindex="-1"></a>d_mah <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">rownames</span>(autos), <span class="fu">rownames</span>(autos)))</span>
+<span id="cb134-19"><a href="métodos-de-clasificación.html#cb134-19" tabindex="-1"></a></span>
+<span id="cb134-20"><a href="métodos-de-clasificación.html#cb134-20" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb134-21"><a href="métodos-de-clasificación.html#cb134-21" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb134-22"><a href="métodos-de-clasificación.html#cb134-22" tabindex="-1"></a>    diff_vec <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(autos[i, ] <span class="sc">-</span> autos[j, ])</span>
+<span id="cb134-23"><a href="métodos-de-clasificación.html#cb134-23" tabindex="-1"></a>    d_mah[i, j] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">t</span>(diff_vec) <span class="sc">%*%</span> <span class="fu">solve</span>(S) <span class="sc">%*%</span> diff_vec)</span>
+<span id="cb134-24"><a href="métodos-de-clasificación.html#cb134-24" tabindex="-1"></a>  }</span>
+<span id="cb134-25"><a href="métodos-de-clasificación.html#cb134-25" tabindex="-1"></a>}</span>
+<span id="cb134-26"><a href="métodos-de-clasificación.html#cb134-26" tabindex="-1"></a></span>
+<span id="cb134-27"><a href="métodos-de-clasificación.html#cb134-27" tabindex="-1"></a><span class="fu">kable</span>(d_euclidea, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">&quot;Tabla 1.1: Distancia Euclidiana sin estandarizar (Domina la variable &#39;hp&#39;)&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:comparacion-distancias">Table 7.1: </span>Tabla 1.1: Distancia Euclidiana sin estandarizar (Domina la variable ‘hp’)</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Mazda RX4</th>
+<th align="right">Maserati Bora</th>
+<th align="right">Fiat 128</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">0.00</td>
+<td align="right">225.08</td>
+<td align="right">45.45</td>
+</tr>
+<tr class="even">
+<td align="left">Maserati Bora</td>
+<td align="right">225.08</td>
+<td align="right">0.00</td>
+<td align="right">269.57</td>
+</tr>
+<tr class="odd">
+<td align="left">Fiat 128</td>
+<td align="right">45.45</td>
+<td align="right">269.57</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="métodos-de-clasificación.html#cb135-1" tabindex="-1"></a><span class="fu">kable</span>(d_euclidea_z, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">&quot;Tabla 1.2: Distancia Euclidiana Estandarizada (Z-score)&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:comparacion-distancias">Table 7.1: </span>Tabla 1.2: Distancia Euclidiana Estandarizada (Z-score)</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Mazda RX4</th>
+<th align="right">Maserati Bora</th>
+<th align="right">Fiat 128</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">0.00</td>
+<td align="right">2.17</td>
+<td align="right">1.45</td>
+</tr>
+<tr class="even">
+<td align="left">Maserati Bora</td>
+<td align="right">2.17</td>
+<td align="right">0.00</td>
+<td align="right">3.34</td>
+</tr>
+<tr class="odd">
+<td align="left">Fiat 128</td>
+<td align="right">1.45</td>
+<td align="right">3.34</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="métodos-de-clasificación.html#cb136-1" tabindex="-1"></a><span class="fu">kable</span>(d_mah, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">caption =</span> <span class="st">&quot;Tabla 1.3: Distancia de Mahalanobis (Ajustada por covarianza)&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:comparacion-distancias">Table 7.1: </span>Tabla 1.3: Distancia de Mahalanobis (Ajustada por covarianza)</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Mazda RX4</th>
+<th align="right">Maserati Bora</th>
+<th align="right">Fiat 128</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">0.00</td>
+<td align="right">4.12</td>
+<td align="right">3.40</td>
+</tr>
+<tr class="even">
+<td align="left">Maserati Bora</td>
+<td align="right">4.12</td>
+<td align="right">0.00</td>
+<td align="right">4.46</td>
+</tr>
+<tr class="odd">
+<td align="left">Fiat 128</td>
+<td align="right">3.40</td>
+<td align="right">4.46</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<p>Interpretación: En la Tabla 1.1, la enorme diferencia en los caballos de fuerza (hp) entre el Maserati Bora y los otros vehículos infla de manera desproporcionada la distancia. Al estandarizar (Tabla 1.2) o incorporar la covarianza multivariada con Mahalanobis (Tabla 1.3), las variables aportan de forma ponderada e insesgada.</p>
+</div>
+</div>
+<div id="medidas-de-similitud-y-disimilitud-para-datos-binarios-y-cualitativos" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Medidas de Similitud y Disimilitud para Datos Binarios y Cualitativos<a href="métodos-de-clasificación.html#medidas-de-similitud-y-disimilitud-para-datos-binarios-y-cualitativos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando los vectores de datos multivariados representan atributos dicotómicos de presencia (<span class="math inline">\(1\)</span>) o ausencia (<span class="math inline">\(0\)</span>), las métricas de distancia concebidas para variables continuas (como la Euclidiana) resultan conceptualmente inadecuadas.</p>
+<p>Para evaluar el grado de asociación entre dos observaciones <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> medidas en <span class="math inline">\(p\)</span> características binarias, se construye una <strong>matriz de contingencia de coincidencia <span class="math inline">\(2 \times 2\)</span></strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Sujeto <span class="math inline">\(j = 1\)</span></th>
+<th align="center">Sujeto <span class="math inline">\(j = 0\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Sujeto <span class="math inline">\(i = 1\)</span></strong></td>
+<td align="center"><span class="math inline">\(a\)</span></td>
+<td align="center"><span class="math inline">\(b\)</span></td>
+<td align="center"><span class="math inline">\(a + b\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Sujeto <span class="math inline">\(i = 0\)</span></strong></td>
+<td align="center"><span class="math inline">\(c\)</span></td>
+<td align="center"><span class="math inline">\(d\)</span></td>
+<td align="center"><span class="math inline">\(c + d\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Total</strong></td>
+<td align="center"><span class="math inline">\(a + c\)</span></td>
+<td align="center"><span class="math inline">\(b + d\)</span></td>
+<td align="center"><span class="math inline">\(p = a + b + c + d\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Donde las frecuencias absolutas representan:</p>
+<ul>
+<li><span class="math inline">\(a\)</span>: Número de características <strong>presentes en ambos</strong> individuos (coincidencias <span class="math inline">\(1-1\)</span>).</li>
+<li><span class="math inline">\(b\)</span>: Número de características <strong>presentes en <span class="math inline">\(i\)</span> y ausentes en <span class="math inline">\(j\)</span></strong> (discrepancias <span class="math inline">\(1-0\)</span>).</li>
+<li><span class="math inline">\(c\)</span>: Número de características <strong>ausentes en <span class="math inline">\(i\)</span> y presentes en <span class="math inline">\(j\)</span></strong> (discrepancias <span class="math inline">\(0-1\)</span>).</li>
+<li><span class="math inline">\(d\)</span>: Número de características <strong>ausentes en ambos</strong> individuos (coincidencias <span class="math inline">\(0-0\)</span>).</li>
+<li><span class="math inline">\(p = a + b + c + d\)</span>: Número total de características evaluadas.</li>
+</ul>
+<hr />
+<div id="principales-coeficientes-de-similitud-binaria" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Principales Coeficientes de Similitud Binaria<a href="métodos-de-clasificación.html#principales-coeficientes-de-similitud-binaria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="coeficiente-de-coincidencia-simple-simple-matching-coefficient---smc" class="section level4 hasAnchor" number="7.4.1.1">
+<h4><span class="header-section-number">7.4.1.1</span> 1. Coeficiente de Coincidencia Simple (<em>Simple Matching Coefficient - SMC</em>)<a href="métodos-de-clasificación.html#coeficiente-de-coincidencia-simple-simple-matching-coefficient---smc" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Asigna un peso simétrico tanto a las coincidencias de presencia (<span class="math inline">\(1-1\)</span>) como a las coincidencias de ausencia (<span class="math inline">\(0-0\)</span>):</p>
+<p><span class="math display">\[S_{SMC} = \frac{a + d}{a + b + c + d}\]</span></p>
+<ul>
+<li><strong>Ámbito de aplicación:</strong> Se utiliza cuando la ausencia compartida de un atributo aporta valor explicativo al problema (por ejemplo, respuestas de “Sí / No” de igual peso en encuestas de satisfacción).</li>
+</ul>
+</div>
+<div id="coeficiente-de-jaccard" class="section level4 hasAnchor" number="7.4.1.2">
+<h4><span class="header-section-number">7.4.1.2</span> 2. Coeficiente de Jaccard<a href="métodos-de-clasificación.html#coeficiente-de-jaccard" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Excluye deliberadamente del cálculo el recuento de ausencias compartidas (<span class="math inline">\(d\)</span>):</p>
+<p><span class="math display">\[S_{Jaccard} = \frac{a}{a + b + c}\]</span></p>
+<ul>
+<li><strong>Ámbito de aplicación:</strong> Es la métrica estándar cuando las coincidencias de ausencia no transmiten información relevante o inflarían artificialmente la similitud (por ejemplo, presencia de mutaciones genéticas raras, registro de especies en ecología o coincidencia de palabras clave en minería de texto).</li>
+</ul>
+</div>
+<div id="coeficiente-de-sørensen-dice" class="section level4 hasAnchor" number="7.4.1.3">
+<h4><span class="header-section-number">7.4.1.3</span> 3. Coeficiente de Sørensen-Dice<a href="métodos-de-clasificación.html#coeficiente-de-s%C3%B8rensen-dice" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Atribuye el doble de importancia a las coincidencias de presencia positiva (<span class="math inline">\(a\)</span>):</p>
+<p><span class="math display">\[S_{Dice} = \frac{2a}{2a + b + c}\]</span></p>
+<hr />
+</div>
+</div>
+<div id="transformación-de-coeficientes-de-similitud-a-métricas-de-distancia" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Transformación de Coeficientes de Similitud a Métricas de Distancia<a href="métodos-de-clasificación.html#transformaci%C3%B3n-de-coeficientes-de-similitud-a-m%C3%A9tricas-de-distancia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los coeficientes de similitud están acotados en el intervalo <span class="math inline">\(S_{ij} \in [0, 1]\)</span>, donde <span class="math inline">\(1\)</span> denota identidad perfecta y <span class="math inline">\(0\)</span> disimilitud absoluta.</p>
+<p>Para aplicar algoritmos de agrupamiento (<em>clustering</em>) o escalamiento multidimensional que requieren métricas de <strong>distancia o disimilitud</strong> <span class="math inline">\(d_{ij}\)</span>, se emplean las siguientes transformaciones estándar:</p>
+<p><span class="math display">\[d_{ij} = 1 - S_{ij} \quad \text{o} \quad d_{ij} = \sqrt{1 - S_{ij}}\]</span></p>
+<hr />
+</div>
+<div id="ejemplo-práctico-en-r-cálculo-manual-y-automatizado" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Ejemplo Práctico en R: Cálculo Manual y Automatizado<a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-c%C3%A1lculo-manual-y-automatizado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En este ejemplo se comparan tres especímenes analizados sobre <span class="math inline">\(8\)</span> marcadores biológicos binarios (<span class="math inline">\(1 = \text{Presencia}\)</span>, <span class="math inline">\(0 = \text{Ausencia}\)</span>).</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="métodos-de-clasificación.html#cb137-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb137-2"><a href="métodos-de-clasificación.html#cb137-2" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb137-3"><a href="métodos-de-clasificación.html#cb137-3" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="métodos-de-clasificación.html#cb137-4" tabindex="-1"></a><span class="co"># Matriz de datos binarios (3 especímenes, 8 marcadores)</span></span>
+<span id="cb137-5"><a href="métodos-de-clasificación.html#cb137-5" tabindex="-1"></a>datos_binarios <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb137-6"><a href="métodos-de-clasificación.html#cb137-6" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>,   <span class="co"># Especimen A</span></span>
+<span id="cb137-7"><a href="métodos-de-clasificación.html#cb137-7" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>,   <span class="co"># Especimen B</span></span>
+<span id="cb137-8"><a href="métodos-de-clasificación.html#cb137-8" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),  <span class="co"># Especimen C</span></span>
+<span id="cb137-9"><a href="métodos-de-clasificación.html#cb137-9" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb137-10"><a href="métodos-de-clasificación.html#cb137-10" tabindex="-1"></a>  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;Esp_A&quot;</span>, <span class="st">&quot;Esp_B&quot;</span>, <span class="st">&quot;Esp_C&quot;</span>), <span class="fu">paste0</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>))</span>
+<span id="cb137-11"><a href="métodos-de-clasificación.html#cb137-11" tabindex="-1"></a>)</span>
+<span id="cb137-12"><a href="métodos-de-clasificación.html#cb137-12" tabindex="-1"></a></span>
+<span id="cb137-13"><a href="métodos-de-clasificación.html#cb137-13" tabindex="-1"></a><span class="co"># Visualización de la matriz de entrada</span></span>
+<span id="cb137-14"><a href="métodos-de-clasificación.html#cb137-14" tabindex="-1"></a><span class="fu">kable</span>(datos_binarios, <span class="at">caption =</span> <span class="st">&quot;Presencia y ausencia de marcadores por espécimen&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:similitud-binaria">Table 7.2: </span>Presencia y ausencia de marcadores por espécimen</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">M1</th>
+<th align="right">M2</th>
+<th align="right">M3</th>
+<th align="right">M4</th>
+<th align="right">M5</th>
+<th align="right">M6</th>
+<th align="right">M7</th>
+<th align="right">M8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Esp_A</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Esp_B</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Esp_C</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="métodos-de-clasificación.html#cb138-1" tabindex="-1"></a><span class="co"># Función interna para calcular la matriz de contingencia 2x2</span></span>
+<span id="cb138-2"><a href="métodos-de-clasificación.html#cb138-2" tabindex="-1"></a>calcular_contingencia_binaria <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb138-3"><a href="métodos-de-clasificación.html#cb138-3" tabindex="-1"></a>  a <span class="ot">&lt;-</span> <span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb138-4"><a href="métodos-de-clasificación.html#cb138-4" tabindex="-1"></a>  b <span class="ot">&lt;-</span> <span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> y <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb138-5"><a href="métodos-de-clasificación.html#cb138-5" tabindex="-1"></a>  c <span class="ot">&lt;-</span> <span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb138-6"><a href="métodos-de-clasificación.html#cb138-6" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> y <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb138-7"><a href="métodos-de-clasificación.html#cb138-7" tabindex="-1"></a>  </span>
+<span id="cb138-8"><a href="métodos-de-clasificación.html#cb138-8" tabindex="-1"></a>  s_smc <span class="ot">&lt;-</span> (a <span class="sc">+</span> d) <span class="sc">/</span> (a <span class="sc">+</span> b <span class="sc">+</span> c <span class="sc">+</span> d)</span>
+<span id="cb138-9"><a href="métodos-de-clasificación.html#cb138-9" tabindex="-1"></a>  s_jaccard <span class="ot">&lt;-</span> a <span class="sc">/</span> (a <span class="sc">+</span> b <span class="sc">+</span> c)</span>
+<span id="cb138-10"><a href="métodos-de-clasificación.html#cb138-10" tabindex="-1"></a>  s_dice <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> a) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> a <span class="sc">+</span> b <span class="sc">+</span> c)</span>
+<span id="cb138-11"><a href="métodos-de-clasificación.html#cb138-11" tabindex="-1"></a>  </span>
+<span id="cb138-12"><a href="métodos-de-clasificación.html#cb138-12" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(<span class="at">a =</span> a, <span class="at">b =</span> b, <span class="at">c =</span> c, <span class="at">d =</span> d, </span>
+<span id="cb138-13"><a href="métodos-de-clasificación.html#cb138-13" tabindex="-1"></a>           <span class="at">SMC =</span> s_smc, <span class="at">Jaccard =</span> s_jaccard, <span class="at">Dice =</span> s_dice))</span>
+<span id="cb138-14"><a href="métodos-de-clasificación.html#cb138-14" tabindex="-1"></a>}</span>
+<span id="cb138-15"><a href="métodos-de-clasificación.html#cb138-15" tabindex="-1"></a></span>
+<span id="cb138-16"><a href="métodos-de-clasificación.html#cb138-16" tabindex="-1"></a><span class="co"># Comparación entre Espécimen A y Espécimen B</span></span>
+<span id="cb138-17"><a href="métodos-de-clasificación.html#cb138-17" tabindex="-1"></a>res_AB <span class="ot">&lt;-</span> <span class="fu">calcular_contingencia_binaria</span>(datos_binarios[<span class="st">&quot;Esp_A&quot;</span>, ], datos_binarios[<span class="st">&quot;Esp_B&quot;</span>, ])</span>
+<span id="cb138-18"><a href="métodos-de-clasificación.html#cb138-18" tabindex="-1"></a></span>
+<span id="cb138-19"><a href="métodos-de-clasificación.html#cb138-19" tabindex="-1"></a><span class="co"># Comparación entre Espécimen B y Espécimen C</span></span>
+<span id="cb138-20"><a href="métodos-de-clasificación.html#cb138-20" tabindex="-1"></a>res_BC <span class="ot">&lt;-</span> <span class="fu">calcular_contingencia_binaria</span>(datos_binarios[<span class="st">&quot;Esp_B&quot;</span>, ], datos_binarios[<span class="st">&quot;Esp_C&quot;</span>, ])</span>
+<span id="cb138-21"><a href="métodos-de-clasificación.html#cb138-21" tabindex="-1"></a></span>
+<span id="cb138-22"><a href="métodos-de-clasificación.html#cb138-22" tabindex="-1"></a><span class="co"># Tabla comparativa de coeficientes</span></span>
+<span id="cb138-23"><a href="métodos-de-clasificación.html#cb138-23" tabindex="-1"></a>tabla_coeficientes <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="at">A_vs_B =</span> res_AB, <span class="at">B_vs_C =</span> res_BC)</span>
+<span id="cb138-24"><a href="métodos-de-clasificación.html#cb138-24" tabindex="-1"></a><span class="fu">kable</span>(tabla_coeficientes, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">&quot;Métricas de coincidencia y coeficientes de similitud calculados&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:similitud-binaria">Table 7.2: </span>Métricas de coincidencia y coeficientes de similitud calculados</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">a</th>
+<th align="right">b</th>
+<th align="right">c</th>
+<th align="right">d</th>
+<th align="right">SMC</th>
+<th align="right">Jaccard</th>
+<th align="right">Dice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A_vs_B</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0.625</td>
+<td align="right">0.400</td>
+<td align="right">0.571</td>
+</tr>
+<tr class="even">
+<td align="left">B_vs_C</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">5</td>
+<td align="right">0.750</td>
+<td align="right">0.333</td>
+<td align="right">0.500</td>
+</tr>
+</tbody>
+</table>
+<p>Observa la comparación entre Esp_B y Esp_C. Poseen <span class="math inline">\(5\)</span> ausencias compartidas (<span class="math inline">\(0-0\)</span>). El coeficiente Simple Matching refleja una distancia pequeña (<span class="math inline">\(d_{SMC} = 0.250\)</span>) al contabilizar esas ausencias como similitud. En cambio, la distancia de Jaccard (<span class="math inline">\(d_{Jaccard} = 0.667\)</span>) ignora los <span class="math inline">\(0-0\)</span>, reflejando una menor similitud biológica real al tener solo un marcador positivo coincidente.</p>
+</div>
+</div>
+<div id="distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Distancias para Datos Mixtos: Coeficiente y Distancia de Gower<a href="métodos-de-clasificación.html#distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En estudios aplicados de análisis multivariado es común encontrar matrices de datos heterogéneas que combinan simultáneamente variables <strong>continuas</strong>, <strong>ordinales</strong>, <strong>nominales</strong> y <strong>binarias</strong>. En estos escenarios, las distancias clásicas (como la Euclidiana o la de Mahalanobis) no resultan aplicables.</p>
+<p>El <strong>coeficiente de disimilitud de Gower</strong> (Gower, 1971) permite evaluar la distancia global entre dos observaciones <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> ponderando las distancias parciales calculadas para cada tipo de variable.</p>
+<hr />
+<div id="formulación-matemática" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Formulación Matemática<a href="métodos-de-clasificación.html#formulaci%C3%B3n-matem%C3%A1tica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dado un conjunto de datos con <span class="math inline">\(p\)</span> variables, la <strong>distancia de Gower</strong> entre los sujetos <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> se define como:</p>
+<p><span class="math display">\[d_G(x_i, x_j) = 1 - S_G(x_i, x_j) = 1 - \frac{\sum_{k=1}^{p} w_k \cdot s_{ijk}}{\sum_{k=1}^{p} w_k}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><span class="math inline">\(w_k\)</span>: Es el peso asignado a la variable <span class="math inline">\(k\)</span> (por defecto <span class="math inline">\(w_k = 1\)</span>, pero permite omitir pares con datos faltantes fijando <span class="math inline">\(w_k = 0\)</span>).</li>
+<li><span class="math inline">\(s_{ijk} \in [0, 1]\)</span>: Es la <strong>similitud parcial</strong> entre las observaciones <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> para la <span class="math inline">\(k\)</span>-ésima variable, calculada según el tipo de variable:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p><strong>Variables Categóricas Nominales / Binarias:</strong>
+<span class="math display">\[s_{ijk} = \begin{cases} 1 &amp; \text{si } x_{ik} = x_{jk} \\ 0 &amp; \text{si } x_{ik} \neq x_{jk} \end{cases}\]</span></p></li>
+<li><p><strong>Variables Continuas u Ordinales (Estandarizadas por Rango):</strong>
+<span class="math display">\[s_{ijk} = 1 - \frac{\vert{}x_{ik} - x_{jk}\vert{}}{R_k}\]</span>
+donde <span class="math inline">\(R_k = \max(X_k) - \min(X_k)\)</span> es el rango muestral total de la variable <span class="math inline">\(k\)</span>.</p></li>
+</ol>
+<hr />
+</div>
+<div id="ejemplo-práctico-en-r-distancia-de-gower-con-clusterdaisy" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Ejemplo Práctico en R: Distancia de Gower con <code>cluster::daisy</code><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-distancia-de-gower-con-clusterdaisy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A continuación, creamos una matriz con tipos de datos mixtos y calculamos su matriz de disimilitud utilizando la función <code>daisy()</code> del paquete <code>cluster</code>.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="métodos-de-clasificación.html#cb139-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb139-2"><a href="métodos-de-clasificación.html#cb139-2" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb139-3"><a href="métodos-de-clasificación.html#cb139-3" tabindex="-1"></a></span>
+<span id="cb139-4"><a href="métodos-de-clasificación.html#cb139-4" tabindex="-1"></a><span class="co"># 1. Construcción de una base de datos con tipos de variables mixtas</span></span>
+<span id="cb139-5"><a href="métodos-de-clasificación.html#cb139-5" tabindex="-1"></a>df_clientes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb139-6"><a href="métodos-de-clasificación.html#cb139-6" tabindex="-1"></a>  <span class="at">Edad =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">45</span>, <span class="dv">26</span>),                             <span class="co"># Continua</span></span>
+<span id="cb139-7"><a href="métodos-de-clasificación.html#cb139-7" tabindex="-1"></a>  <span class="at">Ingreso_Anual =</span> <span class="fu">c</span>(<span class="dv">28000</span>, <span class="dv">85000</span>, <span class="dv">29500</span>),           <span class="co"># Continua</span></span>
+<span id="cb139-8"><a href="métodos-de-clasificación.html#cb139-8" tabindex="-1"></a>  <span class="at">Nivel_Estudios =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Grado&quot;</span>, <span class="st">&quot;Posgrado&quot;</span>, <span class="st">&quot;Grado&quot;</span>), </span>
+<span id="cb139-9"><a href="métodos-de-clasificación.html#cb139-9" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Secundaria&quot;</span>, <span class="st">&quot;Grado&quot;</span>, <span class="st">&quot;Posgrado&quot;</span>), </span>
+<span id="cb139-10"><a href="métodos-de-clasificación.html#cb139-10" tabindex="-1"></a>                          <span class="at">ordered =</span> <span class="cn">TRUE</span>),          <span class="co"># Ordinal</span></span>
+<span id="cb139-11"><a href="métodos-de-clasificación.html#cb139-11" tabindex="-1"></a>  <span class="at">Suscrito =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Sí&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Sí&quot;</span>))            <span class="co"># Nominal/Binaria</span></span>
+<span id="cb139-12"><a href="métodos-de-clasificación.html#cb139-12" tabindex="-1"></a>)</span>
+<span id="cb139-13"><a href="métodos-de-clasificación.html#cb139-13" tabindex="-1"></a></span>
+<span id="cb139-14"><a href="métodos-de-clasificación.html#cb139-14" tabindex="-1"></a><span class="fu">rownames</span>(df_clientes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cliente_A&quot;</span>, <span class="st">&quot;Cliente_B&quot;</span>, <span class="st">&quot;Cliente_C&quot;</span>)</span>
+<span id="cb139-15"><a href="métodos-de-clasificación.html#cb139-15" tabindex="-1"></a></span>
+<span id="cb139-16"><a href="métodos-de-clasificación.html#cb139-16" tabindex="-1"></a><span class="co"># Mostrar el data frame</span></span>
+<span id="cb139-17"><a href="métodos-de-clasificación.html#cb139-17" tabindex="-1"></a><span class="fu">kable</span>(df_clientes, <span class="at">caption =</span> <span class="st">&quot;Conjunto de datos con variables de naturaleza mixta&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:distancia-gower">Table 7.3: </span>Conjunto de datos con variables de naturaleza mixta</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Edad</th>
+<th align="right">Ingreso_Anual</th>
+<th align="left">Nivel_Estudios</th>
+<th align="left">Suscrito</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cliente_A</td>
+<td align="right">25</td>
+<td align="right">28000</td>
+<td align="left">Grado</td>
+<td align="left">Sí</td>
+</tr>
+<tr class="even">
+<td align="left">Cliente_B</td>
+<td align="right">45</td>
+<td align="right">85000</td>
+<td align="left">Posgrado</td>
+<td align="left">No</td>
+</tr>
+<tr class="odd">
+<td align="left">Cliente_C</td>
+<td align="right">26</td>
+<td align="right">29500</td>
+<td align="left">Grado</td>
+<td align="left">Sí</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="métodos-de-clasificación.html#cb140-1" tabindex="-1"></a><span class="co"># 2. Computar la matriz de disimilitud de Gower</span></span>
+<span id="cb140-2"><a href="métodos-de-clasificación.html#cb140-2" tabindex="-1"></a>matriz_gower <span class="ot">&lt;-</span> <span class="fu">daisy</span>(df_clientes, <span class="at">metric =</span> <span class="st">&quot;gower&quot;</span>)</span>
+<span id="cb140-3"><a href="métodos-de-clasificación.html#cb140-3" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="métodos-de-clasificación.html#cb140-4" tabindex="-1"></a><span class="co"># Convertir a matriz estándar para visualización</span></span>
+<span id="cb140-5"><a href="métodos-de-clasificación.html#cb140-5" tabindex="-1"></a>matriz_gower_mat <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(matriz_gower)</span>
+<span id="cb140-6"><a href="métodos-de-clasificación.html#cb140-6" tabindex="-1"></a></span>
+<span id="cb140-7"><a href="métodos-de-clasificación.html#cb140-7" tabindex="-1"></a><span class="co"># Formatear la tabla para el libro</span></span>
+<span id="cb140-8"><a href="métodos-de-clasificación.html#cb140-8" tabindex="-1"></a><span class="fu">kable</span>(matriz_gower_mat, <span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">&quot;Matriz de Disimilitud de Gower d_G(i, j)&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:distancia-gower">Table 7.3: </span>Matriz de Disimilitud de Gower d_G(i, j)</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Cliente_A</th>
+<th align="right">Cliente_B</th>
+<th align="right">Cliente_C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Cliente_A</td>
+<td align="right">0.000</td>
+<td align="right">1.000</td>
+<td align="right">0.019</td>
+</tr>
+<tr class="even">
+<td align="left">Cliente_B</td>
+<td align="right">1.000</td>
+<td align="right">0.000</td>
+<td align="right">0.981</td>
+</tr>
+<tr class="odd">
+<td align="left">Cliente_C</td>
+<td align="right">0.019</td>
+<td align="right">0.981</td>
+<td align="right">0.000</td>
+</tr>
+</tbody>
+</table>
+<p>Observa que la disimilitud entre el Cliente_A y el Cliente_C es muy cercana a cero (<span class="math inline">\(d_G \approx 0.019\)</span>), ya que coinciden en las variables categóricas y presentan valores numéricos sumamente próximos. Por el contrario, el Cliente_B muestra una elevada disimilitud con respecto a los otros dos (<span class="math inline">\(d_G &gt; 0.98\)</span>).</p>
+</div>
+</div>
+<div id="cuadro-resumen-guía-para-la-selección-de-métricas-de-distancia" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Cuadro Resumen: Guía para la Selección de Métricas de Distancia<a href="métodos-de-clasificación.html#cuadro-resumen-gu%C3%ADa-para-la-selecci%C3%B3n-de-m%C3%A9tricas-de-distancia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La siguiente tabla sintetiza los criterios de selección de la métrica o coeficiente de cercanía adecuado según la naturaleza de las variables y la estructura de los datos:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Tipo de Variables</th>
+<th align="left">Estructura / Condición de los Datos</th>
+<th align="left">Métrica / Coeficiente Recomendado</th>
+<th align="left">Propiedad Principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Continuas</strong></td>
+<td align="left">Variables no correlacionadas y en la misma escala</td>
+<td align="left"><strong>Distancia Euclidiana</strong></td>
+<td align="left">Mide la distancia geométrica directa (<span class="math inline">\(L_2\)</span>).</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Continuas</strong></td>
+<td align="left">Variables en escalas o unidades dispares</td>
+<td align="left"><strong>Euclidiana Estandarizada</strong></td>
+<td align="left">Escala cada variable dividiendo entre su varianza (<span class="math inline">\(s_k^2\)</span>).</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Continuas</strong></td>
+<td align="left">Presencia de valores atípicos (<em>outliers</em>)</td>
+<td align="left"><strong>Distancia Manhattan</strong></td>
+<td align="left">Suma de diferencias absolutas (<span class="math inline">\(L_1\)</span>), más robusta ante atípicos.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Continuas</strong></td>
+<td align="left">Covariables con correlación o redundancia lineal</td>
+<td align="left"><strong>Distancia de Mahalanobis</strong></td>
+<td align="left">Ajusta por la matriz de covarianza muestral <span class="math inline">\(S\)</span>.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Binarias</strong></td>
+<td align="left">Las ausencias compartidas (<span class="math inline">\(0-0\)</span>) poseen significado</td>
+<td align="left"><strong>Simple Matching Coefficient (SMC)</strong></td>
+<td align="left">Otorga igual importancia a coincidencias <span class="math inline">\(1-1\)</span> y <span class="math inline">\(0-0\)</span>.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Binarias</strong></td>
+<td align="left">Las ausencias compartidas (<span class="math inline">\(0-0\)</span>) no son informativas</td>
+<td align="left"><strong>Coeficiente de Jaccard</strong></td>
+<td align="left">Excluye del cómputo el conteo de ausencias compartidas.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Binarias</strong></td>
+<td align="left">Coincidencias positivas (<span class="math inline">\(1-1\)</span>) son prioritarias</td>
+<td align="left"><strong>Coeficiente de Sørensen-Dice</strong></td>
+<td align="left">Asigna doble peso a las coincidencias de presencia.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Mixtas</strong></td>
+<td align="left">Combinación de variables continuas, ordinales y nominales</td>
+<td align="left"><strong>Distancia de Gower</strong></td>
+<td align="left">Pondera distancias parciales estandarizadas por rango.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="escalamiento-multidimensional-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-conglomerados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "github", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "ga": "G-1PKNTHL5YP"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
