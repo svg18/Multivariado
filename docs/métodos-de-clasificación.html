@@ -330,7 +330,7 @@ div.csl-indent {
 <li class="part"><span><b>III Métodos de clasificación</b></span></li>
 <li class="chapter" data-level="7" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html"><i class="fa fa-check"></i><b>7</b> Métodos de clasificación</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambos-paradojas"><i class="fa fa-check"></i><b>7.1</b> Visualización Intuitiva de Ambos Paradojas</a></li>
+<li class="chapter" data-level="7.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambas-paradojas"><i class="fa fa-check"></i><b>7.1</b> Visualización Intuitiva de ambas Paradojas</a></li>
 <li class="chapter" data-level="7.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-y-similitud"><i class="fa fa-check"></i><b>7.2</b> Métricas de Distancia y Similitud</a>
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#propiedades-matem%C3%A1ticas-de-una-m%C3%A9trica-de-distancia"><i class="fa fa-check"></i><b>7.2.1</b> Propiedades Matemáticas de una Métrica de Distancia</a></li>
@@ -346,7 +346,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#principales-coeficientes-de-similitud-binaria"><i class="fa fa-check"></i><b>7.4.1</b> Principales Coeficientes de Similitud Binaria</a></li>
 <li class="chapter" data-level="7.4.2" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#transformaci%C3%B3n-de-coeficientes-de-similitud-a-m%C3%A9tricas-de-distancia"><i class="fa fa-check"></i><b>7.4.2</b> Transformación de Coeficientes de Similitud a Métricas de Distancia</a></li>
-<li class="chapter" data-level="7.4.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-c%C3%A1lculo-manual-y-automatizado"><i class="fa fa-check"></i><b>7.4.3</b> Ejemplo Práctico en R: Cálculo Manual y Automatizado</a></li>
+<li class="chapter" data-level="7.4.3" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico"><i class="fa fa-check"></i><b>7.4.3</b> Ejemplo Práctico</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="métodos-de-clasificación.html"><a href="métodos-de-clasificación.html#distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower"><i class="fa fa-check"></i><b>7.5</b> Distancias para Datos Mixtos: Coeficiente y Distancia de Gower</a>
 <ul>
@@ -445,8 +445,8 @@ div.csl-indent {
 <p>En el conjunto de datos <code>iris</code>, la variable <code>Species</code> actúa como etiqueta supervisada. El objetivo consiste en construir un modelo que aprenda la relación entre las medidas morfométricas y las especies definidas.</p>
 <p>Ejemplo 2: Enfoque No Supervisado (iris)</p>
 <p>Si prescindimos de la columna Species, el problema se convierte en un análisis no supervisado. El algoritmo debe agrupar las 150 flores basándose únicamente en la proximidad geométrica en un espacio de cuatro dimensiones.</p>
-<div id="visualización-intuitiva-de-ambos-paradojas" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Visualización Intuitiva de Ambos Paradojas<a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambos-paradojas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="visualización-intuitiva-de-ambas-paradojas" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Visualización Intuitiva de ambas Paradojas<a href="métodos-de-clasificación.html#visualizaci%C3%B3n-intuitiva-de-ambas-paradojas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para ilustrar la diferencia fundamental entre ambos enfoques, consideremos un conjunto de datos multivariado bidimensional <span class="math inline">\(X \in \mathbb{R}^2\)</span>:</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="métodos-de-clasificación.html#cb133-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb133-2"><a href="métodos-de-clasificación.html#cb133-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
@@ -485,6 +485,7 @@ div.csl-indent {
 Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas) y no supervisada (sin etiquetas).
 </p>
 </div>
+<hr />
 </div>
 <div id="métricas-de-distancia-y-similitud" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Métricas de Distancia y Similitud<a href="métodos-de-clasificación.html#m%C3%A9tricas-de-distancia-y-similitud" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -503,6 +504,7 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 <blockquote>
 <p><strong>Nota:</strong> Cuando una medida satisface los tres primeros axiomas pero no necesariamente la desigualdad triangular, se le denomina <strong>pseudométrica</strong> o <strong>medida de disimilitud</strong>.</p>
 </blockquote>
+<hr />
 </div>
 </div>
 <div id="métricas-de-distancia-para-variables-continuas" class="section level2 hasAnchor" number="7.3">
@@ -520,16 +522,14 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 <li><p><strong>Distancia Chebyshev (<span class="math inline">\(q \to \infty\)</span>):</strong> Corresponde a la norma <span class="math inline">\(L_\infty\)</span> y toma la máxima diferencia absoluta a lo largo de cualquier dimensión:</p>
 <p><span class="math display">\[d_{Cheb}(x_i, x_j) = \max_{k=1,\dots,p} \vert{}x_{ik} - x_{jk}\vert{}\]</span></p></li>
 </ul>
-<hr />
 </div>
 <div id="distancia-euclidiana-estandarizada" class="section level3 hasAnchor" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Distancia Euclidiana Estandarizada<a href="métodos-de-clasificación.html#distancia-euclidiana-estandarizada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La distancia Euclidiana convencional presenta una severa limitación: <strong>es dependiente de la escala de medición</strong>. Si una variable posee una varianza mucho mayor que las demás (por ejemplo, ingresos monetarios frente a edad en años), dominará casi por completo el cálculo de la distancia.</p>
 <p>Para corregir esto, se realiza una estandarización previa dividiendo las diferencias al cuadrado entre las varianzas muestrales <span class="math inline">\(s_k^2\)</span> de cada covariable:</p>
 <p><span class="math display">\[d_{SE}(x_i, x_j) = \sqrt{\sum_{k=1}^{p} \frac{(x_{ik} - x_{jk})^2}{s_k^2}}\]</span></p>
-<p>Matrencialmente, si <span class="math inline">\(D_s = \text{diag}(s_1^2, s_2^2, \dots, s_p^2)\)</span> es la matriz diagonal de varianzas:</p>
+<p>Entonces, si <span class="math inline">\(D_s = \text{diag}(s_1^2, s_2^2, \dots, s_p^2)\)</span> es la matriz diagonal de varianzas:</p>
 <p><span class="math display">\[d_{SE}(x_i, x_j) = \sqrt{(x_i - x_j)^T D_s^{-1} (x_i - x_j)}\]</span></p>
-<hr />
 </div>
 <div id="distancia-de-mahalanobis" class="section level3 hasAnchor" number="7.3.3">
 <h3><span class="header-section-number">7.3.3</span> Distancia de Mahalanobis<a href="métodos-de-clasificación.html#distancia-de-mahalanobis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -545,7 +545,6 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 <li><strong>Descorrelación:</strong> Pondera las variaciones en direcciones con mayor o menor variabilidad conjunta.</li>
 <li><strong>Detección de atípicos multivariados:</strong> Permite medir la distancia desde un punto individual <span class="math inline">\(x_i\)</span> hasta el centroide del grupo <span class="math inline">\(\bar{x}\)</span>.</li>
 </ol>
-<hr />
 </div>
 </div>
 <div id="ejemplo-práctico-en-r-comparación-de-métricas-continuas" class="section level3 hasAnchor" number="7.3.4">
@@ -674,6 +673,7 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 </tbody>
 </table>
 <p>Interpretación: En la Tabla 1.1, la enorme diferencia en los caballos de fuerza (hp) entre el Maserati Bora y los otros vehículos infla de manera desproporcionada la distancia. Al estandarizar (Tabla 1.2) o incorporar la covarianza multivariada con Mahalanobis (Tabla 1.3), las variables aportan de forma ponderada e insesgada.</p>
+<hr />
 </div>
 </div>
 <div id="medidas-de-similitud-y-disimilitud-para-datos-binarios-y-cualitativos" class="section level2 hasAnchor" number="7.4">
@@ -718,11 +718,10 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 <li><span class="math inline">\(d\)</span>: Número de características <strong>ausentes en ambos</strong> individuos (coincidencias <span class="math inline">\(0-0\)</span>).</li>
 <li><span class="math inline">\(p = a + b + c + d\)</span>: Número total de características evaluadas.</li>
 </ul>
-<hr />
 <div id="principales-coeficientes-de-similitud-binaria" class="section level3 hasAnchor" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> Principales Coeficientes de Similitud Binaria<a href="métodos-de-clasificación.html#principales-coeficientes-de-similitud-binaria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="coeficiente-de-coincidencia-simple-simple-matching-coefficient---smc" class="section level4 hasAnchor" number="7.4.1.1">
-<h4><span class="header-section-number">7.4.1.1</span> 1. Coeficiente de Coincidencia Simple (<em>Simple Matching Coefficient - SMC</em>)<a href="métodos-de-clasificación.html#coeficiente-de-coincidencia-simple-simple-matching-coefficient---smc" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">7.4.1.1</span> Coeficiente de Coincidencia Simple (<em>Simple Matching Coefficient - SMC</em>)<a href="métodos-de-clasificación.html#coeficiente-de-coincidencia-simple-simple-matching-coefficient---smc" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Asigna un peso simétrico tanto a las coincidencias de presencia (<span class="math inline">\(1-1\)</span>) como a las coincidencias de ausencia (<span class="math inline">\(0-0\)</span>):</p>
 <p><span class="math display">\[S_{SMC} = \frac{a + d}{a + b + c + d}\]</span></p>
 <ul>
@@ -730,7 +729,7 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 </ul>
 </div>
 <div id="coeficiente-de-jaccard" class="section level4 hasAnchor" number="7.4.1.2">
-<h4><span class="header-section-number">7.4.1.2</span> 2. Coeficiente de Jaccard<a href="métodos-de-clasificación.html#coeficiente-de-jaccard" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">7.4.1.2</span> Coeficiente de Jaccard<a href="métodos-de-clasificación.html#coeficiente-de-jaccard" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Excluye deliberadamente del cálculo el recuento de ausencias compartidas (<span class="math inline">\(d\)</span>):</p>
 <p><span class="math display">\[S_{Jaccard} = \frac{a}{a + b + c}\]</span></p>
 <ul>
@@ -738,10 +737,9 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 </ul>
 </div>
 <div id="coeficiente-de-sørensen-dice" class="section level4 hasAnchor" number="7.4.1.3">
-<h4><span class="header-section-number">7.4.1.3</span> 3. Coeficiente de Sørensen-Dice<a href="métodos-de-clasificación.html#coeficiente-de-s%C3%B8rensen-dice" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">7.4.1.3</span> Coeficiente de Sørensen-Dice<a href="métodos-de-clasificación.html#coeficiente-de-s%C3%B8rensen-dice" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Atribuye el doble de importancia a las coincidencias de presencia positiva (<span class="math inline">\(a\)</span>):</p>
 <p><span class="math display">\[S_{Dice} = \frac{2a}{2a + b + c}\]</span></p>
-<hr />
 </div>
 </div>
 <div id="transformación-de-coeficientes-de-similitud-a-métricas-de-distancia" class="section level3 hasAnchor" number="7.4.2">
@@ -749,10 +747,9 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 <p>Los coeficientes de similitud están acotados en el intervalo <span class="math inline">\(S_{ij} \in [0, 1]\)</span>, donde <span class="math inline">\(1\)</span> denota identidad perfecta y <span class="math inline">\(0\)</span> disimilitud absoluta.</p>
 <p>Para aplicar algoritmos de agrupamiento (<em>clustering</em>) o escalamiento multidimensional que requieren métricas de <strong>distancia o disimilitud</strong> <span class="math inline">\(d_{ij}\)</span>, se emplean las siguientes transformaciones estándar:</p>
 <p><span class="math display">\[d_{ij} = 1 - S_{ij} \quad \text{o} \quad d_{ij} = \sqrt{1 - S_{ij}}\]</span></p>
-<hr />
 </div>
-<div id="ejemplo-práctico-en-r-cálculo-manual-y-automatizado" class="section level3 hasAnchor" number="7.4.3">
-<h3><span class="header-section-number">7.4.3</span> Ejemplo Práctico en R: Cálculo Manual y Automatizado<a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-c%C3%A1lculo-manual-y-automatizado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ejemplo-práctico" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Ejemplo Práctico<a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En este ejemplo se comparan tres especímenes analizados sobre <span class="math inline">\(8\)</span> marcadores biológicos binarios (<span class="math inline">\(1 = \text{Presencia}\)</span>, <span class="math inline">\(0 = \text{Ausencia}\)</span>).</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="métodos-de-clasificación.html#cb137-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
 <span id="cb137-2"><a href="métodos-de-clasificación.html#cb137-2" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
@@ -881,13 +878,13 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 </tbody>
 </table>
 <p>Observa la comparación entre Esp_B y Esp_C. Poseen <span class="math inline">\(5\)</span> ausencias compartidas (<span class="math inline">\(0-0\)</span>). El coeficiente Simple Matching refleja una distancia pequeña (<span class="math inline">\(d_{SMC} = 0.250\)</span>) al contabilizar esas ausencias como similitud. En cambio, la distancia de Jaccard (<span class="math inline">\(d_{Jaccard} = 0.667\)</span>) ignora los <span class="math inline">\(0-0\)</span>, reflejando una menor similitud biológica real al tener solo un marcador positivo coincidente.</p>
+<hr />
 </div>
 </div>
 <div id="distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Distancias para Datos Mixtos: Coeficiente y Distancia de Gower<a href="métodos-de-clasificación.html#distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En estudios aplicados de análisis multivariado es común encontrar matrices de datos heterogéneas que combinan simultáneamente variables <strong>continuas</strong>, <strong>ordinales</strong>, <strong>nominales</strong> y <strong>binarias</strong>. En estos escenarios, las distancias clásicas (como la Euclidiana o la de Mahalanobis) no resultan aplicables.</p>
 <p>El <strong>coeficiente de disimilitud de Gower</strong> (Gower, 1971) permite evaluar la distancia global entre dos observaciones <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> ponderando las distancias parciales calculadas para cada tipo de variable.</p>
-<hr />
 <div id="formulación-matemática" class="section level3 hasAnchor" number="7.5.1">
 <h3><span class="header-section-number">7.5.1</span> Formulación Matemática<a href="métodos-de-clasificación.html#formulaci%C3%B3n-matem%C3%A1tica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Dado un conjunto de datos con <span class="math inline">\(p\)</span> variables, la <strong>distancia de Gower</strong> entre los sujetos <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> se define como:</p>
@@ -904,7 +901,6 @@ Figura 7.1: Diferencia gráfica entre la perspectiva supervisada (con etiquetas)
 <span class="math display">\[s_{ijk} = 1 - \frac{\vert{}x_{ik} - x_{jk}\vert{}}{R_k}\]</span>
 donde <span class="math inline">\(R_k = \max(X_k) - \min(X_k)\)</span> es el rango muestral total de la variable <span class="math inline">\(k\)</span>.</p></li>
 </ol>
-<hr />
 </div>
 <div id="ejemplo-práctico-en-r-distancia-de-gower-con-clusterdaisy" class="section level3 hasAnchor" number="7.5.2">
 <h3><span class="header-section-number">7.5.2</span> Ejemplo Práctico en R: Distancia de Gower con <code>cluster::daisy</code><a href="métodos-de-clasificación.html#ejemplo-pr%C3%A1ctico-en-r-distancia-de-gower-con-clusterdaisy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1001,6 +997,7 @@ donde <span class="math inline">\(R_k = \max(X_k) - \min(X_k)\)</span> es el ran
 </tbody>
 </table>
 <p>Observa que la disimilitud entre el Cliente_A y el Cliente_C es muy cercana a cero (<span class="math inline">\(d_G \approx 0.019\)</span>), ya que coinciden en las variables categóricas y presentan valores numéricos sumamente próximos. Por el contrario, el Cliente_B muestra una elevada disimilitud con respecto a los otros dos (<span class="math inline">\(d_G &gt; 0.98\)</span>).</p>
+<hr />
 </div>
 </div>
 <div id="cuadro-resumen-guía-para-la-selección-de-métricas-de-distancia" class="section level2 hasAnchor" number="7.6">

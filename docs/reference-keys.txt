@@ -103,7 +103,7 @@ cuadro-comparativo-de-métodos-de-reducción-de-dimensiones
 ejemplo-práctico-en-r-1
 diagnóstico-de-ajuste-diagrama-de-shepard
 métodos-de-clasificación
-visualización-intuitiva-de-ambos-paradojas
+visualización-intuitiva-de-ambas-paradojas
 métricas-de-distancia-y-similitud
 propiedades-matemáticas-de-una-métrica-de-distancia
 métricas-de-distancia-para-variables-continuas
@@ -118,7 +118,7 @@ coeficiente-de-coincidencia-simple-simple-matching-coefficient---smc
 coeficiente-de-jaccard
 coeficiente-de-sørensen-dice
 transformación-de-coeficientes-de-similitud-a-métricas-de-distancia
-ejemplo-práctico-en-r-cálculo-manual-y-automatizado
+ejemplo-práctico
 distancias-para-datos-mixtos-coeficiente-y-distancia-de-gower
 formulación-matemática
 ejemplo-práctico-en-r-distancia-de-gower-con-clusterdaisy
