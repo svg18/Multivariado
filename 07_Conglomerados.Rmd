@@ -4,6 +4,218 @@ output:
     includes:
       in_header: ga.html
 ---
-# (PART) Métodos de clasificación  {-}
+# Análisis de conglomerados
 
-# Análisis de conglomerados 
+El **Análisis de Conglomerados** (o *Clustering*) comprende un conjunto de técnicas estadísticas multivariadas de **aprendizaje no supervisado** orientadas a particionar o agrupar un conjunto de $n$ observaciones (o individuos) en $K$ clases o grupos homogéneos (*clusters*).
+
+El principio rector del análisis de conglomerados es geométrico y descriptivo: busca maximizar la **homogeneidad intragrupo** (mínima variabilidad o distancia dentro de cada grupo) y la **heterogeneidad intergrupo** (máxima distancia o separación entre los centros de los diferentes grupos).
+
+## Naturaleza y Supuestos del Análisis de Conglomerados
+
+A diferencia de las técnicas de aprendizaje supervisado (como el Análisis Discriminante o la Regresión Logística), el análisis de conglomerados presenta las siguientes características fundamentales:
+
+* **Ausencia de variable respuesta ($Y$):** No existen etiquetas previas ni categorías conocidas *a priori*.
+* **Técnica no inferencial:** Es un procedimiento exploratorio y descriptivo; no requiere supuestos de normalidad multivariada, linealidad o homocedasticidad.
+* **Sensibilidad a las covariables:** La inclusión o exclusión de variables irrelevantes puede alterar sustancialmente la estructura final de los grupos.
+
+### Condiciones para una Aplicación Óptima
+1. **Tratamiento de valores atípicos (*outliers*):** Los puntos atípicos distorsionan los centroides o actúan como conglomerados unitarios.
+2. **Escala homogénea o estandarización:** Cuando las variables están medidas en unidades o magnitudes distintas, se deben estandarizar (mediante puntuaciones $Z$ o transformaciones de rango) para evitar que una variable domine sobre las demás.
+3. **Poca o nula multicolinealidad:** Si dos variables están fuertemente correlacionadas, están aportando información redundante y sobreponderando esa dimensión en el cálculo de las distancias.
+
+### Etapas del Análisis de Conglomerados
+
+Cualquier estudio de clasificación de conglomerados debe seguir un flujo metodológico de cuatro etapas:
+
+$$\text{1. Selección de Variables} \longrightarrow \text{2. Medida de Asociación/Distancia} \longrightarrow \text{3. Algoritmo de Clustering} \longrightarrow \text{4. Validación e Interpretación}$$
+
+Los algoritmos de formación de conglomerados se dividen fundamentalmente en dos categorías:
+
+| Criterio de Comparación | Métodos Jerárquicos | Métodos No Jerárquicos ($K$-Medias / PAM) |
+| :--- | :--- | :--- |
+| **Definición de $K$** | No exige definir el número de grupos *a priori*. | Exige definir el número $K$ de grupos previamente. |
+| **Proceso Algorítmico** | Iterativo en $(n-1)$ pasos, jerárquico de abajo a arriba o viceversa. | Reasignación iterativa comparando distancias a los centroides de los grupos. |
+| **Visualización y Salida** | Genera una estructura jerárquica o árbol (Dendrograma). | Proporciona las coordenadas finales de los centroides de cada grupo. |
+| **Tamaño de Muestra ($n$)** | Requiere gran cantidad de cálculos ($O(n^2)$), limitado para muestras grandes. | Eficiente computacionalmente; ideal para grandes volúmenes de datos. |
+| **Flexibilidad de Asignación** | Asignación rígida: las uniones previas no se pueden deshacer. | Reasignación dinámica: un elemento puede cambiar de grupo en cada iteración. |
+| **Objeto de Análisis** | Pueden aplicarse tanto sobre individuos/casos como sobre variables. | Solo se aplican sobre casos o individuos. |
+
+---
+
+## Métodos Jerárquicos
+
+Los métodos jerárquicos construyen una estructura anidada de particiones. Se dividen en:
+
+1. **Aglomerativos (*Bottom-up*):** Parten de $n$ conglomerados unitarios (cada individuo es un grupo) y en cada paso fusionan los dos grupos más cercanos hasta formar un único grupo global de tamaño $n$.
+2. **Disociativos (*Top-down*):** Parten de un único conglomerado global con los $n$ individuos y lo dividen sucesivamente en subgrupos cada vez más homogéneos.
+
+
+### Criterios de Enlace (*Linkage*) entre Conglomerados
+
+La distancia $D(A, B)$ entre dos conglomerados $A$ y $B$ depende de la regla de asociación utilizada:
+
+#### Vecino Más Próximo (*Single Linkage / Salto Mínimo*)
+Mide la distancia mínima entre un elemento del grupo $A$ y uno del grupo $B$:
+
+$$D_{\text{Single}}(A, B) = \min_{x_i \in A, \, x_j \in B} d(x_i, x_j)$$
+
+* **Inconveniente:** Tiende a crear conglomerados alargados en cadena (*chaining effect*).
+
+#### Vecino Más Lejano (*Complete Linkage / Salto Máximo*)
+Mide la distancia máxima entre elementos de ambos grupos:
+
+$$D_{\text{Complete}}(A, B) = \max_{x_i \in A, \, x_j \in B} d(x_i, x_j)$$
+
+* **Propiedad:** Produce grupos compactos y de diámetros similares.
+
+#### Promedio entre Grupos (*Average Linkage - UPGMA*)
+Calcula el promedio de las distancias entre todos los pares formados por un elemento de $A$ y uno de $B$:
+
+$$D_{\text{Average}}(A, B) = \frac{1}{|A| \cdot |B|} \sum_{x_i \in A} \sum_{x_j \in B} d(x_i, x_j)$$
+
+#### Método del Centroide
+Evalúa la distancia entre los centroides (vectores de medias $\bar{x}_A$ y $\bar{x}_B$) de cada grupo:
+
+$$D_{\text{Centroide}}(A, B) = d(\bar{x}_A, \bar{x}_B)$$
+
+#### Método de Ward (*Mínima Varianza / Pérdida de Inercia*)
+Fusiona los dos grupos que minimizan el incremento en la **Suma de Cuadrados Intragrupo ($SSE$)**:
+
+$$\Delta SSE = \frac{|A| \cdot |B|}{|A| + |B|} \|\bar{x}_A - \bar{x}_B\|^2$$
+
+* **Propiedad:** Es uno de los métodos más potentes en la práctica, creando grupos con varianzas similares y tamaños balanceados.
+
+### Representación Gráfica: El Dendrograma
+
+El dendrograma es la representación en forma de árbol binario de la jerarquía de agrupaciones. La altura de los codos o uniones horizontales indica la distancia a la cual se fusionaron dos conglomerados.
+
+#### Criterio del Salto Brusco para determinar $K$:
+Para elegir el número óptimo de grupos $K$, se busca en el gráfico de evolución de las distancias el paso donde se produce un incremento brusco en la distancia de fusión.
+
+```{r ejemplo-dendrograma-manual, message=FALSE, warning=FALSE, fig.cap="Dendrograma de clustering jerárquico aglomerativo (Ward) en R sobre datos estandarizados.", fig.align="center"}
+library(knitr)
+library(ggplot2)
+if (!requireNamespace("factoextra", quietly = TRUE)) install.packages("factoextra")
+library(factoextra)
+
+# 1. Conjunto de datos de prueba: USArrests
+data("USArrests")
+datos_esc <- scale(USArrests)
+
+# 2. Matriz de distancias Euclidianas
+dist_euc <- dist(datos_esc, method = "euclidean")
+
+# 3. Agrupamiento con el Método de Ward
+hc_ward <- hclust(dist_euc, method = "ward.D2")
+
+# 4. Dendrograma con corte horizontal en K = 4
+fviz_dend(hc_ward, k = 4, 
+          rect = TRUE, 
+          rect_fill = TRUE,
+          rect_border = "jco",
+          ggtheme = theme_minimal(),
+          main = "Dendrograma: Método de Ward (USArrests)")
+```
+
+## Métodos No Jerárquicos (Particionales)
+
+A diferencia de los métodos jerárquicos, los **métodos no jerárquicos** parten directamente de la matriz original de datos numéricos (o coordenadas) y no requieren construir una matriz de proximidades completa ni una estructura anidada en forma de árbol. 
+
+Estos algoritmos dividen directamente el conjunto de $n$ observaciones en $K$ conglomerados independientes y mutuamente excluyentes, donde el número de grupos $K$ debe ser prefijado por el usuario antes de iniciar el procedimiento.
+
+### Principios Fundamentales
+
+Los métodos no jerárquicos son especialmente eficientes para el análisis de grandes conjuntos de datos (donde el cálculo de matrices de distancia $n \times n$ resulta computacionalmente inviable) y se basan en procesos de **reasignación iterativa**:
+
+1. **Partición Inicial:** Se fijan $K$ centroides iniciales en el espacio $p$-dimensional.
+2. **Reasignación Dinámica:** Cada observación es asignada al centroide más cercano en términos de distancia geométrica. A diferencia de los métodos jerárquicos (donde una unión no puede deshacerse), una observación asignada a un conglomerado en una iteración puede cambiar a otro grupo en pasos posteriores si esto mejora el criterio de homogeneidad.
+3. **Optimización Intragrupo:** El proceso itera recalculando los centroides de los grupos tras cada incorporación hasta que la asignación de observaciones converge y se estabiliza.
+
+
+### Algoritmo $K$-Means ($K$-Medias)
+
+El objetivo matemático de $K$-Means es particionar las $n$ observaciones en $K$ conjuntos $S = \{S_1, S_2, \dots, S_K\}$ minimizando la variabilidad dentro de los grupos, expresada a través de la **Suma de Cuadrados Intragrupo ($WSS$ o $SSE$)**:
+
+$$\min_{S} \sum_{k=1}^{K} \sum_{x_i \in S_k} \Vert{}x_i - \mu_k\Vert{}^2$$
+
+Donde:
+* $x_i$: Vector de observaciones de la $i$-ésima entidad en un espacio de $p$ variables.
+* $\mu_k$: Centroide (vector de medias muestrales) de las observaciones asignadas al $k$-ésimo conglomerado.
+* $\Vert{}x_i - \mu_k\Vert{}^2$: Distancia Euclidiana al cuadrado entre la observación y el centroide de su grupo.
+
+#### Pasos del Algoritmo de Reasignación Iterativa:
+
+1. **Inicialización:** Seleccionar $K$ puntos iniciales como centros de los conglomerados (pueden ser seleccionados aleatoriamente o fijados como los puntos más distantes entre sí).
+2. **Asignación de Casos:** Calcular la distancia entre cada objeto $x_i$ y los $K$ centroides, asignando cada caso al conglomerado con el centroide más próximo:
+   $$S_k^{(t)} = \{x_i : \Vert{}x_i - \mu_k^{(t)}\Vert{}^2 \le \Vert{}x_i - \mu_j^{(t)}\Vert{}^2, \, \forall j \neq k\}$$
+3. **Actualización de Centroides:** Recalcular las coordenadas del centroide de cada grupo como el promedio numérico de sus miembros actuales:
+   $$\mu_k^{(t+1)} = \frac{1}{\vert{}S_k^{(t)}\vert{}} \sum_{x_i \in S_k^{(t)}} x_i$$
+4. **Criterio de Convergencia:** Repetir los pasos 2 y 3 hasta que la asignación de casos no varíe o el desplazamiento de los centroides caiga por debajo de una tolerancia especificada ($\epsilon \to 0$).
+
+### Ejemplo Práctico en R: $K$-Means con Diagnóstico de $K$ Óptimo
+
+A continuación, ejecutamos la selección del número óptimo de conglomerados mediante el **Método del Codo** y la **Silueta Promedio**, finalizando con el ajuste e interpretación de un modelo $K$-Means sobre la base de datos `USArrests`.
+
+```{r kmeans-preparacion, message=FALSE, warning=FALSE}
+library(knitr)
+library(ggplot2)
+library(cluster)
+if (!requireNamespace("factoextra", quietly = TRUE)) install.packages("factoextra")
+library(factoextra)
+if (!requireNamespace("patchwork", quietly = TRUE)) install.packages("patchwork")
+library(patchwork)
+
+# 1. Carga y estandarización de variables (Puntuaciones Z)
+data("USArrests")
+datos_std <- scale(USArrests)
+
+# Mostrar las primeras observaciones estandarizadas
+kable(head(datos_std), digits = 3, caption = "Primeras observaciones estandarizadas (USArrests)")
+
+# Determinación Cuantitativa del Número de Grupos ($K$)
+
+  # Gráfico 1: Método del Codo (Suma de cuadrados intragrupo)
+p_codo <- fviz_nbclust(datos_std, kmeans, method = "wss") +
+  labs(title = "Método del Codo (WSS)", x = "Número de Grupos K", y = "WSS Intragrupo") +
+  theme_minimal()
+
+# Gráfico 2: Método de la Silueta Promedio
+p_silueta <- fviz_nbclust(datos_std, kmeans, method = "silhouette") +
+  labs(title = "Método de la Silueta Media", x = "Número de Grupos K", y = "Silueta Promedio") +
+  theme_minimal()
+
+# Despliegue en paralelo
+p_codo + p_silueta
+
+# Ajuste de K-Means fijando K = 4 y 25 inicios aleatorios para evitar mínimos locales
+set.seed(123)
+km_res <- kmeans(datos_std, centers = 4, nstart = 25)
+
+# Centroides finales de los conglomerados (en escala estandarizada)
+kable(km_res$centers, digits = 3, caption = "Centroides finales de los conglomerados")
+
+# Visualización gráfica de los conglomerados formados
+fviz_cluster(km_res, data = datos_std,
+             ellipse.type = "convex",
+             palette = "jco",
+             ggtheme = theme_minimal(),
+             main = "Clustering K-Means (K = 4)")
+```
+
+Diagnóstico ANOVA Univariante de la Clasificación
+
+Para caracterizar el perfil de los conglomerados y medir la relevancia de cada variable en la separación de los grupos, se utiliza un contraste de varianza ANOVA univariante.   $$\text{Ratio } F = \frac{\text{Media Cuadrática Intergrupos}}{\text{Media Cuadrática Intragrupo}}$$Un valor $F$ elevado indica que la variabilidad entre los grupos es significativamente mayor que la variabilidad dentro de los mismos, validando que el algoritmo logró separar adecuadamente las observaciones en esa dimensión.   
+
+**Nota Metodológica**: Los niveles de significación ($p$-valores) de esta prueba ANOVA deben interpretarse exclusivamente con fines descriptivos, puesto que el algoritmo $K$-Means optimiza directamente los datos para maximizar la separación intergrupo.
+
+```{r, km_res, message=FALSE, warning=FALSE}
+# Creación del data frame original con el conglomerado de pertenencia
+df_resultados <- data.frame(USArrests, Cluster = as.factor(km_res$cluster))
+
+# Ejemplo de prueba ANOVA descriptiva para la variable Murder
+anova_murder <- aov(Murder ~ Cluster, data = df_resultados)
+summary_anova <- summary(anova_murder)
+
+# Resumen estilizado del ANOVA para la primera variable
+kable(summary_anova[[1]], digits = 3, caption = "Análisis de Varianza (ANOVA) descriptivo para la variable Murder")
+```
