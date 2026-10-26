@@ -139,9 +139,12 @@ El objetivo matemático de $K$-Means es particionar las $n$ observaciones en $K$
 $$\min_{S} \sum_{k=1}^{K} \sum_{x_i \in S_k} \Vert{}x_i - \mu_k\Vert{}^2$$
 
 Donde:
-* $x_i$: Vector de observaciones de la $i$-ésima entidad en un espacio de $p$ variables.
-* $\mu_k$: Centroide (vector de medias muestrales) de las observaciones asignadas al $k$-ésimo conglomerado.
-* $\Vert{}x_i - \mu_k\Vert{}^2$: Distancia Euclidiana al cuadrado entre la observación y el centroide de su grupo.
+
+$x_i$: Vector de observaciones de la $i$-ésima entidad en un espacio de $p$ variables.
+
+$\mu_k$: Centroide (vector de medias muestrales) de las observaciones asignadas al $k$-ésimo conglomerado.
+
+$\Vert{}x_i - \mu_k\Vert{}^2$: Distancia Euclidiana al cuadrado entre la observación y el centroide de su grupo.
 
 #### Pasos del Algoritmo de Reasignación Iterativa:
 
@@ -152,7 +155,7 @@ Donde:
    $$\mu_k^{(t+1)} = \frac{1}{\vert{}S_k^{(t)}\vert{}} \sum_{x_i \in S_k^{(t)}} x_i$$
 4. **Criterio de Convergencia:** Repetir los pasos 2 y 3 hasta que la asignación de casos no varíe o el desplazamiento de los centroides caiga por debajo de una tolerancia especificada ($\epsilon \to 0$).
 
-### Ejemplo Práctico en R: $K$-Means con Diagnóstico de $K$ Óptimo
+### Ejemplo Práctico: $K$-Means con Diagnóstico de $K$ Óptimo
 
 A continuación, ejecutamos la selección del número óptimo de conglomerados mediante el **Método del Codo** y la **Silueta Promedio**, finalizando con el ajuste e interpretación de un modelo $K$-Means sobre la base de datos `USArrests`.
 
@@ -219,3 +222,168 @@ summary_anova <- summary(anova_murder)
 # Resumen estilizado del ANOVA para la primera variable
 kable(summary_anova[[1]], digits = 3, caption = "Análisis de Varianza (ANOVA) descriptivo para la variable Murder")
 ```
+
+### Análisis de Conglomerados con DBSCAN
+
+En esta sección estudiaremos el algoritmo **DBSCAN** (*Density-Based Spatial Clustering of Applications with Noise*), un método no jerárquico basado en la **densidad** de los datos.
+
+A diferencia de $K$-Means, DBSCAN no asume que los *clusters* tienen forma esférica u homogénea, ni requiere definir el número de grupos de antemano. Además, posee la capacidad de identificar automáticamente observaciones atípicas o ruido.
+
+DBSCAN define un grupo como una región continua de alta densidad de puntos, separada de otras regiones por zonas de baja densidad. El algoritmo se apoya en dos hiperparámetros fundamentales:
+
+A) **$\epsilon$ (Epsilon):** El radio de la vecindad alrededor de un punto $p$. 
+
+B) **`MinPts` (Puntos Mínimos):** El número mínimo de puntos que deben existir dentro del radio $\epsilon$ (incluyendo a $p$) para formar una región densa.
+
+#### Clasificación de Puntos
+
+Dado un conjunto de datos $D$, cada punto $p \in D$ se clasifica en una de tres categorías:
+
+1. **Punto Núcleo (*Core Point*):** Un punto $p$ es núcleo si $\vert{}N_\epsilon(p)\vert{} \ge \text{MinPts}$, donde $N_\epsilon(p) = \{q \in D \mid \text{dist}(p,q) \le \epsilon\}$.
+2. **Punto Borde (*Border Point*):** Un punto $p$ no es núcleo, pero pertenece a la vecindad $N_\epsilon(q)$ de algún punto núcleo $q$.
+3. **Ruido (*Noise / Outlier*):** Cualquier punto que no es ni núcleo ni borde.
+
+$$\text{Punto } p = \begin{cases} \text{Núcleo} & \text{si } \vert{}N_\epsilon(p)\vert{} \ge \text{MinPts} \\ \text{Borde} & \text{si } \vert{}N_\epsilon(p)\vert{} < \text{MinPts} \land p \in N_\epsilon(\text{Núcleo}) \\ \text{Ruido} & \text{en otro caso} \end{cases}$$
+
+### Ejemplo Práctico: DBSCAN
+
+Utilizaremos el paquete `dbscan` para ejecutar el algoritmo y `factoextra` para la visualización de resultados.
+
+```{r setup-dbscan, message=FALSE, warning=FALSE}
+# Cargar librerías necesarias
+library(dbscan)
+library(factoextra)
+library(ggplot2)
+
+# Cargar un dataset de prueba con formas no lineales
+data("multishapes", package = "factoextra")
+df_datos <- multishapes[, 1:2]
+```
+
+#### Determinación del parámetro $\epsilon$
+
+Para seleccionar un valor adecuado de $\epsilon$, generamos el **gráfico de $K$-distancia** calculando la distancia de cada punto a su $k$-ésimo vecino más cercano (donde $k = \text{MinPts} - 1$). El "punto de inflexión" o codo sugiere el valor óptimo de $\epsilon$.
+
+```{r k-distance-plot, fig.cap="Gráfico de k-distancia para estimación de Epsilon", fig.align='center'}
+# Fijamos MinPts = 5 por defecto (k = 5 - 1 = 4)
+kNNdistplot(df_datos, k = 4)
+abline(h = 0.15, col = "red", lty = 2)
+```
+
+#### Ajuste e Interpretación del Modelo
+
+Ajustamos el modelo de agrupamiento fijando $\epsilon = 0.15$ y $\text{MinPts} = 5$:
+
+```{r dbscan-fit}
+set.seed(123)
+modelo_db <- dbscan(df_datos, eps = 0.15, minPts = 5)
+
+# Resumen del ajuste
+print(modelo_db)
+```
+
+> **Nota:** La etiqueta `0` asignada por `dbscan` no representa un grupo válido, sino los puntos clasificados como **ruido** o *outliers*.
+
+#### Visualización de los Grupos
+
+Representamos gráficamente la asignación de *clusters* y la detección de ruido:
+
+```{r dbscan-plot, fig.cap="Agrupamiento de formas complejas mediante DBSCAN", fig.align='center'}
+fviz_cluster(
+  modelo_db, 
+  data = df_datos, 
+  stand = FALSE,
+  ellipse = FALSE, 
+  show.clust.cent = FALSE,
+  geom = "point", 
+  palette = "jco",
+  ggtheme = theme_minimal(),
+  main = "Resultado de DBSCAN (Eps = 0.15, MinPts = 5)"
+)
+```
+
+
+#### Ventajas y Limitaciones
+
+* **Ventajas:**
+  * No requiere especificar previamente la cantidad de conglomerados $K$.
+  * Robusto ante presencia de valores atípicos.
+  * Funciona eficazmente sobre geometrías complejas no esféricas.
+* **Limitaciones:**
+  * Sensible al ajuste de los hiperparámetros $\epsilon$ y `MinPts`.
+  * Presenta dificultades cuando los grupos tienen densidades marcadamente variables.
+  
+### Comparación Evaluativa: DBSCAN vs. $K$-Means
+
+Para evaluar formalmente la calidad del agrupamiento cuando las geometrías de los datos no son esféricas, podemos comparar la métrica del **coeficiente de silueta** ($S_i$) entre DBSCAN y $K$-Means.
+
+El coeficiente de silueta mide qué tan similar es un objeto a su propio *cluster* en comparación con otros *clusters*, tomando valores en el intervalo $[-1, 1]$:
+
+$$S_i = \frac{b_i - a_i}{\max(a_i, b_i)}$$
+
+Donde $a_i$ es la distancia media intra-cluster y $b_i$ es la distancia media al cluster más cercano.
+
+#### Ajuste de $K$-Means y DBSCAN sobre los mismos datos
+
+```{r evaluacion-comparativa, message=FALSE, warning=FALSE}
+library(cluster)
+
+# 1. Ajuste de K-Means (asumiendo K = 5 grupos aparentes)
+set.seed(123)
+km_fit <- kmeans(df_datos, centers = 5, nstart = 25)
+
+# 2. Silueta para K-Means
+sil_km <- silhouette(km_fit$cluster, dist(df_datos))
+mean_sil_km <- mean(sil_km[, 3])
+
+# 3. Silueta para DBSCAN (excluyendo el ruido / cluster 0 para el cálculo)
+es_valido <- modelo_db$cluster > 0
+sil_db <- silhouette(modelo_db$cluster[es_valido], dist(df_datos[es_valido, ]))
+mean_sil_db <- mean(sil_db[, 3])
+```
+
+#### Tabla Resumen de Métricas
+
+```{r tabla-silueta, echo=FALSE}
+data.frame(
+  Algoritmo = c("K-Means (K = 5)", "DBSCAN (Eps = 0.15)"),
+  `Silueta Media` = round(c(mean_sil_km, mean_sil_db), 4),
+  `Puntos Clasificados como Ruido` = c(0, sum(modelo_db$cluster == 0))
+)
+```
+
+#### Comparación Gráfica
+
+```{r grafico-comparativo, fig.cap="Comparación visual entre K-Means y DBSCAN sobre formas no lineales", fig.width=10, fig.height=5, fig.align='center'}
+library(gridExtra)
+
+# Gráfico K-Means
+p1 <- fviz_cluster(
+  km_fit, 
+  data = df_datos, 
+  geom = "point",
+  ellipse = FALSE,
+  show.clust.cent = FALSE,
+  ggtheme = theme_minimal(),
+  main = paste("K-Means (Silueta Media:", round(mean_sil_km, 2), ")")
+)
+
+# Gráfico DBSCAN
+p2 <- fviz_cluster(
+  modelo_db, 
+  data = df_datos, 
+  geom = "point",
+  ellipse = FALSE,
+  show.clust.cent = FALSE,
+  ggtheme = theme_minimal(),
+  main = paste("DBSCAN (Silueta Media:", round(mean_sil_db, 2), ")")
+)
+
+# Organizar ambos gráficos en paralelo
+grid.arrange(p1, p2, ncol = 2)
+```
+
+#### Conclusiones de la Comparativa
+
+1. **Incapacidad geométrica de $K$-Means:** $K$-Means intenta particionar el espacio en Voronoi convexos, lo que provoca que "corte" las estructuras continuas o curvas a la mitad.
+2. **Superioridad de DBSCAN en estructuras complejas:** DBSCAN logra separar adecuadamente las formas entrelazadas y continuas, obteniendo una puntuación de silueta significativamente superior al considerar la densidad real de los puntos.
