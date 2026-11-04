@@ -7,3 +7,126 @@ output:
 
 # Análisis discriminante
 
+El **Análisis Discriminante (AD)** es una técnica estadística multivariante supervisada cuya finalidad es analizar si existen diferencias significativas entre dos o más grupos de observaciones respecto a un conjunto de variables cuantitativas continuas. Sus objetivos principales son:
+
+1. **Explicativo:** Identificar cuáles variables discriminan mejor entre los grupos y explicar el sentido de esta separación.
+2. **Predictivo:** Construir reglas de decisión para clasificar observaciones cuya pertenencia a un grupo sea desconocida con un nivel de riesgo controlado.
+
+---
+
+## Fundamentos Teóricos y Supuestos del Modelo
+
+El modelo de Análisis Discriminante Lineal (LDA) presupone las siguientes condiciones sobre los datos:
+
+* **Naturaleza de las variables:** Una variable dependiente categórica ($G$ grupos) y $p$ variables independientes cuantitativas ($X_1, X_2, \dots, X_p$) de intervalo o razón.
+* **Normalidad Multivariante:** Las variables continuas siguen una distribución normal multivariante dentro de cada grupo: $X_g \sim \mathcal{N}_p(\boldsymbol{\mu}_g, \boldsymbol{\Sigma})$.
+* **Homocedasticidad:** Las matrices de varianzas-covarianzas de los $G$ grupos deben ser homogéneas ($\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \dots = \boldsymbol{\Sigma}_G = \boldsymbol{\Sigma}$).
+* **Ausencia de Multicolinealidad Estricta:** Ninguna variable discriminante puede ser combinación lineal exacta de las demás ($p < n - 2$).
+* **Número Máximo de Funciones:** El número máximo de funciones discriminantes canónicas que se pueden extraer es $m = \min(G - 1, p)$.
+
+---
+
+## Modelo Matemático y Descomposición de la Varianza
+
+Partiendo de la matriz de varianzas-covarianzas total $\mathbf{T}$, se realiza la descomposición fundamental entre la variabilidad *dentro de los grupos* ($\mathbf{V}$) y *entre los grupos* ($\mathbf{F}$):
+
+$$\mathbf{T} = \mathbf{V} + \mathbf{F}$$
+
+Se busca una combinación lineal $Y = \mathbf{w}'\mathbf{X}$ que maximice la varianza entre grupos respecto a la varianza total o dentro de los grupos:
+
+$$\max_{\mathbf{w}} \left( \frac{\mathbf{w}'\mathbf{F}\mathbf{w}}{\mathbf{w}'\mathbf{V}\mathbf{w}} \right)$$
+
+Bajo la restricción de normalización $\mathbf{w}'\mathbf{T}\mathbf{w} = 1$ (o $\mathbf{w}'\mathbf{V}\mathbf{w} = 1$), este problema de optimización mediante multiplicadores de Lagrange da lugar al problema de autovalores y autovectores:
+
+$$(\mathbf{V}^{-1}\mathbf{F})\mathbf{w} = \lambda \mathbf{w}$$
+
+Los autovectores $\mathbf{w}_i$ asociados a los autovalores mayores $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_m$ definen los ejes discriminantes canónicos.
+
+---
+
+## Clasificación para Dos Grupos ($G = 2$)
+
+### Función Discriminante de Fisher
+
+Para el caso de dos grupos, la función discriminante lineal toma la forma:
+
+$$D = w_1 X_1 + w_2 X_2 + \dots + w_p X_p$$
+
+El criterio de decisión compara la puntuación discriminante $D$ con un **punto de corte** $C$:
+
+* Si $D < C \implies$ Se clasifica en el **Grupo I**.
+* Si $D > C \implies$ Se clasifica en el **Grupo II**.
+
+En el supuesto sin información *a priori*, el punto de corte centrado es $C = \frac{\bar{D}_I + \bar{D}_{II}}{2}$.
+
+### Ajuste por Probabilidades a Priori y Costes de Clasificación
+
+Cuando se conocen las probabilidades *a priori* ($\pi_I, \pi_{II}$) o se consideran los costes asimétricos por clasificación errónea ($\text{Coste}(II|I)$, $\text{Coste}(I|II)$), el punto de corte óptimo $C_{p,c}$ se desplaza:
+
+$$C_{p,c} = \frac{\bar{D}_I + \bar{D}_{II}}{2} - \ln \left( \frac{\pi_{II} \cdot \text{Coste}(I|II)}{\pi_I \cdot \text{Coste}(II|I)} \right)$$
+
+### Probabilidades *a Posteriori* (Teorema de Bayes)
+
+Usando el Teorema de Bayes, la probabilidad de que una observación con vector $\mathbf{X}$ pertenezca al grupo $g$ se calcula como:
+
+$$P(g|\mathbf{X}) = \frac{\pi_g f(\mathbf{X}|g)}{\sum_{i=1}^G \pi_i f(\mathbf{X}|i)}$$
+
+donde $f(\mathbf{X}|g)$ es la función de densidad normal multivariante para el grupo $g$.
+
+---
+
+## Pruebas de Significación y Diagnóstico
+
+1. **Prueba M de Box:** Contrasta la hipótesis nula de homogeneidad de matrices de varianzas-covarianzas $H_0: \boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \dots = \boldsymbol{\Sigma}_G$.
+2. **Lambda de Wilks ($\Lambda$):** Mide el poder discriminante global ($0 \le \Lambda \le 1$). Valores de $\Lambda$ cercanos a 0 indican mayor separación intergrupal:
+   $$\Lambda = \prod_{i=1}^{m} \frac{1}{1 + \lambda_i}$$
+3. **Estadístico V de Bartlett / $T^2$ de Hotelling:** Evalúa si las medias de los grupos difieren significativamente en el espacio multidimensional.
+4. **Correlación Canónica ($\eta$):** Expresa la relación entre las puntuaciones discriminantes y los grupos:
+   $$\eta_i = \sqrt{\frac{\lambda_i}{1 + \lambda_i}}$$
+
+---
+
+## Implementación Práctica en R
+
+En las aplicaciones modernas se sustituye la sintaxis de entornos tradicionales por bloques de código ejecutable de R utilizando la librería `MASS` para el cálculo de LDA/QDA y `caret` para la evaluación del modelo.
+
+### Caso de Estudio: Análisis de Riesgo Crediticio
+
+A continuación se realiza la evaluación del riesgo de crédito con dos variables explicativas: `Patrimonio_Neto` ($X_1$) y `Deuda_Pendiente` ($X_2$) para predecir si un cliente es *Fallido* (Grupo 1) o *Cumplidor* (Grupo 2).
+
+```{r analisis-discriminante-lda, message=FALSE, warning=FALSE}
+# 1. Cargar librerías requeridas
+library(MASS)
+library(ggplot2)
+library(caret)
+
+# 2. Definición del conjunto de datos
+datos_credito <- data.frame(
+  Cliente = 1:16,
+  Prestamo = factor(c(rep("Fallido", 8), rep("Cumplidor", 8))),
+  Patrimonio_Neto = c(1.3, 3.7, 5.0, 5.9, 7.1, 4.0, 7.9, 5.1,
+                      5.2, 9.8, 9.0, 12.0, 6.3, 8.7, 11.1, 9.9),
+  Deuda_Pendiente = c(4.1, 6.9, 3.0, 6.5, 5.4, 2.7, 7.6, 3.8,
+                      1.0, 4.2, 4.8, 2.0, 5.2, 1.1, 4.1, 1.6)
+)
+
+# 3. Ajuste del Modelo Discriminante Lineal (LDA)
+modelo_lda <- lda(Prestamo ~ Patrimonio_Neto + Deuda_Pendiente, data = datos_credito)
+print(modelo_lda)
+
+# 4. Predicción y Matriz de Confusión
+predicciones <- predict(modelo_lda)
+matriz_confusion <- confusionMatrix(predicciones$class, datos_credito$Prestamo)
+print(matriz_confusion)
+
+# 5. Evaluación de dos nuevos solicitantes
+nuevos_solicitantes <- data.frame(
+  Patrimonio_Neto = c(10.1, 9.7),
+  Deuda_Pendiente = c(6.8, 2.2)
+)
+
+pred_nuevos <- predict(modelo_lda, newdata = nuevos_solicitantes)
+nuevos_solicitantes$Grupo_Asignado <- pred_nuevos$class
+nuevos_solicitantes$Prob_Cumplidor <- pred_nuevos$posterior[, "Cumplidor"]
+print(nuevos_solicitantes)
+```

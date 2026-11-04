@@ -387,3 +387,114 @@ grid.arrange(p1, p2, ncol = 2)
 
 1. **Incapacidad geométrica de $K$-Means:** $K$-Means intenta particionar el espacio en Voronoi convexos, lo que provoca que "corte" las estructuras continuas o curvas a la mitad.
 2. **Superioridad de DBSCAN en estructuras complejas:** DBSCAN logra separar adecuadamente las formas entrelazadas y continuas, obteniendo una puntuación de silueta significativamente superior al considerar la densidad real de los puntos.
+
+### Análisis de Conglomerados Densos con DBSCAN sobre `USArrests` {#dbscan-usarrests}
+
+En este capítulo aplicaremos el algoritmo **DBSCAN** (*Density-Based Spatial Clustering of Applications with Noise*) sobre el conjunto de datos `USArrests`. El objetivo es identificar grupos de estados con perfiles de criminalidad y urbanización similares basándonos en la densidad espacial, aislando aquellos estados que presentan comportamientos atípicos.
+
+#### Preparación y Escalado de los Datos
+
+Dado que DBSCAN utiliza el radio de vecindad $\epsilon$ basado en distancias euclidianas, **es imprescindible estandarizar las variables** para evitar que variables con rangos amplios (como `Assault`) dominen sobre otras con escalas menores (como `Murder` o `Rape`).
+
+```{r setup-dbscan-usarrests, message=FALSE, warning=FALSE}
+# Cargar librerías necesarias
+library(dbscan)
+library(factoextra)
+library(ggplot2)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+# Cargar dataset de arrestos en EE. UU.
+data("USArrests")
+
+# Estandarizar las variables (media = 0, sd = 1)
+df_scaled <- scale(USArrests)
+```
+
+#### Estimación del Hiperparámetro $\epsilon$ (Epsilon)
+
+Para determinar el radio $\epsilon$ adecuado, generamos el **gráfico de $K$-distancia** (`kNNdistplot`). Fijamos $\text{MinPts} = 5$ (sugerido por la literatura para datos continuos de dimensión $k \ge 4$) y buscamos el punto de inflexión o "codo" en la curva de distancias al 4-ésimo vecino más cercano ($k = \text{MinPts} - 1$).
+
+```{r k-dist-usarrests, fig.cap="Gráfico de k-distancia para estimar Epsilon en USArrests", fig.align='center', fig.width=8, fig.height=5}
+# Graficar k-distancia (k = 5 - 1 = 4)
+kNNdistplot(df_scaled, k = 4)
+abline(h = 1.25, col = "red", lty = 2)
+```
+
+> **Interpretación:** El gráfico muestra un cambio claro de pendiente alrededor de $\epsilon = 1.25$.
+
+#### Ajuste del Modelo DBSCAN
+
+Ejecutamos el algoritmo ajustando $\epsilon = 1.25$ y $\text{MinPts} = 5$:
+
+```{r fit-dbscan-usarrests}
+set.seed(123)
+db_res <- dbscan(df_scaled, eps = 1.25, minPts = 5)
+
+# Resumen del ajuste
+print(db_res)
+```
+
+> **Nota:** El grupo etiquetado como `0` corresponde a los estados clasificados como **ruido / valores atípicos** (*outliers*).
+
+#### Visualización de los Conglomerados y Ruido
+
+Proyectamos las 4 variables sobre las dos primeras **Componentes Principales (PCA)** para representar gráficamente la distribución de los estados y la detección de *outliers*.
+
+```{r plot-dbscan-usarrests, fig.cap="Visualización de clusters y estados atípicos con DBSCAN", fig.align='center', fig.width=8, fig.height=6}
+fviz_cluster(
+  db_res, 
+  data = df_scaled,
+  stand = FALSE,
+  ellipse = FALSE,
+  show.clust.cent = FALSE,
+  repel = TRUE, # Evita el solapamiento de nombres de los estados
+  ggtheme = theme_minimal(),
+  main = "DBSCAN (Eps = 1.25, MinPts = 5) sobre USArrests"
+)
+```
+
+#### Profiling e Interpretación de los Resultados
+
+Para entender la caracterización delictiva de los *clusters* y por qué ciertos estados fueron identificados como ruido, calculamos los promedios en la escala original:
+
+```{r perfil-dbscan-usarrests}
+# Unir la clasificación al dataframe original
+USArrests_db <- USArrests %>%
+  mutate(Cluster = factor(db_res$cluster, labels = c("Ruido (0)", "Cluster 1", "Cluster 2")))
+
+# Resumen por cluster
+resumen_dbscan <- USArrests_db %>%
+  group_by(Cluster) %>%
+  summarise(
+    Cantidad_Estados = n(),
+    Asesinatos_Prom = round(mean(Murder), 1),
+    Asaltos_Prom = round(mean(Assault), 1),
+    Poblacion_Urbana_Prom = round(mean(UrbanPop), 1),
+    Violaciones_Prom = round(mean(Rape), 1)
+  )
+
+kable(resumen_dbscan, caption = "Perfil delictivo medio por cluster identificado por DBSCAN") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = FALSE,
+    font_size = 12 # Puedes reducir el tamaño de letra (ej. 11 o 12)
+  )
+```
+
+#### Identificación de Estados Atípicos (Ruido)
+
+Mostramos la lista de estados asignados al cluster `0` (ruido) para analizar sus particularidades:
+
+```{r estados-ruido}
+estados_ruido <- USArrests_db %>%
+  filter(Cluster == "Ruido (0)")
+
+kable(estados_ruido, caption = "Estados clasificados como atípicos (ruido) por DBSCAN")
+```
+
+#### Conclusiones
+
+1. **Estructura Principal:** La mayoría de los estados se agrupan en regiones de densidad continua diferenciadas principalmente por la tasa global de criminalidad.
+2. **Detección de Valores Atípicos:** DBSCAN aísla exitosamente estados como **Florida** o **North Carolina** que presentan combinaciones atípicas (ej. altas tasas de asaltos o agresiones con niveles dispares de urbanización) que $K$-Medias forzaría a pertenecer a un grupo regular.
