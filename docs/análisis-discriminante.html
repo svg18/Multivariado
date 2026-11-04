@@ -61,6 +61,10 @@
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
 <script>
@@ -375,9 +379,25 @@ div.csl-indent {
 <li class="chapter" data-level="8.3.4" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#an%C3%A1lisis-de-conglomerados-con-dbscan"><i class="fa fa-check"></i><b>8.3.4</b> Análisis de Conglomerados con DBSCAN</a></li>
 <li class="chapter" data-level="8.3.5" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#ejemplo-pr%C3%A1ctico-dbscan"><i class="fa fa-check"></i><b>8.3.5</b> Ejemplo Práctico: DBSCAN</a></li>
 <li class="chapter" data-level="8.3.6" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#comparaci%C3%B3n-evaluativa-dbscan-vs.-k-means"><i class="fa fa-check"></i><b>8.3.6</b> Comparación Evaluativa: DBSCAN vs. <span class="math inline">\(K\)</span>-Means</a></li>
+<li class="chapter" data-level="8.3.7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#dbscan-usarrests"><i class="fa fa-check"></i><b>8.3.7</b> Análisis de Conglomerados Densos con DBSCAN sobre <code>USArrests</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a></li>
+<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#fundamentos-te%C3%B3ricos-y-supuestos-del-modelo"><i class="fa fa-check"></i><b>9.1</b> Fundamentos Teóricos y Supuestos del Modelo</a></li>
+<li class="chapter" data-level="9.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#modelo-matem%C3%A1tico-y-descomposici%C3%B3n-de-la-varianza"><i class="fa fa-check"></i><b>9.2</b> Modelo Matemático y Descomposición de la Varianza</a></li>
+<li class="chapter" data-level="9.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#clasificaci%C3%B3n-para-dos-grupos-g-2"><i class="fa fa-check"></i><b>9.3</b> Clasificación para Dos Grupos (<span class="math inline">\(G = 2\)</span>)</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#funci%C3%B3n-discriminante-de-fisher"><i class="fa fa-check"></i><b>9.3.1</b> Función Discriminante de Fisher</a></li>
+<li class="chapter" data-level="9.3.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#ajuste-por-probabilidades-a-priori-y-costes-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>9.3.2</b> Ajuste por Probabilidades a Priori y Costes de Clasificación</a></li>
+<li class="chapter" data-level="9.3.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#probabilidades-a-posteriori-teorema-de-bayes"><i class="fa fa-check"></i><b>9.3.3</b> Probabilidades <em>a Posteriori</em> (Teorema de Bayes)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#pruebas-de-significaci%C3%B3n-y-diagn%C3%B3stico"><i class="fa fa-check"></i><b>9.4</b> Pruebas de Significación y Diagnóstico</a></li>
+<li class="chapter" data-level="9.5" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r"><i class="fa fa-check"></i><b>9.5</b> Implementación Práctica en R</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#caso-de-estudio-an%C3%A1lisis-de-riesgo-crediticio"><i class="fa fa-check"></i><b>9.5.1</b> Caso de Estudio: Análisis de Riesgo Crediticio</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
 <li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
 <li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
@@ -404,7 +424,160 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="análisis-discriminante" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Capítulo 9</span> Análisis discriminante<a href="análisis-discriminante.html#an%C3%A1lisis-discriminante" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El <strong>Análisis Discriminante (AD)</strong> es una técnica estadística multivariante supervisada cuya finalidad es analizar si existen diferencias significativas entre dos o más grupos de observaciones respecto a un conjunto de variables cuantitativas continuas. Sus objetivos principales son:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Explicativo:</strong> Identificar cuáles variables discriminan mejor entre los grupos y explicar el sentido de esta separación.</li>
+<li><strong>Predictivo:</strong> Construir reglas de decisión para clasificar observaciones cuya pertenencia a un grupo sea desconocida con un nivel de riesgo controlado.</li>
+</ol>
+<hr />
+<div id="fundamentos-teóricos-y-supuestos-del-modelo" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Fundamentos Teóricos y Supuestos del Modelo<a href="análisis-discriminante.html#fundamentos-te%C3%B3ricos-y-supuestos-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El modelo de Análisis Discriminante Lineal (LDA) presupone las siguientes condiciones sobre los datos:</p>
+<ul>
+<li><strong>Naturaleza de las variables:</strong> Una variable dependiente categórica (<span class="math inline">\(G\)</span> grupos) y <span class="math inline">\(p\)</span> variables independientes cuantitativas (<span class="math inline">\(X_1, X_2, \dots, X_p\)</span>) de intervalo o razón.</li>
+<li><strong>Normalidad Multivariante:</strong> Las variables continuas siguen una distribución normal multivariante dentro de cada grupo: <span class="math inline">\(X_g \sim \mathcal{N}_p(\boldsymbol{\mu}_g, \boldsymbol{\Sigma})\)</span>.</li>
+<li><strong>Homocedasticidad:</strong> Las matrices de varianzas-covarianzas de los <span class="math inline">\(G\)</span> grupos deben ser homogéneas (<span class="math inline">\(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \dots = \boldsymbol{\Sigma}_G = \boldsymbol{\Sigma}\)</span>).</li>
+<li><strong>Ausencia de Multicolinealidad Estricta:</strong> Ninguna variable discriminante puede ser combinación lineal exacta de las demás (<span class="math inline">\(p &lt; n - 2\)</span>).</li>
+<li><strong>Número Máximo de Funciones:</strong> El número máximo de funciones discriminantes canónicas que se pueden extraer es <span class="math inline">\(m = \min(G - 1, p)\)</span>.</li>
+</ul>
+<hr />
+</div>
+<div id="modelo-matemático-y-descomposición-de-la-varianza" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Modelo Matemático y Descomposición de la Varianza<a href="análisis-discriminante.html#modelo-matem%C3%A1tico-y-descomposici%C3%B3n-de-la-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Partiendo de la matriz de varianzas-covarianzas total <span class="math inline">\(\mathbf{T}\)</span>, se realiza la descomposición fundamental entre la variabilidad <em>dentro de los grupos</em> (<span class="math inline">\(\mathbf{V}\)</span>) y <em>entre los grupos</em> (<span class="math inline">\(\mathbf{F}\)</span>):</p>
+<p><span class="math display">\[\mathbf{T} = \mathbf{V} + \mathbf{F}\]</span></p>
+<p>Se busca una combinación lineal <span class="math inline">\(Y = \mathbf{w}&#39;\mathbf{X}\)</span> que maximice la varianza entre grupos respecto a la varianza total o dentro de los grupos:</p>
+<p><span class="math display">\[\max_{\mathbf{w}} \left( \frac{\mathbf{w}&#39;\mathbf{F}\mathbf{w}}{\mathbf{w}&#39;\mathbf{V}\mathbf{w}} \right)\]</span></p>
+<p>Bajo la restricción de normalización <span class="math inline">\(\mathbf{w}&#39;\mathbf{T}\mathbf{w} = 1\)</span> (o <span class="math inline">\(\mathbf{w}&#39;\mathbf{V}\mathbf{w} = 1\)</span>), este problema de optimización mediante multiplicadores de Lagrange da lugar al problema de autovalores y autovectores:</p>
+<p><span class="math display">\[(\mathbf{V}^{-1}\mathbf{F})\mathbf{w} = \lambda \mathbf{w}\]</span></p>
+<p>Los autovectores <span class="math inline">\(\mathbf{w}_i\)</span> asociados a los autovalores mayores <span class="math inline">\(\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_m\)</span> definen los ejes discriminantes canónicos.</p>
+<hr />
+</div>
+<div id="clasificación-para-dos-grupos-g-2" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Clasificación para Dos Grupos (<span class="math inline">\(G = 2\)</span>)<a href="análisis-discriminante.html#clasificaci%C3%B3n-para-dos-grupos-g-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="función-discriminante-de-fisher" class="section level3 hasAnchor" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Función Discriminante de Fisher<a href="análisis-discriminante.html#funci%C3%B3n-discriminante-de-fisher" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para el caso de dos grupos, la función discriminante lineal toma la forma:</p>
+<p><span class="math display">\[D = w_1 X_1 + w_2 X_2 + \dots + w_p X_p\]</span></p>
+<p>El criterio de decisión compara la puntuación discriminante <span class="math inline">\(D\)</span> con un <strong>punto de corte</strong> <span class="math inline">\(C\)</span>:</p>
+<ul>
+<li>Si <span class="math inline">\(D &lt; C \implies\)</span> Se clasifica en el <strong>Grupo I</strong>.</li>
+<li>Si <span class="math inline">\(D &gt; C \implies\)</span> Se clasifica en el <strong>Grupo II</strong>.</li>
+</ul>
+<p>En el supuesto sin información <em>a priori</em>, el punto de corte centrado es <span class="math inline">\(C = \frac{\bar{D}_I + \bar{D}_{II}}{2}\)</span>.</p>
+</div>
+<div id="ajuste-por-probabilidades-a-priori-y-costes-de-clasificación" class="section level3 hasAnchor" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Ajuste por Probabilidades a Priori y Costes de Clasificación<a href="análisis-discriminante.html#ajuste-por-probabilidades-a-priori-y-costes-de-clasificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando se conocen las probabilidades <em>a priori</em> (<span class="math inline">\(\pi_I, \pi_{II}\)</span>) o se consideran los costes asimétricos por clasificación errónea (<span class="math inline">\(\text{Coste}(II|I)\)</span>, <span class="math inline">\(\text{Coste}(I|II)\)</span>), el punto de corte óptimo <span class="math inline">\(C_{p,c}\)</span> se desplaza:</p>
+<p><span class="math display">\[C_{p,c} = \frac{\bar{D}_I + \bar{D}_{II}}{2} - \ln \left( \frac{\pi_{II} \cdot \text{Coste}(I|II)}{\pi_I \cdot \text{Coste}(II|I)} \right)\]</span></p>
+</div>
+<div id="probabilidades-a-posteriori-teorema-de-bayes" class="section level3 hasAnchor" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Probabilidades <em>a Posteriori</em> (Teorema de Bayes)<a href="análisis-discriminante.html#probabilidades-a-posteriori-teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Usando el Teorema de Bayes, la probabilidad de que una observación con vector <span class="math inline">\(\mathbf{X}\)</span> pertenezca al grupo <span class="math inline">\(g\)</span> se calcula como:</p>
+<p><span class="math display">\[P(g|\mathbf{X}) = \frac{\pi_g f(\mathbf{X}|g)}{\sum_{i=1}^G \pi_i f(\mathbf{X}|i)}\]</span></p>
+<p>donde <span class="math inline">\(f(\mathbf{X}|g)\)</span> es la función de densidad normal multivariante para el grupo <span class="math inline">\(g\)</span>.</p>
+<hr />
+</div>
+</div>
+<div id="pruebas-de-significación-y-diagnóstico" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Pruebas de Significación y Diagnóstico<a href="análisis-discriminante.html#pruebas-de-significaci%C3%B3n-y-diagn%C3%B3stico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><strong>Prueba M de Box:</strong> Contrasta la hipótesis nula de homogeneidad de matrices de varianzas-covarianzas <span class="math inline">\(H_0: \boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \dots = \boldsymbol{\Sigma}_G\)</span>.</li>
+<li><strong>Lambda de Wilks (<span class="math inline">\(\Lambda\)</span>):</strong> Mide el poder discriminante global (<span class="math inline">\(0 \le \Lambda \le 1\)</span>). Valores de <span class="math inline">\(\Lambda\)</span> cercanos a 0 indican mayor separación intergrupal:
+<span class="math display">\[\Lambda = \prod_{i=1}^{m} \frac{1}{1 + \lambda_i}\]</span></li>
+<li><strong>Estadístico V de Bartlett / <span class="math inline">\(T^2\)</span> de Hotelling:</strong> Evalúa si las medias de los grupos difieren significativamente en el espacio multidimensional.</li>
+<li><strong>Correlación Canónica (<span class="math inline">\(\eta\)</span>):</strong> Expresa la relación entre las puntuaciones discriminantes y los grupos:
+<span class="math display">\[\eta_i = \sqrt{\frac{\lambda_i}{1 + \lambda_i}}\]</span></li>
+</ol>
+<hr />
+</div>
+<div id="implementación-práctica-en-r" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Implementación Práctica en R<a href="análisis-discriminante.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En las aplicaciones modernas se sustituye la sintaxis de entornos tradicionales por bloques de código ejecutable de R utilizando la librería <code>MASS</code> para el cálculo de LDA/QDA y <code>caret</code> para la evaluación del modelo.</p>
+<div id="caso-de-estudio-análisis-de-riesgo-crediticio" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Caso de Estudio: Análisis de Riesgo Crediticio<a href="análisis-discriminante.html#caso-de-estudio-an%C3%A1lisis-de-riesgo-crediticio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A continuación se realiza la evaluación del riesgo de crédito con dos variables explicativas: <code>Patrimonio_Neto</code> (<span class="math inline">\(X_1\)</span>) y <code>Deuda_Pendiente</code> (<span class="math inline">\(X_2\)</span>) para predecir si un cliente es <em>Fallido</em> (Grupo 1) o <em>Cumplidor</em> (Grupo 2).</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="análisis-discriminante.html#cb162-1" tabindex="-1"></a><span class="co"># 1. Cargar librerías requeridas</span></span>
+<span id="cb162-2"><a href="análisis-discriminante.html#cb162-2" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb162-3"><a href="análisis-discriminante.html#cb162-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb162-4"><a href="análisis-discriminante.html#cb162-4" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb162-5"><a href="análisis-discriminante.html#cb162-5" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="análisis-discriminante.html#cb162-6" tabindex="-1"></a><span class="co"># 2. Definición del conjunto de datos</span></span>
+<span id="cb162-7"><a href="análisis-discriminante.html#cb162-7" tabindex="-1"></a>datos_credito <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb162-8"><a href="análisis-discriminante.html#cb162-8" tabindex="-1"></a>  <span class="at">Cliente =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>,</span>
+<span id="cb162-9"><a href="análisis-discriminante.html#cb162-9" tabindex="-1"></a>  <span class="at">Prestamo =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Fallido&quot;</span>, <span class="dv">8</span>), <span class="fu">rep</span>(<span class="st">&quot;Cumplidor&quot;</span>, <span class="dv">8</span>))),</span>
+<span id="cb162-10"><a href="análisis-discriminante.html#cb162-10" tabindex="-1"></a>  <span class="at">Patrimonio_Neto =</span> <span class="fu">c</span>(<span class="fl">1.3</span>, <span class="fl">3.7</span>, <span class="fl">5.0</span>, <span class="fl">5.9</span>, <span class="fl">7.1</span>, <span class="fl">4.0</span>, <span class="fl">7.9</span>, <span class="fl">5.1</span>,</span>
+<span id="cb162-11"><a href="análisis-discriminante.html#cb162-11" tabindex="-1"></a>                      <span class="fl">5.2</span>, <span class="fl">9.8</span>, <span class="fl">9.0</span>, <span class="fl">12.0</span>, <span class="fl">6.3</span>, <span class="fl">8.7</span>, <span class="fl">11.1</span>, <span class="fl">9.9</span>),</span>
+<span id="cb162-12"><a href="análisis-discriminante.html#cb162-12" tabindex="-1"></a>  <span class="at">Deuda_Pendiente =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">6.9</span>, <span class="fl">3.0</span>, <span class="fl">6.5</span>, <span class="fl">5.4</span>, <span class="fl">2.7</span>, <span class="fl">7.6</span>, <span class="fl">3.8</span>,</span>
+<span id="cb162-13"><a href="análisis-discriminante.html#cb162-13" tabindex="-1"></a>                      <span class="fl">1.0</span>, <span class="fl">4.2</span>, <span class="fl">4.8</span>, <span class="fl">2.0</span>, <span class="fl">5.2</span>, <span class="fl">1.1</span>, <span class="fl">4.1</span>, <span class="fl">1.6</span>)</span>
+<span id="cb162-14"><a href="análisis-discriminante.html#cb162-14" tabindex="-1"></a>)</span>
+<span id="cb162-15"><a href="análisis-discriminante.html#cb162-15" tabindex="-1"></a></span>
+<span id="cb162-16"><a href="análisis-discriminante.html#cb162-16" tabindex="-1"></a><span class="co"># 3. Ajuste del Modelo Discriminante Lineal (LDA)</span></span>
+<span id="cb162-17"><a href="análisis-discriminante.html#cb162-17" tabindex="-1"></a>modelo_lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(Prestamo <span class="sc">~</span> Patrimonio_Neto <span class="sc">+</span> Deuda_Pendiente, <span class="at">data =</span> datos_credito)</span>
+<span id="cb162-18"><a href="análisis-discriminante.html#cb162-18" tabindex="-1"></a><span class="fu">print</span>(modelo_lda)</span></code></pre></div>
+<pre><code>Call:
+lda(Prestamo ~ Patrimonio_Neto + Deuda_Pendiente, data = datos_credito)
 
+Prior probabilities of groups:
+Cumplidor   Fallido 
+      0.5       0.5 
+
+Group means:
+          Patrimonio_Neto Deuda_Pendiente
+Cumplidor               9               3
+Fallido                 5               5
+
+Coefficients of linear discriminants:
+                       LD1
+Patrimonio_Neto -0.4224919
+Deuda_Pendiente  0.3802226</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="análisis-discriminante.html#cb164-1" tabindex="-1"></a><span class="co"># 4. Predicción y Matriz de Confusión</span></span>
+<span id="cb164-2"><a href="análisis-discriminante.html#cb164-2" tabindex="-1"></a>predicciones <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_lda)</span>
+<span id="cb164-3"><a href="análisis-discriminante.html#cb164-3" tabindex="-1"></a>matriz_confusion <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(predicciones<span class="sc">$</span>class, datos_credito<span class="sc">$</span>Prestamo)</span>
+<span id="cb164-4"><a href="análisis-discriminante.html#cb164-4" tabindex="-1"></a><span class="fu">print</span>(matriz_confusion)</span></code></pre></div>
+<pre><code>Confusion Matrix and Statistics
+
+           Reference
+Prediction  Cumplidor Fallido
+  Cumplidor         7       0
+  Fallido           1       8
+                                          
+               Accuracy : 0.9375          
+                 95% CI : (0.6977, 0.9984)
+    No Information Rate : 0.5             
+    P-Value [Acc &gt; NIR] : 0.0002594       
+                                          
+                  Kappa : 0.875           
+                                          
+ Mcnemar&#39;s Test P-Value : 1.0000000       
+                                          
+            Sensitivity : 0.8750          
+            Specificity : 1.0000          
+         Pos Pred Value : 1.0000          
+         Neg Pred Value : 0.8889          
+             Prevalence : 0.5000          
+         Detection Rate : 0.4375          
+   Detection Prevalence : 0.4375          
+      Balanced Accuracy : 0.9375          
+                                          
+       &#39;Positive&#39; Class : Cumplidor       
+                                          </code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="análisis-discriminante.html#cb166-1" tabindex="-1"></a><span class="co"># 5. Evaluación de dos nuevos solicitantes</span></span>
+<span id="cb166-2"><a href="análisis-discriminante.html#cb166-2" tabindex="-1"></a>nuevos_solicitantes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb166-3"><a href="análisis-discriminante.html#cb166-3" tabindex="-1"></a>  <span class="at">Patrimonio_Neto =</span> <span class="fu">c</span>(<span class="fl">10.1</span>, <span class="fl">9.7</span>),</span>
+<span id="cb166-4"><a href="análisis-discriminante.html#cb166-4" tabindex="-1"></a>  <span class="at">Deuda_Pendiente =</span> <span class="fu">c</span>(<span class="fl">6.8</span>, <span class="fl">2.2</span>)</span>
+<span id="cb166-5"><a href="análisis-discriminante.html#cb166-5" tabindex="-1"></a>)</span>
+<span id="cb166-6"><a href="análisis-discriminante.html#cb166-6" tabindex="-1"></a></span>
+<span id="cb166-7"><a href="análisis-discriminante.html#cb166-7" tabindex="-1"></a>pred_nuevos <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo_lda, <span class="at">newdata =</span> nuevos_solicitantes)</span>
+<span id="cb166-8"><a href="análisis-discriminante.html#cb166-8" tabindex="-1"></a>nuevos_solicitantes<span class="sc">$</span>Grupo_Asignado <span class="ot">&lt;-</span> pred_nuevos<span class="sc">$</span>class</span>
+<span id="cb166-9"><a href="análisis-discriminante.html#cb166-9" tabindex="-1"></a>nuevos_solicitantes<span class="sc">$</span>Prob_Cumplidor <span class="ot">&lt;-</span> pred_nuevos<span class="sc">$</span>posterior[, <span class="st">&quot;Cumplidor&quot;</span>]</span>
+<span id="cb166-10"><a href="análisis-discriminante.html#cb166-10" tabindex="-1"></a><span class="fu">print</span>(nuevos_solicitantes)</span></code></pre></div>
+<pre><code>  Patrimonio_Neto Deuda_Pendiente Grupo_Asignado Prob_Cumplidor
+1            10.1             6.8      Cumplidor      0.6457935
+2             9.7             2.2      Cumplidor      0.9887082</code></pre>
+
+</div>
+</div>
 </div>
 
 

@@ -61,6 +61,10 @@
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CXGNMPV7WK"></script>
 <script>
@@ -375,9 +379,25 @@ div.csl-indent {
 <li class="chapter" data-level="8.3.4" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#an%C3%A1lisis-de-conglomerados-con-dbscan"><i class="fa fa-check"></i><b>8.3.4</b> Análisis de Conglomerados con DBSCAN</a></li>
 <li class="chapter" data-level="8.3.5" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#ejemplo-pr%C3%A1ctico-dbscan"><i class="fa fa-check"></i><b>8.3.5</b> Ejemplo Práctico: DBSCAN</a></li>
 <li class="chapter" data-level="8.3.6" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#comparaci%C3%B3n-evaluativa-dbscan-vs.-k-means"><i class="fa fa-check"></i><b>8.3.6</b> Comparación Evaluativa: DBSCAN vs. <span class="math inline">\(K\)</span>-Means</a></li>
+<li class="chapter" data-level="8.3.7" data-path="análisis-de-conglomerados.html"><a href="análisis-de-conglomerados.html#dbscan-usarrests"><i class="fa fa-check"></i><b>8.3.7</b> Análisis de Conglomerados Densos con DBSCAN sobre <code>USArrests</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a></li>
+<li class="chapter" data-level="9" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html"><i class="fa fa-check"></i><b>9</b> Análisis discriminante</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#fundamentos-te%C3%B3ricos-y-supuestos-del-modelo"><i class="fa fa-check"></i><b>9.1</b> Fundamentos Teóricos y Supuestos del Modelo</a></li>
+<li class="chapter" data-level="9.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#modelo-matem%C3%A1tico-y-descomposici%C3%B3n-de-la-varianza"><i class="fa fa-check"></i><b>9.2</b> Modelo Matemático y Descomposición de la Varianza</a></li>
+<li class="chapter" data-level="9.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#clasificaci%C3%B3n-para-dos-grupos-g-2"><i class="fa fa-check"></i><b>9.3</b> Clasificación para Dos Grupos (<span class="math inline">\(G = 2\)</span>)</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#funci%C3%B3n-discriminante-de-fisher"><i class="fa fa-check"></i><b>9.3.1</b> Función Discriminante de Fisher</a></li>
+<li class="chapter" data-level="9.3.2" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#ajuste-por-probabilidades-a-priori-y-costes-de-clasificaci%C3%B3n"><i class="fa fa-check"></i><b>9.3.2</b> Ajuste por Probabilidades a Priori y Costes de Clasificación</a></li>
+<li class="chapter" data-level="9.3.3" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#probabilidades-a-posteriori-teorema-de-bayes"><i class="fa fa-check"></i><b>9.3.3</b> Probabilidades <em>a Posteriori</em> (Teorema de Bayes)</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#pruebas-de-significaci%C3%B3n-y-diagn%C3%B3stico"><i class="fa fa-check"></i><b>9.4</b> Pruebas de Significación y Diagnóstico</a></li>
+<li class="chapter" data-level="9.5" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r"><i class="fa fa-check"></i><b>9.5</b> Implementación Práctica en R</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="análisis-discriminante.html"><a href="análisis-discriminante.html#caso-de-estudio-an%C3%A1lisis-de-riesgo-crediticio"><i class="fa fa-check"></i><b>9.5.1</b> Caso de Estudio: Análisis de Riesgo Crediticio</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
 <li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
 <li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
@@ -446,30 +466,30 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] factoextra_2.0.0           EFAtools_1.0.0             PerformanceAnalytics_2.1.0 xts_0.14.2                
- [5] zoo_1.8-15                 TSA_1.3.1                  forecast_9.0.2             kableExtra_1.4.1          
- [9] knitr_1.51                 latex2exp_0.9.8            patchwork_1.3.2            lubridate_1.9.5           
-[13] forcats_1.0.1              stringr_1.6.0              dplyr_1.2.1                purrr_1.2.2               
-[17] readr_2.2.0                tidyr_1.3.2                tibble_3.3.1               ggplot2_4.0.3             
-[21] tidyverse_2.0.0           
+ [1] factoextra_2.0.0           EFAtools_1.0.0             PerformanceAnalytics_2.1.0
+ [4] xts_0.14.2                 zoo_1.8-15                 TSA_1.3.1                 
+ [7] forecast_9.0.2             kableExtra_1.4.1           knitr_1.51                
+[10] latex2exp_0.9.8            patchwork_1.3.2            lubridate_1.9.5           
+[13] forcats_1.0.1              stringr_1.6.0              dplyr_1.2.1               
+[16] purrr_1.2.2                readr_2.2.0                tidyr_1.3.2               
+[19] tibble_3.3.1               ggplot2_4.0.3              tidyverse_2.0.0           
 
 loaded via a namespace (and not attached):
  [1] tidyselect_1.2.1   viridisLite_0.4.3  timeDate_4052.112  farver_2.1.2       S7_0.2.2          
- [6] fastmap_1.2.0      promises_1.5.0     digest_0.6.37      timechange_0.4.0   mime_0.13         
-[11] lifecycle_1.0.5    ellipsis_0.3.3     magrittr_2.0.5     compiler_4.4.1     rlang_1.2.0       
-[16] sass_0.4.10        tools_4.4.1        yaml_2.3.12        htmlwidgets_1.6.4  pkgbuild_1.4.8    
-[21] xml2_1.5.2         RColorBrewer_1.1-3 pkgload_1.5.2      miniUI_0.1.2       withr_3.0.2       
-[26] grid_4.4.1         urlchecker_1.0.1   profvis_0.4.0      xtable_1.8-8       colorspace_2.1-2  
-[31] scales_1.4.0       cli_3.6.3          rmarkdown_2.31     generics_0.1.4     remotes_2.5.0     
-[36] otel_0.2.0         rstudioapi_0.18.0  tzdb_0.5.0         sessioninfo_1.2.3  cachem_1.1.0      
-[41] splines_4.4.1      parallel_4.4.1     urca_1.3-4         vctrs_0.7.3        devtools_2.4.5    
-[46] Matrix_1.7-0       jsonlite_2.0.0     bookdown_0.46      hms_1.1.4          ggrepel_0.9.8     
-[51] systemfonts_1.3.2  locfit_1.5-9.12    fontawesome_0.5.3  jquerylib_0.1.4    glue_1.8.1        
-[56] stringi_1.8.7      gtable_0.3.6       later_1.4.8        quadprog_1.5-8     pillar_1.11.1     
-[61] htmltools_0.5.8.1  R6_2.6.1           textshaping_1.0.5  evaluate_1.0.5     shiny_1.13.0      
-[66] lattice_0.22-6     leaps_3.2          memoise_2.0.1      renv_1.2.3         fracdiff_1.5-4    
-[71] httpuv_1.6.17      bslib_0.11.0       Rcpp_1.1.1-1.1     svglite_2.2.2      nlme_3.1-164      
-[76] mgcv_1.9-1         xfun_0.57          fs_2.1.0           usethis_3.2.1      pkgconfig_2.0.3   </code></pre>
+ [6] fastmap_1.2.0      digest_0.6.37      timechange_0.4.0   lifecycle_1.0.5    magrittr_2.0.5    
+[11] compiler_4.4.1     rlang_1.2.0        sass_0.4.10        tools_4.4.1        yaml_2.3.12       
+[16] ggsignif_0.6.4     mnormt_2.1.2       xml2_1.5.2         RColorBrewer_1.1-3 abind_1.4-8       
+[21] withr_3.0.2        grid_4.4.1         stats4_4.4.1       lavaan_0.7-2       ggpubr_0.6.3      
+[26] colorspace_2.1-2   scales_1.4.0       cli_3.6.3          rmarkdown_2.31     generics_0.1.4    
+[31] otel_0.2.0         rstudioapi_0.18.0  tzdb_0.5.0         cachem_1.1.0       splines_4.4.1     
+[36] parallel_4.4.1     urca_1.3-4         vctrs_0.7.3        Matrix_1.7-0       jsonlite_2.0.0    
+[41] carData_3.0-6      bookdown_0.46      car_3.1-5          hms_1.1.4          rstatix_0.7.3     
+[46] ggrepel_0.9.8      Formula_1.2-5      systemfonts_1.3.2  locfit_1.5-9.12    fontawesome_0.5.3 
+[51] jquerylib_0.1.4    glue_1.8.1         stringi_1.8.7      gtable_0.3.6       quadprog_1.5-8    
+[56] pillar_1.11.1      htmltools_0.5.8.1  R6_2.6.1           textshaping_1.0.5  evaluate_1.0.5    
+[61] pbivnorm_0.6.0     lattice_0.22-6     backports_1.5.1    leaps_3.2          broom_1.0.6       
+[66] fracdiff_1.5-4     bslib_0.11.0       Rcpp_1.1.1-1.1     svglite_2.2.2      nlme_3.1-164      
+[71] mgcv_1.9-1         xfun_0.57          pkgconfig_2.0.3   </code></pre>
 <p>Este libro fue escrito con <a href="http://bookdown.org/">bookdown</a> usando <a href="http://www.rstudio.com/ide/">RStudio</a>.</p>
 <p>Esta versión fue escrita con:</p>
 <pre><code>Finding R package dependencies ... Done!</code></pre>
@@ -482,10 +502,10 @@ loaded via a namespace (and not attached):
  collate  Spanish_Mexico.utf8
  ctype    Spanish_Mexico.utf8
  tz       America/Mexico_City
- date     2026-10-25
+ date     2026-11-03
  rstudio  2026.08.0+187 Yellow Yarrow (desktop)
  pandoc   3.8.3 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
- quarto   ERROR: Unknown command &quot;TMPDIR=C:/Users/chofi/AppData/Local/Temp/RtmpKgu4db/file2ef83cdb519f&quot;. Did you mean command &quot;install&quot;? @ C:\\PROGRA~1\\RStudio\\RESOUR~1\\app\\bin\\quarto\\bin\\quarto.exe</code></pre>
+ quarto   ERROR: Unknown command &quot;TMPDIR=C:/Users/chofi/AppData/Local/Temp/RtmpcNpLhw/file62f84d315813&quot;. Did you mean command &quot;install&quot;? @ C:\\PROGRA~1\\RStudio\\RESOUR~1\\app\\bin\\quarto\\bin\\quarto.exe</code></pre>
 </div>
 <div id="licencia" class="section level3 unnumbered hasAnchor">
 <h3>Licencia<a href="index.html#licencia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
