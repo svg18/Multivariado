@@ -399,7 +399,13 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Análisis de relaciones entre estructuras multivariadas</b></span></li>
-<li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a></li>
+<li class="chapter" data-level="10" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html"><i class="fa fa-check"></i><b>10</b> Análisis de Correlación Canónica</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html#fundamentos-te%C3%B3ricos-y-supuestos-del-modelo-1"><i class="fa fa-check"></i><b>10.1</b> Fundamentos Teóricos y Supuestos del Modelo</a></li>
+<li class="chapter" data-level="10.2" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html#formulaci%C3%B3n-matem%C3%A1tica-y-extracci%C3%B3n-de-variables-can%C3%B3nicas"><i class="fa fa-check"></i><b>10.2</b> Formulación Matemática y Extracción de Variables Canónicas</a></li>
+<li class="chapter" data-level="10.3" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html#pruebas-de-significaci%C3%B3n-e-interpretaci%C3%B3n"><i class="fa fa-check"></i><b>10.3</b> Pruebas de Significación e Interpretación</a></li>
+<li class="chapter" data-level="10.4" data-path="análisis-de-correlación-canónica.html"><a href="análisis-de-correlación-canónica.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-1"><i class="fa fa-check"></i><b>10.4</b> Implementación Práctica en R</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="coeficiente-rv.html"><a href="coeficiente-rv.html"><i class="fa fa-check"></i><b>11</b> Coeficiente RV</a></li>
 <li class="chapter" data-level="12" data-path="análisis-de-procrustes.html"><a href="análisis-de-procrustes.html"><i class="fa fa-check"></i><b>12</b> Análisis de Procrustes</a></li>
 <li class="divider"></li>
@@ -424,7 +430,181 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="análisis-de-correlación-canónica" class="section level1 hasAnchor" number="10">
 <h1><span class="header-section-number">Capítulo 10</span> Análisis de Correlación Canónica<a href="análisis-de-correlación-canónica.html#an%C3%A1lisis-de-correlaci%C3%B3n-can%C3%B3nica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>El <strong>Análisis de Correlación Canónica (CCA, por sus siglas en inglés <em>Canonical Correlation Analysis</em>)</strong>, desarrollado por Harold Hotelling (1936), es una técnica estadística multivariante diseñada para estudiar y cuantificar la relación lineal existente entre dos conjuntos (o bloques) de variables cuantitativas medidas sobre los mismos <span class="math inline">\(n\)</span> individuos.</p>
+<p>Mientras que la regresión lineal múltiple analiza la relación entre un conjunto de variables predictoras <span class="math inline">\(\mathbf{X}\)</span> y una única variable respuesta <span class="math inline">\(Y\)</span>, el Análisis de Correlación Canónica generaliza este enfoque permitiendo que ambos lados de la relación sean multidimensionales: un bloque <span class="math inline">\(\mathbf{X}\)</span> de <span class="math inline">\(p\)</span> variables y un bloque <span class="math inline">\(\mathbf{Y}\)</span> de <span class="math inline">\(q\)</span> variables.</p>
+<div id="fundamentos-teóricos-y-supuestos-del-modelo-1" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Fundamentos Teóricos y Supuestos del Modelo<a href="análisis-de-correlación-canónica.html#fundamentos-te%C3%B3ricos-y-supuestos-del-modelo-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El objetivo central del CCA es encontrar pares de combinaciones lineales —denominadas <strong>variables canónicas</strong>— dentro de cada conjunto de datos, de tal forma que la correlación lineal entre cada par sea máxima.</p>
+<p><strong>Supuestos del Modelo</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Linealidad:</strong> Las relaciones entre las variables dentro de cada conjunto y entre ambos conjuntos deben ser lineales.</li>
+<li><strong>Normalidad Multivariante:</strong> Para realizar contrastes de significación inferenciales (como la prueba de Bartlett), se requiere que ambos bloques sigan conjuntamente una distribución normal multivariante.</li>
+<li><strong>Ausencia de Multicolinealidad Estricta:</strong> Las matrices de varianzas-covarianzas de cada conjunto (<span class="math inline">\(\boldsymbol{\Sigma}_{XX}\)</span> y <span class="math inline">\(\boldsymbol{\Sigma}_{YY}\)</span>) deben ser definidas positivas (invertibles), por lo que ninguna variable debe ser combinación lineal exacta de las demás.</li>
+<li><strong>Tamaño Muestral:</strong> Se recomienda contar con un número de observaciones significativamente mayor que el número total de variables (<span class="math inline">\(n \gg p + q\)</span>) para garantizar la estabilidad de los coeficientes canónicos.</li>
+</ol>
+</div>
+<div id="formulación-matemática-y-extracción-de-variables-canónicas" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Formulación Matemática y Extracción de Variables Canónicas<a href="análisis-de-correlación-canónica.html#formulaci%C3%B3n-matem%C3%A1tica-y-extracci%C3%B3n-de-variables-can%C3%B3nicas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sean dos vectores aleatorios <span class="math inline">\(\mathbf{X} = (X_1, X_2, \dots, X_p)&#39;\)</span> e <span class="math inline">\(\mathbf{Y} = (Y_1, Y_2, \dots, Y_q)&#39;\)</span> observados sobre <span class="math inline">\(n\)</span> individuos, con vector de medias conjunto y matriz de covarianzas particionada:</p>
+<p><span class="math display">\[\boldsymbol{\Sigma} = \begin{pmatrix} \boldsymbol{\Sigma}_{XX} &amp; \boldsymbol{\Sigma}_{XY} \\ \boldsymbol{\Sigma}_{YX} &amp; \boldsymbol{\Sigma}_{YY} \end{pmatrix}\]</span></p>
+<p>donde <span class="math inline">\(\boldsymbol{\Sigma}_{XX}\)</span> (<span class="math inline">\(p \times p\)</span>) y <span class="math inline">\(\boldsymbol{\Sigma}_{YY}\)</span> (<span class="math inline">\(q \times q\)</span>) son las matrices de covarianzas dentro de cada grupo, y <span class="math inline">\(\boldsymbol{\Sigma}_{XY} = \boldsymbol{\Sigma}_{YX}&#39;\)</span> (<span class="math inline">\(p \times q\)</span>) es la matriz de covarianzas entre ambos bloques.</p>
+<p><strong>Definición de los Pares Canónicos</strong></p>
+<p>Se definen las combinaciones lineales para el <span class="math inline">\(i\)</span>-ésimo par canónico como:</p>
+<p><span class="math display">\[U_i = \mathbf{a}_i&#39;\mathbf{X} = a_{i1}X_1 + a_{i2}X_2 + \dots + a_{ip}X_p\]</span>
+<span class="math display">\[V_i = \mathbf{b}_i&#39;\mathbf{Y} = b_{i1}Y_1 + b_{i2}Y_2 + \dots + b_{iq}Y_q\]</span></p>
+<p>El problema de optimización consiste en hallar los vectores de pesos canónicos <span class="math inline">\(\mathbf{a}_1\)</span> y <span class="math inline">\(\mathbf{b}_1\)</span> que maximicen la correlación de Pearson entre <span class="math inline">\(U_1\)</span> y <span class="math inline">\(V_1\)</span>:</p>
+<p><span class="math display">\[\rho_1 = \text{Corr}(U_1, V_1) = \frac{\mathbf{a}_1&#39;\boldsymbol{\Sigma}_{XY}\mathbf{b}_1}{\sqrt{(\mathbf{a}_1&#39;\boldsymbol{\Sigma}_{XX}\mathbf{a}_1)(\mathbf{b}_1&#39;\boldsymbol{\Sigma}_{YY}\mathbf{b}_1)}}\]</span></p>
+<p>sujeto a las restricciones de varianza unitaria:</p>
+<p><span class="math display">\[\text{Var}(U_i) = \mathbf{a}_i&#39;\boldsymbol{\Sigma}_{XX}\mathbf{a}_i = 1 \quad \text{y} \quad \text{Var}(V_i) = \mathbf{b}_i&#39;\boldsymbol{\Sigma}_{YY}\mathbf{b}_i = 1\]</span></p>
+<p><strong>Solución mediante Autovalores y Autovectores</strong></p>
+<p>Aplicando multiplicadores de Lagrange, la obtención de los vectores <span class="math inline">\(\mathbf{a}_i\)</span> y <span class="math inline">\(\mathbf{b}_i\)</span> se reduce a resolver las siguientes ecuaciones de valores y vectores propios:</p>
+<p><span class="math display">\[\left(\boldsymbol{\Sigma}_{XX}^{-1}\boldsymbol{\Sigma}_{XY}\boldsymbol{\Sigma}_{YY}^{-1}\boldsymbol{\Sigma}_{YX}\right)\mathbf{a}_i = \rho_i^2 \mathbf{a}_i\]</span>
+<span class="math display">\[\left(\boldsymbol{\Sigma}_{YY}^{-1}\boldsymbol{\Sigma}_{YX}\boldsymbol{\Sigma}_{XX}^{-1}\boldsymbol{\Sigma}_{XY}\right)\mathbf{b}_i = \rho_i^2 \mathbf{b}_i\]</span></p>
+<ul>
+<li>Los valores propios <span class="math inline">\(\lambda_i = \rho_i^2\)</span> corresponden al <strong>cuadrado de las correlaciones canónicas</strong> (ordenados de forma decreciente: <span class="math inline">\(\rho_1 \ge \rho_2 \ge \dots \ge \rho_m\)</span>).</li>
+<li>El número máximo de pares canónicos que se pueden extraer es <span class="math inline">\(m = \min(p, q)\)</span>.</li>
+<li>Los pares sucesivos <span class="math inline">\((U_i, V_i)\)</span> son <strong>ortogonales</strong> (incorrelados) respecto a los pares anteriores: <span class="math inline">\(\text{Corr}(U_i, U_j) = 0\)</span>, <span class="math inline">\(\text{Corr}(V_i, V_j) = 0\)</span> y <span class="math inline">\(\text{Corr}(U_i, V_j) = 0\)</span> para todo <span class="math inline">\(i \neq j\)</span>.</li>
+</ul>
+</div>
+<div id="pruebas-de-significación-e-interpretación" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Pruebas de Significación e Interpretación<a href="análisis-de-correlación-canónica.html#pruebas-de-significaci%C3%B3n-e-interpretaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Contraste Secuencial de Significación (<span class="math inline">\(\Lambda\)</span> de Wilks)</li>
+</ol>
+<p>Para determinar cuántos pares canónicos son estadísticamente significativos, se contrasta secuencialmente la hipótesis nula de que las correlaciones canónicas desde el paso <span class="math inline">\(k\)</span> hasta <span class="math inline">\(m\)</span> son cero (<span class="math inline">\(H_0: \rho_k = \rho_{k+1} = \dots = \rho_m = 0\)</span>). Se utiliza el estadístico <strong>Lambda de Wilks</strong>:</p>
+<p><span class="math display">\[\Lambda_k = \prod_{i=k}^{m} (1 - \rho_i^2)\]</span></p>
+<p>Mediante la aproximación <span class="math inline">\(\chi^2\)</span> de Bartlett:</p>
+<p><span class="math display">\[\chi^2 = -\left[ n - 1 - \frac{1}{2}(p + q + 1) \right] \ln(\Lambda_k) \sim \chi^2_{(p - k + 1)(q - k + 1)}\]</span></p>
+<p>Si se rechaza <span class="math inline">\(H_0\)</span> (<span class="math inline">\(p\text{-valor} &lt; 0.05\)</span>), se concluye que al menos el <span class="math inline">\(k\)</span>-ésimo par canónico es estadísticamente significativo y se procede a evaluar el siguiente par (<span class="math inline">\(k + 1\)</span>).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Pesos Canónicos vs. Cargas Canónicas</li>
+</ol>
+<ul>
+<li><strong>Pesos Canónicos (<span class="math inline">\(\mathbf{a}_i, \mathbf{b}_i\)</span>):</strong> Son los coeficientes directos de la combinación lineal. Cuando se estandarizan, permiten comparar la contribución relativa de cada variable; sin embargo, pueden volverse inestables si existe alta multicolinealidad dentro de un bloque.</li>
+<li><strong>Cargas Canónicas (Correlaciones Estructurales):</strong> Representan la correlación lineal simple entre cada variable original y su propia variable canónica: <span class="math inline">\(\text{Corr}(X_j, U_i)\)</span> y <span class="math inline">\(\text{Corr}(Y_l, V_i)\)</span>. Suelen preferirse para la interpretación sustantiva, ya que no se ven afectadas por la multicolinealidad.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Índice de Redundancia de Stewart-Love</li>
+</ol>
+<p>Una correlación canónica alta (<span class="math inline">\(\rho_i\)</span>) indica fuerte asociación entre las combinaciones lineales <span class="math inline">\(U_i\)</span> y <span class="math inline">\(V_i\)</span>, pero no garantiza que dichas variables canónicas expliquen una proporción elevada de la varianza original de los bloques. El <strong>índice de redundancia</strong> mide la proporción de la varianza total de un conjunto (por ejemplo, <span class="math inline">\(\mathbf{Y}\)</span>) explicada por la variable canónica del otro conjunto (<span class="math inline">\(U_i\)</span>):</p>
+<p><span class="math display">\[Rd(Y \mid U_i) = \left( \frac{1}{q} \sum_{l=1}^{q} \text{Corr}^2(Y_l, V_i) \right) \cdot \rho_i^2\]</span></p>
+<hr />
+</div>
+<div id="implementación-práctica-en-r-1" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Implementación Práctica en R<a href="análisis-de-correlación-canónica.html#implementaci%C3%B3n-pr%C3%A1ctica-en-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación se desarrolla un ejemplo completo utilizando el conjunto de datos clásico <code>LifeCycleSavings</code> incluido en R base. Este dataset contiene 5 variables económicas y demográficas medidas en <span class="math inline">\(n = 50\)</span> países:</p>
+<ul>
+<li><strong>Bloque Económico (<span class="math inline">\(\mathbf{X}\)</span>):</strong>
+<ul>
+<li><code>sr</code>: Tasa de ahorro personal agregado.</li>
+<li><code>dpi</code>: Ingreso disponible per cápita real.</li>
+<li><code>ddpi</code>: Tasa porcentual de crecimiento del ingreso disponible per cápita.</li>
+</ul></li>
+<li><strong>Bloque Demográfico (<span class="math inline">\(\mathbf{Y}\)</span>):</strong>
+<ul>
+<li><code>pop15</code>: Porcentaje de población menor de 15 años.</li>
+<li><code>pop75</code>: Porcentaje de población mayor de 75 años.</li>
+</ul></li>
+</ul>
+<p>El objetivo es analizar la relación multivariante entre la estructura demográfica de los países y su comportamiento económico de ahorro e ingreso.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="análisis-de-correlación-canónica.html#cb168-1" tabindex="-1"></a><span class="co"># 1. Carga de librerías necesarias</span></span>
+<span id="cb168-2"><a href="análisis-de-correlación-canónica.html#cb168-2" tabindex="-1"></a><span class="fu">library</span>(CCA)       <span class="co"># Análisis de Correlación Canónica y gráficos</span></span>
+<span id="cb168-3"><a href="análisis-de-correlación-canónica.html#cb168-3" tabindex="-1"></a><span class="fu">library</span>(CCP)       <span class="co"># Pruebas de significación (Wilks, Pillai, Hotelling, Roy)</span></span>
+<span id="cb168-4"><a href="análisis-de-correlación-canónica.html#cb168-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)   <span class="co"># Visualización avanzada</span></span>
+<span id="cb168-5"><a href="análisis-de-correlación-canónica.html#cb168-5" tabindex="-1"></a></span>
+<span id="cb168-6"><a href="análisis-de-correlación-canónica.html#cb168-6" tabindex="-1"></a><span class="co"># 2. Carga y preparación de los datos</span></span>
+<span id="cb168-7"><a href="análisis-de-correlación-canónica.html#cb168-7" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;LifeCycleSavings&quot;</span>)</span>
+<span id="cb168-8"><a href="análisis-de-correlación-canónica.html#cb168-8" tabindex="-1"></a><span class="fu">head</span>(LifeCycleSavings)</span></code></pre></div>
+<pre><code>             sr pop15 pop75     dpi ddpi
+Australia 11.43 29.35  2.87 2329.68 2.87
+Austria   12.07 23.32  4.41 1507.99 3.93
+Belgium   13.17 23.80  4.43 2108.47 3.82
+Bolivia    5.75 41.89  1.67  189.13 0.22
+Brazil    12.88 42.19  0.83  728.47 4.56
+Canada     8.79 31.72  2.85 2982.88 2.43</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="análisis-de-correlación-canónica.html#cb170-1" tabindex="-1"></a><span class="co"># Definición de los dos bloques de variables (estandarizados para facilitar interpretación)</span></span>
+<span id="cb170-2"><a href="análisis-de-correlación-canónica.html#cb170-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">scale</span>(LifeCycleSavings[, <span class="fu">c</span>(<span class="st">&quot;sr&quot;</span>, <span class="st">&quot;dpi&quot;</span>, <span class="st">&quot;ddpi&quot;</span>)])</span>
+<span id="cb170-3"><a href="análisis-de-correlación-canónica.html#cb170-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">scale</span>(LifeCycleSavings[, <span class="fu">c</span>(<span class="st">&quot;pop15&quot;</span>, <span class="st">&quot;pop75&quot;</span>)])</span>
+<span id="cb170-4"><a href="análisis-de-correlación-canónica.html#cb170-4" tabindex="-1"></a></span>
+<span id="cb170-5"><a href="análisis-de-correlación-canónica.html#cb170-5" tabindex="-1"></a><span class="co"># 3. Ajuste del Análisis de Correlación Canónica</span></span>
+<span id="cb170-6"><a href="análisis-de-correlación-canónica.html#cb170-6" tabindex="-1"></a>modelo_cca <span class="ot">&lt;-</span> <span class="fu">cc</span>(X, Y)</span>
+<span id="cb170-7"><a href="análisis-de-correlación-canónica.html#cb170-7" tabindex="-1"></a></span>
+<span id="cb170-8"><a href="análisis-de-correlación-canónica.html#cb170-8" tabindex="-1"></a><span class="co"># Mostrar las correlaciones canónicas obtenidas (m = min(3, 2) = 2)</span></span>
+<span id="cb170-9"><a href="análisis-de-correlación-canónica.html#cb170-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Correlaciones canónicas:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>Correlaciones canónicas:</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="análisis-de-correlación-canónica.html#cb172-1" tabindex="-1"></a><span class="fu">print</span>(modelo_cca<span class="sc">$</span>cor)</span></code></pre></div>
+<pre><code>[1] 0.8247966 0.3652762</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="análisis-de-correlación-canónica.html#cb174-1" tabindex="-1"></a><span class="co"># 4. Contrastes de Significación Estadística (Lambda de Wilks)</span></span>
+<span id="cb174-2"><a href="análisis-de-correlación-canónica.html#cb174-2" tabindex="-1"></a>rho <span class="ot">&lt;-</span> modelo_cca<span class="sc">$</span>cor</span>
+<span id="cb174-3"><a href="análisis-de-correlación-canónica.html#cb174-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb174-4"><a href="análisis-de-correlación-canónica.html#cb174-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)</span>
+<span id="cb174-5"><a href="análisis-de-correlación-canónica.html#cb174-5" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">ncol</span>(Y)</span>
+<span id="cb174-6"><a href="análisis-de-correlación-canónica.html#cb174-6" tabindex="-1"></a></span>
+<span id="cb174-7"><a href="análisis-de-correlación-canónica.html#cb174-7" tabindex="-1"></a><span class="co"># Prueba asintótica mediante Lambda de Wilks</span></span>
+<span id="cb174-8"><a href="análisis-de-correlación-canónica.html#cb174-8" tabindex="-1"></a>pruebas_wilks <span class="ot">&lt;-</span> <span class="fu">p.asym</span>(rho, n, p, q, <span class="at">tstat =</span> <span class="st">&quot;Wilks&quot;</span>)</span></code></pre></div>
+<pre><code>Wilks&#39; Lambda, using F-approximation (Rao&#39;s F):
+              stat   approx df1 df2      p.value
+1 to 2:  0.2770526 13.49772   6  90 7.300349e-11
+2 to 2:  0.8665733  3.54132   2  46 3.711268e-02</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="análisis-de-correlación-canónica.html#cb176-1" tabindex="-1"></a><span class="co"># 5. Inspección de Pesos Canónicos y Cargas Canónicas (Correlaciones Estructurales)</span></span>
+<span id="cb176-2"><a href="análisis-de-correlación-canónica.html#cb176-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Pesos canónicos bloque X (Económico):</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>
+Pesos canónicos bloque X (Económico):</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="análisis-de-correlación-canónica.html#cb178-1" tabindex="-1"></a><span class="fu">print</span>(modelo_cca<span class="sc">$</span>xcoef)</span></code></pre></div>
+<pre><code>            [,1]       [,2]
+sr   -0.26567538  1.0468717
+dpi  -0.90682202 -0.5263260
+ddpi -0.08378358 -0.2464509</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="análisis-de-correlación-canónica.html#cb180-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Pesos canónicos bloque Y (Demográfico):</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>
+Pesos canónicos bloque Y (Demográfico):</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="análisis-de-correlación-canónica.html#cb182-1" tabindex="-1"></a><span class="fu">print</span>(modelo_cca<span class="sc">$</span>ycoef)</span></code></pre></div>
+<pre><code>            [,1]      [,2]
+pop15  0.5836605 -2.320461
+pop75 -0.4395497 -2.352019</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="análisis-de-correlación-canónica.html#cb184-1" tabindex="-1"></a><span class="co"># Cargas canónicas (correlación entre variables originales y puntuaciones canónicas)</span></span>
+<span id="cb184-2"><a href="análisis-de-correlación-canónica.html#cb184-2" tabindex="-1"></a>cargas <span class="ot">&lt;-</span> <span class="fu">comput</span>(X, Y, modelo_cca)</span>
+<span id="cb184-3"><a href="análisis-de-correlación-canónica.html#cb184-3" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="análisis-de-correlación-canónica.html#cb184-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Cargas canónicas bloque X (Corr(X, U)):</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>
+Cargas canónicas bloque X (Corr(X, U)):</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="análisis-de-correlación-canónica.html#cb186-1" tabindex="-1"></a><span class="fu">print</span>(cargas<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
+<pre><code>           [,1]       [,2]
+sr   -0.4910379  0.8557760
+dpi  -0.9545172 -0.2637266
+ddpi -0.0473377  0.1407737</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="análisis-de-correlación-canónica.html#cb188-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Cargas canónicas bloque Y (Corr(Y, V)):</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>
+Cargas canónicas bloque Y (Corr(Y, V)):</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="análisis-de-correlación-canónica.html#cb190-1" tabindex="-1"></a><span class="fu">print</span>(cargas<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
+<pre><code>            [,1]       [,2]
+pop15  0.9829821 -0.1837015
+pop75 -0.9697929 -0.2439299</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="análisis-de-correlación-canónica.html#cb192-1" tabindex="-1"></a><span class="co"># 6. Visualización del Primer Par Canónico (U1 vs V1)</span></span>
+<span id="cb192-2"><a href="análisis-de-correlación-canónica.html#cb192-2" tabindex="-1"></a>df_canonico <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb192-3"><a href="análisis-de-correlación-canónica.html#cb192-3" tabindex="-1"></a>  <span class="at">Pais =</span> <span class="fu">rownames</span>(LifeCycleSavings),</span>
+<span id="cb192-4"><a href="análisis-de-correlación-canónica.html#cb192-4" tabindex="-1"></a>  <span class="at">U1 =</span> cargas<span class="sc">$</span>xscores[, <span class="dv">1</span>],</span>
+<span id="cb192-5"><a href="análisis-de-correlación-canónica.html#cb192-5" tabindex="-1"></a>  <span class="at">V1 =</span> cargas<span class="sc">$</span>yscores[, <span class="dv">1</span>]</span>
+<span id="cb192-6"><a href="análisis-de-correlación-canónica.html#cb192-6" tabindex="-1"></a>)</span>
+<span id="cb192-7"><a href="análisis-de-correlación-canónica.html#cb192-7" tabindex="-1"></a></span>
+<span id="cb192-8"><a href="análisis-de-correlación-canónica.html#cb192-8" tabindex="-1"></a><span class="fu">ggplot</span>(df_canonico, <span class="fu">aes</span>(<span class="at">x =</span> U1, <span class="at">y =</span> V1, <span class="at">label =</span> Pais)) <span class="sc">+</span></span>
+<span id="cb192-9"><a href="análisis-de-correlación-canónica.html#cb192-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#0072B2&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb192-10"><a href="análisis-de-correlación-canónica.html#cb192-10" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">&quot;#D55E00&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb192-11"><a href="análisis-de-correlación-canónica.html#cb192-11" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb192-12"><a href="análisis-de-correlación-canónica.html#cb192-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb192-13"><a href="análisis-de-correlación-canónica.html#cb192-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb192-14"><a href="análisis-de-correlación-canónica.html#cb192-14" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relación entre el Primer Par de Variables Canónicas (U1 vs V1)&quot;</span>,</span>
+<span id="cb192-15"><a href="análisis-de-correlación-canónica.html#cb192-15" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Correlación Canónica r1 =&quot;</span>, <span class="fu">round</span>(rho[<span class="dv">1</span>], <span class="dv">4</span>)),</span>
+<span id="cb192-16"><a href="análisis-de-correlación-canónica.html#cb192-16" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Primera Variable Canónica Económica (U1)&quot;</span>,</span>
+<span id="cb192-17"><a href="análisis-de-correlación-canónica.html#cb192-17" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Primera Variable Canónica Demográfica (V1)&quot;</span></span>
+<span id="cb192-18"><a href="análisis-de-correlación-canónica.html#cb192-18" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/cca-ejemplo-completo-1.png" alt="" width="768" style="display: block; margin: auto;" />
+El primer par canónico presenta una correlación elevada (<span class="math inline">\(\rho_1 \approx 0.8248\)</span>) con un <span class="math inline">\(p\text{-valor} &lt; 0.001\)</span>, lo que confirma una fuerte asociación lineal entre la estructura demográfica y las variables económicas. El segundo par (<span class="math inline">\(\rho_2 \approx 0.3653\)</span>) resulta no significativo (<span class="math inline">\(p\text{-valor} &gt; 0.05\)</span>), por lo que el análisis debe centrarse únicamente en la primera dimensión canónica.</p>
+<p>Estructura del Bloque Demográfico (<span class="math inline">\(V_1\)</span>):Las cargas canónicas muestran una fuerte correlación positiva con pop15 (<span class="math inline">\(+0.98\)</span>) y fuertemente negativa con pop75 (<span class="math inline">\(-0.97\)</span>). Esto define un eje demográfico que contrapone a países con población envejecida frente a países con alta proporción de población joven.</p>
+<p>Estructura del Bloque Económico (<span class="math inline">\(U_1\)</span>):La primera variable canónica económica está dominada negativamente por el ingreso disponible per cápita dpi (<span class="math inline">\(-0.96\)</span>) y, en menor medida, por la tasa de ahorro sr (<span class="math inline">\(-0.49\)</span>).</p>
+<p>En conclusión, la relación positiva entre <span class="math inline">\(U_1\)</span> y <span class="math inline">\(V_1\)</span> indica que los países con mayor proporción de población infantil (población joven, valores altos en <span class="math inline">\(V_1\)</span>) se asocia con Valores altos en <span class="math inline">\(U_1\)</span> (menor ingreso/ menor ahorro)</p>
 
+</div>
 </div>
             </section>
 

@@ -179,5 +179,9 @@ pruebas-de-significación-y-diagnóstico
 implementación-práctica-en-r
 caso-de-estudio-análisis-de-riesgo-crediticio
 análisis-de-correlación-canónica
+fundamentos-teóricos-y-supuestos-del-modelo-1
+formulación-matemática-y-extracción-de-variables-canónicas
+pruebas-de-significación-e-interpretación
+implementación-práctica-en-r-1
 coeficiente-rv
 análisis-de-procrustes
